@@ -24,6 +24,9 @@ return {
 			},
 		})
 
+		-- Check if compile_commands.json exists
+		local compile_commands_exists = vim.fn.filereadable("compile_commands.json") == 1
+
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
@@ -37,6 +40,14 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"clangd",
+			},
+			-- Custom configuration for clangd
+			handlers = {
+				["clangd"] = function()
+					require("lspconfig").clangd.setup({
+						cmd = compile_commands_exists and { "clangd" } or { "clangd", "--std=c++17" },
+					})
+				end,
 			},
 		})
 
