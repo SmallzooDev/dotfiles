@@ -11,12 +11,12 @@ return {
 		vim.keymap.set("n", "<leader>pl", "<Plug>VimwikiPrevLink", { silent = true }) -- For STab:w
 		vim.g.vimwiki_list = {
 			{
-				path = "/Users/joonkyu_kang/wiki/SmallzooDevWiki/content/_wiki",
+				path = "/Users/jk.kang/wiki/SmallzooDevWiki/content/_wiki",
 				ext = ".md",
 				index = "home",
 			},
 			{
-				path = "/Users/joonkyu_kang/wiki/private_wiki",
+				path = "/Users/jk.kang/wiki/private_wiki",
 				ext = ".md",
 			},
 		}
