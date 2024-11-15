@@ -79,7 +79,7 @@
   nmap <F1><F3> <Action>(RecentFiles)
 
   nmap \t <Action>(ActivateStructureToolWindow)
-  nmap \u <Action>(ShowUsages)
+  nmap <leader>gR <Action>(ShowUsages)
   nmap \s <Action>(ManageRecentProjects)
   nmap \r <Action>(ActivateREPLToolWindow)
   nmap \d <Action>(ActivateDatabaseToolWindow)
@@ -99,7 +99,7 @@ onoremap [[ :action MethodUp<CR>
 onoremap ]] :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
-nnoremap <Tab>d :action QuickJavaDoc<CR>
+nnoremap <leader>K :action QuickJavaDoc<CR>
 nnoremap <Tab>f :action QuickFixes<CR>
 nnoremap <Tab>oo :action CloseAllEditorsButActive<CR>
 nnoremap <Tab>or :action CloseAllToTheRight<CR>
@@ -107,8 +107,8 @@ nnoremap <Tab>ol :action CloseAllToTheLeft<CR>
 nnoremap <Tab>i :action InspectCode<CR>
 nnoremap <Tab>u :action FindUsages<CR>
 nnoremap <Tab>, :e ~/.ideavimrc<CR>
-nnoremap <Tab>ll :action Refactorings.QuickListPopupAction<CR>
-nnoremap <Tab>rn :action RenameElement<CR>
+nnoremap <leader>ll :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <Space>v :action CopyPaths<CR>
 
 let mapleader=" "
