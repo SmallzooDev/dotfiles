@@ -4,6 +4,7 @@ return {
 	init = function()
 		vim.g.vimwiki_conceallevel = 0
 		vim.g.vimwiki_global_ext = 0
+		vim.g.vimwiki_markdown_link_ext = 0
 		vim.g.vimwiki_folding = ""
 		vim.g.vimwiki_key_mappings = {
 			table_mappings = 0,
@@ -24,7 +25,7 @@ return {
 			},
 		}
 
-		vim.g.vimwiki_syntax = "markdown"
+		vim.g.vimwiki_syntax = "default"
 
 		vim.g.vimwiki_primary_path = vim.g.vimwiki_list[1].path
 		vim.g.vimwiki_secondary_path = vim.g.vimwiki_list[2].path
