@@ -144,15 +144,23 @@ source $ZSH/oh-my-zsh.sh
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 
- fg="#CBE0F0"
- bg="#011628"
- bg_highlight="#143652"
- purple="#B388FF"
- blue="#06BCE4"
- cyan="#2CF9ED"
+ # fg="#CBE0F0"
+  # bg="#011628"
+  # bg_highlight="#143652"
+  # purple="#B388FF"
+  # blue="#06BCE4"
+  # cyan="#2CF9ED"
+ # 
+ # export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+ 
+fg="#c9d1d9"
+bg="#0d1117"
+bg_highlight="#1f6feb"
+purple="#bc8cff"
+blue="#58a6ff"
+cyan="#39c5cf"
 
-export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
-
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${blue},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${blue}"
 # -- Use fd instead of fzf --
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -191,11 +199,13 @@ _fzf_comprun() {
 
 # ----- Bat (better cat) -----
 
-export BAT_THEME=tokyonight_night
+# export BAT_THEME=tokyonight_night
+export BAT_THEME=github_dark
 
 # ---- Eza (better ls) -----
 
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+# alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --long --git --icons=always --time-style=long-iso --no-user --no-permissions"
 
 # ---- TheFuck -----
 
