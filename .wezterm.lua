@@ -6,8 +6,8 @@ config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.7
-config.macos_window_background_blur = 20
+config.window_background_opacity = 0.5
+config.macos_window_background_blur = 16
 config.enable_tab_bar = false
 -- config.colors = {
 --foreground = "#CBE0F0",
