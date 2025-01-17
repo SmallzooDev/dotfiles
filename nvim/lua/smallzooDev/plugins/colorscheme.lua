@@ -6,6 +6,14 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			transparent_background = true, -- 배경 투명 설정
+			custom_highlights = function(colors)
+				return {
+					CmpBorder = { fg = colors.blue },
+					CmpPmenu = { bg = colors.none },
+					CmpDoc = { bg = colors.none },
+					FloatBorder = { fg = colors.blue },
+				}
+			end,
 		})
 
 		-- Catppuccin 테마 적용

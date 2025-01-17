@@ -29,7 +29,6 @@ return {
 				"yaml",
 				"html",
 				"css",
-				"graphql",
 				"bash",
 				"lua",
 				"vim",
