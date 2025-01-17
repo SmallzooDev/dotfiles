@@ -34,14 +34,9 @@ return {
       let g:md_modify_disabled = 0
 
       function! NewTemplate()
-        " 위키 경로가 설정된 변수로 변경
-        let l:wiki_directory = v:false
-        if expand('%:p:h') =~ expand(g:vimwiki_primary_path) || expand('%:p:h') =~ expand(g:vimwiki_secondary_path)
-          let l:wiki_directory = v:true
-        endif
-
-        if !l:wiki_directory
-          echom 'first debugging point >> called this return statement'
+        " 경로 체크를 단순화
+        let l:current_path = expand('%:p:h')
+        if l:current_path !~ expand(g:vimwiki_primary_path) && l:current_path !~ expand(g:vimwiki_secondary_path)
           return
         endif
 
@@ -49,25 +44,24 @@ return {
           return
         endif
 
-        let l:template = []
-        call add(l:template, '---')
-        call add(l:template, 'title: ')
-        call add(l:template, 'summary: ')
-        call add(l:template, 'date: ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-        call add(l:template, 'lastmod: ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-        call add(l:template, 'tags: ')
-        call add(l:template, 'categories: ')
-        call add(l:template, 'description: ')
-        call add(l:template, 'showToc: true')
-        call add(l:template, 'tocOpen: true')
-        call add(l:template, '---')
-        call add(l:template, '')
-        call add(l:template, '# ')
+        " 템플릿
+        let l:template = [
+          \ '---',
+          \ 'title: ',
+          \ 'summary: ',
+          \ 'date: ' . strftime('%Y-%m-%d %H:%M:%S +0900'),
+          \ 'lastmod: ' . strftime('%Y-%m-%d %H:%M:%S +0900'),
+          \ 'tags: ',
+          \ 'categories: ',
+          \ 'description: ',
+          \ 'showToc: true',
+          \ 'tocOpen: true',
+          \ '---',
+          \ '',
+          \ '# '
+        \ ]
         call setline(1, l:template)
-        execute 'normal! G'
-        execute 'normal! $'
-
-        echom 'new wiki page has created'
+        normal! G$
       endfunction
 
       function! LastModified()
@@ -86,8 +80,8 @@ return {
 
       augroup wimwikiauto
         autocmd!
-        autocmd BufWritePre *wiki/*.md call LastModified()
-        autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
+        autocmd BufWritePre */SmallzooDevWiki/content/_wiki/*.md,*/private_wiki/*.md call LastModified()
+        autocmd BufRead,BufNewFile */SmallzooDevWiki/content/_wiki/*.md,*/private_wiki/*.md call NewTemplate()
       augroup END
     ]])
 	end,
