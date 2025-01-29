@@ -44,5 +44,4 @@ create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
 create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
 create_symlink "$HOME/dotfiles/bat" ~/.config/bat
-create_symlink "$HOME/dotfiles/thefuck" ~/.config/thefuck
 create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
