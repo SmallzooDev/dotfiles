@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "Hyper Key: Right Option → left shift + left option + left command (⌃⇧⌥⌘)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -37,6 +38,7 @@
                     },
                     {
                         "description": "Esc to ABC",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": { "key_code": "escape" },

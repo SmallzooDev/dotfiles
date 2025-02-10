@@ -1,38 +1,14 @@
--- F17 + HJKL을 방향키로 매핑
-local function keyStroke(modifiers, key)
-    hs.eventtap.keyStroke(modifiers, key, 0)
-end
+-- 입력기
+ENGLISH_INPUTS = {
+    ["com.apple.keylayout.ABC"] = true
+}
 
--- F17 + HJKL 매핑 설정
-local f17Handler = nil
+KOREAN_INPUTS = {
+    ["com.apple.inputmethod.Korean.2SetKorean"] = true
+}
 
-hs.hotkey.bind({}, 'F17', function()
-    f17Handler = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
-        local char = event:getCharacters()
-        
-        if char == 'h' then
-            keyStroke({}, 'left')
-            return true
-        elseif char == 'j' then
-            keyStroke({}, 'down')
-            return true
-        elseif char == 'k' then
-            keyStroke({}, 'up')
-            return true
-        elseif char == 'l' then
-            keyStroke({}, 'right')
-            return true
-        end
-        return false
-    end)
-    
-    f17Handler:start()
-end, function()
-    if f17Handler then
-        f17Handler:stop()
-        f17Handler = nil
-    end
-end)
+-- 키보드 매핑 모듈
+require("keyboard.mapping")
 
 -- Cmd + Alt + R로 Hammerspoon 설정 리로드
 hs.hotkey.bind({"cmd", "alt"}, "r", function()
