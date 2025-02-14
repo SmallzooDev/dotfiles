@@ -34,7 +34,6 @@ return {
       let g:md_modify_disabled = 0
 
       function! NewTemplate()
-        " 경로 체크를 단순화
         let l:current_path = expand('%:p:h')
         if l:current_path !~ expand(g:vimwiki_primary_path) && l:current_path !~ expand(g:vimwiki_secondary_path)
           return
