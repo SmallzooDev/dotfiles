@@ -111,7 +111,6 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     fzf
-    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
