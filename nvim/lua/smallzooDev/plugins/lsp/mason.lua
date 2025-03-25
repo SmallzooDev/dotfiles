@@ -33,6 +33,7 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"clangd",
+				"gopls",
 			},
 		})
 
@@ -43,6 +44,10 @@ return {
 				"eslint_d",
 				"clang-format",
 				"codelldb",
+				"gofumpt",
+				"goimports",
+				"gomodifytags",
+				"delve",
 			},
 		})
 	end,

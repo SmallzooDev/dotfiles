@@ -127,6 +127,36 @@ return {
 					},
 				})
 			end,
+			["gopls"] = function()
+				-- Go 언어 서버 설정
+				lspconfig["gopls"].setup({
+					capabilities = capabilities,
+					handlers = handlers,
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true,
+								shadow = true,
+							},
+							staticcheck = true,
+							gofumpt = true,
+							usePlaceholders = true,
+							completeUnimported = true,
+							experimentalPostfixCompletions = true,
+						},
+					},
+					-- Go 파일에 대한 자동 가져오기 정리 및 포맷 설정
+					-- 파일 저장 시 자동으로 임포트 정리 및 포맷팅
+					on_attach = function(client, bufnr)
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							buffer = bufnr,
+							callback = function()
+								-- conform.nvim에서 처리하므로 추가 설정 불필요
+							end,
+						})
+					end,
+				})
+			end,
 		})
 	end,
 }
