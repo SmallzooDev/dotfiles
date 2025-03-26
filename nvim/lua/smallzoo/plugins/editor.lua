@@ -175,8 +175,8 @@ return {
 		'trouble.nvim',
 		-- stylua: ignore
 		keys = {
-			{ '<leader>cs', false },
-			{ '<leader>cS', false },
+			-- { '<leader>cs', false },
+			-- { '<leader>cS', false },
 
 			{ 'gR', function() require('trouble').open('lsp_references') end, desc = 'LSP References (Trouble)' },
 			{ '<leader>xs', '<cmd>Trouble symbols toggle<CR>', desc = 'Symbols (Trouble)' },
