@@ -89,6 +89,15 @@
                         "product_id": 33,
                         "vendor_id": 1278
                     }
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 58488,
+                        "vendor_id": 13357
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
