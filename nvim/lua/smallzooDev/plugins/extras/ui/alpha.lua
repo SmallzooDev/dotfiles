@@ -10,14 +10,24 @@ return {
 	-- Fast and fully programmable greeter dashboard
 	{
 		'goolord/alpha-nvim',
-		event = 'VimEnter',
-		enabled = true,
-		init = false,
+		lazy = false,
+		priority = 100,
 		opts = function()
 			local dashboard = require('alpha.themes.dashboard')
 			local theta = require('alpha.themes.theta')
 			local cdir = vim.fn.getcwd()
 			-- stylua: ignore
+			dashboard.section.header.val = {
+				[[ _   _        _  _          _    _               _      _  _ ]],
+				[[| | | |      | || |        | |  | |             | |    | || |]],
+				[[| |_| |  ___ | || |  ___   | |  | |  ___   _ __ | |  __| || |]],
+				[[|  _  | / _ \| || | / _ \  | |/\| | / _ \ | '__|| | / _` || |]],
+				[[| | | ||  __/| || || (_) | \  /\  /| (_) || |   | || (_| ||_|]],
+				[[\_| |_/ \___||_||_| \___/   \/  \/  \___/ |_|   |_| \__,_|(_)]],
+				[[                                                             ]],
+				[[                                                             ]],
+			}
+			dashboard.section.header.opts.hl = 'AlphaHeader'
 			dashboard.section.buttons.val = {
 				{
 					type = 'group',
@@ -64,7 +74,6 @@ return {
 					button.opts.hl_shortcut = 'AlphaShortcut'
 				end
 			end
-			dashboard.section.header.opts.hl = 'AlphaHeader'
 			dashboard.section.buttons.opts.hl = 'AlphaButtons'
 			dashboard.section.buttons.opts.spacing = 0
 			dashboard.section.footer.opts.hl = 'AlphaFooter'

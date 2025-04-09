@@ -1,0 +1,11 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.ui.alpha",
+    "smallzooDev.plugins.extras.ui.alpha"
+  ],
+  "install_version": 8,
+  "news": [
+
+  ],
+  "version": 8
+}
