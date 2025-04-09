@@ -1,6 +1,6 @@
 -- Rafael Bodill's Neovim entry-point
--- https://github.com/rafi/vim-config
+-- https://github.com/smallzooDev/vim-config
 --
 -- since 2014.
 
-require('rafi.config.lazy')
+require('smallzooDev.config.lazy')
