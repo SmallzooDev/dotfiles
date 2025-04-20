@@ -48,9 +48,18 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
+		keys = {
+			{
+				"<leader>ghc",
+				function()
+					require("copilot.suggestion").toggle_auto_trigger()
+				end,
+				desc = "Copilot Toggle Auto Trigger",
+			},
+		},
 		opts = {
 			suggestion = {
-				auto_trigger = true,
+				auto_trigger = false,
 				keymap = {
 					accept = "<C-l>",
 					accept_word = "<M-l>",
