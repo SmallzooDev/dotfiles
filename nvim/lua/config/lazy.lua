@@ -18,7 +18,7 @@ require("lazy").setup({
 			"LazyVim/LazyVim",
 			import = "lazyvim.plugins",
 			opts = {
-				colorscheme = "solarized-osaka",
+				colorscheme = "catppuccin",
 				news = {
 					lazyvim = true,
 					neovim = true,
@@ -57,8 +57,8 @@ require("lazy").setup({
 	checker = { enabled = true }, -- automatically check for plugin updates
 	performance = {
 		cache = {
-			enabled = true,
 			-- disable_events = {},
+			enabled = true,
 		},
 		rtp = {
 			-- disable some rtp plugins

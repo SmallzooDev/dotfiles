@@ -21,13 +21,47 @@ return {
 				hsl_color = {
 					pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
 					group = function(_, match)
-						local utils = require("solarized-osaka.hsl")
+						-- HSL to HEX 변환 내장 함수
+						local function hsl_to_hex(h, s, l)
+							h = h / 360
+							s = s / 100
+							l = l / 100
+							
+							local r, g, b
+							
+							if s == 0 then
+								r, g, b = l, l, l
+							else
+								local function hue_to_rgb(p, q, t)
+									if t < 0 then t = t + 1 end
+									if t > 1 then t = t - 1 end
+									if t < 1/6 then return p + (q - p) * 6 * t end
+									if t < 1/2 then return q end
+									if t < 2/3 then return p + (q - p) * (2/3 - t) * 6 end
+									return p
+								end
+								
+								local q = l < 0.5 and l * (1 + s) or l + s - l * s
+								local p = 2 * l - q
+								
+								r = hue_to_rgb(p, q, h + 1/3)
+								g = hue_to_rgb(p, q, h)
+								b = hue_to_rgb(p, q, h - 1/3)
+							end
+							
+							local hex = string.format("#%02x%02x%02x", 
+								math.floor(r * 255 + 0.5), 
+								math.floor(g * 255 + 0.5), 
+								math.floor(b * 255 + 0.5))
+							return hex
+						end
+						
 						--- @type string, string, string
 						local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
 						--- @type number?, number?, number?
 						local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
 						--- @type string
-						local hex_color = utils.hslToHex(h, s, l)
+						local hex_color = hsl_to_hex(h, s, l)
 						return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
 					end,
 				},

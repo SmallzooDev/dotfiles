@@ -115,7 +115,8 @@ function M.hslToRgb(h, s, l)
 end
 
 function M.hexToHSL(hex)
-	local hsluv = require("solarized-osaka.hsluv")
+	-- solarized-osaka.hsluv 의존성 제거
+	-- 직접 hex_to_rgb 함수 사용
 	local rgb = M.hex_to_rgb(hex)
 	local h, s, l = M.rgbToHsl(rgb[7], rgb[2], rgb[3])
 
