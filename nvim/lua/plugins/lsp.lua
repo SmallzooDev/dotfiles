@@ -9,9 +9,9 @@ return {
 				"luacheck",
 				"shellcheck",
 				"shfmt",
-				"tailwindcss-language-server",
+				"gopls",
+				"pyright",
 				"typescript-language-server",
-				"css-lsp",
 			})
 		end,
 	},
@@ -23,11 +23,30 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
-				cssls = {},
-				tailwindcss = {
-					root_dir = function(...)
-						return require("lspconfig.util").root_pattern(".git")(...)
-					end,
+				gopls = {
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true,
+							},
+							staticcheck = true,
+							gofumpt = true,
+						},
+					},
+				},
+				pyright = {
+					settings = {
+						python = {
+							analysis = {
+								typeCheckingMode = "basic",
+								diagnosticMode = "workspace",
+								inlayHints = {
+									variableTypes = true,
+									functionReturnTypes = true,
+								},
+							},
+						},
+					},
 				},
 				tsserver = {
 					root_dir = function(...)
@@ -59,7 +78,6 @@ return {
 						},
 					},
 				},
-				html = {},
 				yamlls = {
 					settings = {
 						yaml = {
