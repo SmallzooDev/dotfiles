@@ -12,6 +12,10 @@ return {
 				"gopls",
 				"pyright",
 				"typescript-language-server",
+				"clangd",
+				"clang-format",
+				"cpplint",
+				"cmake-language-server",
 			})
 		end,
 	},
@@ -47,6 +51,33 @@ return {
 							},
 						},
 					},
+				},
+				clangd = {
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--suggest-missing-includes",
+						"--clang-tidy",
+						"--header-insertion=iwyu",
+						"--completion-style=detailed",
+						"--function-arg-placeholders",
+						"--fallback-style=llvm",
+					},
+					init_options = {
+						clangdFileStatus = true,
+						usePlaceholders = true,
+						completeUnimported = true,
+						semanticHighlighting = true,
+					},
+					filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+					root_dir = function(fname)
+						return require("lspconfig.util").root_pattern(
+							"compile_commands.json",
+							"compile_flags.txt",
+							".git",
+							"CMakeLists.txt"
+						)(fname)
+					end,
 				},
 				tsserver = {
 					root_dir = function(...)
@@ -149,6 +180,16 @@ return {
 							},
 						},
 					},
+				},
+				cmake = {
+					cmd = { "cmake-language-server" },
+					filetypes = { "cmake" },
+					init_options = {
+						buildDirectory = "build",
+					},
+					root_dir = function(fname)
+						return require("lspconfig.util").root_pattern("CMakeLists.txt", ".git")(fname)
+					end,
 				},
 			},
 			setup = {},
