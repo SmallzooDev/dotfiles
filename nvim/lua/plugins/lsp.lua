@@ -16,6 +16,7 @@ return {
 				"clang-format",
 				"cpplint",
 				"cmake-language-server",
+				"rust-analyzer",
 			})
 		end,
 	},
