@@ -212,11 +212,59 @@ return {
 				{
 					"gd",
 					function()
-						-- DO NOT RESUSE WINDOW
 						require("telescope.builtin").lsp_definitions({ reuse_win = false })
 					end,
 					desc = "Goto Definition",
 					has = "definition",
+				},
+				{
+					"g;",
+					function()
+						vim.lsp.buf.references()
+					end,
+					desc = "Jump to Last Change (IDEAVim)",
+				},
+				{
+					"g,",
+					function()
+						vim.lsp.buf.implementation()
+					end,
+					desc = "Jump to Next Change (IDEAVim)",
+				},
+				{
+					"[[",
+					function()
+						vim.lsp.buf.declaration()
+					end,
+					desc = "Method Up (IDEAVim)",
+				},
+				{
+					"]]",
+					function()
+						vim.lsp.buf.implementation()
+					end,
+					desc = "Method Down (IDEAVim)",
+				},
+				{
+					"\\p",
+					function()
+						vim.lsp.buf.signature_help()
+					end,
+					desc = "Parameter Name Hints (IDEAVim)",
+				},
+				{
+					"<leader>ll",
+					function()
+						vim.lsp.buf.code_action()
+					end,
+					desc = "Quick List Popup Action (IDEAVim)",
+				},
+				{
+					"<leader>rn",
+					function()
+						vim.lsp.buf.rename()
+					end,
+					desc = "Rename Element (IDEAVim)",
 				},
 			})
 		end,

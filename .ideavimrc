@@ -207,4 +207,4 @@ nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
 
 " 열려있는 파일을 explorer에서 포커스 맞추기
-nmap sff <Action>(SelectInProjectView)
+nmap <leader>e <Action>(SelectInProjectView)

@@ -25,9 +25,6 @@ keymap.set("v", "<Leader>D", '"_D')
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
--- Save with root permission (not working for now)
---vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
-
 -- Disable continuations
 keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
 keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
@@ -39,9 +36,11 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 keymap.set("n", "te", ":tabedit")
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+
 -- Move window
 keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
@@ -54,19 +53,23 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
--- Diagnostics
-keymap.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
-end, opts)
+-- 창 숨기기
+keymap.set("n", "<leader>cw", ":hide<CR>", opts)
 
-keymap.set("n", "<leader>r", function()
-	require("smallzoodev.hsl").replaceHexWithHSL()
-end)
+-- 페이지 이동
+keymap.set("n", "<PageDown>", "gT", opts)
+keymap.set("n", "<PageUp>", "gt", opts)
+keymap.set("n", "gl", "1gtgT", opts)
+keymap.set("n", "gf", "1gt", opts)
 
-keymap.set("n", "<leader>i", function()
-	require("smallzoodev.lsp").toggleInlayHints()
-end)
+-- 북마크 (Neovim 마크 시스템 사용)
+for i = 0, 9 do
+    keymap.set("n", "m" .. i, "m" .. i, opts)
+    keymap.set("n", "`" .. i, "`" .. i, opts)
+end
 
-vim.api.nvim_create_user_command("ToggleAutoformat", function()
-	require("smallzoodev.lsp").toggleAutoformat()
-end, {})
+for c = string.byte('a'), string.byte('z') do
+    local char = string.char(c)
+    keymap.set("n", "m" .. char, "m" .. char, opts)
+    keymap.set("n", "`" .. char, "`" .. char, opts)
+end

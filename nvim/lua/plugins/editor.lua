@@ -102,7 +102,7 @@ return {
 				desc = "Find Plugin File",
 			},
 			{
-				";f",
+				"<F1><F1>",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.find_files({
@@ -110,17 +110,25 @@ return {
 						hidden = true,
 					})
 				end,
-				desc = "Lists files in your current working directory, respects .gitignore",
+				desc = "Search Everywhere (IDEAVim)",
 			},
 			{
-				";r",
+				"<F1><F2>",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.live_grep({
 						additional_args = { "--hidden" },
 					})
 				end,
-				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+				desc = "Find in Path (IDEAVim)",
+			},
+			{
+				"<F1><F3>",
+				function()
+					local builtin = require("telescope.builtin")
+					builtin.oldfiles()
+				end,
+				desc = "Recent Files (IDEAVim)",
 			},
 			{
 				"\\\\",
