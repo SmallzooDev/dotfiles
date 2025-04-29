@@ -2,8 +2,8 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- Insert Mode 커서 이동
-keymap.set("i", "<C-f>", "<Esc>:let @z=@/<CR>/\v[)\"}>]<CR>:let @/=@z<CR>:noh<CR>a", opts)
-keymap.set("i", "<C-b>", "<Esc>:let @z=@/<CR>?\\v[(\"{<]<CR>:let @/=@z<CR>:noh<CR>i", opts)
+keymap.set("i", "<C-f>", "<Esc>:let @z=@/<CR>/\\v[\\)\\\"\\}\\]]<CR>:let @/=@z<CR>:noh<CR>a", opts)
+keymap.set("i", "<C-b>", "<Esc>:let @z=@/<CR>?\\v[\\(\\\"\\{\\[]<CR>:let @/=@z<CR>:noh<CR>i", opts)
 keymap.set("i", "<C-e>", "<C-o>A", opts)
 keymap.set("i", "<C-a>", "<C-o>I", opts)
 
