@@ -26,6 +26,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # goto
 alias gtwk='cd ~/wiki/SmallzooDevWiki'
 alias gtnv='cd ~/.config/nvim'
+alias gtrs='cd ~/dev/coding_interview_rust'
+alias gtkt='cd ~/dev/CodingInterviewKotlin'
 alias book='cd ~/Books && open .'
 
 # safety
