@@ -15,12 +15,9 @@
   set nrformats
   set visualbell
   set clipboard+=unnamed
-  nmap \ <Leader>
-  vmap \ <Leader>
-  omap \ <Leader>
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
-  " set trackactionids
+  set trackactionids
 
   " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
   Plug 'tpope/vim-surround'
@@ -30,17 +27,16 @@
   Plug 'easymotion/vim-easymotion'
 
     " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-  nmap <Leader><Leader>l <Plug>(easymotion-lineforward)
-  nmap <Leader><Leader>j <Plug>(easymotion-j)
-  nmap <Leader><Leader>k <Plug>(easymotion-k)
-  nmap <Leader><Leader>h <Plug>(easymotion-linebackward)
-  nmap <Leader><Leader><Leader> <Plug>(easymotion-jumptoanywhere)
-  nmap <Leader><Leader>f <Plug>(easymotion-f)
+  nmap \l <Plug>(easymotion-lineforward)
+  nmap \j <Plug>(easymotion-j)
+  nmap \k <Plug>(easymotion-k)
+  nmap \h <Plug>(easymotion-linebackward)
+  nmap \\ <Plug>(easymotion-jumptoanywhere)
+  nmap \f <Plug>(easymotion-f)
 
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
-
-    nmap \f :NERDTreeFind<CR>
+  nmap <F1>f :NERDTreeFind<CR>
 
   " ideavim only
   set ideajoin
@@ -79,13 +75,14 @@
   " nnoremap <F1><F1> :action SearchEverywhere<CR>
   nmap <F1><F1> <Action>(SearchEverywhere)
   nmap <F1><F2> <Action>(FindInPath)
-  nmap <F1><F3> <Action>(RecentFiles)
+  nmap <F1><F3> <Action>(ShowBookmarks)
+  nmap <F4><F4> <Action>(ActivateTerminalToolWindow)
 
-  nmap \t <Action>(ActivateStructureToolWindow)
+  nmap <F1>t <Action>(ActivateStructureToolWindow)
+  nmap <F1>s <Action>(ManageRecentProjects)
+  nmap <F1>r <Action>(ActivateREPLToolWindow)
+  nmap <F1>d <Action>(ActivateDatabaseToolWindow)
   nmap <leader>gR <Action>(ShowUsages)
-  nmap \s <Action>(ManageRecentProjects)
-  nmap \r <Action>(ActivateREPLToolWindow)
-  nmap \d <Action>(ActivateDatabaseToolWindow)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
@@ -192,7 +189,7 @@ nmap mx <Action>(ToggleBookmarkX)
 nmap my <Action>(ToggleBookmarkY)
 nmap mz <Action>(ToggleBookmarkZ)
 
-nmap \p <Action>(ParameterNameHints)
+nmap <F1>p <Action>(ParameterNameHints)
 
 " for split
 nmap <leader>sv <Action>(SplitVertically)
