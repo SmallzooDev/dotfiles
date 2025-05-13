@@ -15,6 +15,7 @@
   set nrformats
   set visualbell
   set clipboard+=unnamed
+  let mapleader=" "
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
   " set trackactionids
@@ -111,7 +112,6 @@ nnoremap <leader>ll :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <Space>v :action CopyPaths<CR>
 
-let mapleader=" "
 
 
 " Bookmarks 알파벳 마크는 글로벌 마크만 왼쪽에 표시된다. 글로벌 마크만 쓰자.
