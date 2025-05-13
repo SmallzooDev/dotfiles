@@ -27,14 +27,24 @@
   Plug 'tpope/vim-commentary'
   Plug 'easymotion/vim-easymotion'
 
-    " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-  nmap \l <Plug>(easymotion-lineforward)
-  nmap \j <Plug>(easymotion-j)
-  nmap \k <Plug>(easymotion-k)
-  nmap \h <Plug>(easymotion-linebackward)
+  " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
+  nnoremap f <NOP>
+  let g:EasyMotion_do_mapping = 0
   nmap \\ <Plug>(easymotion-jumptoanywhere)
   nmap \f <Plug>(easymotion-f)
+  nmap fj <Plug>(easymotion-j)
+  nmap fk <Plug>(easymotion-k)
 
+
+  nmap fh <Plug>(easymotion-wl)
+  nmap fl <Plug>(easymotion-el)
+  nmap fH <Plug>(easymotion-bl)
+  nmap fL <Plug>(easymotion-gel)
+
+  nmap fw <Plug>(easymotion-w)
+  nmap fW <Plug>(easymotion-b)
+  nmap fe <Plug>(easymotion-e)
+  nmap fE <Plug>(easymotion-ge)
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   nmap <F1>f :NERDTreeFind<CR>
