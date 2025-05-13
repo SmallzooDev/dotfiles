@@ -38,13 +38,13 @@
 
   nmap fh <Plug>(easymotion-wl)
   nmap fl <Plug>(easymotion-el)
-  nmap fH <Plug>(easymotion-bl)
-  nmap fL <Plug>(easymotion-gel)
+  nmap Fh <Plug>(easymotion-bl)
+  nmap Fl <Plug>(easymotion-gel)
 
   nmap fw <Plug>(easymotion-w)
-  nmap fW <Plug>(easymotion-b)
+  nmap Fw <Plug>(easymotion-b)
   nmap fe <Plug>(easymotion-e)
-  nmap fE <Plug>(easymotion-ge)
+  nmap Fe <Plug>(easymotion-ge)
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   nmap <F1>f :NERDTreeFind<CR>
