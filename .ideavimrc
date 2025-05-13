@@ -15,6 +15,9 @@
   set nrformats
   set visualbell
   set clipboard+=unnamed
+  nmap \ <Leader>
+  vmap \ <Leader>
+  omap \ <Leader>
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
   " set trackactionids
