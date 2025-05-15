@@ -32,19 +32,14 @@
   let g:EasyMotion_do_mapping = 0
   nmap \\ <Plug>(easymotion-jumptoanywhere)
   nmap \f <Plug>(easymotion-f)
-  nmap fj <Plug>(easymotion-j)
+
+  nmap fh <Plug>(easymotion-bl)
+  nmap fl <Plug>(easymotion-wl)
   nmap fk <Plug>(easymotion-k)
+  nmap fj <Plug>(easymotion-j)
 
-
-  nmap fh <Plug>(easymotion-wl)
-  nmap fl <Plug>(easymotion-el)
-  nmap Fh <Plug>(easymotion-bl)
-  nmap Fl <Plug>(easymotion-gel)
-
+  nmap fb <Plug>(easymotion-b)
   nmap fw <Plug>(easymotion-w)
-  nmap Fw <Plug>(easymotion-b)
-  nmap fe <Plug>(easymotion-e)
-  nmap Fe <Plug>(easymotion-ge)
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   nmap <F1>f :NERDTreeFind<CR>
@@ -115,8 +110,8 @@ nnoremap <C-S-5> :action EditorMatchBrace<CR>
 nnoremap <leader>K :action QuickJavaDoc<CR>
 nnoremap <Tab>f :action QuickFixes<CR>
 nnoremap <Tab>oo :action CloseAllEditorsButActive<CR>
-nnoremap <Tab>or :action CloseAllToTheRight<CR>
 nnoremap <Tab>ol :action CloseAllToTheLeft<CR>
+nnoremap <Tab>or :action CloseAllToTheRight<CR>
 nnoremap <Tab>i :action InspectCode<CR>
 nnoremap <Tab>u :action FindUsages<CR>
 nnoremap <Tab>, :e ~/.ideavimrc<CR>
