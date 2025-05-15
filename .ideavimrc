@@ -94,6 +94,7 @@
   nmap <F1>r <Action>(ActivateREPLToolWindow)
   nmap <F1>d <Action>(ActivateDatabaseToolWindow)
   nmap <leader>gR <Action>(ShowUsages)
+  nmap <leader>gI <Aciton>(GotoImplementation)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
