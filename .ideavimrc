@@ -23,7 +23,6 @@
   " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
-  Plug 'tommcdo/vim-exchange'
   Plug 'easymotion/vim-easymotion'
 
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
