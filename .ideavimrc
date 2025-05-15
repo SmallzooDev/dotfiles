@@ -24,7 +24,6 @@
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tommcdo/vim-exchange'
-  Plug 'tpope/vim-commentary'
   Plug 'easymotion/vim-easymotion'
 
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
