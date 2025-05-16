@@ -85,8 +85,8 @@ outer.right =      10
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-minus = 'layout tiles horizontal vertical'
+alt-backslash = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -105,34 +105,32 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+alt-shift-p = 'resize smart -50'
+alt-shift-m = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-q = 'workspace Q' # for Terminal
-alt-w = 'workspace W' # for Browsers
-alt-e = 'workspace E' # for GPT
-alt-r = 'workspace R' # for Chat
-alt-m = 'workspace M' # for Music
-alt-n = 'workspace N' # for Notes
+alt-f1 = 'workspace 1'
+alt-f2 = 'workspace 2'
+alt-f3 = 'workspace 3'
+alt-f4 = 'workspace 4'
+alt-f5 = 'workspace 5'
+alt-f6 = 'workspace 6' # for Terminal
+alt-f7 = 'workspace 7' # for Browsers
+alt-6 = 'workspace F' # for llm
+alt-w = 'workspace W' # for web
+alt-t = 'workspace T' # for terminal
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-q = 'move-node-to-workspace Q'
+alt-shift-f1 = 'move-node-to-workspace 1'
+alt-shift-f2 = 'move-node-to-workspace 2'
+alt-shift-f3 = 'move-node-to-workspace 3'
+alt-shift-f4 = 'move-node-to-workspace 4'
+alt-shift-f5 = 'move-node-to-workspace 5'
+alt-shift-f6 = 'move-node-to-workspace 6'
+alt-shift-f7 = 'move-node-to-workspace 7'
+alt-shift-6 = 'move-node-to-workspace F'
 alt-shift-w = 'move-node-to-workspace W'
-alt-shift-e = 'move-node-to-workspace E'
-alt-shift-r = 'move-node-to-workspace R'
-alt-shift-m = 'move-node-to-workspace M'
-alt-shift-n = 'move-node-to-workspace N'
+alt-shift-t = 'move-node-to-workspace T'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -159,22 +157,17 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace Q'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace W'
 
 [[on-window-detected]]
-if.app-id = 'com.kakao.KakaoTalkMac'
-run = 'move-node-to-workspace R'
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace R'
-
-[[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = 'move-node-to-workspace E'
+run = 'move-node-to-workspace F'
 
 
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace F'

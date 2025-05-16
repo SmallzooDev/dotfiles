@@ -5,7 +5,6 @@
                 "rules": [
                     {
                         "description": "Hyper Key: Right Option → left shift + left option + left command (⌃⇧⌥⌘)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
