@@ -114,10 +114,10 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-f1 = 'workspace 6' # for Terminal
-alt-f2 = 'workspace 7' # for Browsers
-alt-f3 = 'workspace 8' # for Browsers
-alt-f4 = 'workspace 9' # for Browsers
+alt-f1 = 'workspace 6' # for LLM
+alt-f2 = 'workspace 7' 
+alt-f3 = 'workspace 8'
+alt-f4 = 'workspace 9'
 alt-w = 'workspace W' # for web
 alt-t = 'workspace T' # for terminal
 
@@ -167,9 +167,9 @@ run = 'move-node-to-workspace W'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = 'move-node-to-workspace F'
+run = 'move-node-to-workspace 6'
 
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace F'
+run = 'move-node-to-workspace 6'
