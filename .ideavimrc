@@ -26,18 +26,19 @@
   Plug 'easymotion/vim-easymotion'
 
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-  nnoremap f <NOP>
+  nnoremap s <NOP>
   let g:EasyMotion_do_mapping = 0
   nmap \\ <Plug>(easymotion-jumptoanywhere)
-  nmap \f <Plug>(easymotion-f)
 
-  nmap fh <Plug>(easymotion-bl)
-  nmap fl <Plug>(easymotion-wl)
-  nmap fk <Plug>(easymotion-k)
-  nmap fj <Plug>(easymotion-j)
+  nmap sh <Plug>(easymotion-bl)
+  nmap sl <Plug>(easymotion-wl)
+  nmap sk <Plug>(easymotion-k)
+  nmap sj <Plug>(easymotion-j)
+  nmap sf <Plug>(easymotion-f)
+  nmap sd <Plug>(easymotion-F)
 
-  nmap fb <Plug>(easymotion-b)
-  nmap fw <Plug>(easymotion-w)
+  nmap sb <Plug>(easymotion-b)
+  nmap sw <Plug>(easymotion-w)
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   nmap <F1>f :NERDTreeFind<CR>
