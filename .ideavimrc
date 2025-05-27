@@ -2,6 +2,8 @@
 " 참고 link ---------------------------------------------------------------------
   nnoremap <F10>r :source ~/.ideavimrc<CR>
   nmap s <NOP>
+  nmap f <NOP>
+  nmap F <NOP>
 " set commands -----------------------------------------------------------------
 
   set number
@@ -28,12 +30,13 @@
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
   let g:EasyMotion_do_mapping = 0
 
+  nmap <leader>f <Plug>(easymotion-f)
+  nmap <leader>F <Plug>(easymotion-F)
+
   nmap sh <Plug>(easymotion-bl)
   nmap sl <Plug>(easymotion-wl)
   nmap sk <Plug>(easymotion-k)
   nmap sj <Plug>(easymotion-j)
-  nmap sf <Plug>(easymotion-f)
-  nmap sF <Plug>(easymotion-F)
 
   nmap sb <Plug>(easymotion-b)
   nmap sw <Plug>(easymotion-w)
