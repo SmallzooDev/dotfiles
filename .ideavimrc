@@ -101,6 +101,9 @@
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 
+nnoremap H ^
+nnoremap L g_
+
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 onoremap [[ :action MethodUp<CR>
