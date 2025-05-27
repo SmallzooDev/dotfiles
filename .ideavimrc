@@ -26,9 +26,7 @@
   Plug 'easymotion/vim-easymotion'
 
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-  nnoremap s <NOP>
   let g:EasyMotion_do_mapping = 0
-  nmap \\ <Plug>(easymotion-jumptoanywhere)
 
   nmap sh <Plug>(easymotion-bl)
   nmap sl <Plug>(easymotion-wl)
