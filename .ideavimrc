@@ -111,6 +111,7 @@ onoremap ]] :action MethodDown<CR>
 
 nnoremap <C-S-5> :action EditorMatchBrace<CR>
 nnoremap <leader>K :action QuickJavaDoc<CR>
+nnoremap <Tab>d :action QuickJavaDoc<CR>
 nnoremap <Tab>f :action QuickFixes<CR>
 nnoremap <Tab>oo :action CloseAllEditorsButActive<CR>
 nnoremap <Tab>ol :action CloseAllToTheLeft<CR>
