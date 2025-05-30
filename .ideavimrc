@@ -30,8 +30,8 @@
   " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
   let g:EasyMotion_do_mapping = 0
 
-  nmap <leader>f <Plug>(easymotion-f)
-  nmap <leader>F <Plug>(easymotion-F)
+  nmap sf <Plug>(easymotion-f)
+  nmap sF <Plug>(easymotion-F)
 
   nmap sh <Plug>(easymotion-bl)
   nmap sl <Plug>(easymotion-wl)
