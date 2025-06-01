@@ -20,7 +20,7 @@
   let mapleader=" "
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
-  " set trackactionids
+  set trackactionids
 
   " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
   Plug 'tpope/vim-surround'
