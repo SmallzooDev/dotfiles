@@ -33,8 +33,6 @@
   nmap sf <Plug>(easymotion-f)
   nmap sF <Plug>(easymotion-F)
 
-  nmap sh <Plug>(easymotion-bl)
-  nmap sl <Plug>(easymotion-wl)
   nmap sk <Plug>(easymotion-k)
   nmap sj <Plug>(easymotion-j)
 
