@@ -36,8 +36,8 @@
   nmap sk <Plug>(easymotion-k)
   nmap sj <Plug>(easymotion-j)
 
-  nmap sb <Plug>(easymotion-b)
   nmap sw <Plug>(easymotion-w)
+  nmap sb <Plug>(easymotion-b)
   " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
   Plug 'preservim/nerdtree'
   nmap <F1>f :NERDTreeFind<CR>
