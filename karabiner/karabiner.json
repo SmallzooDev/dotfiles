@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hyper Key: F19 → left shift + left option + left command (⌃⇧⌥⌘)",
+                        "description": "Hyper Key: F8 → left shift + left option + left command (⌃⇧⌥⌘)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f19",
+                                    "key_code": "f8",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -198,6 +198,10 @@
                         {
                             "from": { "key_code": "caps_lock" },
                             "to": [{ "key_code": "left_control" }]
+                        },
+                        {
+                            "from": { "key_code": "tab" },
+                            "to": [{ "key_code": "f7" }]
                         }
                     ]
                 },
@@ -217,12 +221,6 @@
             ],
             "name": "Default profile",
             "selected": true,
-            "simple_modifications": [
-                {
-                    "from": { "key_code": "tab" },
-                    "to": [{ "key_code": "f19" }]
-                }
-            ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]
