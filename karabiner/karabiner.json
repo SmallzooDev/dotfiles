@@ -201,7 +201,7 @@
                         },
                         {
                             "from": { "key_code": "tab" },
-                            "to": [{ "key_code": "f7" }]
+                            "to": [{ "key_code": "f8" }]
                         }
                     ]
                 },
