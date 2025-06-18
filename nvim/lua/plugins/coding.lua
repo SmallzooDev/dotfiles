@@ -6,6 +6,18 @@ return {
 		config = true,
 	},
 
+	-- vim-surround (matching IdeaVim)
+	{
+		"tpope/vim-surround",
+		event = "VeryLazy",
+	},
+
+	-- vim-commentary (matching IdeaVim)
+	{
+		"tpope/vim-commentary",
+		event = "VeryLazy",
+	},
+
 	-- Go forward/backward with square brackets
 	{
 		"echasnovski/mini.bracketed",

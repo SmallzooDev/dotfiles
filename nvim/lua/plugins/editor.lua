@@ -1,7 +1,7 @@
 return {
 	{
-		enabled = false,
 		"folke/flash.nvim",
+		event = "VeryLazy",
 		---@type Flash.Config
 		opts = {
 			search = {
@@ -10,6 +10,22 @@ return {
 				wrap = false,
 				incremental = true,
 			},
+			modes = {
+				search = {
+					enabled = false,
+				},
+				char = {
+					enabled = false,
+				},
+			},
+		},
+		keys = {
+			{ "sf", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "sF", mode = { "n", "x", "o" }, function() require("flash").jump({ search = { forward = false } }) end, desc = "Flash Backward" },
+			{ "sw", mode = { "n", "x", "o" }, function() require("flash").jump({ pattern = "\\<" }) end, desc = "Flash Word Forward" },
+			{ "sb", mode = { "n", "x", "o" }, function() require("flash").jump({ pattern = "\\>", search = { forward = false } }) end, desc = "Flash Word Backward" },
+			{ "sk", mode = { "n", "x", "o" }, function() require("flash").jump({ search = { mode = "search", max_length = 0 }, label = { after = { 0, 0 } }, pattern = "^" }) end, desc = "Flash Line Up" },
+			{ "sj", mode = { "n", "x", "o" }, function() require("flash").jump({ search = { mode = "search", max_length = 0 }, label = { after = { 0, 0 } }, pattern = "^", search = { forward = true } }) end, desc = "Flash Line Down" },
 		},
 	},
 
@@ -179,7 +195,7 @@ return {
 				desc = "Lists LSP incoming calls for word under the cursor",
 			},
 			{
-				"sf",
+				"<leader>fb",
 				function()
 					local telescope = require("telescope")
 

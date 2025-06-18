@@ -19,6 +19,12 @@ vim.opt.shell = "fish"
 vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.history = 1000
+vim.opt.undolevels = 2000
+vim.opt.visualbell = true
+vim.opt.clipboard:append("unnamed")
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
