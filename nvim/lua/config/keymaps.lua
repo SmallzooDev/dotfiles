@@ -44,8 +44,8 @@ keymap.set("n", "F", "<NOP>", opts)
 -- Control-M mapping
 keymap.set("n", "<C-m>", ":", opts)
 keymap.set("v", "<C-m>", ":", opts)
-keymap.set("i", "<C-m>", "<CR>", opts)
-keymap.set("c", "<C-m>", "<CR>", opts)
+-- keymap.set("i", "<C-m>", "<CR>", opts) -- Commented out: <C-m> is Enter key in terminal
+-- keymap.set("c", "<C-m>", "<CR>", opts) -- This breaks auto-indentation
 
 -- Jumplist
 keymap.set("n", "<C-m>", "<C-i>", opts)
