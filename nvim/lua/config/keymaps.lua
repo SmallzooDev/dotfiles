@@ -2,7 +2,7 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- Insert Mode 커서 이동
-keymap.set("i", "<C-f>", "<Esc>:let @z=@/<CR>/\\v[\\)\\\"\\}\\]]<CR>:let @/=@z<CR>:noh<CR>a", opts)
+-- keymap.set("i", "<C-f>", "<Esc>:let @z=@/<CR>/\\v[\\)\\\"\\}\\]]<CR>:let @/=@z<CR>:noh<CR>a", opts) -- Disabled for tmux prefix
 keymap.set("i", "<C-b>", "<Esc>:let @z=@/<CR>?\\v[\\(\\\"\\{\\[]<CR>:let @/=@z<CR>:noh<CR>i", opts)
 keymap.set("i", "<C-e>", "<C-o>A", opts)
 keymap.set("i", "<C-a>", "<C-o>I", opts)
@@ -141,5 +141,5 @@ keymap.set("n", "<F3><F3>", ":terminal<CR>", { desc = "Open terminal" })
 keymap.set("n", "<F1>t", ":Telescope treesitter<CR>", { desc = "Show file structure" })
 
 -- File explorer focus
-keymap.set("n", "<leader>e", ":Neotree reveal<CR>", { desc = "Focus file in explorer" })
+keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree sidebar" })
 keymap.set("n", "<F1>f", ":Neotree reveal<CR>", { desc = "NERDTree find equivalent" })
