@@ -1,0 +1,108 @@
+# Starship prompt configuration
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Format definition
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$c\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$julia\
+$kotlin\
+$nodejs\
+$nim\
+$rust\
+$scala\
+$docker_context\
+$fill\
+$time\
+$line_break\
+$jobs\
+$battery\
+$status\
+$character"""
+
+# Right prompt
+right_format = """
+$cmd_duration\
+"""
+
+[username]
+show_always = false
+style_user = "bg:#9A348E"
+style_root = "bg:#9A348E"
+format = '[$user ]($style)'
+disabled = false
+
+[directory]
+style = "cyan bold"
+format = "[$path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"dev" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bold green"
+format = '[\[$symbol $branch\]]($style) '
+
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+[nodejs]
+symbol = ""
+style = "bold green"
+format = '[\[$symbol ($version)\]]($style) '
+
+[rust]
+symbol = ""
+style = "bold red"
+format = '[\[$symbol ($version)\]]($style) '
+
+[golang]
+symbol = ""
+style = "bold blue"
+format = '[\[$symbol ($version)\]]($style) '
+
+[java]
+symbol = " "
+style = "bold red"
+format = '[\[$symbol ($version)\]]($style) '
+
+[kotlin]
+symbol = ""
+style = "bold purple"
+format = '[\[$symbol ($version)\]]($style) '
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bold fg:#33658A"
+format = '[ $time ]($style) '
+
+[cmd_duration]
+format = '[\[⏱ $duration\]](bold yellow) '
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'

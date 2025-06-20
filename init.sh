@@ -34,12 +34,12 @@ create_symlink() {
 
 create_symlink "$HOME/dotfiles/.zshrc" ~/.zshrc
 create_symlink "$HOME/dotfiles/.zprofile" ~/.zprofile
-create_symlink "$HOME/dotfiles/.p10k.zsh" ~/.p10k.zsh
 create_symlink "$HOME/dotfiles/.ideavimrc" ~/.ideavimrc
 create_symlink "$HOME/dotfiles/.tmux.conf" ~/.tmux.conf
 create_symlink "$HOME/dotfiles/.wezterm.lua" ~/.wezterm.lua
 
 mkdir -p ~/.config
+create_symlink "$HOME/dotfiles/starship.toml" ~/.config/starship.toml
 create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
 create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace

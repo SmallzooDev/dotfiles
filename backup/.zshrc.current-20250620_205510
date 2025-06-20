@@ -117,6 +117,6 @@ function y() {
 eval "$(starship init zsh)"
 
 # Compile this file for faster loading
-if [[ ! -f ~/.zshrc.minimal.zwc ]] || [[ ~/.zshrc.minimal -nt ~/.zshrc.minimal.zwc ]]; then
-    zcompile ~/.zshrc.minimal
+if [[ ! -f ~/.zshrc.zwc ]] || [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+    zcompile ~/.zshrc
 fi
