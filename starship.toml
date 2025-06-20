@@ -6,33 +6,14 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Format definition
+# Format definition - Optimized for speed
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
 $git_status\
-$c\
-$elixir\
-$elm\
-$golang\
-$gradle\
-$haskell\
-$java\
-$julia\
-$kotlin\
-$nodejs\
-$nim\
-$rust\
-$scala\
-$docker_context\
 $fill\
 $time\
 $line_break\
-$jobs\
-$battery\
-$status\
 $character"""
 
 # Right prompt
