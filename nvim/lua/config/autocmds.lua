@@ -1,40 +1,36 @@
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+-- Auto-reload files when changed externally
+local function augroup(name)
+  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+end
+
+-- Enable autoread
+vim.o.autoread = true
+
+-- Auto-reload files when changed externally
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  group = augroup("checktime"),
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
 })
 
--- Disable the concealing in some file formats
--- The default conceallevel is 3 in LazyVim
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "json", "jsonc", "markdown" },
-	callback = function()
-		vim.opt.conceallevel = 0
-	end,
+-- Notification when file is reloaded
+vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
+  group = augroup("notify_file_change"),
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+  end,
 })
 
--- C/C++ 관련 설정
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "c", "cpp" },
-	callback = function()
-		-- 탭 설정
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.expandtab = true
-		
-		-- 줄 길이 및 경고선
-		vim.opt_local.textwidth = 100
-		vim.opt_local.colorcolumn = "100"
-	end,
-})
-
--- clang-format 자동 포맷 설정
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.c", "*.h", "*.cpp", "*.hpp", "*.cc", "*.hh" },
-	callback = function()
-		-- 현재 버퍼에 formatter가 있는 경우에만 실행
-		if vim.fn.exists(":Format") > 0 then
-			vim.cmd("Format")
-		end
-	end,
+-- Prevent accidental data loss by prompting on conflicts
+vim.api.nvim_create_autocmd({ "FileChangedShell" }, {
+  group = augroup("notify_file_deleted"),
+  callback = function()
+    if vim.v.fcs_reason == "deleted" then
+      vim.notify("File deleted on disk!", vim.log.levels.ERROR)
+    end
+  end,
 })
