@@ -60,6 +60,7 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
+		enabled = false, -- Disable Copilot entirely to remove inline suggestions
 		keys = {
 			{
 				"<leader>ghc",

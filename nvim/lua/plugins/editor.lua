@@ -305,6 +305,9 @@ return {
 				menu = {
 					winblend = vim.o.pumblend,
 				},
+				ghost_text = {
+					enabled = false, -- Disable inline ghost text
+				},
 			},
 			signature = {
 				window = {
