@@ -34,3 +34,17 @@ vim.api.nvim_create_autocmd({ "FileChangedShell" }, {
     end
   end,
 })
+
+-- Disable LSP virtual text on startup
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = augroup("lsp_diagnostic_setup"),
+  callback = function()
+    vim.diagnostic.config({
+      virtual_text = false,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
+  end,
+})

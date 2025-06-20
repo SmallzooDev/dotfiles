@@ -143,3 +143,8 @@ keymap.set("n", "<F1>t", ":Telescope treesitter<CR>", { desc = "Show file struct
 -- File explorer focus
 keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree sidebar" })
 keymap.set("n", "<F1>f", ":Neotree reveal<CR>", { desc = "NERDTree find equivalent" })
+
+-- LSP diagnostics toggle
+keymap.set("n", "<leader>td", function()
+  require("smallzoodev.lsp").toggleDiagnosticVirtualText()
+end, { desc = "Toggle LSP diagnostic virtual text" })

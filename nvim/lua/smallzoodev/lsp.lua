@@ -9,4 +9,11 @@ function M.toggleAutoformat()
 	LazyvimUtil.format.toggle()
 end
 
+function M.toggleDiagnosticVirtualText()
+	local current = vim.diagnostic.config().virtual_text
+	vim.diagnostic.config({
+		virtual_text = not current,
+	})
+end
+
 return M
