@@ -16,6 +16,11 @@ return {
 				notify = true,
 				mini = true,
 			},
+			custom_highlights = function(colors)
+				return {
+					LspInlayHint = { bg = colors.surface0, fg = colors.subtext0 },
+				}
+			end,
 		},
 	},
 }

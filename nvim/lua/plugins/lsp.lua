@@ -25,7 +25,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
-			inlay_hints = { enabled = false },
+			inlay_hints = { enabled = true },
 			---@type lspconfig.options
 			servers = {
 				gopls = {
@@ -119,7 +119,39 @@ return {
 				},
 				rust_analyzer = {
 					settings = {
-						rust = {
+						["rust-analyzer"] = {
+							inlayHints = {
+								bindingModeHints = {
+									enable = true,
+								},
+								chainingHints = {
+									enable = true,
+								},
+								closingBraceHints = {
+									enable = true,
+									minLines = 25,
+								},
+								closureReturnTypeHints = {
+									enable = "never",
+								},
+								lifetimeElisionHints = {
+									enable = "never",
+									useParameterNames = false,
+								},
+								maxLength = 25,
+								parameterHints = {
+									enable = true,
+								},
+								reborrowHints = {
+									enable = "never",
+								},
+								renderColons = true,
+								typeHints = {
+									enable = true,
+									hideClosureInitialization = false,
+									hideNamedConstructor = false,
+								},
+							},
 							checkOnSave = {
 								command = "clippy",
 							},
