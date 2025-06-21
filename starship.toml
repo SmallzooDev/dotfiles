@@ -38,7 +38,32 @@ $line_break\
 $character\
 """
 
-palette = 'default'
+palette = 'catppuccin_mocha'
+
+[palettes.catppuccin_mocha]
+
+color_ok = '#a6e3a1'
+color_danger = '#f38ba8'
+color_caution = '#f9e2af'
+
+color_os = '#cba6f7'
+color_username = '#cba6f7'
+color_directory = '#f9e2af'
+color_git = '#74c7ec'
+color_git_added = '#a6e3a1'
+color_git_deleted = '#f38ba8'
+color_env = '#89b4fa'
+color_kubernetes = '#cba6f7'
+color_docker = '#89b4fa'
+color_shell = '#6c7086'
+color_container = '#fab387'
+color_other = '#b4befe'
+color_time = '#94e2d5'
+color_duration = '#f5c2e7'
+
+color_vimcmd_ok = '#a6e3a1'
+color_vimcmd_replace = '#cba6f7'
+color_vimcmd_visual = '#f9e2af'
 
 [palettes.default]
 
@@ -116,7 +141,7 @@ color_vimcmd_replace = '#b16286'
 color_vimcmd_visual = '#d79921'
 
 [os]
-disabled = false
+disabled = true
 style = "fg:color_os"
 format = '[$symbol]($style)'
 
@@ -144,6 +169,7 @@ RedHatEnterprise = "󱄛"
 Pop = ""
 
 [username]
+disabled = true
 show_always = true
 style_user = "fg:color_username"
 style_root = "bold fg:color_danger"
@@ -204,7 +230,7 @@ format = '([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git
 added_style = "fg:color_git_added"
 deleted_style = "fg:color_git_deleted"
 only_nonzero_diffs = true
-disabled = false
+disabled = true
 
 [git_state]
 style = "fg:color_danger"
@@ -282,7 +308,7 @@ format = '( [($symbol( $cluster))]($style) )'
 disabled = false
 
 [shell]
-disabled = false
+disabled = true
 format = '[  $indicator ]($style)'
 bash_indicator = "bash"
 fish_indicator = "fish"
