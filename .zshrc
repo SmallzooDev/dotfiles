@@ -43,12 +43,6 @@ alias ports='lsof -i -P'
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Lazy load ASDF (only loads when you actually use it)
-asdf() {
-    unset -f asdf
-    . $(brew --prefix asdf)/libexec/asdf.sh
-    asdf "$@"
-}
 
 # FZF
 eval "$(fzf --zsh)"
