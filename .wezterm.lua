@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 config.window_decorations = "RESIZE"
+config.front_end = "WebGpu"
 
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 20
