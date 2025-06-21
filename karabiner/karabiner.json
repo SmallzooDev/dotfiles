@@ -145,6 +145,37 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Control to ABC",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_control" },
+                                "to": [{ "key_code": "left_control" }],
+                                "to_after_key_up": [
+                                    {
+                                        "select_input_source": {
+                                            "input_source_id": "com.apple.keylayout.ABC",
+                                            "language": "en"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "right_control" },
+                                "to": [{ "key_code": "right_control" }],
+                                "to_after_key_up": [
+                                    {
+                                        "select_input_source": {
+                                            "input_source_id": "com.apple.keylayout.ABC",
+                                            "language": "en"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
