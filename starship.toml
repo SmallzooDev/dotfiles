@@ -247,6 +247,7 @@ disabled = false
 [nodejs]
 symbol = ""
 style = "fg:color_env"
+disabled = true
 format = '( [$symbol( $version)]($style) )'
 
 [c]
@@ -287,6 +288,7 @@ format = '( [$symbol( $version)]($style) )'
 [python]
 symbol = ""
 style = "fg:color_env"
+disabled = true
 format = '( [$symbol( $version)( $virtualenv)]($style) )'
 version_format = '${raw}'
 
