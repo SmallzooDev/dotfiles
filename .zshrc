@@ -85,6 +85,9 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# asdf version manager
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
