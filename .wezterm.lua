@@ -7,8 +7,8 @@ config.font_size = 13
 config.window_decorations = "RESIZE"
 config.front_end = "WebGpu"
 
-config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
+config.window_background_opacity = 1.0
+-- config.macos_window_background_blur = 20
 config.enable_tab_bar = false
 config.color_scheme = "Catppuccin Mocha"
 
