@@ -12,6 +12,13 @@ config.window_background_opacity = 1.0
 config.enable_tab_bar = false
 config.color_scheme = "Catppuccin Mocha"
 
+-- Catppuccin green cursor
+config.colors = {
+	cursor_bg = "#a6e3a1",
+	cursor_border = "#a6e3a1",
+	cursor_fg = "#1e1e2e",
+}
+
 -- coolnight theme
 -- config.colors = {
 -- foreground = "#CBE0F0",
