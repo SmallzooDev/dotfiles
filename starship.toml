@@ -2,7 +2,7 @@
 
 add_newline = true
 
-command_timeout = 500
+command_timeout = 3000
 
 format = """
 $os\
@@ -183,7 +183,7 @@ format = "[ $path ]($style)"
 read_only = " "
 home_symbol = "~"
 truncation_symbol = "…/"
-truncation_length = 0
+truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 0
 use_logical_path = true
@@ -222,7 +222,7 @@ renamed = "»${count}"
 modified = "!${count}"
 staged = "+${count}"
 untracked = "?${count}"
-ignore_submodules = false
+ignore_submodules = true
 disabled = false
 
 [git_metrics]
@@ -342,14 +342,14 @@ command = "starship module memory_usage"
 when = '[ "${STARSHIP_COCKPIT_MEMORY_USAGE_ENABLED:-false}" = "true" ]'
 shell = "sh"
 format = "( $output )"
-disabled = false
+disabled = true
 
 [memory_usage]
 threshold = 0
 symbol = "󰓅"
 style = "fg:color_other"
 format = '( [$symbol( ${ram})]($style) )'
-disabled = false
+disabled = true
 
 [custom.battery]
 command = """
@@ -364,7 +364,7 @@ fi
 when = '[ "${STARSHIP_COCKPIT_BATTERY_ENABLED:-false}" = "true" ]'
 shell = "sh"
 format = "( $output )"
-disabled = false
+disabled = true
 
 [battery]
 full_symbol = "󰁹"
@@ -449,4 +449,4 @@ style = "fg:color_other"
 format = '( [$symbol $output]($style) )'
 when = '[ "${STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ENABLED:-false}" = "true" ]'
 shell = "sh"
-disabled = false
+disabled = true
