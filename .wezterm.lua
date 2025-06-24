@@ -2,13 +2,21 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+-- Performance optimizations
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
+config.max_fps = 120
+config.animation_fps = 60
+
+-- Font settings
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 12
-config.window_decorations = "RESIZE"
-config.front_end = "WebGpu"
 
-config.window_background_opacity = 1.0
--- config.macos_window_background_blur = 20
+-- Beautiful translucent settings
+config.window_background_opacity = 0.85
+config.macos_window_background_blur = 20
+
+config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
 config.color_scheme = "Catppuccin Mocha"
 
