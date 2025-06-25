@@ -60,6 +60,8 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # FZF functions
 _fzf_compgen_path() {
@@ -71,7 +73,6 @@ _fzf_compgen_dir() {
 }
 
 source ~/fzf-git.sh/fzf-git.sh
-
 
 
 
