@@ -246,10 +246,6 @@
                         {
                             "from": { "key_code": "caps_lock" },
                             "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "tab" },
-                            "to": [{ "key_code": "f8" }]
                         }
                     ]
                 },
