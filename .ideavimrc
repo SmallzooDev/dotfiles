@@ -38,23 +38,23 @@ set matchit " Plug 'chrisbra/matchit' " (https://github.com/adelarsq/vim-matchit
 
 " " Indent Object
 " " Docs: https://github.com/michaeljsmith/vim-indent-object/blob/master/doc/indent-object.txt
-" Plug 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 
 " " Vim textobj entire
 " " Docs: https://github.com/kana/vim-textobj-entire/blob/master/doc/textobj-entire.txt
-" Plug 'kana/vim-textobj-entire' 
+Plug 'kana/vim-textobj-entire' 
 
 " " NERDTree
 " " Docs: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 
 " " Exchange plugin
 " " Docs: https://github.com/tommcdo/vim-exchange/blob/master/doc/exchange.txt
-" Plug 'tommcdo/vim-exchange'
+Plug 'tommcdo/vim-exchange'
 
 " " Multiple cursors plugin
 " " Docs: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins#multiple-cursors
-" Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 
 " " Which key plugin
 " " Install: https://plugins.jetbrains.com/plugin/15976-which-key
@@ -65,14 +65,14 @@ set matchit " Plug 'chrisbra/matchit' " (https://github.com/adelarsq/vim-matchit
 " " Sneak plugin
 " " Install (alternative syntax): Plug 'justinmk/vim-sneak' 
 " " Docs: https://github.com/Mishkun/ideavim-sneak
-" set sneak
+set sneak
 
 " " Quickscope plugin
 " " Install: https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
 " " Docs: https://plugins.jetbrains.com/plugin/19417-ideavim-quickscope
-" set quickscope
+set quickscope
 " " Configure which keys to highlight on
-" " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 
 " " Other plugins: 
@@ -86,23 +86,23 @@ set matchit " Plug 'chrisbra/matchit' " (https://github.com/adelarsq/vim-matchit
 " " Requires: https://plugins.jetbrains.com/plugin/7086-acejump
 " " Install: https://plugins.jetbrains.com/plugin/13360-ideavim-easymotion/
 " " Docs: https://github.com/AlexPl292/IdeaVim-EasyMotion?tab=readme-ov-file#how-does-it-work
-" set easymotion
+set easymotion
 
 " " Multicursor plugin (not recommended, honestly)
-" set multicursor
+set multicursor
 
 " Key mappings:
 " =============
 
 " " make x a line selection (READ WARNING below)
-" nnoremap x V
-" vnoremap x j
+nnoremap x V
+vnoremap x j
 
 " " WARNING:
 " " Remapping x to V and j makes it impossible to delete single character.
 " " You can use this to enable deleting with d, but then you cannot execute d<motion>
 
-" nnoremap d x
+nnoremap d x
 
 " inoremap <A-BS> <Action>(EditorDeleteToWordStart)
 
@@ -161,13 +161,13 @@ noremap \\tm m
 " ========
 
 " " REQUIRES NerdTree
-" map \\nt :NERDTree<CR>
-" map \\nts :NERDTree<CR>
-" map \\nta :NERDTreeFocus<CR>
-" map \\ntt :NERDTreeToggle<CR>
-" map \\ntc :NERDTreeClose<CR>
-" map \\ntf :NERDTreeFind<CR>
-" map \\ntr :NERDTreeRefreshRoot<CR>
+map \\nt :NERDTree<CR>
+map \\nts :NERDTree<CR>
+map \\nta :NERDTreeFocus<CR>
+map \\ntt :NERDTreeToggle<CR>
+map \\ntc :NERDTreeClose<CR>
+map \\ntf :NERDTreeFind<CR>
+map \\ntr :NERDTreeRefreshRoot<CR>
 " " END REQUIRES NerdTree
 
 " String manipulation
