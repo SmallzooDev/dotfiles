@@ -38,7 +38,7 @@ $line_break\
 $character\
 """
 
-palette = 'catppuccin_mocha'
+palette = 'coolnight'
 
 [palettes.catppuccin_mocha]
 
@@ -139,6 +139,31 @@ color_duration = '#282828'
 color_vimcmd_ok = '#689d6a'
 color_vimcmd_replace = '#b16286'
 color_vimcmd_visual = '#d79921'
+
+[palettes.coolnight]
+
+color_ok = '#44FFB1'
+color_danger = '#E52E2E'
+color_caution = '#FFE073'
+
+color_os = '#A277FF'
+color_username = '#A277FF'
+color_directory = '#FFE073'
+color_git = '#0FC5ED'
+color_git_added = '#44FFB1'
+color_git_deleted = '#E52E2E'
+color_env = '#24EAF7'
+color_kubernetes = '#A277FF'
+color_docker = '#24EAF7'
+color_shell = '#214969'
+color_container = '#FFE073'
+color_other = '#CBE0F0'
+color_time = '#CBE0F0'
+color_duration = '#CBE0F0'
+
+color_vimcmd_ok = '#44FFB1'
+color_vimcmd_replace = '#A277FF'
+color_vimcmd_visual = '#FFE073'
 
 [os]
 disabled = true
