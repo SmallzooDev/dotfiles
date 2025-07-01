@@ -89,6 +89,12 @@ function y() {
 # asdf version manager
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
+# Ensure Neovim uses asdf global Node
+export PATH="$HOME/.asdf/shims:$PATH"
+
+# Create a dedicated directory for Neovim npm tools
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
