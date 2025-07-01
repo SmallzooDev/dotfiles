@@ -5,7 +5,7 @@ theme = "term16_dark"
 line-number = "relative"
 mouse = false
 middle-click-paste = false
-scrolloff = 999
+# scrolloff = 999
 scroll-lines = 3
 shell = ["sh", "-c"]
 cursorline = false
@@ -53,6 +53,8 @@ enable = false
 [keys.normal]
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"C-s" = ":w"
+"C-r" = ":reload"
 
 [keys.select]
 "}" = "goto_next_paragraph"
