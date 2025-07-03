@@ -29,7 +29,10 @@ alias mv='mv -i'
 # Editor
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 alias vi='hx'
+
+# LLM Agents
 alias cl='claude'
+alias gem='gemini'
 
 # Other aliases
 alias killp='kill -9'
