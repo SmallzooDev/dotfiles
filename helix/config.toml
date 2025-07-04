@@ -48,7 +48,7 @@ character = "╎"
 skip-levels = 1
 
 [editor.soft-wrap]
-enable = false
+enable = true
 
 [keys.normal]
 "}" = "goto_next_paragraph"
