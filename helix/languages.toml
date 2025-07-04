@@ -44,10 +44,3 @@ auto-format = true
 name = "css"
 auto-format = true
 
-[language-server.racket-langserver]
-command = "racket"
-args = ["-l", "racket-langserver"]
-
-[[language]]
-name = "scheme"
-language-servers = ["racket-langserver"]

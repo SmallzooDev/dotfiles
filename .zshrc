@@ -15,7 +15,7 @@ alias gco='git checkout'
 alias gb='git branch'
 
 # Your custom aliases
-alias gtwk='cd ~/wiki/SmallzooDevWiki'
+alias gtwk='cd ~/wiki/SmallzooDevWiki/content/_wiki'
 alias gtnv='cd ~/.config/nvim'
 alias gtrs='cd ~/dev/coding_interview_rust'
 alias gtkt='cd ~/dev/CodingInterviewKotlin'
