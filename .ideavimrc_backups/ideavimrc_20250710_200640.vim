@@ -102,11 +102,6 @@ nnoremap g, :action JumpToNextChange<CR>
 nnoremap H ^
 nnoremap L g_
 
-" Helix-style mappings
-nnoremap gh 0
-nnoremap gl $
-nnoremap gs ^
-
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 onoremap [[ :action MethodUp<CR>

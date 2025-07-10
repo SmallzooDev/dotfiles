@@ -32,6 +32,11 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 -- Additional navigation
 keymap.set("n", "H", "^", opts)
 keymap.set("n", "L", "g_", opts)
+
+-- Helix-style mappings
+keymap.set("n", "gh", "0", opts)
+keymap.set("n", "gl", "$", opts)
+keymap.set("n", "gs", "^", opts)
 keymap.set("n", "K", "i<CR><ESC>", opts)
 keymap.set("n", "g;", "g;", opts)
 keymap.set("n", "g,", "g,", opts)
@@ -81,7 +86,6 @@ keymap.set("n", "<leader>cw", ":hide<CR>", opts)
 -- 페이지 이동
 keymap.set("n", "<PageDown>", "gT", opts)
 keymap.set("n", "<PageUp>", "gt", opts)
-keymap.set("n", "gl", "1gtgT", opts)
 keymap.set("n", "gf", "1gt", opts)
 
 -- 북마크 (Neovim 마크 시스템 사용)
