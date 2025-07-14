@@ -37,7 +37,7 @@ mode.select = "SELECT"
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+display-inlay-hints = false
 
 [editor.file-picker]
 hidden = false
@@ -55,6 +55,9 @@ enable = true
 "{" = "goto_prev_paragraph"
 "C-s" = ":w"
 "C-r" = ":reload"
+
+[keys.normal.space]
+l = ":toggle lsp.display-inlay-hints"
 
 [keys.select]
 "}" = "goto_next_paragraph"
