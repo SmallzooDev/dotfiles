@@ -2,7 +2,7 @@
 # This is a faster alternative configuration
 
 # Basic environment
-export EDITOR=nvim
+export EDITOR=hx
 
 # Git aliases (replacing oh-my-zsh git plugin)
 alias gs='git status'
