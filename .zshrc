@@ -28,7 +28,11 @@ alias mv='mv -i'
 
 # Editor
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-alias vi='nvim'
+alias vi='hx'
+alias h='hx .'
+
+# Scripts
+alias ii='./init.sh'
 
 # LLM Agents
 alias cl='claude'
