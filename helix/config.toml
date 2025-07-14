@@ -55,7 +55,8 @@ enable = true
 "{" = "goto_prev_paragraph"
 "C-s" = ":w"
 "C-r" = ":reload"
-
+S-tab    = [":bp"]
+tab      = [":bn"]
 [keys.normal.space]
 l = ":toggle lsp.display-inlay-hints"
 
