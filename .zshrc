@@ -21,6 +21,10 @@ alias gtrs='cd ~/dev/coding_interview_rust'
 alias gtkt='cd ~/dev/CodingInterviewKotlin'
 alias book='cd ~/Books && open .'
 
+# Move
+alias gd=pushd
+alias pd=popd
+
 # Safety
 alias rm='rm -i'
 alias cp='cp -i'
