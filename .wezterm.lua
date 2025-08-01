@@ -10,7 +10,7 @@ config.animation_fps = 60
 
 -- Font settings
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
-config.font_size = 12
+config.font_size = 13
 
 -- Beautiful translucent settings
 config.window_background_opacity = 0.85
