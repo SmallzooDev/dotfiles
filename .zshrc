@@ -37,6 +37,8 @@ alias h='hx .'
 
 # Scripts
 alias ii='./init.sh'
+alias rr='./run.sh'
+alias ss='./submit.sh'
 
 # LLM Agents
 alias cl='claude'
