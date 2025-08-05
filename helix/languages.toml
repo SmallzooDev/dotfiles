@@ -27,6 +27,10 @@ args = ["-c", "$HOME/.local/share/mise/installs/python/3.13.5t/bin/pyright-langs
 command = "rust-analyzer"
 args = []
 
+[language-server.gopls]
+command = "gopls"
+args = []
+
 # Language configurations
 [[language]]
 name = "rust"
@@ -36,7 +40,8 @@ language-servers = ["rust-analyzer"]
 [[language]]
 name = "go"
 auto-format = true
-formatter = { command = "gofmt" }
+formatter = { command = "goimports" }
+language-servers = ["gopls"]
 
 [[language]]
 name = "python"
