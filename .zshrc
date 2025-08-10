@@ -16,6 +16,7 @@ alias gb='git branch'
 
 # Your custom aliases
 alias gtwk='cd ~/wiki/SmallzooDevWiki/content/_wiki'
+alias gtdf='cd ~/dotfiles'
 alias gtnv='cd ~/.config/nvim'
 alias gtrs='cd ~/dev/coding_interview_rust'
 alias gtkt='cd ~/dev/CodingInterviewKotlin'
