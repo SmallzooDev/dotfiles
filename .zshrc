@@ -54,9 +54,9 @@ alias ports='lsof -i -P'
 
 # Load plugins directly (much faster than oh-my-zsh)
 # These are installed via oh-my-zsh, so we use those paths
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF
 eval "$(fzf --zsh)"
@@ -85,9 +85,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-
-source ~/fzf-git.sh/fzf-git.sh
-
 
 
 # Yazi function
