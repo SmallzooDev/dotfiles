@@ -1,2 +1,2 @@
-require("josean.core")
-require("josean.lazy")
+require("smallzoodev.core")
+require("smallzoodev.lazy")
