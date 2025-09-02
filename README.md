@@ -1,3 +1,26 @@
 # My Dotfiles Repository
 ---
 
+## Install Brew
+```
+# https://brew.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo >> /Users/joonkyu_kang/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joonkyu_kang/.zprofile
+
+```
+
+## Mise
+```
+mise install go@latest
+mise install python@latest  
+mise install node@lts
+mise install rust@latest
+
+mise use -g go@latest
+mise use -g python@latest
+mise use -g node@lts
+mise use -g rust@latest
+```
+
