@@ -25,10 +25,14 @@ mise use -g rust@latest
 ```
 
 ## LLM
-
 ```
 npm install -g @anthropic-ai/claude-code
 npm install -g @google/gemini-cli
 
 ```
 
+
+## Brew Bundle
+```
+brew bundle
+```
