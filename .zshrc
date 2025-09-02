@@ -2,7 +2,7 @@
 # This is a faster alternative configuration
 
 # Basic environment
-export EDITOR=hx
+export EDITOR=nvim
 
 # Git aliases (replacing oh-my-zsh git plugin)
 alias gs='git status'
@@ -33,8 +33,8 @@ alias mv='mv -i'
 
 # Editor
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-alias vi='hx'
-alias h='hx .'
+alias vi='nvim'
+alias n='nvim .'
 
 # Scripts
 alias ii='./init.sh'
