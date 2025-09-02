@@ -115,5 +115,30 @@ return {
         },
       },
     })
+
+    vim.lsp.config("gopls", {
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+          gofumpt = true,
+        },
+      },
+    })
+
+    vim.lsp.config("rust_analyzer", {
+      settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = {
+            command = "clippy",
+          },
+          cargo = {
+            allFeatures = true,
+          },
+        },
+      },
+    })
   end,
 }

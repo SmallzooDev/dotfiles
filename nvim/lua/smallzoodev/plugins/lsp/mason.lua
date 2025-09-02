@@ -38,6 +38,8 @@ return {
         "prismals",
         "pyright",
         "eslint",
+        "gopls",
+        "rust_analyzer",
       },
     })
 
@@ -49,6 +51,10 @@ return {
         "black", -- python formatter
         "pylint",
         "eslint_d",
+        "gofumpt", -- go formatter
+        "goimports", -- go import formatter
+        "golangci-lint", -- go linter
+        "rustfmt", -- rust formatter
       },
     })
   end,
