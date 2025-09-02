@@ -36,3 +36,8 @@ npm install -g @google/gemini-cli
 ```
 brew bundle
 ```
+
+## References
+
+https://johngrib.github.io/wiki/mac/setting/#brewfile-%EC%83%9D%EC%84%B1
+
