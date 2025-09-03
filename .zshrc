@@ -5,6 +5,7 @@
 export EDITOR=nvim
 
 # Git aliases (replacing oh-my-zsh git plugin)
+alias lg='lazygit'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
