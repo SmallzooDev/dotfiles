@@ -13,8 +13,8 @@ config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 12
 
 -- Beautiful translucent settings
-config.window_background_opacity = 0.75
-config.macos_window_background_blur = 20
+config.window_background_opacity = 0.65
+config.macos_window_background_blur = 10
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
