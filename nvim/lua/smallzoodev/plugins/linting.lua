@@ -6,7 +6,7 @@ return {
 
     lint.linters_by_ft = {
       python = { "pylint" },
-      go = { "golangcilint" },
+      -- go = { "golangcilint" },  -- disabled due to exit code 5 issues
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
