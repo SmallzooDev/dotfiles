@@ -140,5 +140,17 @@ return {
         },
       },
     })
+
+    -- Exclude vimwiki directory from markdown LSP if marksman is added
+    vim.lsp.config("marksman", {
+      root_dir = function(fname)
+        local util = require("lspconfig.util")
+        -- Don't attach to files in vimwiki directory
+        if fname:match("vimwiki/") then
+          return nil
+        end
+        return util.root_pattern(".git", ".marksman.toml")(fname)
+      end,
+    })
   end,
 }
