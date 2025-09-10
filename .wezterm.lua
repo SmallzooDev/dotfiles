@@ -103,9 +103,8 @@ config.keys = {
 
 	-- Rotate panes
 	{ key = "r", mods = "CMD|CTRL", action = wezterm.action.RotatePanes("Clockwise") },
-}
 
-config.keys = {
+	-- Rename tab
 	{
 		key = "R",
 		mods = "CMD|SHIFT|CTRL",
