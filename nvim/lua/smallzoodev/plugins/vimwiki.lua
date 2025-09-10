@@ -14,12 +14,15 @@ return {
     vim.g.vimwiki_conceallevel = 2  -- Conceal link URLs for cleaner look
     vim.g.vimwiki_url_maxsave = 0  -- Don't shorten URLs
     vim.g.vimwiki_listsyms = '✗○◐●✓'  -- Better checkbox symbols
+    -- Disable default mappings that conflict
+    vim.g.vimwiki_key_mappings = { table_mappings = 0, lists_return = 0 }
   end,
   keys = {
     { "<leader>ww", "<cmd>VimwikiIndex<CR>", desc = "Open wiki" },
     { "<leader>wi", "<cmd>VimwikiDiaryIndex<CR>", desc = "Open diary" },
     { "<leader>w<leader>w", "<cmd>VimwikiMakeDiaryNote<CR>", desc = "Today's diary" },
     { "<leader>wt", "<cmd>VimwikiTabIndex<CR>", desc = "Wiki in tab" },
+    { "<leader>wc", "<cmd>VimwikiToggleListItem<CR>", desc = "Toggle checkbox" },
   },
   config = function()
     -- Better link concealing and highlighting

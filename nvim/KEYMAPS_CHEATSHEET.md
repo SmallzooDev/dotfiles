@@ -146,7 +146,7 @@
 | `<C-j>` | Insert | Next suggestion |
 | `<C-b>` | Insert | Scroll docs backward |
 | `<C-f>` | Insert | Scroll docs forward |
-| `<C-Space>` | Insert | Show completion suggestions |
+| `<C-n>` | Insert | Show completion suggestions |
 | `<C-e>` | Insert | Close completion window |
 | `<CR>` | Insert | Confirm selection |
 
@@ -164,6 +164,12 @@ Examples:
 - `ds"` - Delete surrounding quotes
 - `cs"'` - Change surrounding quotes to single quotes
 - `S"` - In visual mode, surround selection with quotes
+
+## Treesitter
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<CR>` | Normal/Visual | Start/expand incremental selection |
+| `<BS>` | Visual | Shrink incremental selection |
 
 ## Tips
 - Use `<leader>fk` to search for keymaps interactively
