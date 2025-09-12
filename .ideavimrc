@@ -86,9 +86,9 @@
   nmap <F1>s <Action>(ManageRecentProjects)
   nmap <F1>r <Action>(ActivateREPLToolWindow)
   nmap <F1>d <Action>(ActivateDatabaseToolWindow)
-  nmap <leader>gr <Action>(ShowUsages)
-  nmap <leader>gi <Action>(GotoImplementation)
-  nmap <leader>gI <Action>(GotoSuperMethod)
+  nmap gr <Action>(ShowUsages)
+  nmap gi <Action>(GotoImplementation)
+  nmap gI <Action>(GotoSuperMethod)
 
 " IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
 
