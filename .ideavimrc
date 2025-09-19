@@ -64,7 +64,6 @@
 " 키 navigation 기능 보완 ---------------------------------------------------------
   nnoremap <PageDown> gt
   nnoremap <PageUp> gT
-  nnoremap gl 1gtgT
   nnoremap gf 1gt
 
 " IntelliJ action 명령 테스트 ----------------------------------------------------
@@ -99,8 +98,10 @@
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 
-nnoremap H ^
-nnoremap L g_
+" Helix-style line navigation
+nnoremap gh 0
+nnoremap gs ^
+nnoremap gl $
 
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
