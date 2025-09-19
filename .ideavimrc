@@ -120,7 +120,7 @@ nnoremap <Tab>u :action FindUsages<CR>
 nnoremap <Tab>, :e ~/.ideavimrc<CR>
 nnoremap <leader>ll :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <Space>v :action CopyPaths<CR>
+nnoremap <leader>v :action CopyPaths<CR>
 
 
 
