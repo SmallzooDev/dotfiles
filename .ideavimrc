@@ -1,6 +1,6 @@
 
 " 참고 link ---------------------------------------------------------------------
-  nnoremap <F10>r :source ~/.ideavimrc<CR>
+  nnoremap <F10><F10> :source ~/.ideavimrc<CR>
   nmap s <NOP>
   nmap f <NOP>
   nmap F <NOP>
@@ -20,7 +20,7 @@
   let mapleader=" "
 
   " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
-  " set trackactionids
+  set trackactionids
 
   " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
   Plug 'tpope/vim-surround'
@@ -64,7 +64,6 @@
 " 키 navigation 기능 보완 ---------------------------------------------------------
   nnoremap <PageDown> gt
   nnoremap <PageUp> gT
-  nnoremap gf 1gt
 
 " IntelliJ action 명령 테스트 ----------------------------------------------------
 
@@ -111,13 +110,10 @@ onoremap ]] :action MethodDown<CR>
 nnoremap mm :action EditorMatchBrace<CR>
 nnoremap ms :action EditorCodeBlockStart<CR>
 nnoremap ml :action EditorCodeBlockEnd<CR>
-nnoremap <leader>K :action QuickJavaDoc<CR>
-nnoremap <Tab>d :action QuickJavaDoc<CR>
 nnoremap <Tab>f :action QuickFixes<CR>
 nnoremap <Tab>oo :action CloseAllEditorsButActive<CR>
 nnoremap <Tab>ol :action CloseAllToTheLeft<CR>
 nnoremap <Tab>or :action CloseAllToTheRight<CR>
-nnoremap <Tab>i :action InspectCode<CR>
 nnoremap <Tab>u :action FindUsages<CR>
 nnoremap <Tab>, :e ~/.ideavimrc<CR>
 nnoremap <leader>ll :action Refactorings.QuickListPopupAction<CR>
@@ -149,15 +145,15 @@ nmap <leader>m7 <Action>(ToggleBookmark7)
 nmap <leader>m8 <Action>(ToggleBookmark8)
 nmap <leader>m9 <Action>(ToggleBookmark9)
 
-nmap <F1>p <Action>(ParameterNameHints)
+nmap <leader>p <Action>(ParameterInfo)
+nmap <leader>d :action QuickJavaDoc<CR>
+
 
 " for split
 nmap <leader>sv <Action>(SplitVertically)
 nmap <leader>sh <Action>(SplitHorizontally)
 nmap <leader>su <Action>(Unsplit)
 nmap <leader>sm <Action>(MoveEditorToOppositeTabGroup)
-nmap <leader>sb <Action>(Back)
-nmap <leader>sf <Action>(Forward)
 
 nmap <leader>cw <Action>(HideActiveWindow)
 
