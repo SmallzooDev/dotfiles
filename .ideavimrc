@@ -139,6 +139,9 @@ nmap <F1>d <Action>(ActivateDatabaseToolWindow)
 nmap <F1>t <Action>(ActivateTerminalToolWindow)
 nmap <F1>b <Action>(ShowBookmarks)
 nmap <F1>p <Action>(ActivateProblemsViewToolWindow)
+nmap <F1>c <Action>(ActivateCommitToolWindow)
+nmap <F1>f <Action>(ActivateFindToolWindow)
+nmap <F1>r <Action>(ActivateRunToolWindow)
 
 " =============================================================================
 " KEY MAPPINGS - CODE ACTIONS (Tab prefix)
