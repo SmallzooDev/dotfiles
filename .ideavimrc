@@ -58,7 +58,8 @@
   inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>:noh<CR>a
   inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>:noh<CR>i
   inoremap <C-e> <C-o>A
-  inoremap <C-a> <C-o>I
+  inoremap <C-s> <C-o>I
+  inoremap <C-l> <C-o>A
 
 " 키 navigation 기능 보완 ---------------------------------------------------------
   nnoremap <PageDown> gt
