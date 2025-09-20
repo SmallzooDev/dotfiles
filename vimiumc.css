@@ -1,64 +1,49 @@
-.LH {
-  background: linear-gradient(135deg, #1e3a8a, #312e81) !important;
-  border: 2px solid #3730a3 !important;
+.LH,
+.D > .LH {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.6),
+    rgba(49, 46, 129, 0.6)
+  ) !important;
+  border: none !important;
+  outline: none !important;
   border-radius: 6px !important;
-  color: #e0e7ff !important;
+  color: rgba(224, 231, 255, 1) !important;
   font-family: "Segoe UI", "SF Pro Display", system-ui, sans-serif !important;
   font-weight: 600 !important;
   font-size: 12px !important;
   letter-spacing: 0.5px !important;
   padding: 3px 6px !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
   box-shadow:
     0 4px 8px rgba(30, 58, 138, 0.3),
     0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(2px) !important;
-}
-
-.D > .LH {
-  background: linear-gradient(135deg, #312e81, #1e1b4b) !important;
-  border: 2px solid #4338ca !important;
-  color: #c7d2fe !important;
-  box-shadow:
-    0 4px 12px rgba(67, 56, 202, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  text-transform: lowercase !important;
 }
 
-.LH.HM {
-  background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
-  border: 3px solid #1f2937 !important;
-  color: #000000 !important;
+.LH.HM,
+.D > .LH.HM {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.8),
+    rgba(135, 206, 250, 0.8)
+  ) !important;
+  border: 2px solid rgba(0, 255, 255, 1) !important;
+  color: rgba(0, 80, 120, 1) !important;
   font-weight: 700 !important;
   font-size: 13px !important;
   transform: scale(1.15) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.8) !important;
   box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.6),
     0 6px 16px rgba(0, 0, 0, 0.4),
     0 3px 8px rgba(0, 0, 0, 0.3),
-    0 0 0 3px rgba(59, 130, 246, 0.5),
-    inset 0 1px 0 rgba(0, 0, 0, 0.1) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
 }
 
-.D > .LH.HM {
-  background: linear-gradient(135deg, #000000, #111827) !important;
-  border: 3px solid #ffffff !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8) !important;
-  box-shadow:
-    0 6px 20px rgba(255, 255, 255, 0.3),
-    0 3px 10px rgba(0, 0, 0, 0.6),
-    0 0 0 3px rgba(147, 197, 253, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-}
-
-.LH:hover {
+.LH:hover,
+.D > .LH:hover {
   transform: scale(1.05) !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border-color: #6366f1 !important;
-}
-
-.LH {
-  text-transform: lowercase !important;
 }
