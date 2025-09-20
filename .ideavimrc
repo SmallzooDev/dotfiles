@@ -1,127 +1,176 @@
+" =============================================================================
+" BASIC SETTINGS
+" =============================================================================
 
-" 참고 link ---------------------------------------------------------------------
-  nnoremap <F10><F10> :source ~/.ideavimrc<CR>
-  nmap s <NOP>
-  nmap f <NOP>
-  nmap F <NOP>
-" set commands -----------------------------------------------------------------
+set number
+set history=1000
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+set matchpairs
+set undolevels=2000
+set nrformats
+set visualbell
+set clipboard+=unnamed
+set ideajoin
+set ideamarks
+" set trackactionids
 
-  set number
-  set history=1000
-  set hlsearch
-  set ignorecase
-  set incsearch
-  set smartcase
-  set matchpairs
-  set undolevels=2000 "undolevels
-  set nrformats
-  set visualbell
-  set clipboard+=unnamed
-  let mapleader=" "
+let mapleader=" "
 
-  " https://github.com/JetBrains/ideavim/wiki/marketplace-plugin-example
-  set trackactionids
+" =============================================================================
+" PLUGINS
+" =============================================================================
 
-  " https://github.com/JetBrains/ideavim/wiki/Emulated-plugins
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-commentary'
-  Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
 
-  " https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands
-  let g:EasyMotion_do_mapping = 0
+" EasyMotion Configuration
+let g:EasyMotion_do_mapping = 0
+nmap sf <Plug>(easymotion-f)
+nmap sF <Plug>(easymotion-F)
+nmap sk <Plug>(easymotion-k)
+nmap sj <Plug>(easymotion-j)
+nmap sw <Plug>(easymotion-w)
+nmap sb <Plug>(easymotion-b)
 
-  nmap sf <Plug>(easymotion-f)
-  nmap sF <Plug>(easymotion-F)
+" =============================================================================
+" KEY MAPPINGS - DISABLED KEYS
+" =============================================================================
 
-  nmap sk <Plug>(easymotion-k)
-  nmap sj <Plug>(easymotion-j)
+nmap s <NOP>
+nmap f <NOP>
+nmap F <NOP>
 
-  nmap sw <Plug>(easymotion-w)
-  nmap sb <Plug>(easymotion-b)
-  " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
-  Plug 'preservim/nerdtree'
+" =============================================================================
+" KEY MAPPINGS - BASIC VIM
+" =============================================================================
 
-  " ideavim only
-  set ideajoin
-  set ideamarks
+" Line split (K for split line)
+nnoremap K i<CR><ESC>^
 
-" copy , paste , select 기능 보완 ------------------------------------------------
-  nnoremap <C-m> :
-  vnoremap <C-m> :
-  inoremap <C-m> <CR>
-  cnoremap <C-m> <CR>
+" Command mode shortcut
+nnoremap <C-m> :
+vnoremap <C-m> :
+inoremap <C-m> <CR>
+cnoremap <C-m> <CR>
 
-  " nnoremap <Esc> <Esc>:w<CR>
-  " inoremap <Esc> <Esc>:w<CR>
+" =============================================================================
+" KEY MAPPINGS - INSERT MODE
+" =============================================================================
 
-  " Insert Mode:
-  inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>:noh<CR>a
-  inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>:noh<CR>i
-  inoremap <C-e> <C-o>A
-  inoremap <C-s> <C-o>I
-  inoremap <C-l> <C-o>A
+inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>:noh<CR>a
+inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>:noh<CR>i
+inoremap <C-e> <C-o>A
+inoremap <C-s> <C-o>I
+inoremap <C-l> <C-o>A
 
-" 키 navigation 기능 보완 ---------------------------------------------------------
-  nnoremap <PageDown> gt
-  nnoremap <PageUp> gT
+" =============================================================================
+" KEY MAPPINGS - NAVIGATION
+" =============================================================================
 
-" IntelliJ action 명령 테스트 ----------------------------------------------------
+" Tab navigation
+nnoremap <PageDown> gt
+nnoremap <PageUp> gT
 
-  "ideavim 에서는 :command 명령을 사용할 수 없다...
-
-  "라인 스플릿. :action 을 부르는 방식의 성능이 나쁘고, number operation 반복이 안 됨
-  nnoremap K i<CR><ESC>^
-
-  "다음 기능들은 검색 창이 열린 다음에 포커스가 곧바로 에디터로 이동하므로 불편하고 쓸모가 없음.
-  "실행한 다음 포커스가 남아 있기만 해도 굉장히 쓸만할 것 같은데 아쉽다.
-  " nnoremap <F1><F1> :action SearchEverywhere<CR>
-  nmap <F1>s <Action>(ActivateStructureToolWindow)
-  nmap <F1>d <Action>(ActivateDatabaseToolWindow)
-  nmap <F1>t <Action>(ActivateTerminalToolWindow)
-  nmap <F1>b <Action>(ShowBookmarks)
-  nmap <F1>p <Action>(ActivateProblemsViewToolWindow)
-  nmap gu <Action>(ShowUsages)
-  nmap gi <Action>(GotoImplementation)
-  nmap gI <Action>(GotoSuperMethod)
-
-" IntelliJ IDEA 에서 제공하지 않는 VIM 기능들 ----------------------------------------
-
-  "ideavim 에서는 insert mode <C-P>, <C-N> 이 작동하지 않는다. 대신 IntelliJ 의 keymap 중
-  "  Main Menu > Code > Code > Completion > Cyclic Expand Word 가 비슷한 기능을 한다.
-  "  Cyclic Expand Word 에 ^p, Cyclic Expand Word (Backward) 에 ^n 을 지정해주면 된다.
-
-nnoremap g; :action JumpToLastChange<CR>
-nnoremap g, :action JumpToNextChange<CR>
-
-" Helix-style line navigation
+" Line navigation (Helix-style)
 nnoremap gh 0
 nnoremap gs ^
 nnoremap gl $
 
-nnoremap [[ :action MethodUp<CR>
-nnoremap ]] :action MethodDown<CR>
+" Code block navigation
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
 onoremap [[ :action MethodUp<CR>
 onoremap ]] :action MethodDown<CR>
 
-nnoremap mm :action EditorMatchBrace<CR>
-nnoremap ms :action EditorCodeBlockStart<CR>
-nnoremap ml :action EditorCodeBlockEnd<CR>
-nnoremap <Tab>f :action QuickFixes<CR>
-nnoremap <Tab>n :action ShowIntentionActions<CR>
-nnoremap <Tab>u :action FindUsages<CR>
-nnoremap <Tab>r :action Refactorings.QuickListPopupAction<CR>
-nnoremap <Tab>v :action IntroduceVariable<CR>
-nnoremap <Tab>y :action CopyReferencePopupGroup<CR>
+" Jump between changes
+nmap g; <Action>(JumpToLastChange)
+nmap g, <Action>(JumpToNextChange)
 
-nnoremap <leader>too :action CloseAllEditorsButActive<CR>
-nnoremap <leader>tol :action CloseAllToTheLeft<CR>
-nnoremap <leader>tor :action CloseAllToTheRight<CR>
-nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>v :action CopyPaths<CR>
+" Code navigation
+nmap gu <Action>(ShowUsages)
+nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoSuperMethod)
 
+" Matching brackets
+nmap mm <Action>(EditorMatchBrace)
+nmap ms <Action>(EditorCodeBlockStart)
+nmap ml <Action>(EditorCodeBlockEnd)
 
+" =============================================================================
+" KEY MAPPINGS - WINDOW/SPLIT MANAGEMENT
+" =============================================================================
 
-" Bookmarks 알파벳 마크는 글로벌 마크만 왼쪽에 표시된다. 글로벌 마크만 쓰자.
+" Window navigation
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+
+" Split operations
+nmap <leader>sv <Action>(SplitVertically)
+nmap <leader>sh <Action>(SplitHorizontally)
+nmap <leader>su <Action>(Unsplit)
+nmap <leader>sm <Action>(MoveEditorToOppositeTabGroup)
+nmap <leader>cw <Action>(HideActiveWindow)
+
+" Navigation history
+nmap <leader>sb <Action>(Back)
+nmap <leader>sf <Action>(Forward)
+
+" =============================================================================
+" KEY MAPPINGS - TAB MANAGEMENT
+" =============================================================================
+
+nmap <leader>too <Action>(CloseAllEditorsButActive)
+nmap <leader>tol <Action>(CloseAllToTheLeft)
+nmap <leader>tor <Action>(CloseAllToTheRight)
+
+" =============================================================================
+" KEY MAPPINGS - TOOL WINDOWS (F1 prefix)
+" =============================================================================
+
+nmap <F1>s <Action>(ActivateStructureToolWindow)
+nmap <F1>d <Action>(ActivateDatabaseToolWindow)
+nmap <F1>t <Action>(ActivateTerminalToolWindow)
+nmap <F1>b <Action>(ShowBookmarks)
+nmap <F1>p <Action>(ActivateProblemsViewToolWindow)
+
+" =============================================================================
+" KEY MAPPINGS - CODE ACTIONS (Tab prefix)
+" =============================================================================
+
+nmap <Tab>f <Action>(QuickFixes)
+nmap <Tab>n <Action>(ShowIntentionActions)
+nmap <Tab>u <Action>(FindUsages)
+nmap <Tab>r <Action>(Refactorings.QuickListPopupAction)
+nmap <Tab>v <Action>(IntroduceVariable)
+nmap <Tab>y <Action>(CopyReferencePopupGroup)
+
+" =============================================================================
+" KEY MAPPINGS - LEADER ACTIONS
+" =============================================================================
+
+" Refactoring
+nmap <leader>rn <Action>(RenameElement)
+
+" Documentation
+nmap <leader>d <Action>(QuickJavaDoc)
+nmap <leader>p <Action>(ParameterInfo)
+
+" File operations
+nmap <leader>v <Action>(CopyPaths)
+nmap <leader>e <Action>(SelectInProjectView)
+
+" =============================================================================
+" KEY MAPPINGS - BOOKMARKS
+" =============================================================================
+
+" Goto bookmarks (backtick)
 nmap `0 <Action>(GotoBookmark0)
 nmap `1 <Action>(GotoBookmark1)
 nmap `2 <Action>(GotoBookmark2)
@@ -133,6 +182,7 @@ nmap `7 <Action>(GotoBookmark7)
 nmap `8 <Action>(GotoBookmark8)
 nmap `9 <Action>(GotoBookmark9)
 
+" Toggle bookmarks (leader+m)
 nmap <leader>m0 <Action>(ToggleBookmark0)
 nmap <leader>m1 <Action>(ToggleBookmark1)
 nmap <leader>m2 <Action>(ToggleBookmark2)
@@ -144,22 +194,8 @@ nmap <leader>m7 <Action>(ToggleBookmark7)
 nmap <leader>m8 <Action>(ToggleBookmark8)
 nmap <leader>m9 <Action>(ToggleBookmark9)
 
-nmap <leader>p <Action>(ParameterInfo)
-nmap <leader>d :action QuickJavaDoc<CR>
+" =============================================================================
+" RELOAD CONFIG
+" =============================================================================
 
-
-" for split
-nmap <leader>sv <Action>(SplitVertically)
-nmap <leader>sh <Action>(SplitHorizontally)
-nmap <leader>su <Action>(Unsplit)
-nmap <leader>sm <Action>(MoveEditorToOppositeTabGroup)
-
-nmap <leader>cw <Action>(HideActiveWindow)
-
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-nmap <C-k> <C-w>k
-nmap <C-j> <C-w>j
-
-" 열려있는 파일을 explorer에서 포커스 맞추기
-nmap <leader>e <Action>(SelectInProjectView)
+nnoremap <F10><F10> :source ~/.ideavimrc<CR>
