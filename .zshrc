@@ -11,8 +11,6 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline'
-alias gco='git checkout'
-alias gb='git branch'
 
 # custom aliases
 alias gtwk='cd ~/wiki/SmallzooDevWiki/content/_wiki'
