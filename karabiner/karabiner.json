@@ -1008,7 +1008,7 @@
             "selected": true,
             "simple_modifications": [
                 {
-                    "from": { "key_code": "f3" },
+                    "from": { "key_code": "f1" },
                     "to": [{ "key_code": "f8" }]
                 }
             ],
