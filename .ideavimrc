@@ -182,6 +182,12 @@ nmap <leader>p <Action>(ParameterInfo)
 nmap <leader>v <Action>(CopyPaths)
 nmap <leader>e <Action>(SelectInProjectView)
 
+" Git
+nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+nmap <leader>gc <Action>(ActivateCommitToolWindow)
+
+
 " =============================================================================
 " KEY MAPPINGS - BOOKMARKS
 " =============================================================================
