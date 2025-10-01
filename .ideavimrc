@@ -97,6 +97,9 @@ onoremap ]] :action MethodDown<CR>
 nmap ]c <Action>(VcsShowNextChangeMarker)
 nmap [c <Action>(VcsShowPrevChangeMarker)
 
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+
 " Jump between changes
 nmap g; <Action>(JumpToLastChange)
 nmap g, <Action>(JumpToNextChange)
