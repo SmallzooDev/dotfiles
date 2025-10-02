@@ -9,12 +9,25 @@ return {
   opts = {
     workspaces = {
       {
-        name = "personal",
-        path = "~/vimwiki",
+        name = "work",
+        path = "~/kane_wiki",
+        overrides = {
+          templates = {
+            folder = "templates",
+          },
+        },
+      },
+      {
+        name = "private",
+        path = "~/smallzoo",
+        overrides = {
+          templates = {
+            folder = "templates",
+          },
+        },
       },
     },
     templates = {
-      folder = "~/vimwiki/templates",
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
     },
@@ -33,5 +46,6 @@ return {
     { "<leader>/", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
     { "<leader>td", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
     { "<leader>ys", "<cmd>ObsidianYesterday<CR>", desc = "Yesterday's note", ft = "markdown" },
+    { "<leader>owc", "<cmd>ObsidianWorkspace<CR>", desc = "Change workspace", ft = "markdown" },
   },
 }
