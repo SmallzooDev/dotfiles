@@ -13,6 +13,17 @@ return {
         path = "~/vimwiki",
       },
     },
+    templates = {
+      folder = "~/vimwiki/templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+    },
+    daily_notes = {
+      folder = "daily",
+      date_format = "%Y-%m-%d",
+      default_tags = { "daily-notes" },
+      template = "daily.md",
+    },
   },
   keys = {
     { "<BS>", "<cmd>ObsidianBacklinks<CR>", desc = "Show backlinks", ft = "markdown" },
@@ -20,5 +31,7 @@ return {
     { "<leader>ot", "<cmd>ObsidianTags<CR>", desc = "Search tags", ft = "markdown" },
     { "<leader>b", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch", ft = "markdown" },
     { "<leader>/", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
+    { "<leader>td", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
+    { "<leader>ys", "<cmd>ObsidianYesterday<CR>", desc = "Yesterday's note", ft = "markdown" },
   },
 }
