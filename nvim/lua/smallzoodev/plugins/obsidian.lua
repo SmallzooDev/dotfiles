@@ -9,8 +9,8 @@ return {
   opts = {
     workspaces = {
       {
-        name = "work",
-        path = "~/kane_wiki",
+        name = "public",
+        path = "~/wiki/SmallzooDevWiki/content/_wiki/",
         overrides = {
           templates = {
             folder = "templates",
