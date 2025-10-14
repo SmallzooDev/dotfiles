@@ -36,6 +36,26 @@
                         ]
                     },
                     {
+                        "description": "Map left_command + tab to cmd + f9",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "mandatory": ["left_command"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f9",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Change right_command keys to various symbols and arrows",
                         "manipulators": [
                             {
