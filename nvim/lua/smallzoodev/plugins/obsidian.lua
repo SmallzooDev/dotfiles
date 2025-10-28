@@ -27,6 +27,19 @@ return {
         },
       },
     },
+    -- Use title as filename with date suffix
+    note_id_func = function(title)
+      local suffix = os.date("%y%m%d")
+      -- If title is provided, use it as the filename with date
+      if title ~= nil then
+        -- Convert title to lowercase and replace spaces with hyphens
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        return clean_title .. "_" .. suffix
+      else
+        -- If no title, use just the date
+        return suffix
+      end
+    end,
     templates = {
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
