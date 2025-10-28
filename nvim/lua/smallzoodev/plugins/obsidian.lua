@@ -50,6 +50,10 @@ return {
       default_tags = { "daily-notes" },
       template = "daily.md",
     },
+    -- Custom function to open URLs in browser
+    follow_url_func = function(url)
+      vim.fn.jobstart({ "open", url })
+    end,
   },
   keys = {
     { "<BS>", "<cmd>ObsidianBacklinks<CR>", desc = "Show backlinks", ft = "markdown" },
