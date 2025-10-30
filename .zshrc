@@ -28,8 +28,8 @@ alias mv='mv -i'
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 alias vi='nvim'
 alias n='nvim .'
-alias vik='cd ~/kane_wiki && nvim index.md'
-alias vis='cd ~/smallzoo && nvim index.md'
+alias vip='cd ~/public_vault && nvim index.md'
+alias vis='cd ~/private_vault && nvim index.md'
 
 # Scripts
 alias ii='./init.sh'
