@@ -72,14 +72,50 @@ return {
       end,
     })
 
-    -- Custom rename command with auto-reload
+    -- Helper function to generate filename following note_id_func rules
+    local function generate_note_filename(title)
+      local suffix = os.date("%y%m%d")
+      local base_name
+
+      if title ~= nil and title ~= "" then
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        base_name = clean_title .. "_" .. suffix
+      else
+        base_name = suffix
+      end
+
+      -- Check if file exists and add counter if needed
+      local client = require("obsidian").get_client()
+      local vault_path = client.dir.filename
+      local counter = 0
+      local final_name = base_name
+
+      while vim.fn.filereadable(vault_path .. "/" .. final_name .. ".md") == 1 do
+        final_name = string.format("%s_%02d", base_name, counter)
+        counter = counter + 1
+        if counter > 99 then break end
+      end
+
+      return final_name
+    end
+
+    -- Custom rename command with auto-reload and note_id_func rules
     vim.api.nvim_create_user_command("ObsidianRenameAndReload", function(opts)
-      vim.cmd("ObsidianRename " .. opts.args)
-      -- Wait a bit for rename to complete, then reload all buffers
-      vim.defer_fn(function()
-        vim.cmd("checktime") -- check if files changed
-        vim.cmd("bufdo e") -- reload all buffers
-      end, 500)
+      local new_title = opts.args
+      if new_title == "" then
+        new_title = vim.fn.input("Enter new title: ")
+      end
+
+      if new_title ~= "" then
+        local new_filename = generate_note_filename(new_title)
+        vim.cmd("ObsidianRename " .. new_filename)
+
+        -- Wait a bit for rename to complete, then reload all buffers
+        vim.defer_fn(function()
+          vim.cmd("checktime")
+          vim.cmd("bufdo e")
+        end, 500)
+      end
     end, { nargs = "?" })
   end,
   keys = {
