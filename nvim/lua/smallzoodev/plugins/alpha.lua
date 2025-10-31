@@ -19,14 +19,14 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("e",      "📄  New File",            "<cmd>ene<CR>"),
+      dashboard.button("e", "📄  New File", "<cmd>ene<CR>"),
       dashboard.button("SPC ee", "📁  Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
-      dashboard.button("SPC ff", "🔍  Find File",           "<cmd>Telescope find_files<CR>"),
-      dashboard.button("SPC fs", "🔎  Find Word",           "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("SPC wr", "💾  Restore Session",     "<cmd>SessionRestore<CR>"),
-      dashboard.button("p",      "📖  View Public Vault",   ":cd ~/public_vault | e ~/public_vault/index.md<CR>"),
-      dashboard.button("s",      "🔒  View Private Vault",  ":cd ~/private_vault | e ~/private_vault/index.md<CR>"),
-      dashboard.button("q",      "👋  Quit NVIM",           "<cmd>qa<CR>"),
+      dashboard.button("SPC ff", "🔍  Find File", "<cmd>Telescope find_files<CR>"),
+      dashboard.button("SPC fs", "🔎  Find Word", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("SPC wr", "💾  Restore Session", "<cmd>SessionRestore<CR>"),
+      dashboard.button("p", "📖  View Public Vault", ":cd ~/public_vault | e ~/public_vault/home.md<CR>"),
+      dashboard.button("s", "🔒  View Private Vault", ":cd ~/private_vault | e ~/private_vault/home.md<CR>"),
+      dashboard.button("q", "👋  Quit NVIM", "<cmd>qa<CR>"),
     }
 
     -- Send config to alpha
