@@ -34,8 +34,8 @@ return {
       local base_name
 
       if title ~= nil then
-        -- Convert title to lowercase and replace spaces with hyphens
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        -- Replace spaces with hyphens, preserve camelCase
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
         base_name = clean_title .. "_" .. suffix
       else
         -- If no title, use just the date
@@ -78,7 +78,7 @@ return {
       local base_name
 
       if title ~= nil and title ~= "" then
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
         base_name = clean_title .. "_" .. suffix
       else
         base_name = suffix
