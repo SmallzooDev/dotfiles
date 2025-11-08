@@ -117,6 +117,106 @@ return {
         end, 500)
       end
     end, { nargs = "?" })
+
+    -- PARA helper: Create new project with directory structure
+    vim.api.nvim_create_user_command("ObsidianNewProject", function(opts)
+      local title = opts.args
+      if title == "" then
+        title = vim.fn.input("Project name: ")
+      end
+      if title ~= "" then
+        local client = require("obsidian").get_client()
+        local vault_path = client.dir.filename
+        local date_prefix = os.date("%Y%m%d")
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local dir_name = date_prefix .. "-" .. clean_title
+        local project_dir = vault_path .. "/01-Projects/" .. dir_name
+        local index_path = project_dir .. "/index.md"
+
+        -- Create directory
+        vim.fn.mkdir(project_dir, "p")
+
+        -- Create index.md with template
+        vim.cmd("edit " .. index_path)
+        vim.defer_fn(function()
+          vim.cmd("ObsidianTemplate project")
+        end, 100)
+      end
+    end, { nargs = "?" })
+
+    -- PARA helper: Create new area with directory structure
+    vim.api.nvim_create_user_command("ObsidianNewArea", function(opts)
+      local title = opts.args
+      if title == "" then
+        title = vim.fn.input("Area name: ")
+      end
+      if title ~= "" then
+        local client = require("obsidian").get_client()
+        local vault_path = client.dir.filename
+        local date_prefix = os.date("%Y%m%d")
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local dir_name = date_prefix .. "-" .. clean_title
+        local area_dir = vault_path .. "/02-Areas/" .. dir_name
+        local index_path = area_dir .. "/index.md"
+
+        vim.fn.mkdir(area_dir, "p")
+        vim.cmd("edit " .. index_path)
+        vim.defer_fn(function()
+          vim.cmd("ObsidianTemplate area")
+        end, 100)
+      end
+    end, { nargs = "?" })
+
+    -- PARA helper: Create new resource with directory structure
+    vim.api.nvim_create_user_command("ObsidianNewResource", function(opts)
+      local title = opts.args
+      if title == "" then
+        title = vim.fn.input("Resource name: ")
+      end
+      if title ~= "" then
+        local client = require("obsidian").get_client()
+        local vault_path = client.dir.filename
+        local date_prefix = os.date("%Y%m%d")
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local dir_name = date_prefix .. "-" .. clean_title
+        local resource_dir = vault_path .. "/03-Resources/" .. dir_name
+        local index_path = resource_dir .. "/index.md"
+
+        vim.fn.mkdir(resource_dir, "p")
+        vim.cmd("edit " .. index_path)
+        vim.defer_fn(function()
+          vim.cmd("ObsidianTemplate resource")
+        end, 100)
+      end
+    end, { nargs = "?" })
+
+    -- PARA helper: Archive current note/directory
+    vim.api.nvim_create_user_command("ObsidianArchive", function()
+      local current_file = vim.fn.expand("%:p")
+      local client = require("obsidian").get_client()
+      local vault_path = client.dir.filename
+
+      -- Check if we're in a PARA directory structure
+      local relative_path = current_file:gsub(vault_path .. "/", "")
+      local parts = vim.split(relative_path, "/")
+
+      if #parts >= 2 and (parts[1]:match("^0[1-3]%-")) then
+        -- We're in a PARA item directory, move the whole directory
+        local item_dir = vault_path .. "/" .. parts[1] .. "/" .. parts[2]
+        local archive_dest = vault_path .. "/04-Archives/" .. parts[2]
+
+        vim.fn.rename(item_dir, archive_dest)
+        vim.cmd("bdelete")
+        vim.notify("Archived " .. parts[2] .. " to 04-Archives/", vim.log.levels.INFO)
+      else
+        -- Just a single file, move it
+        local filename = vim.fn.expand("%:t")
+        local archive_path = vault_path .. "/04-Archives/" .. filename
+        vim.fn.rename(current_file, archive_path)
+        vim.cmd("edit " .. archive_path)
+        vim.notify("Archived to 04-Archives/", vim.log.levels.INFO)
+      end
+    end, {})
   end,
   keys = {
     -- Navigation
@@ -131,6 +231,12 @@ return {
     { "<leader>or", "<cmd>ObsidianRenameAndReload<CR>", desc = "Rename note", ft = "markdown" },
     { "<leader>ol", "<cmd>ObsidianLinks<CR>", desc = "List links", ft = "markdown" },
     { "<leader>ot", "<cmd>ObsidianTags<CR>", desc = "Search tags", ft = "markdown" },
+
+    -- PARA commands
+    { "<leader>op", "<cmd>ObsidianNewProject<CR>", desc = "New project", ft = "markdown" },
+    { "<leader>oa", "<cmd>ObsidianNewArea<CR>", desc = "New area", ft = "markdown" },
+    { "<leader>oz", "<cmd>ObsidianNewResource<CR>", desc = "New resource", ft = "markdown" },
+    { "<leader>ox", "<cmd>ObsidianArchive<CR>", desc = "Archive item", ft = "markdown" },
 
     -- Daily notes
     { "<leader>td", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
