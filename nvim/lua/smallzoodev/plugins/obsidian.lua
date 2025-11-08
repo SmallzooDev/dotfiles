@@ -128,7 +128,7 @@ return {
         local client = require("obsidian").get_client()
         local vault_path = client.dir.filename
         local date_prefix = os.date("%Y%m%d")
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
         local dir_name = date_prefix .. "-" .. clean_title
         local project_dir = vault_path .. "/01-Projects/" .. dir_name
         local index_path = project_dir .. "/index.md"
@@ -154,7 +154,7 @@ return {
         local client = require("obsidian").get_client()
         local vault_path = client.dir.filename
         local date_prefix = os.date("%Y%m%d")
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
         local dir_name = date_prefix .. "-" .. clean_title
         local area_dir = vault_path .. "/02-Areas/" .. dir_name
         local index_path = area_dir .. "/index.md"
@@ -177,7 +177,7 @@ return {
         local client = require("obsidian").get_client()
         local vault_path = client.dir.filename
         local date_prefix = os.date("%Y%m%d")
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
         local dir_name = date_prefix .. "-" .. clean_title
         local resource_dir = vault_path .. "/03-Resources/" .. dir_name
         local index_path = resource_dir .. "/index.md"
