@@ -106,5 +106,6 @@
 		"}",
 		""
 	],
+	"keyMappings": "map <space> Vomnibar.activateTabSelection",
 	"vimSync": true
 }
