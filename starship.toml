@@ -38,7 +38,7 @@ $line_break\
 $character\
 """
 
-palette = 'coolnight'
+palette = 'overcast'
 
 [palettes.catppuccin_mocha]
 
@@ -139,6 +139,31 @@ color_duration = '#282828'
 color_vimcmd_ok = '#689d6a'
 color_vimcmd_replace = '#b16286'
 color_vimcmd_visual = '#d79921'
+
+[palettes.overcast]
+
+color_ok = '#0D6B2E'
+color_danger = '#E07A7A'
+color_caution = '#E8B563'
+
+color_os = '#9B7FCE'
+color_username = '#9B7FCE'
+color_directory = '#0D296D'
+color_git = '#5FB8A8'
+color_git_added = '#0D6B2E'
+color_git_deleted = '#E07A7A'
+color_env = '#5FC9D8'
+color_kubernetes = '#9B7FCE'
+color_docker = '#5FC9D8'
+color_shell = '#4A6798'
+color_container = '#E8B563'
+color_other = '#4A6798'
+color_time = '#4A6798'
+color_duration = '#4A6798'
+
+color_vimcmd_ok = '#0D6B2E'
+color_vimcmd_replace = '#9B7FCE'
+color_vimcmd_visual = '#E8B563'
 
 [palettes.coolnight]
 

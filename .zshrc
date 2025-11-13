@@ -56,15 +56,17 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # FZF
 eval "$(fzf --zsh)"
 
-# FZF configuration
-fg="#CBE0F0"
-bg="#011628"
-bg_highlight="#143652"
-purple="#B388FF"
-blue="#06BCE4"
-cyan="#2CF9ED"
+# FZF configuration - Overcast theme (EXACT Raycast colors)
+fg="#0D296D"
+bg="#D8E5EB"
+bg_highlight="#C5D8ED"
+purple="#9B7FCE"
+blue="#6B89C8"
+cyan="#5FC9D8"
+green="#0D6B2E"
+fg_secondary="#4A6798"
 
-export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${blue},info:${cyan},prompt:${blue},pointer:${green},marker:${green},spinner:${cyan},header:${purple}"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"

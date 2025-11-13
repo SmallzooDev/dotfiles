@@ -5,15 +5,17 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
+    -- Overcast theme colors for lualine (EXACT Raycast)
     local colors = {
-      blue = "#65D1FF",
-      green = "#3EFFDC",
-      violet = "#FF61EF",
-      yellow = "#FFDA7B",
-      red = "#FF4A4A",
-      fg = "#c3ccdc",
-      bg = "#112638",
-      inactive_bg = "#2c3043",
+      blue = "#6B89C8",
+      green = "#0D6B2E",
+      violet = "#9B7FCE",
+      yellow = "#E8B563",
+      red = "#E07A7A",
+      cyan = "#5FC9D8",
+      fg = "#0D296D",
+      bg = "#CDD9E2",
+      inactive_bg = "#C5D8ED",
     }
 
     local my_lualine_theme = {
@@ -59,7 +61,7 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#ff9e64" },
+            color = { fg = "#E89B63" },
           },
           { "encoding" },
           { "fileformat" },

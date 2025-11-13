@@ -20,48 +20,62 @@ config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
 -- config.color_scheme = "Catppuccin Mocha"
 
--- Catppuccin green cursor
--- config.colors = {
--- 	cursor_bg = "#a6e3a1",
--- 	cursor_border = "#a6e3a1",
--- 	cursor_fg = "#1e1e2e",
--- }
-
--- coolnight theme
+-- Overcast theme - EXACT Raycast colors
+-- Background: #D8E5EB, Foreground: #0D296D
 config.colors = {
-	foreground = "#CBE0F0",
-	background = "#011423",
-	cursor_bg = "#47FF9C",
-	cursor_border = "#47FF9C",
-	cursor_fg = "#011423",
-	selection_bg = "#033259",
-	selection_fg = "#CBE0F0",
-	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
-	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
+	foreground = "#0D296D",
+	background = "#D8E5EB",
+	cursor_bg = "#6B89C8",
+	cursor_border = "#6B89C8",
+	cursor_fg = "#FFFFFF",
+	selection_bg = "#C5D8ED",
+	selection_fg = "#0D296D",
 
-	-- Tab bar colors for coolnight theme with transparency
+	-- ANSI colors (muted, soft palette)
+	ansi = {
+		"#4A6798", -- black (non-emphasized)
+		"#E07A7A", -- red (soft red)
+		"#0D6B2E", -- green (EXTREMELY DARK vivid green)
+		"#E8B563", -- yellow (golden)
+		"#6B89C8", -- blue (soft blue)
+		"#9B7FCE", -- magenta (soft purple)
+		"#5FC9D8", -- cyan (soft cyan)
+		"#0D296D", -- white (main font)
+	},
+	brights = {
+		"#4A6798", -- bright black (non-emphasized)
+		"#E88A8A", -- bright red
+		"#1F9A3D", -- bright green (DARK VIVID)
+		"#F0C674", -- bright yellow
+		"#7B9DD8", -- bright blue
+		"#A68FD8", -- bright magenta
+		"#6FD9E8", -- bright cyan
+		"#0D296D", -- bright white (main font)
+	},
+
+	-- Tab bar colors for Overcast theme
 	tab_bar = {
-		background = "rgba(1, 20, 35, 0.85)",
+		background = "#C5D8ED",
 		active_tab = {
-			bg_color = "#47FF9C",
-			fg_color = "#011423",
+			bg_color = "#E8F0F5",
+			fg_color = "#0D296D",
 			intensity = "Bold",
 		},
 		inactive_tab = {
-			bg_color = "rgba(1, 20, 35, 0.85)",
-			fg_color = "#5A7C99",
+			bg_color = "#C5D8ED",
+			fg_color = "#4A6798",
 		},
 		inactive_tab_hover = {
-			bg_color = "#033259",
-			fg_color = "#CBE0F0",
+			bg_color = "#D8E5EB",
+			fg_color = "#0D296D",
 		},
 		new_tab = {
-			bg_color = "rgba(1, 20, 35, 0.85)",
-			fg_color = "#5A7C99",
+			bg_color = "#C5D8ED",
+			fg_color = "#4A6798",
 		},
 		new_tab_hover = {
-			bg_color = "#033259",
-			fg_color = "#47FF9C",
+			bg_color = "#D8E5EB",
+			fg_color = "#6B89C8",
 		},
 	},
 }
