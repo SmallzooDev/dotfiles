@@ -197,8 +197,14 @@ return {
         title = vim.fn.input("Note name: ")
       end
       if title ~= "" then
-        -- Get current working directory
-        local current_dir = vim.fn.getcwd()
+        -- Get directory of current file, or fall back to cwd
+        local current_dir
+        local current_file = vim.fn.expand("%:p")
+        if current_file ~= "" then
+          current_dir = vim.fn.fnamemodify(current_file, ":h")
+        else
+          current_dir = vim.fn.getcwd()
+        end
 
         -- Count existing files (not directories) in current directory
         local files = vim.fn.glob(current_dir .. "/*", false, true)
@@ -216,10 +222,12 @@ return {
         local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
 
         -- Create final filename
-        local final_name = sequence .. "-" .. clean_title
+        local final_name = sequence .. "-" .. clean_title .. ".md"
+        local full_path = current_dir .. "/" .. final_name
 
-        -- Create the note
-        vim.cmd("ObsidianNew " .. final_name)
+        -- Create, open, and save the file
+        vim.cmd("edit " .. vim.fn.fnameescape(full_path))
+        vim.cmd("write")
       end
     end, { nargs = "?" })
 
