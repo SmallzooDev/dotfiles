@@ -190,6 +190,39 @@ return {
       end
     end, { nargs = "?" })
 
+    -- Custom new note with sequence number
+    vim.api.nvim_create_user_command("ObsidianNewSequenced", function(opts)
+      local title = opts.args
+      if title == "" then
+        title = vim.fn.input("Note name: ")
+      end
+      if title ~= "" then
+        -- Get current working directory
+        local current_dir = vim.fn.getcwd()
+
+        -- Count existing files (not directories) in current directory
+        local files = vim.fn.glob(current_dir .. "/*", false, true)
+        local file_count = 0
+        for _, file in ipairs(files) do
+          if vim.fn.isdirectory(file) == 0 then
+            file_count = file_count + 1
+          end
+        end
+
+        -- Generate 4-digit sequence number
+        local sequence = string.format("%04d", file_count)
+
+        -- Clean title (preserve camelCase, replace spaces with hyphens)
+        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
+
+        -- Create final filename
+        local final_name = sequence .. "-" .. clean_title
+
+        -- Create the note
+        vim.cmd("ObsidianNew " .. final_name)
+      end
+    end, { nargs = "?" })
+
   end,
   keys = {
     -- Navigation
@@ -200,7 +233,7 @@ return {
     { "<leader>/", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
 
     -- Note management
-    { "<leader>on", "<cmd>ObsidianNew<CR>", desc = "New note", ft = "markdown" },
+    { "<leader>on", "<cmd>ObsidianNewSequenced<CR>", desc = "New note", ft = "markdown" },
     { "<leader>or", "<cmd>ObsidianRenameAndReload<CR>", desc = "Rename note", ft = "markdown" },
     { "<leader>ol", "<cmd>ObsidianLinks<CR>", desc = "List links", ft = "markdown" },
     { "<leader>ot", "<cmd>ObsidianTags<CR>", desc = "Search tags", ft = "markdown" },
