@@ -21,7 +21,7 @@ config.enable_tab_bar = true
 
 -- Material Deep Ocean (matching Neovim)
 config.colors = {
-	foreground = "#8f93a2",
+	foreground = "#9a9a9a",
 	background = "#0f111a",
 	cursor_bg = "#89ddff",
 	cursor_border = "#89ddff",
@@ -40,7 +40,7 @@ config.colors = {
 		"#eeffff", -- white
 	},
 	brights = {
-		"#717cb4", -- bright black
+		"#a0aab5", -- bright black
 		"#f07178", -- bright red
 		"#c3e88d", -- bright green
 		"#ffcb6b", -- bright yellow
@@ -59,7 +59,7 @@ config.colors = {
 		},
 		inactive_tab = {
 			bg_color = "#1a1e2e",
-			fg_color = "#717cb4",
+			fg_color = "#a0aab5",
 		},
 		inactive_tab_hover = {
 			bg_color = "#1f2335",
@@ -67,7 +67,7 @@ config.colors = {
 		},
 		new_tab = {
 			bg_color = "#1a1e2e",
-			fg_color = "#717cb4",
+			fg_color = "#a0aab5",
 		},
 		new_tab_hover = {
 			bg_color = "#1f2335",
