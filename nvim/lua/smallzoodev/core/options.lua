@@ -35,4 +35,4 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.swapfile = false
 
 -- conceallevel for obsidian.nvim
-opt.conceallevel = 2
+opt.conceallevel = 1
