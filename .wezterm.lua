@@ -18,6 +18,14 @@ config.font_size = 13
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
+config.color_scheme = "Catppuccin Mocha"
+
+-- Override cursor color with Catppuccin green
+config.colors = {
+	cursor_bg = "#a6e3a1",
+	cursor_border = "#a6e3a1",
+	cursor_fg = "#1e1e2e",
+}
 
 -- Simple and clean tab bar
 config.use_fancy_tab_bar = false
