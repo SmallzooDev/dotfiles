@@ -1,6 +1,3 @@
-# theme = "tokyonight"
-theme = "term16_dark"
-
 [editor]
 line-number = "relative"
 mouse = false
@@ -10,8 +7,6 @@ scroll-lines = 3
 shell = ["sh", "-c"]
 cursorline = false
 cursorcolumn = false
-color-modes = true
-true-color = true
 # rulers = [80, 120]
 bufferline = "multiple"
 idle-timeout = 0

@@ -1,6 +1,0 @@
-# Custom theme based on term16_dark
-inherits = "term16_dark"
-
-# Override selection background
-"ui.selection" = { bg = "#2d4f67" }
-"ui.selection.primary" = { bg = "#2d4f67" }
