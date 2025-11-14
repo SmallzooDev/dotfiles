@@ -42,7 +42,7 @@ return {
       lualine_style = "default",
       async_loading = true,
       custom_colors = function(colors)
-        colors.editor.fg = "#9a9a9a"
+        colors.editor.fg = "#e8eef5"
         colors.editor.gray = "#a0aab5"
         return colors
       end,
@@ -51,6 +51,8 @@ return {
         CursorLine = { bg = "#1a1e2e" },
         ["@property"] = { fg = "#a0aab5" },
         ["@variable.member"] = { fg = "#a0aab5" },
+        ["@variable"] = { fg = "#e8eef5" },
+        Identifier = { fg = "#e8eef5" },
       },
     })
 

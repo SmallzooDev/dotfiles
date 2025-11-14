@@ -21,7 +21,7 @@ config.enable_tab_bar = true
 
 -- Material Deep Ocean (matching Neovim)
 config.colors = {
-	foreground = "#9a9a9a",
+	foreground = "#e8eef5",
 	background = "#0f111a",
 	cursor_bg = "#89ddff",
 	cursor_border = "#89ddff",
