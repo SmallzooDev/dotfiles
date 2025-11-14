@@ -18,13 +18,37 @@ config.font_size = 13
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
-config.color_scheme = "Catppuccin Mocha"
 
--- Override cursor color with Catppuccin green
+-- Material Deep Ocean (matching Neovim)
 config.colors = {
-	cursor_bg = "#a6e3a1",
-	cursor_border = "#a6e3a1",
-	cursor_fg = "#1e1e2e",
+	foreground = "#8f93a2",
+	background = "#0f111a",
+	cursor_bg = "#89ddff",
+	cursor_border = "#89ddff",
+	cursor_fg = "#0f111a",
+	selection_bg = "#1f2335",
+	selection_fg = "#eeffff",
+
+	ansi = {
+		"#1b1e28", -- black
+		"#f07178", -- red
+		"#c3e88d", -- green
+		"#ffcb6b", -- yellow
+		"#82aaff", -- blue
+		"#c792ea", -- magenta
+		"#89ddff", -- cyan
+		"#eeffff", -- white
+	},
+	brights = {
+		"#717cb4", -- bright black
+		"#f07178", -- bright red
+		"#c3e88d", -- bright green
+		"#ffcb6b", -- bright yellow
+		"#82aaff", -- bright blue
+		"#c792ea", -- bright magenta
+		"#89ddff", -- bright cyan
+		"#eeffff", -- bright white
+	},
 }
 
 -- Simple and clean tab bar
