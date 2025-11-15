@@ -27,8 +27,14 @@ return {
     completion = {
       menu = {
         border = "rounded",
+        auto_show = true,
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+        },
+      },
+      list = {
+        selection = {
+          preselect = false, -- 첫 항목 자동 선택 안 함
         },
       },
       documentation = {
