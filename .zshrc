@@ -4,6 +4,9 @@
 # Basic environment
 export EDITOR=nvim
 
+# Development utilities
+source ~/dev-utils/shell/devenv.zsh
+
 # Git aliases (replacing oh-my-zsh git plugin)
 alias lg='lazygit'
 
