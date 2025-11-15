@@ -47,3 +47,9 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clea
 
 -- better paste
 keymap.set("v", "p", '"_dP', { desc = "Paste without yanking" })
+
+-- LSP diagnostics virtual text toggle
+keymap.set("n", "<leader>ud", function()
+  local config = vim.diagnostic.config()
+  vim.diagnostic.config({ virtual_text = not config.virtual_text })
+end, { desc = "Toggle LSP virtual text" })

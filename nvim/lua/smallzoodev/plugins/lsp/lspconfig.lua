@@ -75,28 +75,8 @@ return {
       capabilities = capabilities,
     })
 
-    vim.lsp.config("svelte", {
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = { "*.js", "*.ts" },
-          callback = function(ctx)
-            -- Here use ctx.match instead of ctx.file
-            client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-          end,
-        })
-      end,
-    })
-
-    vim.lsp.config("graphql", {
-      filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-    })
-
-    vim.lsp.config("emmet_ls", {
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
-
     vim.lsp.config("eslint", {
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+      filetypes = { "javascript", "typescript" },
     })
 
     vim.lsp.config("lua_ls", {

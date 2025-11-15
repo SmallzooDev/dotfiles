@@ -28,14 +28,7 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "ts_ls",
-        "html",
-        "cssls",
-        "tailwindcss",
-        "svelte",
         "lua_ls",
-        "graphql",
-        "emmet_ls",
-        "prismals",
         "pyright",
         "eslint",
         "gopls",
@@ -45,12 +38,12 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "prettier", -- prettier formatter
+        "prettier", -- ts/js formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter
-        "pylint",
-        "eslint_d",
+        "pylint", -- python linter
+        "eslint_d", -- js/ts linter
         "gofumpt", -- go formatter
         "goimports", -- go import formatter
         "golangci-lint", -- go linter

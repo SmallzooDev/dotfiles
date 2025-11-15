@@ -37,8 +37,7 @@ return {
       },
     },
     signature = {
-      enabled = true,
-      window = { border = "rounded" },
+      enabled = false, -- 자동 signature 끄기 (원하면 K로 수동 확인)
     },
   },
 }
