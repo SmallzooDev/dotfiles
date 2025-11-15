@@ -110,23 +110,25 @@ return {
   },
   config = function(_, opts)
     local colors = {
-      cyan = "#89ddff",
-      blue = "#82aaff",
-      purple = "#c792ea",
-      yellow = "#ffcb6b",
-      green = "#c3e88d",
-      red = "#f07178",
-      gray = "#b0bac5",
-      white = "#ffffff",
+      cyan = "#89dceb",
+      blue = "#89b4fa",
+      purple = "#cba6f7",
+      yellow = "#f9e2af",
+      green = "#a6e3a1",
+      red = "#f38ba8",
+      gray = "#9399b2",
+      white = "#cdd6f4",
+      peach = "#fab387",
+      teal = "#94e2d5",
     }
 
     local bg_colors = {
-      red = "#3d2527",
-      yellow = "#3d3520",
-      green = "#2a3224",
-      cyan = "#1f2f3d",
-      blue = "#1f2a3d",
-      purple = "#2f253d",
+      red = "#452134",
+      yellow = "#48392a",
+      green = "#2e3b2d",
+      cyan = "#264651",
+      blue = "#2d3c5a",
+      purple = "#3e2d4a",
     }
 
     vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = colors.red, bold = true })

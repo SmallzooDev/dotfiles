@@ -1,4 +1,4 @@
-theme = "base16_material_palenight"
+theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"

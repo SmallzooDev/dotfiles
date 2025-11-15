@@ -1,62 +1,65 @@
 return {
-  "marko-cerovac/material.nvim",
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
   config = function()
-    require("material").setup({
-      contrast = {
-        terminal = false,
-        sidebars = false,
-        floating_windows = false,
-        cursor_line = false,
-        lsp_virtual_text = false,
-        non_current_windows = false,
-        filetypes = {},
+    require("catppuccin").setup({
+      flavour = "mocha",
+      transparent_background = false,
+      show_end_of_buffer = false,
+      term_colors = true,
+      dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
       },
       styles = {
-        comments = { italic = true },
-        strings = {},
-        keywords = {},
+        comments = { "italic" },
+        conditionals = {},
+        loops = {},
         functions = {},
+        keywords = {},
+        strings = {},
         variables = {},
-        operators = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
         types = {},
+        operators = {},
       },
-      plugins = {
-        "gitsigns",
-        "nvim-cmp",
-        "nvim-web-devicons",
-        "telescope",
-        "which-key",
-      },
-      disable = {
-        colored_cursor = false,
-        borders = false,
-        background = false,
-        term_colors = false,
-        eob_lines = false,
-      },
-      high_visibility = {
-        lighter = false,
-        darker = false,
-      },
-      lualine_style = "default",
-      async_loading = true,
-      custom_colors = function(colors)
-        colors.editor.fg = "#e8eef5"
-        colors.editor.gray = "#b0bac5"
-        return colors
-      end,
-      custom_highlights = {
-        Cursor = { bg = "#89ddff", fg = "#0f111a" },
-        CursorLine = { bg = "#1a1e2e" },
-        ["@property"] = { fg = "#b0bac5" },
-        ["@variable.member"] = { fg = "#b0bac5" },
-        ["@variable"] = { fg = "#e8eef5" },
-        Identifier = { fg = "#e8eef5" },
+      color_overrides = {},
+      custom_highlights = {},
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        telescope = {
+          enabled = true,
+        },
+        which_key = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = false,
+        },
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+          },
+        },
       },
     })
 
-    vim.g.material_style = "deep ocean"
-    vim.cmd.colorscheme("material")
+    vim.cmd.colorscheme("catppuccin-mocha")
   end,
 }

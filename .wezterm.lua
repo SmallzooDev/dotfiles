@@ -19,62 +19,8 @@ config.font_size = 13
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
 
--- Material Deep Ocean (matching Neovim)
-config.colors = {
-	foreground = "#e8eef5",
-	background = "#0f111a",
-	cursor_bg = "#89ddff",
-	cursor_border = "#89ddff",
-	cursor_fg = "#0f111a",
-	selection_bg = "#1f2335",
-	selection_fg = "#eeffff",
-
-	ansi = {
-		"#1b1e28", -- black
-		"#f07178", -- red
-		"#c3e88d", -- green
-		"#ffcb6b", -- yellow
-		"#82aaff", -- blue
-		"#c792ea", -- magenta
-		"#89ddff", -- cyan
-		"#eeffff", -- white
-	},
-	brights = {
-		"#b0bac5", -- bright black
-		"#f07178", -- bright red
-		"#c3e88d", -- bright green
-		"#ffcb6b", -- bright yellow
-		"#82aaff", -- bright blue
-		"#c792ea", -- bright magenta
-		"#89ddff", -- bright cyan
-		"#eeffff", -- bright white
-	},
-
-	tab_bar = {
-		background = "#0f111a",
-		active_tab = {
-			bg_color = "#1f2335",
-			fg_color = "#89ddff",
-			intensity = "Bold",
-		},
-		inactive_tab = {
-			bg_color = "#1a1e2e",
-			fg_color = "#b0bac5",
-		},
-		inactive_tab_hover = {
-			bg_color = "#1f2335",
-			fg_color = "#89ddff",
-		},
-		new_tab = {
-			bg_color = "#1a1e2e",
-			fg_color = "#b0bac5",
-		},
-		new_tab_hover = {
-			bg_color = "#1f2335",
-			fg_color = "#89ddff",
-		},
-	},
-}
+-- Catppuccin Mocha
+config.color_scheme = "Catppuccin Mocha"
 
 -- Simple and clean tab bar
 config.use_fancy_tab_bar = false
