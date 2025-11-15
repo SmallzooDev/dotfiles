@@ -105,18 +105,7 @@ return {
       },
     })
 
-    vim.lsp.config("rust_analyzer", {
-      settings = {
-        ["rust-analyzer"] = {
-          checkOnSave = {
-            command = "clippy",
-          },
-          cargo = {
-            allFeatures = true,
-          },
-        },
-      },
-    })
+    -- rust_analyzer managed by rustaceanvim
 
     -- Exclude vimwiki directory from markdown LSP if marksman is added
     vim.lsp.config("marksman", {

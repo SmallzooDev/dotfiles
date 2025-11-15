@@ -32,7 +32,7 @@ return {
         "pyright",
         "eslint",
         "gopls",
-        "rust_analyzer",
+        -- rust_analyzer managed by rustaceanvim
       },
     })
 
@@ -43,10 +43,9 @@ return {
         "isort", -- python formatter
         "black", -- python formatter
         "pylint", -- python linter
-        "eslint_d", -- js/ts linter
         "gofumpt", -- go formatter
         "goimports", -- go import formatter
-        "golangci-lint", -- go linter
+        "golangci-lint", -- go linter (disabled in linting.lua)
       },
     })
   end,

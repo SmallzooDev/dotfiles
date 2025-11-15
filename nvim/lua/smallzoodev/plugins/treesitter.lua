@@ -29,6 +29,7 @@ return {
         "query",
         "vimdoc",
         "c",
+        "python",
         "go",
         "gomod",
         "gowork",
