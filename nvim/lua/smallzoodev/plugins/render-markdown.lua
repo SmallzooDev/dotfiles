@@ -43,35 +43,72 @@ return {
     },
     bullet = {
       enabled = true,
-      icons = { "•", "◦", "▪", "▫" },
+      render_modes = false,
+      icons = { " ", "󰄾 ", "󰶻 " },
+      ordered_icons = function(ctx)
+        local value = vim.trim(ctx.value)
+        local index = tonumber(value:sub(1, #value - 1))
+        return ("%d."):format(index > 1 and index or ctx.index)
+      end,
+      left_pad = 0,
+      right_pad = 0,
+      highlight = "RenderMarkdownBullet",
+      scope_highlight = {},
+      scope_priority = nil,
     },
     checkbox = {
       enabled = true,
-      unchecked = { icon = " " },
-      checked = { icon = "󰱒 " },
+      unchecked = { icon = "󰄱" },
+      checked = { icon = "󰱒" },
       custom = {
-        todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
-        progress = { raw = "[~]", rendered = "󰡖 ", highlight = "RenderMarkdownProgress" },
-        important = { raw = "[!]", rendered = " ", highlight = "RenderMarkdownImportant" },
-        question = { raw = "[?]", rendered = " ", highlight = "RenderMarkdownQuestion" },
-        forward = { raw = "[>]", rendered = " ", highlight = "RenderMarkdownForward" },
-        back = { raw = "[<]", rendered = " ", highlight = "RenderMarkdownBack" },
-        partial = { raw = "[/]", rendered = "󰡖 ", highlight = "RenderMarkdownPartial" },
+        todo = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+        progress = { raw = "[~]", rendered = "󰦖", highlight = "RenderMarkdownProgress" },
+        important = { raw = "[!]", rendered = "󰀪", highlight = "RenderMarkdownImportant" },
+        question = { raw = "[?]", rendered = "", highlight = "RenderMarkdownQuestion" },
+        forward = { raw = "[>]", rendered = "󰁔", highlight = "RenderMarkdownForward" },
+        back = { raw = "[<]", rendered = "󰁍", highlight = "RenderMarkdownBack" },
+        partial = { raw = "[/]", rendered = "󰄵", highlight = "RenderMarkdownPartial" },
       },
     },
     quote = {
       enabled = true,
-      -- icon = "▎",
       highlight = "RenderMarkdownQuote",
     },
     link = {
       enabled = true,
-      icon = " ",
+      render_modes = false,
+      footnote = {
+        enabled = true,
+        icon = "󰯔 ",
+        superscript = true,
+        prefix = "",
+        suffix = "",
+      },
+      image = "󰥶 ",
+      email = "󰀓 ",
+      hyperlink = "󰌹 ",
       highlight = "RenderMarkdownLink",
+      wiki = {
+        icon = "󰌹 ",
+        body = function()
+          return nil
+        end,
+        highlight = "RenderMarkdownWikiLink",
+        scope_highlight = nil,
+      },
+      custom = {
+        web = { pattern = "^http", icon = "󰖟 " },
+        github = { pattern = "github%.com", icon = "󰊤 " },
+        google = { pattern = "google%.com", icon = "󰊭 " },
+        stackoverflow = { pattern = "stackoverflow%.com", icon = "󰓌 " },
+        youtube = { pattern = "youtube%.com", icon = "󰗃 " },
+        slack = { pattern = "slack%.com", icon = " " },
+        jira = { pattern = "atlassian%.net/jira", icon = "󰌃 " },
+        confluence = { pattern = "atlassian%.net/wiki", icon = "󰈙 " },
+      },
     },
   },
   config = function(_, opts)
-    -- Material Deep Ocean colors
     local colors = {
       cyan = "#89ddff",
       blue = "#82aaff",
@@ -83,7 +120,6 @@ return {
       white = "#ffffff",
     }
 
-    -- Subtle background colors (darker tinted versions)
     local bg_colors = {
       red = "#3d2527",
       yellow = "#3d3520",
@@ -93,7 +129,6 @@ return {
       purple = "#2f253d",
     }
 
-    -- Heading foreground colors
     vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = colors.red, bold = true })
     vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = colors.yellow, bold = true })
     vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = colors.green, bold = true })
@@ -101,7 +136,6 @@ return {
     vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = colors.blue, bold = true })
     vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = colors.purple, bold = true })
 
-    -- Heading background colors (subtle tinted backgrounds with matching foreground)
     vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { fg = colors.red, bg = bg_colors.red })
     vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { fg = colors.yellow, bg = bg_colors.yellow })
     vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { fg = colors.green, bg = bg_colors.green })
@@ -109,10 +143,17 @@ return {
     vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { fg = colors.blue, bg = bg_colors.blue })
     vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { fg = colors.purple, bg = bg_colors.purple })
 
-    -- Quote highlights (white text)
     vim.api.nvim_set_hl(0, "@markup.quote", { fg = colors.white })
 
-    -- Checkbox highlights
+    -- Bullet highlight (green)
+    vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = colors.green })
+
+    -- Link highlights (icon: green, text: cyan)
+    vim.api.nvim_set_hl(0, "RenderMarkdownLink", { fg = colors.green })
+    vim.api.nvim_set_hl(0, "@markup.link", { fg = colors.cyan })
+    vim.api.nvim_set_hl(0, "@markup.link.label", { fg = colors.cyan })
+    vim.api.nvim_set_hl(0, "@markup.link.url", { fg = colors.cyan })
+
     vim.api.nvim_set_hl(0, "RenderMarkdownTodo", { fg = colors.blue })
     vim.api.nvim_set_hl(0, "RenderMarkdownProgress", { fg = colors.yellow })
     vim.api.nvim_set_hl(0, "RenderMarkdownImportant", { fg = colors.red })
