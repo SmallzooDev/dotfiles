@@ -19,4 +19,25 @@ require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoo
   change_detection = {
     notify = false,
   },
+  ui = {
+    backdrop = 100,
+    border = "rounded",
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })
