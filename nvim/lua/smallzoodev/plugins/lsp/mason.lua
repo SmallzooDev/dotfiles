@@ -47,7 +47,6 @@ return {
         "gofumpt", -- go formatter
         "goimports", -- go import formatter
         "golangci-lint", -- go linter
-        "rustfmt", -- rust formatter
       },
     })
   end,
