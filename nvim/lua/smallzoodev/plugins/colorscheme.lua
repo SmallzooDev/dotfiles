@@ -28,7 +28,12 @@ return {
         operators = {},
       },
       color_overrides = {},
-      custom_highlights = {},
+      custom_highlights = function(colors)
+        return {
+          Cursor = { bg = colors.sky, fg = colors.base },
+          CursorLine = { bg = colors.surface0 },
+        }
+      end,
       integrations = {
         cmp = true,
         gitsigns = true,

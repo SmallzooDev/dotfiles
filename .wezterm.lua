@@ -22,6 +22,13 @@ config.enable_tab_bar = true
 -- Catppuccin Mocha
 config.color_scheme = "Catppuccin Mocha"
 
+-- Override cursor color to Catppuccin Mocha Sky
+config.colors = {
+	cursor_bg = "#89dceb",
+	cursor_border = "#89dceb",
+	cursor_fg = "#1e1e2e",
+}
+
 -- Simple and clean tab bar
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
