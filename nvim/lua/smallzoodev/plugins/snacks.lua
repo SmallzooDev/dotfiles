@@ -40,6 +40,13 @@ return {
       desc = "Lazygit",
     },
     {
+      "<leader>lg",
+      function()
+        require("snacks").lazygit()
+      end,
+      desc = "Lazygit",
+    },
+    {
       "<leader>gb",
       function()
         require("snacks").git.blame_line()
