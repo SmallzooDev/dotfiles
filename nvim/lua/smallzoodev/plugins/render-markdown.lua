@@ -44,7 +44,7 @@ return {
     bullet = {
       enabled = true,
       render_modes = false,
-      icons = { " ", "󰄾 ", "󰶻 " },
+      icons = { " ", " ", "󰶻 " },
       ordered_icons = function(ctx)
         local value = vim.trim(ctx.value)
         local index = tonumber(value:sub(1, #value - 1))
