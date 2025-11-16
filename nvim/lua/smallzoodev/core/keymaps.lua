@@ -53,3 +53,12 @@ keymap.set("n", "<leader>ud", function()
   local config = vim.diagnostic.config()
   vim.diagnostic.config({ virtual_text = not config.virtual_text })
 end, { desc = "Toggle LSP virtual text" })
+
+-- Copy file path with line number
+keymap.set("n", "<leader>yy", function()
+  local filepath = vim.fn.expand("%:~")
+  local line_number = vim.fn.line(".")
+  local text = filepath .. ":" .. line_number
+  vim.fn.setreg("+", text)
+  print("Copied: " .. text)
+end, { desc = "Copy file path with line number" })
