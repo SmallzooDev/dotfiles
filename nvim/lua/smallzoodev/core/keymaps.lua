@@ -62,3 +62,38 @@ keymap.set("n", "<leader>yy", function()
   vim.fn.setreg("+", text)
   print("Copied: " .. text)
 end, { desc = "Copy file path with line number" })
+
+-- Goto file:line from clipboard or input
+keymap.set("n", "<leader>gf", function()
+  -- 클립보드에서 가져오기
+  local clipboard = vim.fn.getreg("+")
+  local input = clipboard
+
+  -- 클립보드가 비어있으면 입력 받기
+  if clipboard == "" or clipboard:match("^%s*$") then
+    input = vim.fn.input("Go to (file or file:line): ", "", "file")
+    if input == "" then
+      return
+    end
+  end
+
+  -- file:line 파싱 (라인 번호는 선택사항)
+  local file, line = input:match("^(.+):(%d+)$")
+  if not file then
+    -- 라인 번호 없으면 전체를 파일 경로로
+    file = input
+    line = nil
+  end
+
+  -- ~ 를 홈 디렉토리로 확장
+  file = vim.fn.expand(file)
+  vim.cmd("edit " .. vim.fn.fnameescape(file))
+
+  if line then
+    vim.cmd(line)
+    vim.cmd("normal! zz") -- 화면 중앙으로
+    print("Jumped to " .. file .. ":" .. line)
+  else
+    print("Opened " .. file)
+  end
+end, { desc = "Go to file:line from clipboard or input" })
