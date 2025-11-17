@@ -31,6 +31,59 @@ return {
         opts.desc = "Show LSP type definitions"
         keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
+        -- Sync with ideavimrc: gu for usages (like IdeaVim's ShowUsages)
+        opts.desc = "Show LSP references (usages)"
+        keymap.set("n", "gu", "<cmd>Telescope lsp_references<CR>", opts) -- show usages (same as gR)
+
+        -- Sync with ideavimrc: gI for go to super/parent (like IdeaVim's GotoSuperMethod)
+        opts.desc = "Go to super/parent type"
+        keymap.set("n", "gI", function()
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, opts)
+
+        -- Open in new tab variants (leader + t + g + <key>)
+        opts.desc = "Show LSP references in new tab"
+        keymap.set("n", "<leader>tgR", function()
+          vim.cmd("tab split")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to declaration in new tab"
+        keymap.set("n", "<leader>tgD", function()
+          vim.cmd("tab split")
+          vim.lsp.buf.declaration()
+        end, opts)
+
+        opts.desc = "Show LSP definitions in new tab"
+        keymap.set("n", "<leader>tgd", function()
+          vim.cmd("tab split")
+          vim.cmd("Telescope lsp_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP implementations in new tab"
+        keymap.set("n", "<leader>tgi", function()
+          vim.cmd("tab split")
+          vim.cmd("Telescope lsp_implementations")
+        end, opts)
+
+        opts.desc = "Show LSP type definitions in new tab"
+        keymap.set("n", "<leader>tgt", function()
+          vim.cmd("tab split")
+          vim.cmd("Telescope lsp_type_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP references (usages) in new tab"
+        keymap.set("n", "<leader>tgu", function()
+          vim.cmd("tab split")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to super/parent type in new tab"
+        keymap.set("n", "<leader>tgI", function()
+          vim.cmd("tab split")
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, opts)
+
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
