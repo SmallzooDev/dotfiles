@@ -22,6 +22,55 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
+-- Quick tab switching by number
+for i = 1, 9 do
+  keymap.set("n", "<leader>" .. i, function()
+    vim.cmd("tabn " .. i)
+  end, { desc = "Go to tab " .. i })
+end
+
+-- Tab reordering (move tab left/right)
+keymap.set("n", "<leader>tmh", "<cmd>-tabmove<CR>", { desc = "Move tab left" })
+keymap.set("n", "<leader>tml", "<cmd>+tabmove<CR>", { desc = "Move tab right" })
+
+-- Tab listing with telescope
+keymap.set("n", "<leader>tl", function()
+  local tabs = vim.api.nvim_list_tabpages()
+  local tab_info = {}
+
+  for i, tab in ipairs(tabs) do
+    local wins = vim.api.nvim_tabpage_list_wins(tab)
+    local bufs = {}
+
+    for _, win in ipairs(wins) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local bufname = vim.api.nvim_buf_get_name(buf)
+      if bufname ~= "" then
+        table.insert(bufs, vim.fn.fnamemodify(bufname, ":t"))
+      end
+    end
+
+    local current = vim.api.nvim_get_current_tabpage() == tab and " [current]" or ""
+    local display = string.format("Tab %d: %s%s", i, table.concat(bufs, ", "), current)
+
+    table.insert(tab_info, {
+      display = display,
+      tab_nr = i,
+    })
+  end
+
+  vim.ui.select(tab_info, {
+    prompt = "Select tab:",
+    format_item = function(item)
+      return item.display
+    end,
+  }, function(choice)
+    if choice then
+      vim.cmd("tabn " .. choice.tab_nr)
+    end
+  end)
+end, { desc = "List and select tabs" })
+
 -- better indenting
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
