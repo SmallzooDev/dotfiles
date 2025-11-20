@@ -56,12 +56,18 @@ alias ports='lsof -i -P'
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Set vi mode before fzf to avoid keybinding conflicts
+set -o vi
+
 # FZF
 eval "$(fzf --zsh)"
 
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+# Change ALT+C to CTRL+F for directory navigation
+bindkey '^F' fzf-cd-widget
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
 # Catppuccin Mocha theme for FZF
 export FZF_DEFAULT_OPTS=" \
@@ -99,4 +105,3 @@ eval "$(starship init zsh)"
 
 # mise version manager
 eval "$(mise activate zsh)"
-set -o vi
