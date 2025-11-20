@@ -80,6 +80,9 @@ config.keys = {
 			end),
 		}),
 	},
+
+	-- Copy mode (like tmux copy-mode)
+	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 }
 
 return config
