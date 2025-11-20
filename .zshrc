@@ -65,6 +65,15 @@ eval "$(fzf --zsh)"
 # Change ALT+C to CTRL+F for directory navigation
 bindkey '^F' fzf-cd-widget
 
+# CTRL+H: fzf directory navigation starting from home
+fzf-home-widget() {
+  local dir
+  dir=$(fd --type=d --hidden --exclude .git --exclude .obsidian --exclude .idea . ~ | fzf +m) && cd "$dir"
+  zle reset-prompt
+}
+zle -N fzf-home-widget
+bindkey '^H' fzf-home-widget
+
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
