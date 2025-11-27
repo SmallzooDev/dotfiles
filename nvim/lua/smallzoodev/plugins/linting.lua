@@ -58,6 +58,10 @@ return {
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
+        -- Skip linting for terminal and special buffers (fixes lazygit slowness)
+        if vim.bo.buftype ~= "" then
+          return
+        end
         try_linting()
       end,
     })
