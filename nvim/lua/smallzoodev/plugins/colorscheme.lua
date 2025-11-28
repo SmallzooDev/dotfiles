@@ -31,8 +31,8 @@ return {
       custom_highlights = function(colors)
         return {
           Cursor = { bg = colors.sky, fg = colors.base },
-          lCursor = { bg = colors.sky, fg = colors.base }, -- 한글 IME 커서
-          CursorIM = { bg = colors.sky, fg = colors.base }, -- IME 모드 커서
+          lCursor = { bg = colors.sky, fg = colors.base },
+          CursorIM = { bg = colors.sky, fg = colors.base },
           CursorLine = { bg = colors.surface0 },
         }
       end,

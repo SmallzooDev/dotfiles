@@ -4,44 +4,38 @@ return {
   dependencies = {
     "saghen/blink.cmp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
-    local keymap = vim.keymap -- for conciseness
+    local keymap = vim.keymap
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf, silent = true }
 
-        -- set keybinds
         opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
 
         opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
         opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
         opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
         opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
-        -- Sync with ideavimrc: gu for usages (like IdeaVim's ShowUsages)
         opts.desc = "Show LSP references (usages)"
-        keymap.set("n", "gu", "<cmd>Telescope lsp_references<CR>", opts) -- show usages (same as gR)
+        keymap.set("n", "gu", "<cmd>Telescope lsp_references<CR>", opts)
 
-        -- Sync with ideavimrc: gI for go to super/parent (like IdeaVim's GotoSuperMethod)
         opts.desc = "Go to super/parent type"
         keymap.set("n", "gI", function()
           vim.lsp.buf.typehierarchy("supertypes")
         end, opts)
 
-        -- Open in new tab variants (leader + t + g + <key>)
         opts.desc = "Show LSP references in new tab"
         keymap.set("n", "<leader>tgR", function()
           vim.cmd("tab split")
@@ -85,41 +79,53 @@ return {
         end, opts)
 
         opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
         opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
         opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
         opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
         opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+        keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
         opts.desc = "Show documentation for what is under cursor"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+        keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
         opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+        vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
+        opts.desc = "Toggle inlay hints"
+        keymap.set("n", "<leader>lh", function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+        end, opts)
+
+        opts.desc = "Toggle diagnostics virtual text"
+        keymap.set("n", "<leader>ld", function()
+          local config = vim.diagnostic.config()
+          vim.diagnostic.config({ virtual_text = not config.virtual_text })
+        end, opts)
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     vim.diagnostic.config({
+      virtual_text = false,
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
           [vim.diagnostic.severity.HINT] = "󰠠 ",
-          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
         },
       },
     })
@@ -135,12 +141,16 @@ return {
     vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
-          -- make the language server recognize "vim" global
           diagnostics = {
             globals = { "vim" },
           },
           completion = {
             callSnippet = "Replace",
+          },
+          hint = {
+            enable = true,
+            arrayIndex = "Disable",
+            setType = true,
           },
         },
       },
@@ -154,22 +164,55 @@ return {
           },
           staticcheck = true,
           gofumpt = true,
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            constantValues = true,
+            functionTypeParameters = true,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
         },
       },
     })
 
-    -- rust_analyzer managed by rustaceanvim
+    vim.lsp.config("rust_analyzer", {
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+            loadOutDirsFromCheck = true,
+            buildScripts = {
+              enable = true,
+            },
+          },
+          checkOnSave = {
+            command = "clippy",
+          },
+          procMacro = {
+            enable = true,
+          },
+          inlayHints = {
+            chainingHints = { enable = true },
+            closingBraceHints = { enable = true, minLines = 10 },
+            parameterHints = { enable = true },
+            typeHints = { enable = true },
+          },
+        },
+      },
+    })
 
-    -- Exclude vimwiki directory from markdown LSP if marksman is added
     vim.lsp.config("marksman", {
       root_dir = function(fname)
         local util = require("lspconfig.util")
-        -- Don't attach to files in vimwiki directory
         if fname:match("vimwiki/") then
           return nil
         end
         return util.root_pattern(".git", ".marksman.toml")(fname)
       end,
     })
+
+    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "eslint", "ts_ls", "marksman", "rust_analyzer" })
   end,
 }

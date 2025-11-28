@@ -6,7 +6,6 @@ return {
 
     lint.linters_by_ft = {
       python = { "pylint" },
-      -- go = { "golangcilint" },  -- disabled due to exit code 5 issues
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -46,19 +45,12 @@ return {
 
     local function try_linting()
       local linters = lint.linters_by_ft[vim.bo.filetype]
-
-      -- if linters then
-      --   -- remove_linter_if_missing_config_file(linters, "eslint_d", ".eslintrc.cjs")
-      --   remove_linter_if_missing_config_file(linters, "eslint_d", "eslint.config.js")
-      -- end
-
       lint.try_lint(linters)
     end
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
-        -- Skip linting for terminal and special buffers (fixes lazygit slowness)
         if vim.bo.buftype ~= "" then
           return
         end
@@ -66,7 +58,7 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "<leader>l", function()
+    vim.keymap.set("n", "<leader>ll", function()
       try_linting()
     end, { desc = "Trigger linting for current file" })
   end,

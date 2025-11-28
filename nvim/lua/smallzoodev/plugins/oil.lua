@@ -15,7 +15,6 @@ return {
         max_width = 90,
         max_height = 0,
       },
-      -- 상단에 현재 경로 표시
       win_options = {
         winbar = "%{v:lua.require('oil').get_current_dir()}",
       },
@@ -27,7 +26,7 @@ return {
         ["<C-t>"] = "actions.select_tab",
         ["<C-p>"] = "actions.preview",
         ["<C-c>"] = "actions.close",
-        ["q"] = "actions.close", -- q로도 닫기
+        ["q"] = "actions.close",
         ["<C-r>"] = "actions.refresh",
         ["-"] = "actions.parent",
         ["_"] = "actions.open_cwd",
@@ -39,12 +38,10 @@ return {
       },
     })
 
-    -- Keymaps
     vim.keymap.set("n", "<leader>ee", "<cmd>Oil<cr>", { desc = "Open parent directory" })
     vim.keymap.set("n", "<leader>ef", function()
       require("oil").open_float()
     end, { desc = "Open parent directory in float" })
-    -- 특정 경로로 Oil 열기
     vim.keymap.set("n", "<leader>eo", function()
       local path = vim.fn.input("Oil path: ", "", "dir")
       if path ~= "" then

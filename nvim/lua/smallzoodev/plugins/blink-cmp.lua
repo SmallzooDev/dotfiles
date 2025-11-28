@@ -34,7 +34,7 @@ return {
       },
       list = {
         selection = {
-          preselect = false, -- 첫 항목 자동 선택 안 함
+          preselect = false,
         },
       },
       documentation = {
@@ -43,7 +43,7 @@ return {
       },
     },
     signature = {
-      enabled = false, -- 자동 signature 끄기 (원하면 K로 수동 확인)
+      enabled = false,
     },
   },
 }
