@@ -2,17 +2,14 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- Performance optimizations
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.max_fps = 120
 config.animation_fps = 60
 
--- Font settings
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 
--- Beautiful translucent settings
 -- config.window_background_opacity = 0.80
 -- config.macos_window_background_blur = 10
 
@@ -22,7 +19,6 @@ config.enable_tab_bar = true
 -- Catppuccin Mocha
 config.color_scheme = "Catppuccin Mocha"
 
--- Override cursor color to Catppuccin Mocha Sky
 config.colors = {
 	cursor_bg = "#89dceb",
 	cursor_border = "#89dceb",
@@ -36,9 +32,8 @@ config.tab_max_width = 32
 
 -- Key bindings for splits and navigation
 config.keys = {
-	-- Split panes
-	{ key = "i", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "u", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "s", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
 	-- Navigate between panes (vim-style with CMD)
 	{ key = "h", mods = "CMD|CTRL", action = wezterm.action.ActivatePaneDirection("Left") },

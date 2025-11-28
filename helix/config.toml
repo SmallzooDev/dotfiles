@@ -34,7 +34,7 @@ mode.select = "SELECT"
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = false
+# display-inlay-hints = false
 
 [editor.file-picker]
 hidden = false
@@ -50,10 +50,10 @@ enable = true
 [keys.normal]
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
-"C-s" = ":w"
 "C-r" = ":reload"
 S-tab    = [":bp"]
 tab      = [":bn"]
+"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 [keys.normal.space]
 l = ":toggle lsp.display-inlay-hints"
 

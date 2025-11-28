@@ -2,7 +2,7 @@
 # This is a faster alternative configuration
 
 # Basic environment
-export EDITOR=nvim
+export EDITOR=hx
 
 # Development utilities
 source ~/dev-utils/shell/devenv.zsh
