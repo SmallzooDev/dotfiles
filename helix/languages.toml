@@ -1,28 +1,4 @@
 # Language server definitions
-[language-server.typescript-language-server]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/node/22*/bin/typescript-language-server --stdio"]
-
-[language-server.vscode-html-language-server]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/node/22*/bin/vscode-html-language-server --stdio"]
-
-[language-server.vscode-css-language-server]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/node/22*/bin/vscode-css-language-server --stdio"]
-
-[language-server.tailwindcss-ls]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/node/22*/bin/tailwindcss-language-server --stdio"]
-
-[language-server.pylsp]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/python/3.13.5t/bin/pylsp"]
-
-[language-server.pyright]
-command = "sh"
-args = ["-c", "$HOME/.local/share/mise/installs/python/3.13.5t/bin/pyright-langserver --stdio"]
-
 [language-server.rust-analyzer]
 command = "rust-analyzer"
 args = []
@@ -48,26 +24,6 @@ name = "python"
 auto-format = true
 formatter = { command = "black", args = ["-", "-q"] }
 language-servers = ["pylsp"]
-
-[[language]]
-name = "javascript"
-auto-format = true
-language-servers = ["typescript-language-server"]
-
-[[language]]
-name = "typescript"
-auto-format = true
-language-servers = ["typescript-language-server"]
-
-[[language]]
-name = "tsx"
-auto-format = true
-language-servers = ["typescript-language-server"]
-
-[[language]]
-name = "jsx"
-auto-format = true
-language-servers = ["typescript-language-server"]
 
 [[language]]
 name = "json"
