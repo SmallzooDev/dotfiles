@@ -54,6 +54,18 @@ enable = true
 S-tab    = [":bp"]
 tab      = [":bn"]
 "C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+"C-y" = [
+  ':sh rm -f /tmp/files2open',
+  ':set mouse false',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/files2open',
+  ':redraw',
+  ':set mouse true',
+  ':open /tmp/files2open',
+  'select_all',
+  'split_selection_on_newline',
+  'goto_file',
+  ':buffer-close! /tmp/files2open',
+]
 [keys.normal.space]
 l = ":toggle lsp.display-inlay-hints"
 
