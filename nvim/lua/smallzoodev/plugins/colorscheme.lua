@@ -1,72 +1,46 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "EdenEast/nightfox.nvim",
   priority = 1000,
   config = function()
-    require("catppuccin").setup({
-      flavour = "mocha",
-      transparent_background = false,
-      show_end_of_buffer = false,
-      term_colors = true,
-      dim_inactive = {
-        enabled = false,
-        shade = "dark",
-        percentage = 0.15,
+    require("nightfox").setup({
+      options = {
+        transparent = true,
       },
-      styles = {
-        comments = { "italic" },
-        conditionals = {},
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-      },
-      color_overrides = {},
-      custom_highlights = function(colors)
-        return {
-          Cursor = { bg = colors.sky, fg = colors.base },
-          lCursor = { bg = colors.sky, fg = colors.base },
-          CursorIM = { bg = colors.sky, fg = colors.base },
-          CursorLine = { bg = colors.surface0 },
-        }
-      end,
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        telescope = {
-          enabled = true,
-        },
-        which_key = true,
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = false,
-        },
-        native_lsp = {
-          enabled = true,
-          virtual_text = {
-            errors = { "italic" },
-            hints = { "italic" },
-            warnings = { "italic" },
-            information = { "italic" },
-          },
-          underlines = {
-            errors = { "underline" },
-            hints = { "underline" },
-            warnings = { "underline" },
-            information = { "underline" },
-          },
+      groups = {
+        all = {
+          NormalFloat = { bg = "NONE", fg = "#f2f4f8" },
+          FloatBorder = { bg = "NONE", fg = "#f2f4f8" },
+          FloatTitle = { bg = "NONE", fg = "#f2f4f8" },
+          TabLine = { bg = "NONE" },
+          TabLineFill = { bg = "NONE" },
+          TabLineSel = { bg = "NONE" },
+          Pmenu = { bg = "NONE", fg = "#f2f4f8" },
+          PmenuSbar = { bg = "NONE", fg = "#f2f4f8" },
+          PmenuThumb = { bg = "#f2f4f8", fg = "#f2f4f8" },
+          CmpNormal = { bg = "NONE" },
+          CmpDoc = { bg = "NONE" },
+          CmpDocBorder = { bg = "NONE", fg = "#f2f4f8" },
+          BlinkCmpMenu = { bg = "NONE" },
+          BlinkCmpMenuBorder = { bg = "NONE", fg = "#f2f4f8" },
+          BlinkCmpDoc = { bg = "NONE" },
+          BlinkCmpDocBorder = { bg = "NONE", fg = "#f2f4f8" },
+          BlinkCmpSignatureHelp = { bg = "NONE" },
+          BlinkCmpSignatureHelpBorder = { bg = "NONE", fg = "#f2f4f8" },
+          BlinkCmpMenuScrollbar = { bg = "NONE", fg = "#f2f4f8" },
+          BlinkCmpDocScrollbar = { bg = "NONE", fg = "#f2f4f8" },
+          -- Telescope
+          TelescopeBorder = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopePromptBorder = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopeResultsBorder = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopePreviewBorder = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopeNormal = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopePromptNormal = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopeResultsNormal = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopePreviewNormal = { bg = "NONE", fg = "#f2f4f8" },
+          TelescopeTitle = { bg = "NONE", fg = "#f2f4f8" },
         },
       },
     })
-
-    vim.cmd.colorscheme("catppuccin-mocha")
+    vim.cmd.colorscheme("carbonfox")
   end,
 }

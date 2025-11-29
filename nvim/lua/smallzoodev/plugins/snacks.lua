@@ -11,6 +11,9 @@ return {
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    lazygit = {
+      configure = true,
+    },
     styles = {
       notification = {
         wo = { wrap = true },
