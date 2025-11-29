@@ -8,6 +8,8 @@ return {
       },
       groups = {
         all = {
+          Comment = { fg = "#a0a0a0" },
+          LspInlayHint = { fg = "#b0b0b0" },
           NormalFloat = { bg = "NONE", fg = "#f2f4f8" },
           FloatBorder = { bg = "NONE", fg = "#f2f4f8" },
           FloatTitle = { bg = "NONE", fg = "#f2f4f8" },
