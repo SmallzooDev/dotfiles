@@ -1,5 +1,5 @@
 # Carbonfox colors for Yazi
-[mgr]
+[manager]
 cwd = { fg = "#78a9ff" }
 
 [status]
