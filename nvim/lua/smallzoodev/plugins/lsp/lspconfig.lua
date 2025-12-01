@@ -78,6 +78,92 @@ return {
           vim.lsp.buf.typehierarchy("supertypes")
         end, opts)
 
+        -- Vertical split variants
+        opts.desc = "Show LSP references in vsplit"
+        keymap.set("n", "<leader>vgR", function()
+          vim.cmd("vsplit")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to declaration in vsplit"
+        keymap.set("n", "<leader>vgD", function()
+          vim.cmd("vsplit")
+          vim.lsp.buf.declaration()
+        end, opts)
+
+        opts.desc = "Show LSP definitions in vsplit"
+        keymap.set("n", "<leader>vgd", function()
+          vim.cmd("vsplit")
+          vim.cmd("Telescope lsp_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP implementations in vsplit"
+        keymap.set("n", "<leader>vgi", function()
+          vim.cmd("vsplit")
+          vim.cmd("Telescope lsp_implementations")
+        end, opts)
+
+        opts.desc = "Show LSP type definitions in vsplit"
+        keymap.set("n", "<leader>vgt", function()
+          vim.cmd("vsplit")
+          vim.cmd("Telescope lsp_type_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP references (usages) in vsplit"
+        keymap.set("n", "<leader>vgu", function()
+          vim.cmd("vsplit")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to super/parent type in vsplit"
+        keymap.set("n", "<leader>vgI", function()
+          vim.cmd("vsplit")
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, opts)
+
+        -- Horizontal split variants
+        opts.desc = "Show LSP references in split"
+        keymap.set("n", "<leader>sgR", function()
+          vim.cmd("split")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to declaration in split"
+        keymap.set("n", "<leader>sgD", function()
+          vim.cmd("split")
+          vim.lsp.buf.declaration()
+        end, opts)
+
+        opts.desc = "Show LSP definitions in split"
+        keymap.set("n", "<leader>sgd", function()
+          vim.cmd("split")
+          vim.cmd("Telescope lsp_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP implementations in split"
+        keymap.set("n", "<leader>sgi", function()
+          vim.cmd("split")
+          vim.cmd("Telescope lsp_implementations")
+        end, opts)
+
+        opts.desc = "Show LSP type definitions in split"
+        keymap.set("n", "<leader>sgt", function()
+          vim.cmd("split")
+          vim.cmd("Telescope lsp_type_definitions")
+        end, opts)
+
+        opts.desc = "Show LSP references (usages) in split"
+        keymap.set("n", "<leader>sgu", function()
+          vim.cmd("split")
+          vim.cmd("Telescope lsp_references")
+        end, opts)
+
+        opts.desc = "Go to super/parent type in split"
+        keymap.set("n", "<leader>sgI", function()
+          vim.cmd("split")
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, opts)
+
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
