@@ -86,7 +86,7 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clea
 
 keymap.set("v", "p", '"_dP', { desc = "Paste without yanking" })
 
-keymap.set("n", "<leader>yy", function()
+keymap.set("n", "yp", function()
   local filepath = vim.fn.expand("%:~")
   local line_number = vim.fn.line(".")
   local text = filepath .. ":" .. line_number
@@ -94,7 +94,7 @@ keymap.set("n", "<leader>yy", function()
   print("Copied: " .. text)
 end, { desc = "Copy file path with line number" })
 
-keymap.set("n", "<leader>gf", function()
+keymap.set("n", "gp", function()
   local clipboard = vim.fn.getreg("+")
   local input = clipboard
 
