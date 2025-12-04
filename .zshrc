@@ -113,4 +113,5 @@ function y() {
 eval "$(starship init zsh)"
 
 # mise version manager
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 eval "$(mise activate zsh)"
