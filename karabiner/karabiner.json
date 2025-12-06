@@ -509,7 +509,13 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "r" }],
+                                "to": [
+                                    { "key_code": "hyphen" },
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
