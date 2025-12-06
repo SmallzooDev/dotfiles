@@ -16,6 +16,14 @@ return {
           [">"] = { char = "󰁔", hl_group = "ObsidianRightArrow" },
         },
       },
+      mappings = {
+        ["<CR>"] = {
+          action = function()
+            return require("obsidian.util").smart_action()
+          end,
+          opts = { buffer = true, expr = true },
+        },
+      },
       workspaces = {
         {
           name = "public",

@@ -33,7 +33,9 @@ return {
       left_pad = 1,
       right_pad = 1,
       language_pad = 1,
-      border = "thin",
+      border = "none",
+      highlight = "",
+      highlight_border = "",
     },
     bullet = {
       enabled = true,
