@@ -12,16 +12,10 @@ return {
     heading = {
       enabled = true,
       sign = false,
+      position = "inline",
       icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
       width = "full",
-      backgrounds = {
-        "RenderMarkdownH1Bg",
-        "RenderMarkdownH2Bg",
-        "RenderMarkdownH3Bg",
-        "RenderMarkdownH4Bg",
-        "RenderMarkdownH5Bg",
-        "RenderMarkdownH6Bg",
-      },
+      backgrounds = {},
       foregrounds = {
         "RenderMarkdownH1",
         "RenderMarkdownH2",
@@ -34,7 +28,7 @@ return {
     code = {
       enabled = true,
       sign = false,
-      style = "true",
+      style = "language",
       width = "full",
       left_pad = 1,
       right_pad = 1,

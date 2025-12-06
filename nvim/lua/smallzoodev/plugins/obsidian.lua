@@ -7,7 +7,15 @@ return {
   },
   config = function()
     require("obsidian").setup({
-      ui = { enable = false },
+      ui = {
+        enable = false,
+        checkboxes = {
+          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+          ["x"] = { char = "󰱒", hl_group = "ObsidianDone" },
+          ["!"] = { char = "󰀪", hl_group = "ObsidianImportant" },
+          [">"] = { char = "󰁔", hl_group = "ObsidianRightArrow" },
+        },
+      },
       workspaces = {
         {
           name = "public",
