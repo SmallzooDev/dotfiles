@@ -87,7 +87,7 @@ export FZF_DEFAULT_OPTS=" \
   --multi"
 
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$HOME/.local/bin:$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # FZF functions
 _fzf_compgen_path() {
