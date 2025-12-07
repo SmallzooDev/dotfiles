@@ -35,6 +35,10 @@ mode.select = "SELECT"
 [editor.lsp]
 display-messages = true
 # display-inlay-hints = false
+auto-signature-help = false
+
+[keys.insert]
+"C-k" = "signature_help"
 
 [editor.file-picker]
 hidden = false
@@ -54,7 +58,8 @@ enable = true
 S-tab    = [":bp"]
 tab      = [":bn"]
 "C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
-"C-y" = [
+"C-y" = ":sh echo -n %{buffer_name} | pbcopy"
+"C-e" = [
   ':sh rm -f /tmp/files2open',
   ':set mouse false',
   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/files2open',
