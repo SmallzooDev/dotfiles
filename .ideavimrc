@@ -126,10 +126,23 @@ nmap <C-j> <C-w>j
 
 " Split operations
 nmap <leader>sv <Action>(SplitVertically)
-nmap <leader>sh <Action>(SplitHorizontally)
-nmap <leader>su <Action>(Unsplit)
-nmap <leader>sm <Action>(MoveEditorToOppositeTabGroup)
-nmap <leader>cw <Action>(HideActiveWindow)
+nmap <leader>ss <Action>(SplitHorizontally)
+nmap <leader>sx <Action>(Unsplit)
+
+" Move editor to split direction (requires Tab Shifter plugin)
+nmap <leader>sh <Action>(TabShiftActions.ShiftLeft)
+nmap <leader>sl <Action>(TabShiftActions.ShiftRight)
+nmap <leader>sj <Action>(TabShiftActions.ShiftDown)
+nmap <leader>sk <Action>(TabShiftActions.ShiftUp)
+
+" Resize splits (synced with nvim)
+nmap <C-Up> <Action>(TabShiftActions.StretchUp)
+nmap <C-Down> <Action>(TabShiftActions.StretchDown)
+nmap <C-Left> <Action>(TabShiftActions.StretchLeft)
+nmap <C-Right> <Action>(TabShiftActions.StretchRight)
+
+" Open in split
+nmap <C-v> <Action>(OpenInRightSplit)
 
 " Navigation history
 nmap <leader>sb <Action>(Back)
@@ -170,6 +183,11 @@ nmap <Tab>y <Action>(CopyReferencePopupGroup)
 " =============================================================================
 " KEY MAPPINGS - LEADER ACTIONS
 " =============================================================================
+
+" Helix-style search (synced with nvim)
+nmap <leader>/ <Action>(FindInPath)
+nmap <leader>f <Action>(GotoFile)
+nmap <leader>b <Action>(Switcher)
 
 " Refactoring
 nmap <leader>rn <Action>(RenameElement)
@@ -221,3 +239,4 @@ nmap <leader>m9 <Action>(ToggleBookmark9)
 " =============================================================================
 
 nnoremap <F10><F10> :source ~/.ideavimrc<CR>
+
