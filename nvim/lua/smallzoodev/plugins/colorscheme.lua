@@ -1,62 +1,83 @@
 return {
-  "EdenEast/nightfox.nvim",
+  "rebelot/kanagawa.nvim",
   priority = 1000,
   config = function()
-    require("nightfox").setup({
-      options = {
-        transparent = true,
-      },
-      groups = {
-        all = {
-          Comment = { fg = "#a0a0a0" },
-          LspInlayHint = { fg = "#b0b0b0" },
-          NormalFloat = { bg = "NONE", fg = "#f2f4f8" },
-          FloatBorder = { bg = "NONE", fg = "#f2f4f8" },
-          FloatTitle = { bg = "NONE", fg = "#f2f4f8" },
-          TabLine = { bg = "NONE" },
-          TabLineFill = { bg = "NONE" },
-          TabLineSel = { bg = "NONE" },
-          Pmenu = { bg = "NONE", fg = "#f2f4f8" },
-          PmenuSbar = { bg = "NONE", fg = "#f2f4f8" },
-          PmenuThumb = { bg = "#f2f4f8", fg = "#f2f4f8" },
-          CmpNormal = { bg = "NONE" },
-          CmpDoc = { bg = "NONE" },
-          CmpDocBorder = { bg = "NONE", fg = "#f2f4f8" },
-          BlinkCmpMenu = { bg = "NONE" },
-          BlinkCmpMenuBorder = { bg = "NONE", fg = "#f2f4f8" },
-          BlinkCmpDoc = { bg = "NONE" },
-          BlinkCmpDocBorder = { bg = "NONE", fg = "#f2f4f8" },
-          BlinkCmpSignatureHelp = { bg = "NONE" },
-          BlinkCmpSignatureHelpBorder = { bg = "NONE", fg = "#f2f4f8" },
-          BlinkCmpMenuScrollbar = { bg = "NONE", fg = "#f2f4f8" },
-          BlinkCmpDocScrollbar = { bg = "NONE", fg = "#f2f4f8" },
-          -- Telescope
-          TelescopeBorder = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopePromptBorder = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopeResultsBorder = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopePreviewBorder = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopeNormal = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopePromptNormal = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopeResultsNormal = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopePreviewNormal = { bg = "NONE", fg = "#f2f4f8" },
-          TelescopeTitle = { bg = "NONE", fg = "#f2f4f8" },
+    require("kanagawa").setup({
+      compile = false,
+      undercurl = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = true,
+      dimInactive = false,
+      terminalColors = true,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
         },
       },
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          -- Transparent backgrounds
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+          NormalDark = { fg = theme.ui.fg_dim, bg = "none" },
+          LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
+          MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
+          -- Tab bar
+          TabLine = { bg = "none" },
+          TabLineFill = { bg = "none" },
+          TabLineSel = { bg = "none" },
+          -- Popup menu
+          Pmenu = { fg = theme.ui.shade0, bg = "none", blend = vim.o.pumblend },
+          PmenuSel = { fg = "none", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = "none" },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
+          -- Blink.cmp
+          BlinkCmpMenu = { bg = "none" },
+          BlinkCmpMenuBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          BlinkCmpDoc = { bg = "none" },
+          BlinkCmpDocBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          BlinkCmpSignatureHelp = { bg = "none" },
+          BlinkCmpSignatureHelpBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          BlinkCmpMenuScrollbar = { bg = "none" },
+          BlinkCmpDocScrollbar = { bg = "none" },
+          -- Telescope
+          TelescopeBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          TelescopePromptBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          TelescopeResultsBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          TelescopePreviewBorder = { bg = "none", fg = theme.ui.bg_p2 },
+          TelescopeNormal = { bg = "none" },
+          TelescopePromptNormal = { bg = "none" },
+          TelescopeResultsNormal = { bg = "none" },
+          TelescopePreviewNormal = { bg = "none" },
+          TelescopeTitle = { bg = "none", fg = theme.ui.special },
+        }
+      end,
     })
-    vim.cmd.colorscheme("carbonfox")
+    vim.cmd.colorscheme("kanagawa")
 
-    -- Markdown Headings (treesitter + render-markdown)
-    vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = "#ee5396", bold = true })
-    vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = "#be95ff", bold = true })
-    vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = "#25be6a", bold = true })
-    vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = "#78a9ff", bold = true })
-    vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = "#ff7eb6", bold = true })
-    vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = "#33b1ff", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#ee5396", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#be95ff", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#25be6a", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#78a9ff", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#ff7eb6", bold = true })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#33b1ff", bold = true })
+    -- Kanagawa palette for markdown headings
+    local palette = require("kanagawa.colors").setup().palette
+    vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = palette.peachRed, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = palette.oniViolet, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = palette.springGreen, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = palette.crystalBlue, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = palette.sakuraPink, bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = palette.springBlue, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = palette.peachRed, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = palette.oniViolet, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = palette.springGreen, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = palette.crystalBlue, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = palette.sakuraPink, bold = true })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = palette.springBlue, bold = true })
   end,
 }

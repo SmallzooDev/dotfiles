@@ -78,12 +78,12 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --excl
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
-# Carbonfox theme for FZF
+# Kanagawa theme for FZF
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#262626,bg:#161616,spinner:#3ddbd9,hl:#ee5396 \
-  --color=fg:#f2f4f8,header:#ee5396,info:#42be65,pointer:#33b1ff \
-  --color=marker:#3ddbd9,fg+:#f2f4f8,prompt:#78a9ff,hl+:#ee5396 \
-  --color=selected-bg:#262626 \
+  --color=bg+:#2A2A37,bg:#1F1F28,spinner:#7FB4CA,hl:#957FB8 \
+  --color=fg:#DCD7BA,header:#957FB8,info:#98BB6C,pointer:#7E9CD8 \
+  --color=marker:#7FB4CA,fg+:#DCD7BA,prompt:#E6C384,hl+:#D27E99 \
+  --color=selected-bg:#2A2A37 \
   --multi"
 
 export GOPATH=$HOME/go

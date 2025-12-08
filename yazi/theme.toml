@@ -1,6 +1,6 @@
-# Carbonfox colors for Yazi
+# Kanagawa colors for Yazi
 [mgr]
-cwd = { fg = "#78a9ff" }
+cwd = { fg = "#7E9CD8" }
 
 [status]
 separator_open = ""
@@ -8,13 +8,13 @@ separator_close = ""
 
 [filetype]
 rules = [
-  { mime = "image/*", fg = "#42be65" },
-  { mime = "video/*", fg = "#be95ff" },
-  { mime = "audio/*", fg = "#3ddbd9" },
-  { mime = "application/zip", fg = "#ee5396" },
-  { mime = "application/gzip", fg = "#ee5396" },
-  { mime = "application/x-tar", fg = "#ee5396" },
-  { mime = "application/x-bzip", fg = "#ee5396" },
-  { mime = "application/x-7z-compressed", fg = "#ee5396" },
-  { mime = "application/x-rar", fg = "#ee5396" },
+  { mime = "image/*", fg = "#98BB6C" },
+  { mime = "video/*", fg = "#957FB8" },
+  { mime = "audio/*", fg = "#7FB4CA" },
+  { mime = "application/zip", fg = "#FF5D62" },
+  { mime = "application/gzip", fg = "#FF5D62" },
+  { mime = "application/x-tar", fg = "#FF5D62" },
+  { mime = "application/x-bzip", fg = "#FF5D62" },
+  { mime = "application/x-7z-compressed", fg = "#FF5D62" },
+  { mime = "application/x-rar", fg = "#FF5D62" },
 ]

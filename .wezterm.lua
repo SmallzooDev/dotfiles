@@ -2,6 +2,26 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+-- Kanagawa color palette
+local kanagawa = {
+	sumiInk0 = "#16161D",
+	sumiInk1 = "#1F1F28",
+	sumiInk2 = "#2A2A37",
+	sumiInk3 = "#363646",
+	sumiInk4 = "#54546D",
+	fujiWhite = "#DCD7BA",
+	oldWhite = "#C8C093",
+	crystalBlue = "#7E9CD8",
+	springBlue = "#7FB4CA",
+	springGreen = "#98BB6C",
+	oniViolet = "#957FB8",
+	sakuraPink = "#D27E99",
+	peachRed = "#FF5D62",
+	surimiOrange = "#FFA066",
+	carpYellow = "#E6C384",
+	waveAqua2 = "#7AA89F",
+}
+
 -- Toggle opacity event handler
 wezterm.on("toggle-opacity", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
@@ -31,31 +51,31 @@ config.macos_window_background_blur = 10
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = true
 
--- Carbonfox
-config.color_scheme = "carbonfox"
+-- Kanagawa
+config.color_scheme = "Kanagawa (Gogh)"
 
 config.colors = {
 	tab_bar = {
-		background = "#161616",
+		background = kanagawa.sumiInk0,
 		active_tab = {
-			bg_color = "#33b1ff",
-			fg_color = "#161616",
+			bg_color = kanagawa.crystalBlue,
+			fg_color = kanagawa.sumiInk0,
 		},
 		inactive_tab = {
-			bg_color = "#262626",
-			fg_color = "#f2f4f8",
+			bg_color = kanagawa.sumiInk2,
+			fg_color = kanagawa.fujiWhite,
 		},
 		inactive_tab_hover = {
-			bg_color = "#393939",
-			fg_color = "#f2f4f8",
+			bg_color = kanagawa.sumiInk3,
+			fg_color = kanagawa.fujiWhite,
 		},
 		new_tab = {
-			bg_color = "#262626",
-			fg_color = "#f2f4f8",
+			bg_color = kanagawa.sumiInk2,
+			fg_color = kanagawa.fujiWhite,
 		},
 		new_tab_hover = {
-			bg_color = "#33b1ff",
-			fg_color = "#161616",
+			bg_color = kanagawa.crystalBlue,
+			fg_color = kanagawa.sumiInk0,
 		},
 	},
 }
