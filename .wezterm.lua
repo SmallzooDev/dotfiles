@@ -41,6 +41,7 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.max_fps = 120
 config.animation_fps = 60
+config.enable_tab_bar = false
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
@@ -49,7 +50,6 @@ config.window_background_opacity = 0.80
 config.macos_window_background_blur = 10
 
 config.window_decorations = "RESIZE"
-config.enable_tab_bar = true
 
 -- Kanagawa
 config.color_scheme = "Kanagawa (Gogh)"
@@ -136,6 +136,9 @@ config.keys = {
 
 	-- Toggle opacity
 	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
+
+	-- Show tab navigator
+	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
 }
 
 return config
