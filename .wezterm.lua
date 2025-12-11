@@ -132,13 +132,20 @@ config.keys = {
 	},
 
 	-- Copy mode (like tmux copy-mode)
-	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
+	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 
 	-- Toggle opacity
 	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
 
 	-- Show tab navigator
 	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
+
+	-- Quick select
+	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.QuickSelect },
+
+	-- Scroll
+	{ key = "[", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
+	{ key = "]", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(0.5) },
 }
 
 return config
