@@ -41,7 +41,9 @@
                             {
                                 "from": {
                                     "key_code": "tab",
-                                    "modifiers": { "mandatory": ["left_command"] }
+                                    "modifiers": {
+                                        "mandatory": ["left_command"]
+                                    }
                                 },
                                 "to": [
                                     {
@@ -929,24 +931,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Left Command to ABC",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "left_command" },
-                                "to": [{ "key_code": "left_command" }],
-                                "to_after_key_up": [
-                                    {
-                                        "select_input_source": {
-                                            "input_source_id": "com.apple.keylayout.ABC",
-                                            "language": "en"
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
@@ -1038,6 +1022,10 @@
                         {
                             "from": { "key_code": "caps_lock" },
                             "to": [{ "key_code": "left_control" }]
+                        },
+                        {
+                            "from": { "key_code": "tab" },
+                            "to": [{ "key_code": "f8" }]
                         }
                     ]
                 }
