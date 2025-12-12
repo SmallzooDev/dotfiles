@@ -132,7 +132,7 @@ config.keys = {
 	},
 
 	-- Copy mode (like tmux copy-mode)
-	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
+	{ key = "c", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 
 	-- Toggle opacity
 	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
