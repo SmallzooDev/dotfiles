@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- Toggle opacity event handler
 wezterm.on("toggle-opacity", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 	if not overrides.window_background_opacity then
@@ -29,76 +28,71 @@ config.window_background_opacity = 0.80
 config.macos_window_background_blur = 10
 
 config.window_decorations = "RESIZE"
-config.enable_tab_bar = false
-
--- Tokyo Night
-config.color_scheme = "tokyonight_night"
 
 config.colors = {
-	split = "#565f89",
+	foreground = "#CBE0F0",
+	background = "#011423",
+	cursor_bg = "#47FF9C",
+	cursor_border = "#47FF9C",
+	cursor_fg = "#011423",
+	selection_bg = "#033259",
+	selection_fg = "#CBE0F0",
+	split = "#547998",
+	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
+	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
 	tab_bar = {
-		background = "#16161e",
+		background = "#011423",
 		active_tab = {
-			bg_color = "#7aa2f7",
-			fg_color = "#16161e",
+			bg_color = "#0FC5ED",
+			fg_color = "#011423",
 		},
 		inactive_tab = {
-			bg_color = "#1a1b26",
-			fg_color = "#565f89",
+			bg_color = "#011628",
+			fg_color = "#627E97",
 		},
 		inactive_tab_hover = {
-			bg_color = "#292e42",
-			fg_color = "#c0caf5",
+			bg_color = "#143652",
+			fg_color = "#CBE0F0",
 		},
 		new_tab = {
-			bg_color = "#1a1b26",
-			fg_color = "#565f89",
+			bg_color = "#011628",
+			fg_color = "#627E97",
 		},
 		new_tab_hover = {
-			bg_color = "#7aa2f7",
-			fg_color = "#16161e",
+			bg_color = "#0FC5ED",
+			fg_color = "#011423",
 		},
 	},
 }
 
--- Simple and clean tab bar
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_max_width = 32
+config.enable_tab_bar = false
 
--- Key bindings for splits and navigation
 config.keys = {
 	{ key = "s", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
-	-- Navigate between panes (vim-style with CMD)
 	{ key = "h", mods = "CMD|CTRL", action = wezterm.action.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "CMD|CTRL", action = wezterm.action.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "CMD|CTRL", action = wezterm.action.ActivatePaneDirection("Up") },
 	{ key = "l", mods = "CMD|CTRL", action = wezterm.action.ActivatePaneDirection("Right") },
 
-	-- Navigate with arrow keys
 	{ key = "LeftArrow", mods = "CMD|OPT", action = wezterm.action.ActivatePaneDirection("Left") },
 	{ key = "DownArrow", mods = "CMD|OPT", action = wezterm.action.ActivatePaneDirection("Down") },
 	{ key = "UpArrow", mods = "CMD|OPT", action = wezterm.action.ActivatePaneDirection("Up") },
 	{ key = "RightArrow", mods = "CMD|OPT", action = wezterm.action.ActivatePaneDirection("Right") },
 
-	-- Resize panes
 	{ key = "h", mods = "CMD|SHIFT|CTRL", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
 	{ key = "j", mods = "CMD|SHIFT|CTRL", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
 	{ key = "k", mods = "CMD|SHIFT|CTRL", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
 	{ key = "l", mods = "CMD|SHIFT|CTRL", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
 
-	-- Close pane
 	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
-
-	-- Toggle pane zoom
 	{ key = "z", mods = "CMD|CTRL", action = wezterm.action.TogglePaneZoomState },
-
-	-- Rotate panes
 	{ key = "r", mods = "CMD|CTRL", action = wezterm.action.RotatePanes("Clockwise") },
 
-	-- Rename tab
 	{
 		key = "N",
 		mods = "CMD|SHIFT|CTRL",
@@ -112,11 +106,12 @@ config.keys = {
 		}),
 	},
 
-	-- Copy mode (like tmux copy-mode)
-	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
-
-	-- Toggle opacity
+	{ key = "c", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
+	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
+	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.QuickSelect },
+	{ key = "[", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
+	{ key = "]", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(0.5) },
 }
 
 return config
