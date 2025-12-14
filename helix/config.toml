@@ -52,6 +52,7 @@ skip-levels = 1
 enable = true
 
 [keys.normal]
+"G" = "goto_file_end"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
 "C-r" = ":reload"
