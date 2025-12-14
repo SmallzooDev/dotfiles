@@ -78,16 +78,16 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --excl
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
-# Kanagawa theme for FZF
+# Tokyo Night theme for FZF
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#2A2A37,bg:#1F1F28,spinner:#7FB4CA,hl:#957FB8 \
-  --color=fg:#DCD7BA,header:#957FB8,info:#98BB6C,pointer:#7E9CD8 \
-  --color=marker:#7FB4CA,fg+:#DCD7BA,prompt:#E6C384,hl+:#D27E99 \
-  --color=selected-bg:#2A2A37 \
+  --color=bg+:#292e42,bg:#1a1b26,spinner:#7dcfff,hl:#f7768e \
+  --color=fg:#c0caf5,header:#f7768e,info:#7aa2f7,pointer:#bb9af7 \
+  --color=marker:#7dcfff,fg+:#c0caf5,prompt:#ff9e64,hl+:#f7768e \
+  --color=selected-bg:#414868 \
   --multi"
 
 export GOPATH=$HOME/go
-export PATH=$HOME/.local/bin:$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # FZF functions
 _fzf_compgen_path() {
@@ -113,5 +113,4 @@ function y() {
 eval "$(starship init zsh)"
 
 # mise version manager
-export PATH="$HOME/.local/share/mise/shims:$PATH"
 eval "$(mise activate zsh)"

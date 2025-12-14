@@ -1,0 +1,20 @@
+# Carbonfox colors for Yazi
+[manager]
+cwd = { fg = "#78a9ff" }
+
+[status]
+separator_open = ""
+separator_close = ""
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#42be65" },
+  { mime = "video/*", fg = "#be95ff" },
+  { mime = "audio/*", fg = "#3ddbd9" },
+  { mime = "application/zip", fg = "#ee5396" },
+  { mime = "application/gzip", fg = "#ee5396" },
+  { mime = "application/x-tar", fg = "#ee5396" },
+  { mime = "application/x-bzip", fg = "#ee5396" },
+  { mime = "application/x-7z-compressed", fg = "#ee5396" },
+  { mime = "application/x-rar", fg = "#ee5396" },
+]

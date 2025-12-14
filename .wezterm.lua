@@ -2,26 +2,6 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- Kanagawa color palette
-local kanagawa = {
-	sumiInk0 = "#16161D",
-	sumiInk1 = "#1F1F28",
-	sumiInk2 = "#2A2A37",
-	sumiInk3 = "#363646",
-	sumiInk4 = "#54546D",
-	fujiWhite = "#DCD7BA",
-	oldWhite = "#C8C093",
-	crystalBlue = "#7E9CD8",
-	springBlue = "#7FB4CA",
-	springGreen = "#98BB6C",
-	oniViolet = "#957FB8",
-	sakuraPink = "#D27E99",
-	peachRed = "#FF5D62",
-	surimiOrange = "#FFA066",
-	carpYellow = "#E6C384",
-	waveAqua2 = "#7AA89F",
-}
-
 -- Toggle opacity event handler
 wezterm.on("toggle-opacity", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
@@ -41,7 +21,6 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.max_fps = 120
 config.animation_fps = 60
-config.enable_tab_bar = false
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
@@ -50,32 +29,34 @@ config.window_background_opacity = 0.80
 config.macos_window_background_blur = 10
 
 config.window_decorations = "RESIZE"
+config.enable_tab_bar = false
 
--- Kanagawa
-config.color_scheme = "Kanagawa (Gogh)"
+-- Tokyo Night
+config.color_scheme = "tokyonight_night"
 
 config.colors = {
+	split = "#565f89",
 	tab_bar = {
-		background = kanagawa.sumiInk0,
+		background = "#16161e",
 		active_tab = {
-			bg_color = kanagawa.crystalBlue,
-			fg_color = kanagawa.sumiInk0,
+			bg_color = "#7aa2f7",
+			fg_color = "#16161e",
 		},
 		inactive_tab = {
-			bg_color = kanagawa.sumiInk2,
-			fg_color = kanagawa.fujiWhite,
+			bg_color = "#1a1b26",
+			fg_color = "#565f89",
 		},
 		inactive_tab_hover = {
-			bg_color = kanagawa.sumiInk3,
-			fg_color = kanagawa.fujiWhite,
+			bg_color = "#292e42",
+			fg_color = "#c0caf5",
 		},
 		new_tab = {
-			bg_color = kanagawa.sumiInk2,
-			fg_color = kanagawa.fujiWhite,
+			bg_color = "#1a1b26",
+			fg_color = "#565f89",
 		},
 		new_tab_hover = {
-			bg_color = kanagawa.crystalBlue,
-			fg_color = kanagawa.sumiInk0,
+			bg_color = "#7aa2f7",
+			fg_color = "#16161e",
 		},
 	},
 }
@@ -132,20 +113,10 @@ config.keys = {
 	},
 
 	-- Copy mode (like tmux copy-mode)
-	{ key = "c", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
+	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 
 	-- Toggle opacity
 	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
-
-	-- Show tab navigator
-	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
-
-	-- Quick select
-	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.QuickSelect },
-
-	-- Scroll
-	{ key = "[", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
-	{ key = "]", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(0.5) },
 }
 
 return config
