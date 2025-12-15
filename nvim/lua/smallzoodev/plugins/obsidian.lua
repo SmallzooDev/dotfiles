@@ -231,9 +231,6 @@ return {
     end, { nargs = "?" })
   end,
   keys = {
-    { "<BS>", "<cmd>ObsidianBacklinks<CR>", desc = "Show backlinks", ft = "markdown" },
-    { "]o", desc = "Next link", ft = "markdown" },
-    { "[o", desc = "Prev link", ft = "markdown" },
     { "<leader>b", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch", ft = "markdown" },
     { "<leader>/", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
     { "<leader>on", "<cmd>ObsidianNewSequenced<CR>", desc = "New note", ft = "markdown" },
