@@ -90,7 +90,7 @@ config.keys = {
 
 	{
 		key = "N",
-		mods = "CMD|CTRL",
+		mods = "CMD|SHIFT|CTRL",
 		action = wezterm.action.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, pane, line)
