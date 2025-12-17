@@ -8,161 +8,71 @@ return {
   },
   config = function()
     local keymap = vim.keymap
+
+    local diagnostic_icons = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = "󰠠 ",
+      [vim.diagnostic.severity.INFO] = " ",
+    }
+
+    local virtual_text_config = {
+      prefix = function(diagnostic)
+        return diagnostic_icons[diagnostic.severity] or "●"
+      end,
+    }
+
+    vim.diagnostic.config({
+      virtual_text = virtual_text_config,
+      signs = {
+        text = diagnostic_icons,
+      },
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
-        opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+        -- Helper to create split variant keymaps
+        local function map_with_split(key, action, desc, is_func)
+          local splits = {
+            { prefix = "", cmd = nil, suffix = "" },
+            { prefix = "<leader>t", cmd = "tab split", suffix = " in new tab" },
+            { prefix = "<leader>v", cmd = "vsplit", suffix = " in vsplit" },
+            { prefix = "<leader>s", cmd = "split", suffix = " in split" },
+          }
+          for _, split in ipairs(splits) do
+            opts.desc = desc .. split.suffix
+            if split.cmd then
+              keymap.set("n", split.prefix .. key, function()
+                vim.cmd(split.cmd)
+                if is_func then
+                  action()
+                else
+                  vim.cmd(action)
+                end
+              end, opts)
+            else
+              if is_func then
+                keymap.set("n", key, action, opts)
+              else
+                keymap.set("n", key, "<cmd>" .. action .. "<CR>", opts)
+              end
+            end
+          end
+        end
 
-        opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-
-        opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-
-        opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-
-        opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
-        opts.desc = "Show LSP references (usages)"
-        keymap.set("n", "gu", "<cmd>Telescope lsp_references<CR>", opts)
-
-        opts.desc = "Go to super/parent type"
-        keymap.set("n", "gI", function()
+        -- LSP navigation keymaps with split variants
+        map_with_split("gR", "Telescope lsp_references", "Show LSP references")
+        map_with_split("gD", vim.lsp.buf.declaration, "Go to declaration", true)
+        map_with_split("gd", "Telescope lsp_definitions", "Show LSP definitions")
+        map_with_split("gi", "Telescope lsp_implementations", "Show LSP implementations")
+        map_with_split("gt", "Telescope lsp_type_definitions", "Show LSP type definitions")
+        map_with_split("gu", "Telescope lsp_references", "Show LSP references (usages)")
+        map_with_split("gI", function()
           vim.lsp.buf.typehierarchy("supertypes")
-        end, opts)
-
-        opts.desc = "Show LSP references in new tab"
-        keymap.set("n", "<leader>tgR", function()
-          vim.cmd("tab split")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to declaration in new tab"
-        keymap.set("n", "<leader>tgD", function()
-          vim.cmd("tab split")
-          vim.lsp.buf.declaration()
-        end, opts)
-
-        opts.desc = "Show LSP definitions in new tab"
-        keymap.set("n", "<leader>tgd", function()
-          vim.cmd("tab split")
-          vim.cmd("Telescope lsp_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP implementations in new tab"
-        keymap.set("n", "<leader>tgi", function()
-          vim.cmd("tab split")
-          vim.cmd("Telescope lsp_implementations")
-        end, opts)
-
-        opts.desc = "Show LSP type definitions in new tab"
-        keymap.set("n", "<leader>tgt", function()
-          vim.cmd("tab split")
-          vim.cmd("Telescope lsp_type_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP references (usages) in new tab"
-        keymap.set("n", "<leader>tgu", function()
-          vim.cmd("tab split")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to super/parent type in new tab"
-        keymap.set("n", "<leader>tgI", function()
-          vim.cmd("tab split")
-          vim.lsp.buf.typehierarchy("supertypes")
-        end, opts)
-
-        -- Vertical split variants
-        opts.desc = "Show LSP references in vsplit"
-        keymap.set("n", "<leader>vgR", function()
-          vim.cmd("vsplit")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to declaration in vsplit"
-        keymap.set("n", "<leader>vgD", function()
-          vim.cmd("vsplit")
-          vim.lsp.buf.declaration()
-        end, opts)
-
-        opts.desc = "Show LSP definitions in vsplit"
-        keymap.set("n", "<leader>vgd", function()
-          vim.cmd("vsplit")
-          vim.cmd("Telescope lsp_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP implementations in vsplit"
-        keymap.set("n", "<leader>vgi", function()
-          vim.cmd("vsplit")
-          vim.cmd("Telescope lsp_implementations")
-        end, opts)
-
-        opts.desc = "Show LSP type definitions in vsplit"
-        keymap.set("n", "<leader>vgt", function()
-          vim.cmd("vsplit")
-          vim.cmd("Telescope lsp_type_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP references (usages) in vsplit"
-        keymap.set("n", "<leader>vgu", function()
-          vim.cmd("vsplit")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to super/parent type in vsplit"
-        keymap.set("n", "<leader>vgI", function()
-          vim.cmd("vsplit")
-          vim.lsp.buf.typehierarchy("supertypes")
-        end, opts)
-
-        -- Horizontal split variants
-        opts.desc = "Show LSP references in split"
-        keymap.set("n", "<leader>sgR", function()
-          vim.cmd("split")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to declaration in split"
-        keymap.set("n", "<leader>sgD", function()
-          vim.cmd("split")
-          vim.lsp.buf.declaration()
-        end, opts)
-
-        opts.desc = "Show LSP definitions in split"
-        keymap.set("n", "<leader>sgd", function()
-          vim.cmd("split")
-          vim.cmd("Telescope lsp_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP implementations in split"
-        keymap.set("n", "<leader>sgi", function()
-          vim.cmd("split")
-          vim.cmd("Telescope lsp_implementations")
-        end, opts)
-
-        opts.desc = "Show LSP type definitions in split"
-        keymap.set("n", "<leader>sgt", function()
-          vim.cmd("split")
-          vim.cmd("Telescope lsp_type_definitions")
-        end, opts)
-
-        opts.desc = "Show LSP references (usages) in split"
-        keymap.set("n", "<leader>sgu", function()
-          vim.cmd("split")
-          vim.cmd("Telescope lsp_references")
-        end, opts)
-
-        opts.desc = "Go to super/parent type in split"
-        keymap.set("n", "<leader>sgI", function()
-          vim.cmd("split")
-          vim.lsp.buf.typehierarchy("supertypes")
-        end, opts)
+        end, "Go to super/parent type", true)
 
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -197,24 +107,14 @@ return {
         opts.desc = "Toggle diagnostics virtual text"
         keymap.set("n", "<leader>ld", function()
           local config = vim.diagnostic.config()
-          vim.diagnostic.config({ virtual_text = not config.virtual_text })
+          vim.diagnostic.config({
+            virtual_text = not config.virtual_text and virtual_text_config or false,
+          })
         end, opts)
       end,
     })
 
     local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-    vim.diagnostic.config({
-      virtual_text = false,
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
-          [vim.diagnostic.severity.HINT] = "󰠠 ",
-          [vim.diagnostic.severity.INFO] = " ",
-        },
-      },
-    })
 
     vim.lsp.config("*", {
       capabilities = capabilities,
