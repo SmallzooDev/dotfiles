@@ -29,3 +29,8 @@ opt.splitbelow = true
 opt.swapfile = false
 
 opt.conceallevel = 1
+
+opt.updatetime = 250
+opt.timeoutlen = 300
+opt.ttimeoutlen = 10
+opt.pumheight = 15 -- Limit completion menu height (reduces redraws)

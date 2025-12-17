@@ -27,6 +27,8 @@ return {
       signs = {
         text = diagnostic_icons,
       },
+      update_in_insert = false, -- Don't update diagnostics while typing
+      severity_sort = true,     -- Show most severe diagnostics first
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
