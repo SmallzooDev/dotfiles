@@ -1,7 +1,12 @@
 {
+    "runtime.version": "LuaJIT",
+    "diagnostics.globals": ["vim"],
     "diagnostics.disable": [
         "incomplete-signature-doc",
         "trailing-space",
         "undefined-doc-name"
+    ],
+    "workspace.library": [
+        "${3rd}/luv/library"
     ]
 }

@@ -13,7 +13,7 @@ return {
     local function file_in_cwd(file_name)
       return vim.fs.find(file_name, {
         upward = true,
-        stop = vim.loop.cwd():match("(.+)/"),
+        stop = vim.uv.cwd():match("(.+)/"),
         path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
         type = "file",
       })[1]
@@ -48,7 +48,7 @@ return {
       lint.try_lint(linters)
     end
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       group = lint_augroup,
       callback = function()
         if vim.bo.buftype ~= "" then
