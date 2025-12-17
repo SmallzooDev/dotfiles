@@ -12,7 +12,7 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     lazygit = {
-      configure = true,
+      configure = false,
     },
     styles = {
       notification = {
@@ -34,13 +34,6 @@ return {
         require("snacks").bufdelete()
       end,
       desc = "Delete Buffer",
-    },
-    {
-      "<leader>gg",
-      function()
-        require("snacks").lazygit()
-      end,
-      desc = "Lazygit",
     },
     {
       "<leader>lg",
