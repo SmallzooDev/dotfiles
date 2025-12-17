@@ -38,6 +38,11 @@ return {
         colors.fg_gutter = fg_gutter
         colors.fg_sidebar = fg_dark
       end,
+      on_highlights = function(hl)
+        hl.LspReferenceText = { bg = "#3d4f6d", underline = false }
+        hl.LspReferenceRead = { bg = "#3d4f6d", underline = false }
+        hl.LspReferenceWrite = { bg = "#4d3d6d", underline = false }
+      end,
     })
 
     vim.cmd("colorscheme tokyonight")
