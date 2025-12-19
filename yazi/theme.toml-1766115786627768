@@ -1,5 +1,5 @@
 # josean color theme for Yazi
-[mgr]
+[manager]
 border_style = { fg = "#547998" }
 cwd = { fg = "#2CF9ED" }
 hovered = { bg = "#143652", fg = "#CBE0F0", bold = true }
