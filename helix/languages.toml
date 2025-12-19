@@ -5,7 +5,32 @@ args = []
 
 [language-server.gopls]
 command = "gopls"
-args = []
+
+[language-server.gopls.config]
+# Static analysis and linting
+staticcheck = true
+vulncheck = "Imports"
+
+# Formatting - use gofumpt (stricter gofmt)
+gofumpt = true
+
+# Enable additional analyses
+[language-server.gopls.config.analyses]
+fieldalignment = true
+nilness = true
+unusedparams = true
+unusedwrite = true
+useany = true
+
+# Inlay hints (toggle with Space+l in normal mode)
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
 
 # Language configurations
 [[language]]

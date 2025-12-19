@@ -1,4 +1,4 @@
-theme = "carbonfox"
+theme = "coolnight"
 
 [editor]
 line-number = "relative"
@@ -61,16 +61,12 @@ tab      = [":bn"]
 "C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 "C-y" = ":sh echo -n %{buffer_name} | pbcopy"
 "C-e" = [
-  ':sh rm -f /tmp/files2open',
+  ':sh rm -f /tmp/hx-yazi-files',
   ':set mouse false',
-  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/files2open',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/hx-yazi-files',
   ':redraw',
   ':set mouse true',
-  ':open /tmp/files2open',
-  'select_all',
-  'split_selection_on_newline',
-  'goto_file',
-  ':buffer-close! /tmp/files2open',
+  ':open %sh{cat /tmp/hx-yazi-files 2>/dev/null}',
 ]
 [keys.normal.space]
 l = ":toggle lsp.display-inlay-hints"
