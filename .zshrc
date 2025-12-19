@@ -73,7 +73,7 @@ fzf-home-widget() {
   zle reset-prompt
 }
 zle -N fzf-home-widget
-bindkey '^H' fzf-home-widget
+bindkey '^G' fzf-home-widget
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

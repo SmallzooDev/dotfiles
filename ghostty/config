@@ -7,17 +7,11 @@
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Apple SD Gothic Neo"
 font-size = 13
-
-# =============================================================================
-# Cursor
-# =============================================================================
-cursor-style = block
-cursor-style-blink = false
+theme = "Catppuccin Mocha"
 
 # =============================================================================
 # Window Appearance
 # =============================================================================
-macos-titlebar-style = transparent
 macos-option-as-alt = true
 
 # =============================================================================
