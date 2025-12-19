@@ -1,5 +1,85 @@
-# Catppuccin Mocha theme for Yazi
-# Install flavor first: ya pkg add yazi-rs/flavors:catppuccin-mocha
+# Tokyo Night theme for Yazi
 
-[flavor]
-dark = "catppuccin-mocha"
+[mgr]
+border_style = { fg = "#3b4261" }
+cwd = { fg = "#7dcfff" }
+hovered = { bg = "#292e42", fg = "#c0caf5", bold = true }
+preview_hovered = { bg = "#16161e", fg = "#c0caf5", bold = true }
+find_keyword = { fg = "#9ece6a", bold = true }
+find_position = { fg = "#3b4261" }
+marker_selected = { bg = "#292e42", fg = "#bb9af7" }
+marker_copied = { bg = "#9ece6a", fg = "#9ece6a" }
+marker_cut = { bg = "#f7768e", fg = "#f7768e" }
+tab_active = { bg = "#7aa2f7", fg = "#1a1b26" }
+tab_inactive = { bg = "#16161e", fg = "#3b4261" }
+
+count_selected = { bg = "#bb9af7", fg = "#1a1b26" }
+count_copied = { bg = "#9ece6a", fg = "#1a1b26" }
+count_cut = { bg = "#f7768e", fg = "#1a1b26" }
+
+[status]
+separator_open = ""
+separator_close = ""
+mode_normal = { bg = "#7aa2f7", fg = "#1a1b26", bold = true }
+mode_select = { bg = "#9ece6a", fg = "#1a1b26", bold = true }
+mode_unset = { bg = "#f7768e", fg = "#1a1b26", bold = true }
+permissions_r = { fg = "#e0af68" }
+permissions_w = { fg = "#f7768e" }
+permissions_x = { fg = "#9ece6a" }
+permissions_s = { fg = "#3b4261" }
+permissions_t = { fg = "#7aa2f7" }
+progress_label = { fg = "#c0caf5" }
+progress_normal = { fg = "#7aa2f7" }
+progress_error = { fg = "#f7768e" }
+
+[completion]
+active = { bg = "#292e42", fg = "#bb9af7" }
+inactive = { fg = "#3b4261" }
+border = { fg = "#3b4261" }
+
+[input]
+border = { fg = "#3b4261" }
+title = { fg = "#c0caf5" }
+value = { fg = "#c0caf5" }
+selected = { bg = "#292e42" }
+
+[select]
+active = { fg = "#bb9af7" }
+inactive = { fg = "#3b4261" }
+border = { fg = "#3b4261" }
+
+[help]
+on = { fg = "#bb9af7" }
+run = { fg = "#7dcfff" }
+desc = { fg = "#3b4261" }
+hovered = { bg = "#292e42", fg = "#c0caf5" }
+footer = { fg = "#3b4261" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#7dcfff" },
+  { mime = "video/*", fg = "#e0af68" },
+  { mime = "audio/*", fg = "#e0af68" },
+  { mime = "application/zip", fg = "#bb9af7" },
+  { mime = "application/gzip", fg = "#bb9af7" },
+  { mime = "application/x-tar", fg = "#bb9af7" },
+  { mime = "application/x-bzip", fg = "#bb9af7" },
+  { mime = "application/x-bzip2", fg = "#bb9af7" },
+  { mime = "application/x-7z-compressed", fg = "#bb9af7" },
+  { mime = "application/x-rar", fg = "#bb9af7" },
+  { mime = "application/pdf", fg = "#f7768e" },
+  { mime = "inode/directory", fg = "#7aa2f7", bold = true },
+  { mime = "*", fg = "#c0caf5" }
+]
+
+[tasks]
+border = { fg = "#3b4261" }
+title = { fg = "#c0caf5" }
+hovered = { bg = "#292e42", fg = "#c0caf5" }
+
+[which]
+mask = { bg = "#1a1b26" }
+cand = { fg = "#7dcfff" }
+rest = { fg = "#3b4261" }
+desc = { fg = "#3b4261" }
+separator_style = { fg = "#3b4261" }

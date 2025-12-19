@@ -7,14 +7,14 @@ return {
 
     lualine.setup({
       options = {
-        theme = "catppuccin",
+        theme = "tokyonight",
       },
       sections = {
         lualine_x = {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#fab387" },
+            color = { fg = "#ff9e64" },
           },
           { "encoding" },
           { "fileformat", symbols = { unix = "" } },

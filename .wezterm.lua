@@ -29,7 +29,7 @@ config.macos_window_background_blur = 10
 
 config.window_decorations = "RESIZE"
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Tokyo Night"
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
