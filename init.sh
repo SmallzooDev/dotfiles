@@ -45,3 +45,4 @@ create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
 create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
 create_symlink "$HOME/dotfiles/helix" ~/.config/helix
+create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
