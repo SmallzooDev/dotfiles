@@ -65,12 +65,3 @@ auto-format = true
 name = "markdown"
 auto-format = false
 
-[[language]]
-name = "html"
-auto-format = true
-language-servers = ["vscode-html-language-server"]
-
-[[language]]
-name = "css"
-auto-format = true
-language-servers = ["vscode-css-language-server", "tailwindcss-ls"]

@@ -120,20 +120,17 @@ hint = { fg = "hint" }
 "ui.gutter.selected" = { bg = "bg_highlight" }
 
 [palette]
-# Your custom backgrounds (from nvim colorscheme.lua)
 bg = "#011628"
 bg_dark = "#011423"
 bg_highlight = "#143652"
 bg_search = "#0A64AC"
 bg_visual = "#275378"
 
-# Your custom foregrounds
 fg = "#CBE0F0"
 fg_dark = "#B4D0E9"
 fg_gutter = "#627E97"
 border = "#547998"
 
-# Tokyo Night syntax colors
 red = "#f7768e"
 orange = "#ff9e64"
 yellow = "#e0af68"
@@ -149,12 +146,10 @@ purple = "#9d7cd8"
 magenta = "#bb9af7"
 comment = "#565f89"
 
-# Diagnostics
 error = "#db4b4b"
 info = "#0db9d7"
 hint = "#1abc9c"
 
-# Git
 git_add = "#449dab"
 git_change = "#6183bb"
 git_delete = "#914c54"
