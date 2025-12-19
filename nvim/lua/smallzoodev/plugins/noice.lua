@@ -28,7 +28,7 @@ return {
       view = "notify",
     },
     notify = {
-      enabled = true,
+      enabled = false,
     },
     routes = {
       {
