@@ -16,7 +16,6 @@ gofumpt = true
 
 # Enable additional analyses
 [language-server.gopls.config.analyses]
-fieldalignment = true
 nilness = true
 unusedparams = true
 unusedwrite = true
