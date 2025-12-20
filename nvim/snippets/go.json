@@ -1,0 +1,189 @@
+{
+  "Go Function Anonymous": {
+    "prefix": "gofunc",
+    "body": [
+      "go func() {",
+      "\t$0",
+      "}()"
+    ],
+    "description": "Goroutine with anonymous function"
+  },
+  "Go Function Anonymous Short": {
+    "prefix": "gof",
+    "body": [
+      "go func() {",
+      "\t$0",
+      "}()"
+    ],
+    "description": "Goroutine (short)"
+  },
+  "If Error": {
+    "prefix": "iferr",
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:err}",
+      "}$0"
+    ],
+    "description": "If error return"
+  },
+  "If Error Nil": {
+    "prefix": "errn",
+    "body": [
+      "if err != nil {",
+      "\treturn nil, err",
+      "}$0"
+    ],
+    "description": "If error return nil, err"
+  },
+  "If Error Wrap": {
+    "prefix": "errw",
+    "body": [
+      "if err != nil {",
+      "\treturn fmt.Errorf(\"${1:context}: %w\", err)",
+      "}$0"
+    ],
+    "description": "If error with wrap"
+  },
+  "For Range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:_}, ${2:v} := range ${3:slice} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For range loop"
+  },
+  "For Index": {
+    "prefix": "fori",
+    "body": [
+      "for ${1:i} := 0; $1 < ${2:n}; $1++ {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For loop with index"
+  },
+  "Method": {
+    "prefix": "meth",
+    "body": [
+      "func (${1:r} *${2:Receiver}) ${3:Method}(${4:params}) ${5:returnType} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Method with receiver"
+  },
+  "Test Function": {
+    "prefix": "test",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Test function"
+  },
+  "Benchmark": {
+    "prefix": "bench",
+    "body": [
+      "func Benchmark${1:Name}(b *testing.B) {",
+      "\tfor i := 0; i < b.N; i++ {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Benchmark function"
+  },
+  "Defer Function": {
+    "prefix": "defer",
+    "body": [
+      "defer func() {",
+      "\t$0",
+      "}()"
+    ],
+    "description": "Defer anonymous function"
+  },
+  "Context Background": {
+    "prefix": "ctxbg",
+    "body": "ctx := context.Background()$0",
+    "description": "Context background"
+  },
+  "Context TODO": {
+    "prefix": "ctxtodo",
+    "body": "ctx := context.TODO()$0",
+    "description": "Context TODO"
+  },
+  "Context With Cancel": {
+    "prefix": "ctxcancel",
+    "body": [
+      "ctx, cancel := context.WithCancel(${1:context.Background()})",
+      "defer cancel()$0"
+    ],
+    "description": "Context with cancel"
+  },
+  "Context With Timeout": {
+    "prefix": "ctxtimeout",
+    "body": [
+      "ctx, cancel := context.WithTimeout(${1:context.Background()}, ${2:5*time.Second})",
+      "defer cancel()$0"
+    ],
+    "description": "Context with timeout"
+  },
+  "JSON Struct Tag": {
+    "prefix": "json",
+    "body": "`json:\"${1:field_name}${2:,omitempty}\"`$0",
+    "description": "JSON struct tag"
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "type ${1:Name} struct {",
+      "\t${2:Field} ${3:Type}$0",
+      "}"
+    ],
+    "description": "Struct definition"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "type ${1:Name} interface {",
+      "\t${2:Method}(${3:params}) ${4:returnType}$0",
+      "}"
+    ],
+    "description": "Interface definition"
+  },
+  "Make Slice": {
+    "prefix": "makes",
+    "body": "${1:slice} := make([]${2:Type}, ${3:0}, ${4:capacity})$0",
+    "description": "Make slice"
+  },
+  "Make Map": {
+    "prefix": "makem",
+    "body": "${1:m} := make(map[${2:Key}]${3:Value})$0",
+    "description": "Make map"
+  },
+  "Make Channel": {
+    "prefix": "makec",
+    "body": "${1:ch} := make(chan ${2:Type}${3:, bufferSize})$0",
+    "description": "Make channel"
+  },
+  "Select": {
+    "prefix": "sel",
+    "body": [
+      "select {",
+      "case ${1:msg} := <-${2:ch}:",
+      "\t$0",
+      "default:",
+      "\t",
+      "}"
+    ],
+    "description": "Select statement"
+  },
+  "Printf": {
+    "prefix": "pf",
+    "body": "fmt.Printf(\"${1:%v}\\n\", ${2:var})$0",
+    "description": "Printf"
+  },
+  "Println": {
+    "prefix": "pl",
+    "body": "fmt.Println(${1:var})$0",
+    "description": "Println"
+  }
+}

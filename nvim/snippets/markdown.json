@@ -1,0 +1,128 @@
+{
+  "Code Block Go": {
+    "prefix": "cbgo",
+    "body": ["```go", "$0", "```"],
+    "description": "Go code block"
+  },
+  "Code Block Rust": {
+    "prefix": "cbrust",
+    "body": ["```rust", "$0", "```"],
+    "description": "Rust code block"
+  },
+  "Code Block Bash": {
+    "prefix": "cbbash",
+    "body": ["```bash", "$0", "```"],
+    "description": "Bash code block"
+  },
+  "Code Block Python": {
+    "prefix": "cbpy",
+    "body": ["```python", "$0", "```"],
+    "description": "Python code block"
+  },
+  "Code Block TypeScript": {
+    "prefix": "cbts",
+    "body": ["```typescript", "$0", "```"],
+    "description": "TypeScript code block"
+  },
+  "Code Block JavaScript": {
+    "prefix": "cbjs",
+    "body": ["```javascript", "$0", "```"],
+    "description": "JavaScript code block"
+  },
+  "Code Block JSON": {
+    "prefix": "cbjson",
+    "body": ["```json", "$0", "```"],
+    "description": "JSON code block"
+  },
+  "Code Block SQL": {
+    "prefix": "cbsql",
+    "body": ["```sql", "$0", "```"],
+    "description": "SQL code block"
+  },
+  "Code Block YAML": {
+    "prefix": "cbyaml",
+    "body": ["```yaml", "$0", "```"],
+    "description": "YAML code block"
+  },
+  "Code Block Lua": {
+    "prefix": "cblua",
+    "body": ["```lua", "$0", "```"],
+    "description": "Lua code block"
+  },
+  "Link": {
+    "prefix": "link",
+    "body": "[${1:text}](${2:url})$0",
+    "description": "Markdown link"
+  },
+  "Image": {
+    "prefix": "img",
+    "body": "![${1:alt}](${2:url})$0",
+    "description": "Markdown image"
+  },
+  "Task": {
+    "prefix": "task",
+    "body": "- [ ] ${1:todo}$0",
+    "description": "Task checkbox"
+  },
+  "Task Done": {
+    "prefix": "taskd",
+    "body": "- [x] ${1:done}$0",
+    "description": "Completed task"
+  },
+  "Table": {
+    "prefix": "table",
+    "body": [
+      "| ${1:Header1} | ${2:Header2} | ${3:Header3} |",
+      "|-------------|-------------|-------------|",
+      "| ${4:Cell1}  | ${5:Cell2}  | ${6:Cell3}  |$0"
+    ],
+    "description": "Markdown table"
+  },
+  "Frontmatter": {
+    "prefix": "meta",
+    "body": [
+      "---",
+      "title: ${1:Title}",
+      "date: ${2:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+      "tags: [${3:tag1, tag2}]",
+      "---",
+      "$0"
+    ],
+    "description": "YAML frontmatter"
+  },
+  "Callout Note": {
+    "prefix": "note",
+    "body": ["> [!NOTE]", "> ${1:Note content}$0"],
+    "description": "GitHub/Obsidian note callout"
+  },
+  "Callout Warning": {
+    "prefix": "warn",
+    "body": ["> [!WARNING]", "> ${1:Warning content}$0"],
+    "description": "Warning callout"
+  },
+  "Callout Tip": {
+    "prefix": "tip",
+    "body": ["> [!TIP]", "> ${1:Tip content}$0"],
+    "description": "Tip callout"
+  },
+  "Date Today": {
+    "prefix": "date",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE$0",
+    "description": "Today's date (YYYY-MM-DD)"
+  },
+  "Heading 1": {
+    "prefix": "h1",
+    "body": "# ${1:Heading}$0",
+    "description": "H1 heading"
+  },
+  "Heading 2": {
+    "prefix": "h2",
+    "body": "## ${1:Heading}$0",
+    "description": "H2 heading"
+  },
+  "Heading 3": {
+    "prefix": "h3",
+    "body": "### ${1:Heading}$0",
+    "description": "H3 heading"
+  }
+}
