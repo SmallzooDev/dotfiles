@@ -121,3 +121,23 @@ keymap.set("n", "gp", function()
     print("Opened " .. file)
   end
 end, { desc = "Go to file:line from clipboard or input" })
+
+local cmd_aliases = {
+  { "W", "w" },
+  { "Q", "q" },
+  { "Wq", "wq" },
+  { "WQ", "wq" },
+  { "Wa", "wa" },
+  { "WA", "wa" },
+  { "Qa", "qa" },
+  { "QA", "qa" },
+  { "Wqa", "wqa" },
+  { "WQa", "wqa" },
+  { "WQA", "wqa" },
+  { "Xa", "xa" },
+  { "XA", "xa" },
+}
+
+for _, alias in ipairs(cmd_aliases) do
+  vim.api.nvim_create_user_command(alias[1], alias[2], { bang = true })
+end
