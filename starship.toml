@@ -1,0 +1,59 @@
+# Fast starship config - optimized for tmux
+# Reduces prompt delay by disabling slow modules
+
+# Timeout for commands (default 500ms is too slow)
+command_timeout = 100
+
+# Disable slow modules that check language versions
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[ruby]
+disabled = true
+
+[php]
+disabled = true
+
+[lua]
+disabled = true
+
+[package]
+disabled = true
+
+# Keep git but make it faster
+[git_status]
+disabled = true  # This is the slowest part - disable it
+
+[git_branch]
+format = "[$branch]($style) "
+style = "purple"
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+# Minimal prompt format
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"

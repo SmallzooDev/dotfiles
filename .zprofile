@@ -16,6 +16,9 @@ fi
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias abrew="arch -arm64 /opt/homebrew/bin/brew"
 
+# mise shims - always available to all processes
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
