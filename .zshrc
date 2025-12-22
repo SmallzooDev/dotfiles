@@ -22,6 +22,10 @@ alias book='cd ~/Books && open .'
 alias gd=pushd
 alias pd=popd
 
+alias cdp='cd ~/public_vault'
+alias cds='cd ~/private_vault'
+alias cdd='cd ~/dotfiles'
+
 # Safety
 alias rm='rm -i'
 alias cp='cp -i'
