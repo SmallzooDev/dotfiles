@@ -1,6 +1,9 @@
 # Fast starship config - optimized for tmux
 # Reduces prompt delay by disabling slow modules
 
+format = """$directory$git_branch$git_status$cmd_duration$status
+$character"""
+
 command_timeout = 100
 
 [nodejs]
@@ -55,10 +58,17 @@ disabled = true
 [git_metrics]
 disabled = true
 
-# Minimal prompt format
 [directory]
+format = "[ $path]($style) "
 truncation_length = 3
 truncate_to_repo = true
+
+[cmd_duration]
+format = "[took $duration]($style) "
+
+[status]
+disabled = false
+format = "[exit $status]($style) "
 
 [character]
 success_symbol = "[❯](green)"
