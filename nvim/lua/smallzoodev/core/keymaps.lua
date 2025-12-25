@@ -141,3 +141,6 @@ local cmd_aliases = {
 for _, alias in ipairs(cmd_aliases) do
   vim.api.nvim_create_user_command(alias[1], alias[2], { bang = true })
 end
+
+keymap.set({ "n", "v" }, "<F1>", "<Nop>")
+keymap.set("i", "<F1>", "!")
