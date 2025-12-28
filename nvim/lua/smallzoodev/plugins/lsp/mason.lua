@@ -23,12 +23,11 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
-        "ts_ls",
         "lua_ls",
         "pyright",
-        "eslint",
         "gopls",
         "rust_analyzer",
+        "clangd",
       },
     })
 
@@ -42,6 +41,7 @@ return {
         "gofumpt",
         "goimports",
         "golangci-lint",
+        "clang-format",
       },
     })
   end,

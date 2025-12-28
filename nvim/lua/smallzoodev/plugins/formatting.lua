@@ -6,14 +6,14 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
         go = { "gofumpt", "goimports" },
         rust = { "rustfmt" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
       },
       format_on_save = {
         lsp_fallback = true,

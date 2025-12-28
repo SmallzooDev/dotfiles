@@ -122,10 +122,6 @@ return {
       capabilities = capabilities,
     })
 
-    vim.lsp.config("eslint", {
-      filetypes = { "javascript", "typescript" },
-    })
-
     vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
@@ -201,6 +197,22 @@ return {
       end,
     })
 
-    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "eslint", "ts_ls", "marksman", "rust_analyzer" })
+    vim.lsp.config("clangd", {
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+      },
+      init_options = {
+        usePlaceholders = true,
+        completeUnimported = true,
+        clangdFileStatus = true,
+      },
+    })
+
+    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "marksman", "rust_analyzer", "clangd" })
   end,
 }

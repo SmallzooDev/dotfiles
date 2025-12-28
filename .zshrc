@@ -112,13 +112,5 @@ function y() {
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
-# mise version manager (lazy-loaded for faster shell startup)
-# Shims are already in PATH via .zprofile, this adds auto-switching
-_mise_lazy_load() {
-  unset -f mise cd pushd popd
-  eval "$(command mise activate zsh)"
-}
-mise() { _mise_lazy_load; mise "$@"; }
-cd() { _mise_lazy_load; builtin cd "$@"; }
-pushd() { _mise_lazy_load; builtin pushd "$@"; }
-popd() { _mise_lazy_load; builtin popd "$@"; }
+# mise version manager
+eval "$(mise activate zsh)"
