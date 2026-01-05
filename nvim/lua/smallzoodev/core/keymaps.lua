@@ -144,3 +144,8 @@ end
 
 keymap.set({ "n", "v" }, "<F1>", "<Nop>")
 keymap.set("i", "<F1>", "!")
+
+-- Helix-like g mappings
+keymap.set({ "n", "v" }, "gh", "0", { desc = "Go to start of line" })
+keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
+keymap.set({ "n", "v" }, "gs", "^", { desc = "Go to first non-blank character" })
