@@ -998,10 +998,6 @@
                         {
                             "from": { "key_code": "right_option" },
                             "to": [{ "key_code": "f8" }]
-                        },
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "escape" }]
                         }
                     ]
                 },
@@ -1051,6 +1047,10 @@
                             "modifiers": ["left_shift"]
                         }
                     ]
+                },
+                {
+                    "from": { "key_code": "grave_accent_and_tilde" },
+                    "to": [{ "key_code": "escape" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
