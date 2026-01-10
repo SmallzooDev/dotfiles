@@ -49,15 +49,13 @@ nmap sb <Plug>(easymotion-b)
 " =============================================================================
 
 nmap s <NOP>
-nmap f <NOP>
-nmap F <NOP>
 
 " =============================================================================
 " KEY MAPPINGS - BASIC VIM
 " =============================================================================
 
-" Line split (K for split line)
-nnoremap K i<CR><ESC>^
+" Hover documentation (synced with nvim)
+nmap K <Action>(QuickJavaDoc)
 
 " Command mode shortcut
 nnoremap <C-m> :
@@ -80,8 +78,8 @@ inoremap <C-l> <C-o>A
 " =============================================================================
 
 " Tab navigation
-nnoremap <PageDown> gt
-nnoremap <PageUp> gT
+nmap <PageDown> <Action>(NextTab)
+nmap <PageUp> <Action>(PreviousTab)
 
 " Line navigation (Helix-style)
 nnoremap gh 0
@@ -104,7 +102,10 @@ nmap [e <Action>(GotoPreviousError)
 nmap g; <Action>(JumpToLastChange)
 nmap g, <Action>(JumpToNextChange)
 
-" Code navigation
+" Code navigation (synced with nvim)
+nmap gd <Action>(GotoDeclaration)
+nmap gR <Action>(FindUsages)
+nmap gt <Action>(GotoTypeDeclaration)
 nmap gu <Action>(ShowUsages)
 nmap gi <Action>(GotoImplementation)
 nmap gI <Action>(GotoSuperMethod)
@@ -192,8 +193,8 @@ nmap <leader>b <Action>(Switcher)
 " Refactoring
 nmap <leader>rn <Action>(RenameElement)
 
-" Documentation
-nmap <leader>d <Action>(QuickJavaDoc)
+" Documentation & Diagnostics (synced with nvim)
+nmap <leader>d <Action>(ShowErrorDescription)
 nmap <leader>p <Action>(ParameterInfo)
 
 " File operations
