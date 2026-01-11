@@ -1051,6 +1051,15 @@
                             "modifiers": ["left_shift"]
                         }
                     ]
+                },
+                {
+                    "from": { "key_code": "f13" },
+                    "to": [
+                        {
+                            "key_code": "semicolon",
+                            "modifiers": ["left_shift"]
+                        }
+                    ]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
