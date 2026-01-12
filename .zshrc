@@ -114,3 +114,4 @@ eval "$(starship init zsh)"
 
 # mise version manager
 eval "$(mise activate zsh)"
+export PATH="$HOME/.local/bin:$PATH"
