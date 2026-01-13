@@ -61,9 +61,6 @@ alias ports='lsof -i -P'
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Set vi mode before fzf to avoid keybinding conflicts
-set -o vi
-
 # FZF
 eval "$(fzf --zsh)"
 
