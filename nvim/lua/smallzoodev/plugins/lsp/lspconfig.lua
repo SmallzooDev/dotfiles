@@ -10,10 +10,10 @@ return {
     local keymap = vim.keymap
 
     local diagnostic_icons = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.HINT] = "󰠠 ",
-      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "󰠠",
+      [vim.diagnostic.severity.INFO] = "",
     }
 
     local virtual_text_config = {
@@ -27,8 +27,8 @@ return {
       signs = {
         text = diagnostic_icons,
       },
-      update_in_insert = false, -- Don't update diagnostics while typing
-      severity_sort = true,     -- Show most severe diagnostics first
+      update_in_insert = false,
+      severity_sort = true,
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
