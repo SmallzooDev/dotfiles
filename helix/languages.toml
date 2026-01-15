@@ -7,19 +7,9 @@ args = []
 command = "gopls"
 
 [language-server.gopls.config]
-# Static analysis and linting
 staticcheck = true
 vulncheck = "Imports"
-
-# Formatting - use gofumpt (stricter gofmt)
 gofumpt = true
-
-# Enable additional analyses
-[language-server.gopls.config.analyses]
-nilness = true
-unusedparams = true
-unusedwrite = true
-useany = true
 
 # Inlay hints (toggle with Space+l in normal mode)
 [language-server.gopls.config.hints]
