@@ -4,7 +4,7 @@
   "macros": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   "layers": [
     [
-      "KC_F14",
+      "KC_F8",
       "KC_F1",
       "KC_F2",
       "KC_F3",
@@ -84,7 +84,7 @@
       "KC_RSFT",
       "KC_UP",
       "CUSTOM(15)",
-      "KC_F14",
+      "KC_F8",
       "KC_LALT",
       "KC_LGUI",
       "KC_NO",
@@ -102,7 +102,7 @@
       "KC_RGHT"
     ],
     [
-      "KC_F14",
+      "KC_F8",
       "KC_F1",
       "KC_F2",
       "KC_F3",
@@ -182,7 +182,7 @@
       "KC_RSFT",
       "KC_UP",
       "CUSTOM(15)",
-      "KC_F14",
+      "KC_F8",
       "KC_LALT",
       "KC_LGUI",
       "KC_NO",
@@ -200,7 +200,7 @@
       "KC_RGHT"
     ],
     [
-      "KC_F14",
+      "KC_F8",
       "KC_F1",
       "KC_F2",
       "KC_F3",
@@ -280,7 +280,7 @@
       "KC_RSFT",
       "KC_UP",
       "QK_CLEAR_EEPROM",
-      "KC_F14",
+      "KC_F8",
       "KC_LALT",
       "KC_LGUI",
       "KC_NO",
@@ -298,7 +298,7 @@
       "KC_RGHT"
     ],
     [
-      "KC_F14",
+      "KC_F8",
       "KC_F1",
       "KC_F2",
       "KC_F3",
@@ -378,7 +378,7 @@
       "KC_RSFT",
       "KC_UP",
       "QK_CLEAR_EEPROM",
-      "KC_F14",
+      "KC_F8",
       "KC_LALT",
       "KC_LGUI",
       "KC_NO",
