@@ -23,7 +23,7 @@ config.background = {
 		source = { Color = "#1a1b26" },
 		width = "100%",
 		height = "100%",
-		opacity = 0.85,
+		opacity = 0.90,
 	},
 }
 
