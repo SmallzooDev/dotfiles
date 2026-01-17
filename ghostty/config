@@ -13,6 +13,9 @@ theme = "tokyonight"
 # Window Appearance
 # =============================================================================
 macos-option-as-alt = true
+macos-titlebar-style = hidden
+window-padding-x = 8
+window-padding-y = 10,0
 
 # =============================================================================
 # Background Image
