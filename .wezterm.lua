@@ -4,8 +4,6 @@ local config = wezterm.config_builder()
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
-config.max_fps = 120
-config.animation_fps = 60
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
@@ -23,7 +21,7 @@ config.background = {
 		source = { Color = "#1a1b26" },
 		width = "100%",
 		height = "100%",
-		opacity = 0.90,
+		opacity = 0.93,
 	},
 }
 
