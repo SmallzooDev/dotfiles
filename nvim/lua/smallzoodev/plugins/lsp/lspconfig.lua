@@ -23,12 +23,87 @@ return {
     }
 
     vim.diagnostic.config({
-      virtual_text = virtual_text_config,
+      virtual_text = false,
+      underline = false,
       signs = {
         text = diagnostic_icons,
       },
       update_in_insert = false,
       severity_sort = true,
+      float = {
+        border = "rounded",
+        source = true,
+        header = "",
+        prefix = "",
+      },
+    })
+
+    local diagnostic_hl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+      [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+    }
+
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = function()
+        local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+        if #diagnostics == 0 then
+          return
+        end
+
+        local lines = {}
+        local highlights = {}
+        for i, d in ipairs(diagnostics) do
+          local icon = diagnostic_icons[d.severity] or "●"
+          table.insert(lines, icon .. " " .. d.message)
+          table.insert(highlights, diagnostic_hl[d.severity] or "Normal")
+        end
+
+        local buf = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+        for i, hl in ipairs(highlights) do
+          vim.api.nvim_buf_add_highlight(buf, -1, hl, i - 1, 0, -1)
+        end
+
+        local width = 0
+        for _, line in ipairs(lines) do
+          width = math.max(width, #line)
+        end
+        width = math.min(width + 2, 60)
+
+        local max_severity = diagnostics[1].severity
+        for _, d in ipairs(diagnostics) do
+          if d.severity < max_severity then
+            max_severity = d.severity
+          end
+        end
+        local border_hl = diagnostic_hl[max_severity] or "Normal"
+
+        local win = vim.api.nvim_open_win(buf, false, {
+          relative = "editor",
+          anchor = "NE",
+          row = 1,
+          col = vim.o.columns - 1,
+          width = width,
+          height = #lines,
+          style = "minimal",
+          border = "rounded",
+          focusable = false,
+        })
+
+        vim.api.nvim_set_option_value("winhl", "FloatBorder:" .. border_hl, { win = win })
+
+        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
+          once = true,
+          callback = function()
+            if vim.api.nvim_win_is_valid(win) then
+              vim.api.nvim_win_close(win, true)
+            end
+          end,
+        })
+      end,
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -36,7 +111,6 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
-        -- Helper to create split variant keymaps
         local function map_with_split(key, action, desc, is_func)
           local splits = {
             { prefix = "", cmd = nil, suffix = "" },
@@ -65,7 +139,6 @@ return {
           end
         end
 
-        -- LSP navigation keymaps with split variants
         map_with_split("gR", "Telescope lsp_references", "Show LSP references")
         map_with_split("gD", vim.lsp.buf.declaration, "Go to declaration", true)
         map_with_split("gd", "Telescope lsp_definitions", "Show LSP definitions")

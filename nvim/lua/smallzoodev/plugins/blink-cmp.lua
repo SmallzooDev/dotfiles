@@ -14,8 +14,6 @@ return {
       ["<C-n>"] = { "show", "fallback" },
       ["<C-e>"] = { "hide", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-      ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
