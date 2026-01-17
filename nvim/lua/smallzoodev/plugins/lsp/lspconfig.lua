@@ -54,7 +54,7 @@ return {
 
         local lines = {}
         local highlights = {}
-        for i, d in ipairs(diagnostics) do
+        for _, d in ipairs(diagnostics) do
           local icon = diagnostic_icons[d.severity] or "●"
           table.insert(lines, icon .. " " .. d.message)
           table.insert(highlights, diagnostic_hl[d.severity] or "Normal")
