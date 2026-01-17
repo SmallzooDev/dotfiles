@@ -12,7 +12,7 @@ config.font_size = 13
 
 config.background = {
 	{
-		source = { File = wezterm.home_dir .. "/Documents/backgrounds/totoroblack_blur.png" },
+		source = { File = wezterm.home_dir .. "/Documents/backgrounds/totoroblack.png" },
 		height = "Cover",
 		repeat_x = "NoRepeat",
 		repeat_y = "NoRepeat",

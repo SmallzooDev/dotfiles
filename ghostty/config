@@ -17,7 +17,7 @@ macos-option-as-alt = true
 # =============================================================================
 # Background Image
 # =============================================================================
-background-image = ~/Documents/backgrounds/totoroblack_blur.png
+background-image = ~/Documents/backgrounds/totoroblack.png
 background-image-opacity = 0.15
 background-image-position = center
 background-image-fit = cover
