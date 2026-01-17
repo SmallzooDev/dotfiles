@@ -22,6 +22,7 @@ return {
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
+        ["]"] = "actions.select",
         ["<C-v>"] = "actions.select_vsplit",
         ["<C-s>"] = "actions.select_split",
         ["<C-p>"] = "actions.preview",
@@ -29,12 +30,14 @@ return {
         ["q"] = "actions.close",
         ["<C-r>"] = "actions.refresh",
         ["-"] = "actions.parent",
+        ["["] = "actions.parent",
         ["_"] = "actions.open_cwd",
         ["`"] = "actions.cd",
         ["~"] = "actions.tcd",
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
         ["g."] = "actions.toggle_hidden",
+        ["<C-h>"] = false,
       },
     })
 
