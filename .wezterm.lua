@@ -67,7 +67,6 @@ config.keys = {
 
 	{ key = "c", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
 	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
-	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.QuickSelect },
 	{ key = "[", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
 	{ key = "]", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(0.5) },
 }
