@@ -6,13 +6,21 @@
 # =============================================================================
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Apple SD Gothic Neo"
-font-size = 11
+font-size = 13
 theme = "tokyonight"
 
 # =============================================================================
 # Window Appearance
 # =============================================================================
 macos-option-as-alt = true
+
+# =============================================================================
+# Background Image
+# =============================================================================
+background-image = ~/Documents/backgrounds/totoroblack_blur.png
+background-image-opacity = 0.15
+background-image-position = center
+background-image-fit = cover
 
 # =============================================================================
 # Shell Integration

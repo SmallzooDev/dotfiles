@@ -2,20 +2,6 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-wezterm.on("toggle-opacity", function(window, pane)
-	local overrides = window:get_config_overrides() or {}
-	if not overrides.window_background_opacity then
-		overrides.window_background_opacity = 1.0
-	else
-		if overrides.window_background_opacity == 0.80 then
-			overrides.window_background_opacity = 1.0
-		else
-			overrides.window_background_opacity = 0.80
-		end
-	end
-	window:set_config_overrides(overrides)
-end)
-
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.max_fps = 120
@@ -24,8 +10,22 @@ config.animation_fps = 60
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 
-config.window_background_opacity = 0.80
-config.macos_window_background_blur = 10
+config.background = {
+	{
+		source = { File = wezterm.home_dir .. "/Documents/backgrounds/totoroblack_blur.png" },
+		height = "Cover",
+		repeat_x = "NoRepeat",
+		repeat_y = "NoRepeat",
+		horizontal_align = "Center",
+		vertical_align = "Middle",
+	},
+	{
+		source = { Color = "#1a1b26" },
+		width = "100%",
+		height = "100%",
+		opacity = 0.85,
+	},
+}
 
 config.window_decorations = "RESIZE"
 
@@ -68,7 +68,6 @@ config.keys = {
 	},
 
 	{ key = "c", mods = "CMD|CTRL", action = wezterm.action.ActivateCopyMode },
-	{ key = "t", mods = "CMD|CTRL", action = wezterm.action.EmitEvent("toggle-opacity") },
 	{ key = "Return", mods = "CMD|CTRL", action = wezterm.action.ShowTabNavigator },
 	{ key = "f", mods = "CMD|CTRL", action = wezterm.action.QuickSelect },
 	{ key = "[", mods = "CMD|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
