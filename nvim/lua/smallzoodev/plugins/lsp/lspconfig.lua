@@ -114,7 +114,6 @@ return {
         local function map_with_split(key, action, desc, is_func)
           local splits = {
             { prefix = "", cmd = nil, suffix = "" },
-            { prefix = "<leader>t", cmd = "tab split", suffix = " in new tab" },
             { prefix = "<leader>v", cmd = "vsplit", suffix = " in vsplit" },
             { prefix = "<leader>s", cmd = "split", suffix = " in split" },
           }

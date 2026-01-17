@@ -14,56 +14,8 @@ keymap.set("n", "<leader>ss", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<Tab>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-
-for i = 1, 9 do
-  keymap.set("n", "<leader>" .. i, function()
-    vim.cmd("tabn " .. i)
-  end, { desc = "Go to tab " .. i })
-end
-
-keymap.set("n", "<leader>tmh", "<cmd>-tabmove<CR>", { desc = "Move tab left" })
-keymap.set("n", "<leader>tml", "<cmd>+tabmove<CR>", { desc = "Move tab right" })
-
-keymap.set("n", "<leader>tl", function()
-  local tabs = vim.api.nvim_list_tabpages()
-  local tab_info = {}
-
-  for i, tab in ipairs(tabs) do
-    local wins = vim.api.nvim_tabpage_list_wins(tab)
-    local bufs = {}
-
-    for _, win in ipairs(wins) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      local bufname = vim.api.nvim_buf_get_name(buf)
-      if bufname ~= "" then
-        table.insert(bufs, vim.fn.fnamemodify(bufname, ":t"))
-      end
-    end
-
-    local current = vim.api.nvim_get_current_tabpage() == tab and " [current]" or ""
-    local display = string.format("Tab %d: %s%s", i, table.concat(bufs, ", "), current)
-
-    table.insert(tab_info, {
-      display = display,
-      tab_nr = i,
-    })
-  end
-
-  vim.ui.select(tab_info, {
-    prompt = "Select tab:",
-    format_item = function(item)
-      return item.display
-    end,
-  }, function(choice)
-    if choice then
-      vim.cmd("tabn " .. choice.tab_nr)
-    end
-  end)
-end, { desc = "List and select tabs" })
+keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 
 keymap.set("v", "<", "<gv")
 keymap.set("v", ">", ">gv")
