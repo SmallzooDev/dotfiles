@@ -56,8 +56,12 @@ return {
         local highlights = {}
         for _, d in ipairs(diagnostics) do
           local icon = diagnostic_icons[d.severity] or "●"
-          table.insert(lines, icon .. " " .. d.message)
-          table.insert(highlights, diagnostic_hl[d.severity] or "Normal")
+          local msg_lines = vim.split(d.message, "\n", { trimempty = true })
+          for i, line in ipairs(msg_lines) do
+            local prefix = i == 1 and (icon .. " ") or "  "
+            table.insert(lines, prefix .. line)
+            table.insert(highlights, diagnostic_hl[d.severity] or "Normal")
+          end
         end
 
         local buf = vim.api.nvim_create_buf(false, true)
