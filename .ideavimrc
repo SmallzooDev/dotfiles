@@ -201,6 +201,10 @@ nmap <leader>p <Action>(ParameterInfo)
 nmap <leader>v <Action>(CopyPaths)
 nmap <leader>e <Action>(SelectInProjectView)
 
+" Copy file path with line number / Go to file from clipboard (synced with nvim yp/gp)
+nmap yp <Action>(CopyPathWithLineNumber)
+nmap gp <Action>(GotoFile)
+
 " Git
 nmap <leader>gb <Action>(Git.Branches)
 nmap <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
