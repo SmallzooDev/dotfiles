@@ -9,105 +9,27 @@ return {
   config = function()
     local keymap = vim.keymap
 
-    local diagnostic_icons = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.HINT] = "󰠠",
-      [vim.diagnostic.severity.INFO] = "",
-    }
-
-    local virtual_text_config = {
-      prefix = function(diagnostic)
-        return diagnostic_icons[diagnostic.severity] or "●"
-      end,
-    }
-
     vim.diagnostic.config({
-      virtual_text = false,
-      underline = false,
+      virtual_text = {
+        spacing = 2,
+        format = function(d)
+          local msg = d.message:gsub("\n", " ")
+          if #msg > 50 then
+            return msg:sub(1, 47) .. "..."
+          end
+          return msg
+        end,
+      },
       signs = {
-        text = diagnostic_icons,
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "󰠠",
+          [vim.diagnostic.severity.INFO] = "",
+        },
       },
-      update_in_insert = false,
       severity_sort = true,
-      float = {
-        border = "rounded",
-        source = true,
-        header = "",
-        prefix = "",
-      },
-    })
-
-    local diagnostic_hl = {
-      [vim.diagnostic.severity.ERROR] = "DiagnosticError",
-      [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
-      [vim.diagnostic.severity.HINT] = "DiagnosticHint",
-      [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-    }
-
-    vim.api.nvim_create_autocmd("CursorHold", {
-      callback = function()
-        local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
-        if #diagnostics == 0 then
-          return
-        end
-
-        local lines = {}
-        local highlights = {}
-        for _, d in ipairs(diagnostics) do
-          local icon = diagnostic_icons[d.severity] or "●"
-          local msg_lines = vim.split(d.message, "\n", { trimempty = true })
-          for i, line in ipairs(msg_lines) do
-            local prefix = i == 1 and (icon .. " ") or "  "
-            table.insert(lines, prefix .. line)
-            table.insert(highlights, diagnostic_hl[d.severity] or "Normal")
-          end
-        end
-
-        local buf = vim.api.nvim_create_buf(false, true)
-        vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-
-        for i, hl in ipairs(highlights) do
-          vim.api.nvim_buf_add_highlight(buf, -1, hl, i - 1, 0, -1)
-        end
-
-        local width = 0
-        for _, line in ipairs(lines) do
-          width = math.max(width, #line)
-        end
-        width = math.min(width + 2, 60)
-
-        local max_severity = diagnostics[1].severity
-        for _, d in ipairs(diagnostics) do
-          if d.severity < max_severity then
-            max_severity = d.severity
-          end
-        end
-        local border_hl = diagnostic_hl[max_severity] or "Normal"
-
-        local win = vim.api.nvim_open_win(buf, false, {
-          relative = "editor",
-          anchor = "NE",
-          row = 1,
-          col = vim.o.columns - 1,
-          width = width,
-          height = #lines,
-          style = "minimal",
-          border = "rounded",
-          focusable = false,
-        })
-
-        vim.api.nvim_set_option_value("winhl", "FloatBorder:" .. border_hl, { win = win })
-
-        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
-          once = true,
-          callback = function()
-            if vim.api.nvim_win_is_valid(win) then
-              vim.api.nvim_win_close(win, true)
-            end
-          end,
-        })
-      end,
+      float = { border = "rounded", source = true },
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -185,9 +107,7 @@ return {
         opts.desc = "Toggle diagnostics virtual text"
         keymap.set("n", "<leader>ld", function()
           local config = vim.diagnostic.config()
-          vim.diagnostic.config({
-            virtual_text = not config.virtual_text and virtual_text_config or false,
-          })
+          vim.diagnostic.config({ virtual_text = not config.virtual_text and { spacing = 2 } or false })
         end, opts)
       end,
     })

@@ -4,15 +4,15 @@ return {
   config = function()
     require("tokyonight").setup({
       style = "night",
-      transparent = true,
+      transparent = false,
       terminal_colors = true,
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
         functions = {},
         variables = {},
-        sidebars = "transparent",
-        floats = "transparent",
+        sidebars = "dark",
+        floats = "dark",
       },
       sidebars = { "qf", "help" },
       day_brightness = 0.3,
@@ -28,13 +28,9 @@ return {
         hl.LspReferenceRead = { bg = colors.bg_highlight, underline = false }
         hl.LspReferenceWrite = { bg = "#3d4f6d", underline = false }
 
-        -- Full transparency for UI elements
-        hl.SignColumn = { bg = "NONE" }
-        hl.LineNr = { bg = "NONE" }
-        hl.CursorLineNr = { bg = "NONE" }
-        hl.FoldColumn = { bg = "NONE" }
-        hl.NormalFloat = { bg = "NONE" }
-        hl.FloatBorder = { bg = "NONE" }
+        -- UI element backgrounds
+        hl.NormalFloat = { bg = colors.bg_dark }
+        hl.FloatBorder = { bg = colors.bg_dark }
       end,
     })
 
