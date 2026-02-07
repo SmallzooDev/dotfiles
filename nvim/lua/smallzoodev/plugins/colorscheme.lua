@@ -14,9 +14,9 @@ return {
         string = lackluster.color.yellow,
       },
       tweak_highlight = {
-        LspReferenceText = { overwrite = true, bg = "#2a2a2a", underline = false },
-        LspReferenceRead = { overwrite = true, bg = "#2a2a2a", underline = false },
-        LspReferenceWrite = { overwrite = true, bg = "#444444", underline = false },
+        -- LspReferenceText = { overwrite = true, bg = "#2a2a2a", underline = false },
+        -- LspReferenceRead = { overwrite = true, bg = "#2a2a2a", underline = false },
+        -- LspReferenceWrite = { overwrite = true, bg = "#444444", underline = false },
         -- Render-markdown: headings white, text slightly dim
         -- Heading icons = blue, heading text = white
         RenderMarkdownH1 = { overwrite = true, fg = "#7788aa", bold = true },
