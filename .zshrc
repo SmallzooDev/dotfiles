@@ -80,8 +80,8 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --excl
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
-# Tokyo Night theme for FZF
-export FZF_DEFAULT_OPTS="--color=bg+:#292e42,bg:#1a1b26,spinner:#bb9af7,hl:#f7768e --color=fg:#c0caf5,header:#f7768e,info:#7aa2f7,pointer:#7dcfff --color=marker:#9ece6a,fg+:#c0caf5,prompt:#bb9af7,hl+:#f7768e --color=selected-bg:#364a82"
+# Carbonfox theme for FZF
+export FZF_DEFAULT_OPTS="--color=bg+:#2a2a2a,bg:#161616,spinner:#BE95FF,hl:#EE5396 --color=fg:#f2f4f8,header:#EE5396,info:#78A9FF,pointer:#33B1FF --color=marker:#25be6a,fg+:#f2f4f8,prompt:#BE95FF,hl+:#EE5396 --color=selected-bg:#525253"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin

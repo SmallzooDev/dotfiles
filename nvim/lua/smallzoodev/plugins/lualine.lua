@@ -7,7 +7,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "tokyonight",
+        theme = "carbonfox",
       },
       sections = {
         lualine_c = {

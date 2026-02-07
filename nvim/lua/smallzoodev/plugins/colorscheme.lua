@@ -1,36 +1,15 @@
 return {
-  "folke/tokyonight.nvim",
+  "EdenEast/nightfox.nvim",
   priority = 1000,
   config = function()
-    require("tokyonight").setup({
-      style = "night",
-      transparent = false,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = {},
-        variables = {},
-        sidebars = "dark",
-        floats = "dark",
+    require("nightfox").setup({
+      options = {
+        transparent = false,
+        terminal_colors = true,
+        styles = {},
       },
-      sidebars = { "qf", "help" },
-      day_brightness = 0.3,
-      hide_inactive_statusline = false,
-      dim_inactive = false,
-      lualine_bold = false,
-      on_highlights = function(hl, colors)
-        -- Custom LSP reference highlighting
-        hl.LspReferenceText = { bg = colors.bg_highlight, underline = false }
-        hl.LspReferenceRead = { bg = colors.bg_highlight, underline = false }
-        hl.LspReferenceWrite = { bg = "#3d4f6d", underline = false }
-
-        -- UI element backgrounds
-        hl.NormalFloat = { bg = colors.bg_dark }
-        hl.FloatBorder = { bg = colors.bg_dark }
-      end,
     })
 
-    vim.cmd("colorscheme tokyonight")
+    vim.cmd("colorscheme carbonfox")
   end,
 }

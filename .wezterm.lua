@@ -18,7 +18,7 @@ config.background = {
 		vertical_align = "Middle",
 	},
 	{
-		source = { Color = "#1a1b26" },
+		source = { Color = "#161616" },
 		width = "100%",
 		height = "100%",
 		opacity = 0.92,
@@ -27,7 +27,7 @@ config.background = {
 
 config.window_decorations = "RESIZE"
 
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "carbonfox"
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
