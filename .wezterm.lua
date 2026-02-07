@@ -8,36 +8,26 @@ config.webgpu_power_preference = "HighPerformance"
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 13
 
-config.window_decorations = "RESIZE"
-
-config.colors = {
-	foreground = "#deeeed",
-	background = "#101010",
-	cursor_fg = "#101010",
-	cursor_bg = "#deeeed",
-	selection_fg = "#101010",
-	selection_bg = "#7a7a7a",
-	ansi = {
-		"#080808", -- black
-		"#d70000", -- red
-		"#789978", -- green
-		"#ffaa88", -- yellow/orange
-		"#7788aa", -- blue
-		"#d7007d", -- magenta
-		"#708090", -- cyan (lack)
-		"#deeeed", -- white (luster)
+config.background = {
+	{
+		source = { File = wezterm.home_dir .. "/Documents/backgrounds/totoroblack.png" },
+		height = "Cover",
+		repeat_x = "NoRepeat",
+		repeat_y = "NoRepeat",
+		horizontal_align = "Center",
+		vertical_align = "Middle",
 	},
-	brights = {
-		"#444444", -- bright black
-		"#d70000", -- bright red
-		"#789978", -- bright green
-		"#ffaa88", -- bright yellow/orange
-		"#7788aa", -- bright blue
-		"#d7007d", -- bright magenta
-		"#708090", -- bright cyan
-		"#deeeed", -- bright white
+	{
+		source = { Color = "#1a1b26" },
+		width = "100%",
+		height = "100%",
+		opacity = 0.92,
 	},
 }
+
+config.window_decorations = "RESIZE"
+
+config.color_scheme = "Tokyo Night"
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false

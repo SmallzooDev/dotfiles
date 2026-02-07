@@ -1,4 +1,4 @@
-theme = "lackluster"
+theme = "tokyonight-noitalic"
 
 [editor]
 line-number = "relative"

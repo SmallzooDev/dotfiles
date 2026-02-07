@@ -34,7 +34,7 @@ return {
       right_pad = 1,
       language_pad = 1,
       border = "none",
-      highlight = "RenderMarkdownCode",
+      highlight = "",
       highlight_border = "",
     },
     bullet = {
