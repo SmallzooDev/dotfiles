@@ -41,7 +41,7 @@ return {
       },
     },
     signature = {
-      enabled = false,
+      enabled = true,
     },
   },
 }

@@ -19,9 +19,6 @@ return {
       hide_inactive_statusline = false,
       dim_inactive = false,
       lualine_bold = false,
-      on_colors = function(colors)
-        -- Keep default Tokyo Night colors
-      end,
       on_highlights = function(hl, colors)
         -- Custom LSP reference highlighting
         hl.LspReferenceText = { bg = colors.bg_highlight, underline = false }

@@ -29,7 +29,7 @@ return {
         "rust_analyzer",
         "clangd",
       },
-      handlers = {},
+      automatic_enable = false,
     })
 
     mason_tool_installer.setup({
@@ -38,10 +38,8 @@ return {
         "stylua",
         "isort",
         "black",
-        "pylint",
         "gofumpt",
         "goimports",
-        "golangci-lint",
         "clang-format",
       },
     })
