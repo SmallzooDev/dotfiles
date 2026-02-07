@@ -7,7 +7,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "tokyonight",
+        theme = "lackluster",
       },
       sections = {
         lualine_c = {
@@ -17,7 +17,7 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#ff9e64" },
+            color = { fg = "#ffaa88" },
           },
           { "fileformat", symbols = { unix = "" } },
           { "filetype" },

@@ -35,7 +35,7 @@ disabled = true
 
 [git_status]
 format = '[$modified$staged$stashed$conflicted]($style) '
-style = "purple"
+style = "#708090"
 modified = "~"
 staged = "+"
 stashed = "\\$"
@@ -47,7 +47,7 @@ ignore_submodules = true
 
 [git_branch]
 format = "[ $branch]($style) "
-style = "purple"
+style = "#708090"
 
 [git_commit]
 disabled = true
@@ -71,5 +71,5 @@ disabled = false
 format = "[exit $status]($style) "
 
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
+success_symbol = "[❯](#789978)"
+error_symbol = "[❯](#d70000)"

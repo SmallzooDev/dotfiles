@@ -1,39 +1,19 @@
 return {
-  "folke/tokyonight.nvim",
+  "slugbyte/lackluster.nvim",
   priority = 1000,
   config = function()
-    require("tokyonight").setup({
-      style = "night",
-      transparent = false,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = {},
-        variables = {},
-        sidebars = "dark",
-        floats = "dark",
-      },
-      sidebars = { "qf", "help" },
-      day_brightness = 0.3,
-      hide_inactive_statusline = false,
-      dim_inactive = false,
-      lualine_bold = false,
-      on_colors = function(colors)
-        -- Keep default Tokyo Night colors
-      end,
-      on_highlights = function(hl, colors)
-        -- Custom LSP reference highlighting
-        hl.LspReferenceText = { bg = colors.bg_highlight, underline = false }
-        hl.LspReferenceRead = { bg = colors.bg_highlight, underline = false }
-        hl.LspReferenceWrite = { bg = "#3d4f6d", underline = false }
+    package.loaded["lackluster.plugin.bufferline"] = function() end
 
-        -- UI element backgrounds
-        hl.NormalFloat = { bg = colors.bg_dark }
-        hl.FloatBorder = { bg = colors.bg_dark }
-      end,
+    local lackluster = require("lackluster")
+
+    lackluster.setup({
+      tweak_highlight = {
+        LspReferenceText = { overwrite = true, bg = "#2a2a2a", underline = false },
+        LspReferenceRead = { overwrite = true, bg = "#2a2a2a", underline = false },
+        LspReferenceWrite = { overwrite = true, bg = "#444444", underline = false },
+      },
     })
 
-    vim.cmd("colorscheme tokyonight")
+    vim.cmd("colorscheme lackluster-hack")
   end,
 }
