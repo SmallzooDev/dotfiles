@@ -7,6 +7,12 @@ return {
     local lackluster = require("lackluster")
 
     lackluster.setup({
+      tweak_syntax = {
+        keyword = lackluster.color.blue,
+        keyword_return = lackluster.color.green,
+        keyword_exception = lackluster.color.blue,
+        string = lackluster.color.yellow,
+      },
       tweak_highlight = {
         LspReferenceText = { overwrite = true, bg = "#2a2a2a", underline = false },
         LspReferenceRead = { overwrite = true, bg = "#2a2a2a", underline = false },
