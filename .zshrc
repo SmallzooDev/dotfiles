@@ -81,7 +81,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
 # Lackluster theme for FZF
-export FZF_DEFAULT_OPTS="--color=bg+:#2a2a2a,bg:#101010,spinner:#708090,hl:#d70000 --color=fg:#deeeed,header:#d70000,info:#708090,pointer:#7788AA --color=marker:#789978,fg+:#deeeed,prompt:#708090,hl+:#d70000 --color=selected-bg:#444444"
+export FZF_DEFAULT_OPTS="--color=bg+:#2a2a2a,bg:#101010,spinner:#7788aa,hl:#ffaa88 --color=fg:#deeeed,header:#7788aa,info:#abab77,pointer:#789978 --color=marker:#ffaa88,fg+:#deeeed,prompt:#7788aa,hl+:#ffaa88 --color=selected-bg:#444444"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
