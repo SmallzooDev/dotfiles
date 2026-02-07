@@ -29,6 +29,7 @@ return {
         "rust_analyzer",
         "clangd",
       },
+      handlers = {},
     })
 
     mason_tool_installer.setup({
