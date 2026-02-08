@@ -8,7 +8,7 @@ return {
   opts = {
     backends = { "treesitter", "lsp", "markdown", "man" },
     layout = {
-      default_direction = "prefer_right",
+      default_direction = "prefer_left",
       min_width = 30,
       max_width = { 40, 0.2 },
     },
