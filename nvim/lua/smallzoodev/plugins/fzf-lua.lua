@@ -44,6 +44,11 @@ return {
       files = {
         formatter = "path.filename_first",
       },
+      buffers = {
+        actions = {
+          ["ctrl-d"] = false,
+        },
+      },
       lsp = {
         async_or_timeout = 5000,
         code_actions = {
