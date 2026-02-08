@@ -75,12 +75,14 @@ return {
         keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         -- Helix-style Space prefix: LSP pickers
-        keymap.set(
-          "n",
-          "<leader>s",
-          "<cmd>FzfLua lsp_document_symbols<CR>",
-          vim.tbl_extend("force", opts, { desc = "Document symbols" })
-        )
+        keymap.set("n", "<leader>s", function()
+          local ok, aerial = pcall(require, "aerial")
+          if ok then
+            aerial.fzf_lua_picker()
+          else
+            vim.cmd("FzfLua lsp_document_symbols")
+          end
+        end, vim.tbl_extend("force", opts, { desc = "Document symbols (aerial)" }))
         keymap.set(
           "n",
           "<leader>S",
