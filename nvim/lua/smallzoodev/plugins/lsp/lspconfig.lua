@@ -75,7 +75,7 @@ return {
 
         -- Helix-style Space prefix: LSP actions
         opts.desc = "Code actions"
-        keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+        keymap.set({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", opts)
 
         opts.desc = "Rename symbol"
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
@@ -98,6 +98,14 @@ return {
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
+
+        opts.desc = "Open LSP log"
+        keymap.set("n", "<leader>ll", function()
+          vim.cmd("edit " .. vim.lsp.get_log_path())
+        end, opts)
+
+        opts.desc = "LSP info"
+        keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", opts)
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
         opts.desc = "Toggle inlay hints"

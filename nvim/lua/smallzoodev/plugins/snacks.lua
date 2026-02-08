@@ -29,6 +29,13 @@ return {
       desc = "Dismiss All Notifications",
     },
     {
+      "<leader>uh",
+      function()
+        require("snacks").notifier.show_history()
+      end,
+      desc = "Notification History",
+    },
+    {
       "<leader>bd",
       function()
         require("snacks").bufdelete()

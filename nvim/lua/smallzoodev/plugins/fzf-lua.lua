@@ -13,7 +13,9 @@ return {
     { "<leader>D", function() require("fzf-lua").diagnostics_workspace() end, desc = "Workspace diagnostics" },
   },
   config = function()
-    require("fzf-lua").setup({
+    local fzf = require("fzf-lua")
+    fzf.register_ui_select()
+    fzf.setup({
       "telescope",
       winopts = {
         height = 0.85,
