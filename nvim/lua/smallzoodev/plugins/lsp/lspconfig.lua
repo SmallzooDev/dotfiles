@@ -41,7 +41,6 @@ return {
           local splits = {
             { prefix = "", cmd = nil, suffix = "" },
             { prefix = "<leader>v", cmd = "vsplit", suffix = " in vsplit" },
-            { prefix = "<leader>s", cmd = "split", suffix = " in split" },
           }
           for _, split in ipairs(splits) do
             opts.desc = desc .. split.suffix
@@ -64,27 +63,32 @@ return {
           end
         end
 
-        map_with_split("gR", "Telescope lsp_references", "Show LSP references")
+        map_with_split("gR", "FzfLua lsp_references", "Show LSP references")
         map_with_split("gD", vim.lsp.buf.declaration, "Go to declaration", true)
-        map_with_split("gd", "Telescope lsp_definitions", "Show LSP definitions")
-        map_with_split("gi", "Telescope lsp_implementations", "Show LSP implementations")
-        map_with_split("gt", "Telescope lsp_type_definitions", "Show LSP type definitions")
-        map_with_split("gu", "Telescope lsp_references", "Show LSP references (usages)")
+        map_with_split("gd", "FzfLua lsp_definitions", "Show LSP definitions")
+        map_with_split("gi", "FzfLua lsp_implementations", "Show LSP implementations")
+        map_with_split("gt", "FzfLua lsp_typedefs", "Show LSP type definitions")
+        map_with_split("gu", "FzfLua lsp_references", "Show LSP references (usages)")
         map_with_split("gI", function()
           vim.lsp.buf.typehierarchy("supertypes")
         end, "Go to super/parent type", true)
 
-        opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        -- Helix-style Space prefix: LSP actions
+        opts.desc = "Code actions"
+        keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
 
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        opts.desc = "Rename symbol"
+        keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 
-        opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+        opts.desc = "Hover documentation"
+        keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
 
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+        -- Helix-style Space prefix: LSP pickers
+        opts.desc = "Document symbols"
+        keymap.set("n", "<leader>s", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
+
+        opts.desc = "Workspace symbols"
+        keymap.set("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", opts)
 
         opts.desc = "Go to previous diagnostic"
         keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -96,7 +100,7 @@ return {
         keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
         opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+        keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
         opts.desc = "Toggle inlay hints"
