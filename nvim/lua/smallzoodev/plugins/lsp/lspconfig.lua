@@ -10,22 +10,14 @@ return {
     local keymap = vim.keymap
 
     vim.diagnostic.config({
-      virtual_text = {
-        spacing = 2,
-        format = function(d)
-          local msg = d.message:gsub("\n", " ")
-          if #msg > 50 then
-            return msg:sub(1, 47) .. "..."
-          end
-          return msg
-        end,
-      },
+      underline = false,
+      virtual_text = false,
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = "",
-          [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.HINT] = "󰠠",
-          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.ERROR] = "󰬅",
+          [vim.diagnostic.severity.WARN] = "󱈸",
+          [vim.diagnostic.severity.HINT] = "󰫵",
+          [vim.diagnostic.severity.INFO] = "󰫶",
         },
       },
       severity_sort = true,
@@ -37,53 +29,71 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
-        local function map_with_split(key, action, desc, is_func)
-          local splits = {
-            { prefix = "", cmd = nil, suffix = "" },
-            { prefix = "<leader>v", cmd = "vsplit", suffix = " in vsplit" },
-          }
-          for _, split in ipairs(splits) do
-            local map_opts = vim.tbl_extend("force", opts, { desc = desc .. split.suffix })
-            if split.cmd then
-              keymap.set("n", split.prefix .. key, function()
-                vim.cmd(split.cmd)
-                if is_func then
-                  action()
-                else
-                  vim.cmd(action)
-                end
-              end, map_opts)
-            else
-              if is_func then
-                keymap.set("n", key, action, map_opts)
-              else
-                keymap.set("n", key, "<cmd>" .. action .. "<CR>", map_opts)
-              end
-            end
-          end
-        end
-
-        map_with_split("gR", "FzfLua lsp_references", "Show LSP references")
-        map_with_split("gD", vim.lsp.buf.declaration, "Go to declaration", true)
-        map_with_split("gd", "FzfLua lsp_definitions", "Show LSP definitions")
-        map_with_split("gi", "FzfLua lsp_implementations", "Show LSP implementations")
-        map_with_split("gt", "FzfLua lsp_typedefs", "Show LSP type definitions")
-        map_with_split("gu", "FzfLua lsp_references", "Show LSP references (usages)")
-        map_with_split("gI", function()
+        keymap.set(
+          "n",
+          "gR",
+          "<cmd>FzfLua lsp_references<CR>",
+          vim.tbl_extend("force", opts, { desc = "Show LSP references" })
+        )
+        keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+        keymap.set(
+          "n",
+          "gd",
+          "<cmd>FzfLua lsp_definitions<CR>",
+          vim.tbl_extend("force", opts, { desc = "Show LSP definitions" })
+        )
+        keymap.set(
+          "n",
+          "gi",
+          "<cmd>FzfLua lsp_implementations<CR>",
+          vim.tbl_extend("force", opts, { desc = "Show LSP implementations" })
+        )
+        keymap.set(
+          "n",
+          "gt",
+          "<cmd>FzfLua lsp_typedefs<CR>",
+          vim.tbl_extend("force", opts, { desc = "Show LSP type definitions" })
+        )
+        keymap.set(
+          "n",
+          "gu",
+          "<cmd>FzfLua lsp_references<CR>",
+          vim.tbl_extend("force", opts, { desc = "Show LSP references (usages)" })
+        )
+        keymap.set("n", "gI", function()
           vim.lsp.buf.typehierarchy("supertypes")
-        end, "Go to super/parent type", true)
+        end, vim.tbl_extend("force", opts, { desc = "Go to super/parent type" }))
 
         -- Helix-style Space prefix: LSP actions
-        keymap.set({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", vim.tbl_extend("force", opts, { desc = "Code actions" }))
+        keymap.set(
+          { "n", "v" },
+          "<leader>a",
+          "<cmd>FzfLua lsp_code_actions<CR>",
+          vim.tbl_extend("force", opts, { desc = "Code actions" })
+        )
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
         keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         -- Helix-style Space prefix: LSP pickers
-        keymap.set("n", "<leader>s", "<cmd>FzfLua lsp_document_symbols<CR>", vim.tbl_extend("force", opts, { desc = "Document symbols" }))
-        keymap.set("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", vim.tbl_extend("force", opts, { desc = "Workspace symbols" }))
+        keymap.set(
+          "n",
+          "<leader>s",
+          "<cmd>FzfLua lsp_document_symbols<CR>",
+          vim.tbl_extend("force", opts, { desc = "Document symbols" })
+        )
+        keymap.set(
+          "n",
+          "<leader>S",
+          "<cmd>FzfLua lsp_workspace_symbols<CR>",
+          vim.tbl_extend("force", opts, { desc = "Workspace symbols" })
+        )
 
-        keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-        keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
+        keymap.set("n", "[d", function()
+          vim.diagnostic.jump({ count = -1 })
+        end, vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
+        keymap.set("n", "]d", function()
+          vim.diagnostic.jump({ count = 1 })
+        end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
 
         keymap.set("n", "<leader>lr", ":LspRestart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
         keymap.set("n", "<leader>ll", function()
@@ -100,6 +110,13 @@ return {
           local config = vim.diagnostic.config()
           vim.diagnostic.config({ virtual_text = not config.virtual_text and { spacing = 2 } or false })
         end, vim.tbl_extend("force", opts, { desc = "Toggle diagnostics virtual text" }))
+
+        vim.api.nvim_create_autocmd("CursorHold", {
+          buffer = ev.buf,
+          callback = function()
+            vim.diagnostic.open_float({ focusable = false, scope = "cursor" })
+          end,
+        })
       end,
     })
 
