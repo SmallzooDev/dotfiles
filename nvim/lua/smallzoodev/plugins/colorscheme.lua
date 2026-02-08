@@ -12,5 +12,6 @@ return {
 
     vim.cmd("colorscheme carbonfox")
     vim.api.nvim_set_hl(0, "NonText", { fg = "#a3a9b5" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#25be6a" })
   end,
 }

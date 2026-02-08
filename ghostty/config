@@ -33,6 +33,7 @@ shell-integration = zsh
 # =============================================================================
 # Behavior
 # =============================================================================
+cursor-color = #25be6a
 confirm-close-surface = false
 mouse-hide-while-typing = true
 copy-on-select = clipboard

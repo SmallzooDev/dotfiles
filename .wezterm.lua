@@ -28,6 +28,11 @@ config.background = {
 config.window_decorations = "RESIZE"
 
 config.color_scheme = "carbonfox"
+config.colors = {
+	cursor_bg = "#25be6a",
+	cursor_fg = "#161616",
+	cursor_border = "#25be6a",
+}
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
