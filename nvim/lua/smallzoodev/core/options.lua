@@ -28,6 +28,18 @@ opt.swapfile = false
 
 opt.conceallevel = 1
 
+opt.undofile = true
+
+opt.termguicolors = true
+
+opt.showmode = false
+
+opt.smoothscroll = true
+
+opt.shortmess:append("sI")
+
+opt.fillchars = { fold = " ", diff = "╱", eob = " " }
+
 opt.updatetime = 250
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10

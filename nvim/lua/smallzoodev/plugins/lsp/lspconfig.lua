@@ -43,7 +43,7 @@ return {
             { prefix = "<leader>v", cmd = "vsplit", suffix = " in vsplit" },
           }
           for _, split in ipairs(splits) do
-            opts.desc = desc .. split.suffix
+            local map_opts = vim.tbl_extend("force", opts, { desc = desc .. split.suffix })
             if split.cmd then
               keymap.set("n", split.prefix .. key, function()
                 vim.cmd(split.cmd)
@@ -52,12 +52,12 @@ return {
                 else
                   vim.cmd(action)
                 end
-              end, opts)
+              end, map_opts)
             else
               if is_func then
-                keymap.set("n", key, action, opts)
+                keymap.set("n", key, action, map_opts)
               else
-                keymap.set("n", key, "<cmd>" .. action .. "<CR>", opts)
+                keymap.set("n", key, "<cmd>" .. action .. "<CR>", map_opts)
               end
             end
           end
@@ -74,50 +74,32 @@ return {
         end, "Go to super/parent type", true)
 
         -- Helix-style Space prefix: LSP actions
-        opts.desc = "Code actions"
-        keymap.set({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", opts)
-
-        opts.desc = "Rename symbol"
-        keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-
-        opts.desc = "Hover documentation"
-        keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
+        keymap.set({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", vim.tbl_extend("force", opts, { desc = "Code actions" }))
+        keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+        keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         -- Helix-style Space prefix: LSP pickers
-        opts.desc = "Document symbols"
-        keymap.set("n", "<leader>s", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
+        keymap.set("n", "<leader>s", "<cmd>FzfLua lsp_document_symbols<CR>", vim.tbl_extend("force", opts, { desc = "Document symbols" }))
+        keymap.set("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", vim.tbl_extend("force", opts, { desc = "Workspace symbols" }))
 
-        opts.desc = "Workspace symbols"
-        keymap.set("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", opts)
+        keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
+        keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
 
-        opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-        opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-        opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>lr", ":LspRestart<CR>", opts)
-
-        opts.desc = "Open LSP log"
+        keymap.set("n", "<leader>lr", ":LspRestart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
         keymap.set("n", "<leader>ll", function()
           vim.cmd("edit " .. vim.lsp.get_log_path())
-        end, opts)
-
-        opts.desc = "LSP info"
-        keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", opts)
+        end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
+        keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", vim.tbl_extend("force", opts, { desc = "LSP info" }))
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
-        opts.desc = "Toggle inlay hints"
         keymap.set("n", "<leader>lh", function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
-        end, opts)
+        end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
 
-        opts.desc = "Toggle diagnostics virtual text"
         keymap.set("n", "<leader>ld", function()
           local config = vim.diagnostic.config()
           vim.diagnostic.config({ virtual_text = not config.virtual_text and { spacing = 2 } or false })
-        end, opts)
+        end, vim.tbl_extend("force", opts, { desc = "Toggle diagnostics virtual text" }))
       end,
     })
 

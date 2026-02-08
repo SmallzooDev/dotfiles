@@ -169,8 +169,8 @@ return {
     end, { nargs = "?" })
   end,
   keys = {
-    { "<leader>b", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch", ft = "markdown" },
-    { "<leader>/", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
+    { "<leader>ob", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch", ft = "markdown" },
+    { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
     { "<leader>on", "<cmd>ObsidianNewSequenced<CR>", desc = "New note", ft = "markdown" },
     { "<leader>or", "<cmd>ObsidianRenameAndReload<CR>", desc = "Rename note", ft = "markdown" },
     { "<leader>ol", "<cmd>ObsidianLinks<CR>", desc = "List links", ft = "markdown" },
