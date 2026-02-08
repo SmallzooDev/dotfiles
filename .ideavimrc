@@ -97,6 +97,8 @@ nmap [c <Action>(VcsShowPrevChangeMarker)
 
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
 
 " Jump between changes
 nmap g; <Action>(JumpToLastChange)
@@ -125,10 +127,10 @@ nmap <C-l> <C-w>l
 nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
 
-" Split operations
-nmap <leader>sv <Action>(SplitVertically)
-nmap <leader>ss <Action>(SplitHorizontally)
-nmap <leader>sx <Action>(Unsplit)
+" Split operations (synced with nvim <leader>w prefix)
+nmap <leader>wv <Action>(SplitVertically)
+nmap <leader>ws <Action>(SplitHorizontally)
+nmap <leader>wx <Action>(Unsplit)
 
 " Move editor to split direction (requires Tab Shifter plugin)
 nmap <leader>sh <Action>(TabShiftActions.ShiftLeft)
@@ -185,16 +187,22 @@ nmap <Tab>y <Action>(CopyReferencePopupGroup)
 " KEY MAPPINGS - LEADER ACTIONS
 " =============================================================================
 
-" Helix-style search (synced with nvim)
+" Helix-style pickers (synced with nvim)
 nmap <leader>/ <Action>(FindInPath)
 nmap <leader>f <Action>(GotoFile)
 nmap <leader>b <Action>(Switcher)
+nmap <leader>? <Action>(GotoAction)
+nmap <leader>s <Action>(FileStructurePopup)
+nmap <leader>S <Action>(GotoSymbol)
 
-" Refactoring
-nmap <leader>rn <Action>(RenameElement)
+" Helix-style LSP actions (synced with nvim)
+nmap <leader>a <Action>(ShowIntentionActions)
+nmap <leader>r <Action>(RenameElement)
+nmap <leader>k <Action>(QuickJavaDoc)
 
-" Documentation & Diagnostics (synced with nvim)
+" Diagnostics (synced with nvim)
 nmap <leader>d <Action>(ShowErrorDescription)
+nmap <leader>D <Action>(ActivateProblemsViewToolWindow)
 nmap <leader>p <Action>(ParameterInfo)
 
 " File operations
