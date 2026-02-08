@@ -34,15 +34,15 @@ disabled = true
 disabled = true
 
 [git_status]
-format = '[$modified$staged$stashed$conflicted]($style) '
+format = '[$modified$staged$stashed$conflicted$untracked]($style) '
 style = "#EE5396"
 modified = "~"
 staged = "+"
 stashed = "\\$"
 conflicted = "!"
-ahead = ""
-behind = ""
-untracked = ""
+ahead = "⇡"
+behind = "⇣"
+untracked = "?"
 ignore_submodules = true
 
 [git_branch]
@@ -61,7 +61,7 @@ disabled = true
 [directory]
 format = "[ $path]($style) "
 truncation_length = 3
-style = "#33B1FF"
+style = "#25be6a"
 truncate_to_repo = true
 
 [cmd_duration]
