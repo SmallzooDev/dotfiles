@@ -7,7 +7,9 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     backends = { "treesitter", "lsp", "markdown", "man" },
+    attach_mode = "global",
     layout = {
+      placement = "edge",
       default_direction = "prefer_left",
       min_width = 30,
       max_width = { 40, 0.2 },
