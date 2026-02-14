@@ -38,6 +38,7 @@ alias n='nvim .'
 alias vip='cd ~/public_vault && nvim home.md'
 alias vis='cd ~/private_vault && nvim home.md'
 alias vid='cd ~/dotfiles && nvim .'
+alias ch='vi ~/public_vault/cheatsheet.md'
 
 # Scripts
 alias ii='./init.sh'
