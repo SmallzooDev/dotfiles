@@ -6,6 +6,9 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
+    win_options = {
+      conceallevel = { default = vim.o.conceallevel, rendered = 2 },
+    },
     anti_conceal = {
       enabled = true,
     },
@@ -28,14 +31,14 @@ return {
     code = {
       enabled = true,
       sign = false,
-      style = "language",
+      style = "full",
       width = "full",
       left_pad = 1,
       right_pad = 1,
       language_pad = 1,
-      border = "none",
-      highlight = "",
-      highlight_border = "",
+      border = "thin",
+      highlight = "RenderMarkdownCode",
+      highlight_border = "RenderMarkdownCodeBorder",
     },
     bullet = {
       enabled = true,

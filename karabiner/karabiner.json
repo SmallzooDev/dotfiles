@@ -1001,7 +1001,7 @@
                         },
                         {
                             "from": { "key_code": "escape" },
-                            "to": [{ "key_code": "f8" }]
+                            "to": [{ "key_code": "f14" }]
                         }
                     ]
                 },
@@ -1040,33 +1040,11 @@
                     "to": [{ "key_code": "left_control" }]
                 },
                 {
-                    "from": { "key_code": "f2" },
-                    "to": [{ "key_code": "f8" }]
-                },
-                {
-                    "from": { "key_code": "f3" },
-                    "to": [
-                        {
-                            "key_code": "semicolon",
-                            "modifiers": ["left_shift"]
-                        }
-                    ]
-                },
-                {
                     "from": { "key_code": "f13" },
                     "to": [
                         {
                             "key_code": "semicolon",
                             "modifiers": ["left_shift"]
-                        }
-                    ]
-                },
-                {
-                    "from": { "key_code": "f14" },
-                    "to": [
-                        {
-                            "key_code": "f",
-                            "modifiers": ["left_control"]
                         }
                     ]
                 }

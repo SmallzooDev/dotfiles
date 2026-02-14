@@ -26,7 +26,7 @@ opt.splitbelow = true
 
 opt.swapfile = false
 
-opt.conceallevel = 1
+opt.conceallevel = 0
 
 opt.undofile = true
 
