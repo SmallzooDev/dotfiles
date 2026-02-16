@@ -4,6 +4,8 @@
 # Basic environment
 export EDITOR=nvim
 
+setopt SHARE_HISTORY
+
 # Development utilities
 source ~/dev-utils/shell/devenv.zsh
 
@@ -56,8 +58,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ports='lsof -i -P'
 
-# Load plugins directly (much faster than oh-my-zsh)
-# These are installed via oh-my-zsh, so we use those paths
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
