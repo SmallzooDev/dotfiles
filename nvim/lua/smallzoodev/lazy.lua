@@ -24,9 +24,6 @@ require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoo
     border = "rounded",
   },
   performance = {
-    cache = {
-      enabled = true,
-    },
     rtp = {
       disabled_plugins = {
         "gzip",

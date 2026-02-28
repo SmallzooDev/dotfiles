@@ -4,7 +4,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
-  event = { "BufReadPre", "BufNewFile" },
+  cmd = { "AerialToggle", "AerialOpen", "AerialNext", "AerialPrev" },
   opts = {
     backends = { "treesitter", "lsp", "markdown", "man" },
     attach_mode = "global",

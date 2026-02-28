@@ -54,12 +54,6 @@ return {
           "<cmd>FzfLua lsp_typedefs<CR>",
           vim.tbl_extend("force", opts, { desc = "Show LSP type definitions" })
         )
-        keymap.set(
-          "n",
-          "gu",
-          "<cmd>FzfLua lsp_references<CR>",
-          vim.tbl_extend("force", opts, { desc = "Show LSP references (usages)" })
-        )
         keymap.set("n", "gI", function()
           vim.lsp.buf.typehierarchy("supertypes")
         end, vim.tbl_extend("force", opts, { desc = "Go to super/parent type" }))
@@ -113,8 +107,10 @@ return {
           vim.diagnostic.config({ virtual_text = not config.virtual_text and { spacing = 2 } or false })
         end, vim.tbl_extend("force", opts, { desc = "Toggle diagnostics virtual text" }))
 
+        local group = vim.api.nvim_create_augroup("LspCursorHold_" .. ev.buf, { clear = true })
         vim.api.nvim_create_autocmd("CursorHold", {
           buffer = ev.buf,
+          group = group,
           callback = function()
             vim.diagnostic.open_float({ focusable = false, scope = "cursor" })
           end,
