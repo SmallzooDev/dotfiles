@@ -66,7 +66,9 @@ return {
           vim.tbl_extend("force", opts, { desc = "Code actions" })
         )
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-        keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+        keymap.set("n", "<leader>k", function()
+          vim.lsp.buf.hover({ border = "rounded" })
+        end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         -- Helix-style Space prefix: LSP pickers
         keymap.set("n", "<leader>s", function()
