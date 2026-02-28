@@ -193,16 +193,6 @@ return {
       },
     })
 
-    vim.lsp.config("marksman", {
-      root_dir = function(fname)
-        local util = require("lspconfig.util")
-        if fname:match("vimwiki/") then
-          return nil
-        end
-        return util.root_pattern(".git", ".marksman.toml")(fname)
-      end,
-    })
-
     vim.lsp.config("clangd", {
       cmd = {
         "clangd",
@@ -213,6 +203,6 @@ return {
       },
     })
 
-    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "marksman", "rust_analyzer", "clangd" })
+    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "rust_analyzer", "clangd" })
   end,
 }

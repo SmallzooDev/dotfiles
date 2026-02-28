@@ -17,6 +17,12 @@ return {
     fzf.register_ui_select()
     fzf.setup({
       "telescope",
+      hls = {
+        normal = "Normal",
+        border = "FloatBorder",
+        preview_normal = "Normal",
+        preview_border = "FloatBorder",
+      },
       winopts = {
         height = 0.85,
         width = 0.80,
