@@ -4,7 +4,7 @@ return {
   config = function()
     require("nightfox").setup({
       options = {
-        transparent = false,
+        transparent = true,
         terminal_colors = true,
         styles = {},
       },
