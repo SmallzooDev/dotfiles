@@ -20,7 +20,7 @@ window-padding-y = 10,0
 # =============================================================================
 # Background Image
 # =============================================================================
-background-image = ~/Documents/backgrounds/totoroblack.png
+background-image = ~/Documents/backgrounds/totoro_first.png
 background-image-opacity = 0.20
 background-image-position = center
 background-image-fit = cover
