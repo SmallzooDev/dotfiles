@@ -47,6 +47,9 @@ alias ii='./init.sh'
 alias rr='./run.sh'
 alias ss='./submit.sh'
 
+# Racket
+alias rkt='racket -l sicp -i'
+
 # LLM Agents
 alias cl='claude'
 alias gem='gemini'
