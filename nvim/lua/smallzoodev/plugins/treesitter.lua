@@ -20,6 +20,7 @@ local ensure_installed = {
   "gosum",
   "rust",
   "toml",
+  "racket",
 }
 
 return {
