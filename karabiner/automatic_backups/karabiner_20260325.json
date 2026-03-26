@@ -996,6 +996,10 @@
                             "to": [{ "key_code": "f8" }]
                         },
                         {
+                            "from": { "key_code": "escape" },
+                            "to": [{ "key_code": "f14" }]
+                        },
+                        {
                             "from": { "key_code": "grave_accent_and_tilde" },
                             "to": [{ "key_code": "escape" }]
                         }
@@ -1015,10 +1019,6 @@
                         {
                             "from": { "key_code": "escape" },
                             "to": [{ "key_code": "f14" }]
-                        },
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "escape" }]
                         }
                     ]
                 },
