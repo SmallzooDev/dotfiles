@@ -1,69 +1,86 @@
 return {
-  "EdenEast/nightfox.nvim",
+  "rose-pine/neovim",
+  name = "rose-pine",
   priority = 1000,
   config = function()
-    require("nightfox").setup({
-      options = {
-        transparent = true,
-        terminal_colors = true,
-        styles = {},
+    require("rose-pine").setup({
+      variant = "main",
+      styles = {
+        transparency = true,
       },
     })
 
-    vim.cmd("colorscheme carbonfox")
+    vim.cmd("colorscheme rose-pine")
 
-    local p = require("nightfox.palette").load("carbonfox")
     local hl = function(name, val)
       vim.api.nvim_set_hl(0, name, val)
     end
 
-    -- Unified popup backgrounds: all floats match editor bg
-    hl("NormalFloat", { bg = p.bg1 })
-    hl("FloatBorder", { fg = p.bg4, bg = p.bg1 })
-    hl("Pmenu", { bg = p.bg1 })
-    hl("PmenuSel", { bg = p.sel0, fg = p.fg1, bold = true })
-    hl("PmenuSbar", { bg = p.bg2 })
-    hl("PmenuThumb", { bg = p.bg4 })
+    local p = {
+      base = "#191724",
+      surface = "#1f1d2e",
+      overlay = "#26233a",
+      muted = "#6e6a86",
+      subtle = "#908caa",
+      text = "#e0def4",
+      love = "#eb6f92",
+      gold = "#f6c177",
+      rose = "#ebbcba",
+      pine = "#31748f",
+      foam = "#9ccfd8",
+      iris = "#c4a7e7",
+      highlight_low = "#21202e",
+      highlight_med = "#403d52",
+      highlight_high = "#524f67",
+    }
+
+    -- Unified popup backgrounds: transparent to match editor
+    hl("NormalFloat", { bg = "NONE" })
+    hl("FloatBorder", { fg = p.muted, bg = "NONE" })
+    hl("Pmenu", { bg = "NONE" })
+    hl("PmenuSel", { bg = p.overlay, fg = p.text, bold = true })
+    hl("PmenuSbar", { bg = p.overlay })
+    hl("PmenuThumb", { bg = p.highlight_high })
 
     -- Blink-cmp (completion, docs, signature)
-    hl("BlinkCmpMenu", { bg = p.bg1 })
-    hl("BlinkCmpMenuBorder", { fg = p.bg4, bg = p.bg1 })
-    hl("BlinkCmpDoc", { bg = p.bg1 })
-    hl("BlinkCmpDocBorder", { fg = p.bg4, bg = p.bg1 })
-    hl("BlinkCmpSignatureHelp", { bg = p.bg1 })
-    hl("BlinkCmpSignatureHelpBorder", { fg = p.bg4, bg = p.bg1 })
+    hl("BlinkCmpMenu", { bg = "NONE" })
+    hl("BlinkCmpMenuBorder", { fg = p.muted, bg = "NONE" })
+    hl("BlinkCmpDoc", { bg = "NONE" })
+    hl("BlinkCmpDocBorder", { fg = p.muted, bg = "NONE" })
+    hl("BlinkCmpSignatureHelp", { bg = "NONE" })
+    hl("BlinkCmpSignatureHelpBorder", { fg = p.muted, bg = "NONE" })
 
     -- Which-key
-    hl("WhichKeyNormal", { bg = p.bg1 })
-    hl("WhichKeyBorder", { fg = p.bg4, bg = p.bg1 })
+    hl("WhichKeyNormal", { bg = "NONE" })
+    hl("WhichKeyBorder", { fg = p.muted, bg = "NONE" })
 
     -- Lazy.nvim UI
-    hl("LazyNormal", { bg = p.bg1 })
+    hl("LazyNormal", { bg = "NONE" })
 
     -- Snacks notifications
-    hl("SnacksNotifierInfo", { bg = p.bg1 })
-    hl("SnacksNotifierWarn", { bg = p.bg1 })
-    hl("SnacksNotifierError", { bg = p.bg1 })
-    hl("SnacksNotifierDebug", { bg = p.bg1 })
-    hl("SnacksNotifierTrace", { bg = p.bg1 })
-    hl("SnacksNotifierBorderInfo", { fg = p.bg4, bg = p.bg1 })
-    hl("SnacksNotifierBorderWarn", { fg = p.bg4, bg = p.bg1 })
-    hl("SnacksNotifierBorderError", { fg = p.bg4, bg = p.bg1 })
-    hl("SnacksNotifierBorderDebug", { fg = p.bg4, bg = p.bg1 })
-    hl("SnacksNotifierBorderTrace", { fg = p.bg4, bg = p.bg1 })
+    hl("SnacksNotifierInfo", { bg = "NONE" })
+    hl("SnacksNotifierWarn", { bg = "NONE" })
+    hl("SnacksNotifierError", { bg = "NONE" })
+    hl("SnacksNotifierDebug", { bg = "NONE" })
+    hl("SnacksNotifierTrace", { bg = "NONE" })
+    hl("SnacksNotifierBorderInfo", { fg = p.muted, bg = "NONE" })
+    hl("SnacksNotifierBorderWarn", { fg = p.muted, bg = "NONE" })
+    hl("SnacksNotifierBorderError", { fg = p.muted, bg = "NONE" })
+    hl("SnacksNotifierBorderDebug", { fg = p.muted, bg = "NONE" })
+    hl("SnacksNotifierBorderTrace", { fg = p.muted, bg = "NONE" })
 
     -- Other custom highlights
-    hl("NonText", { fg = "#a3a9b5" })
-    hl("CursorLineNr", { fg = "#25be6a" })
+    hl("NonText", { fg = p.subtle })
+    hl("CursorLineNr", { fg = p.rose })
 
     -- Render-markdown heading colors
     local heading_colors = {
-      { fg = p.red.base, bold = true },
-      { fg = p.cyan.base, bold = true },
-      { fg = p.green.base, bold = true },
-      { fg = p.magenta.base },
-      { fg = p.blue.base },
-      { fg = p.yellow.base },
+      { fg = p.love, bold = true },
+      { fg = p.foam, bold = true },
+      { fg = p.pine, bold = true },
+      { fg = p.iris },
+      { fg = p.gold },
+      { fg = p.rose },
     }
     for i, c in ipairs(heading_colors) do
       hl("RenderMarkdownH" .. i, c)

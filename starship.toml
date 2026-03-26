@@ -35,7 +35,7 @@ disabled = true
 
 [git_status]
 format = '[$modified$staged$stashed$conflicted$untracked]($style) '
-style = "#EE5396"
+style = "#eb6f92"
 modified = "~"
 staged = "+"
 stashed = "\\$"
@@ -47,7 +47,7 @@ ignore_submodules = true
 
 [git_branch]
 format = "[ $branch]($style) "
-style = "#78A9FF"
+style = "#31748f"
 
 [git_commit]
 disabled = true
@@ -61,18 +61,18 @@ disabled = true
 [directory]
 format = "[ $path]($style) "
 truncation_length = 3
-style = "#25be6a"
+style = "#ebbcba"
 truncate_to_repo = true
 
 [cmd_duration]
 format = "[took $duration]($style) "
-style = "#b6b8bb"
+style = "#908caa"
 
 [status]
 disabled = false
 format = "[exit $status]($style) "
-style = "#EE5396"
+style = "#eb6f92"
 
 [character]
-success_symbol = "[❯](#25be6a)"
-error_symbol = "[❯](#EE5396)"
+success_symbol = "[❯](#ebbcba)"
+error_symbol = "[❯](#eb6f92)"
