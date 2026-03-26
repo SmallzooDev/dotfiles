@@ -18,7 +18,15 @@ return {
     fzf.setup({
       "telescope",
       fzf_colors = true,
-      fzf_opts = { ["--color"] = "bg:-1,gutter:-1" },
+      fzf_opts = { ["--color"] = "bg:-1,gutter:-1,border:#54546D" },
+      hls = {
+        normal = "Normal",
+        border = "FloatBorder",
+        preview_normal = "Normal",
+        preview_border = "FloatBorder",
+        title = "FloatTitle",
+        preview_title = "FloatTitle",
+      },
       winopts = {
         height = 0.85,
         width = 0.80,
@@ -27,6 +35,7 @@ return {
           border = "border",
           layout = "flex",
           flip_columns = 120,
+          winopts = { number = false },
         },
       },
       keymap = {

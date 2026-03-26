@@ -84,8 +84,8 @@ export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --excl
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 
-# Rose Pine theme for FZF
-export FZF_DEFAULT_OPTS="--color=bg+:#26233a,bg:#191724,spinner:#c4a7e7,hl:#eb6f92 --color=fg:#e0def4,header:#eb6f92,info:#31748f,pointer:#9ccfd8 --color=marker:#ebbcba,fg+:#e0def4,prompt:#c4a7e7,hl+:#eb6f92 --color=selected-bg:#403d52"
+# Kanagawa theme for FZF
+export FZF_DEFAULT_OPTS="--color=bg+:#2A2A37,bg:#1F1F28,spinner:#957FB8,hl:#FF5D62 --color=fg:#DCD7BA,header:#FF5D62,info:#7E9CD8,pointer:#7FB4CA --color=marker:#98BB6C,fg+:#DCD7BA,prompt:#957FB8,hl+:#FF5D62 --color=selected-bg:#2D4F67"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
