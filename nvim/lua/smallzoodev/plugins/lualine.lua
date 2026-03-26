@@ -8,7 +8,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "kanagawa",
+        theme = "rose-pine",
       },
       sections = {
         lualine_c = {
@@ -19,7 +19,7 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#E6C384" },
+            color = { fg = "#f6c177" },
           },
           { "fileformat", symbols = { unix = "" } },
           { "filetype" },

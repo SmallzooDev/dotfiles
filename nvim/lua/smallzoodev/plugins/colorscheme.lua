@@ -1,67 +1,67 @@
 return {
-  "rebelot/kanagawa.nvim",
+  "rose-pine/neovim",
+  name = "rose-pine",
   priority = 1000,
   config = function()
-    require("kanagawa").setup({
-      transparent = true,
-      theme = "wave",
-      overrides = function(colors)
-        local none = { bg = "NONE" }
-        return {
-          -- Floats & popups
-          NormalFloat = none,
-          FloatBorder = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          FloatTitle = none,
-          Pmenu = none,
+    require("rose-pine").setup({
+      variant = "moon",
+      styles = {
+        transparency = true,
+      },
+      highlight_groups = {
+        -- Floats & popups
+        NormalFloat = { bg = "NONE" },
+        FloatBorder = { fg = "muted", bg = "NONE" },
+        FloatTitle = { bg = "NONE" },
+        Pmenu = { bg = "NONE" },
 
-          -- Sidebars & panels
-          NormalDark = none,
-          LazyNormal = none,
-          MasonNormal = none,
-          TroubleNormal = none,
-          TroubleNormalNC = none,
+        -- Sidebars & panels
+        NormalDark = { bg = "NONE" },
+        LazyNormal = { bg = "NONE" },
+        MasonNormal = { bg = "NONE" },
+        TroubleNormal = { bg = "NONE" },
+        TroubleNormalNC = { bg = "NONE" },
 
-          -- Gutter
-          SignColumn = none,
-          LineNr = none,
-          CursorLineSign = none,
-          FoldColumn = none,
-          DiagnosticSignError = none,
-          DiagnosticSignWarn = none,
-          DiagnosticSignInfo = none,
-          DiagnosticSignHint = none,
-          GitSignsAdd = none,
-          GitSignsChange = none,
-          GitSignsDelete = none,
+        -- Gutter
+        SignColumn = { bg = "NONE" },
+        LineNr = { bg = "NONE" },
+        CursorLineSign = { bg = "NONE" },
+        FoldColumn = { bg = "NONE" },
+        DiagnosticSignError = { bg = "NONE" },
+        DiagnosticSignWarn = { bg = "NONE" },
+        DiagnosticSignInfo = { bg = "NONE" },
+        DiagnosticSignHint = { bg = "NONE" },
+        GitSignsAdd = { bg = "NONE" },
+        GitSignsChange = { bg = "NONE" },
+        GitSignsDelete = { bg = "NONE" },
 
-          -- Plugin floats
-          WhichKeyNormal = none,
-          WhichKeyBorder = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          BlinkCmpMenu = none,
-          BlinkCmpMenuBorder = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          BlinkCmpDoc = none,
-          BlinkCmpDocBorder = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          BlinkCmpSignatureHelp = none,
-          BlinkCmpSignatureHelpBorder = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          SnacksNotifierInfo = none,
-          SnacksNotifierWarn = none,
-          SnacksNotifierError = none,
-          SnacksNotifierDebug = none,
-          SnacksNotifierTrace = none,
-          SnacksNotifierBorderInfo = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          SnacksNotifierBorderWarn = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          SnacksNotifierBorderError = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          SnacksNotifierBorderDebug = { fg = colors.theme.ui.nontext, bg = "NONE" },
-          SnacksNotifierBorderTrace = { fg = colors.theme.ui.nontext, bg = "NONE" },
-        }
-      end,
+        -- Plugin floats
+        WhichKeyNormal = { bg = "NONE" },
+        WhichKeyBorder = { fg = "muted", bg = "NONE" },
+        BlinkCmpMenu = { bg = "NONE" },
+        BlinkCmpMenuBorder = { fg = "muted", bg = "NONE" },
+        BlinkCmpDoc = { bg = "NONE" },
+        BlinkCmpDocBorder = { fg = "muted", bg = "NONE" },
+        BlinkCmpSignatureHelp = { bg = "NONE" },
+        BlinkCmpSignatureHelpBorder = { fg = "muted", bg = "NONE" },
+        SnacksNotifierInfo = { bg = "NONE" },
+        SnacksNotifierWarn = { bg = "NONE" },
+        SnacksNotifierError = { bg = "NONE" },
+        SnacksNotifierDebug = { bg = "NONE" },
+        SnacksNotifierTrace = { bg = "NONE" },
+        SnacksNotifierBorderInfo = { fg = "muted", bg = "NONE" },
+        SnacksNotifierBorderWarn = { fg = "muted", bg = "NONE" },
+        SnacksNotifierBorderError = { fg = "muted", bg = "NONE" },
+        SnacksNotifierBorderDebug = { fg = "muted", bg = "NONE" },
+        SnacksNotifierBorderTrace = { fg = "muted", bg = "NONE" },
+      },
     })
 
-    vim.cmd("colorscheme kanagawa-wave")
+    vim.cmd("colorscheme rose-pine-moon")
 
     -- Render-markdown heading colors
-    local p = require("kanagawa.colors").setup({ theme = "wave" }).palette
-    local headings = { p.peachRed, p.springBlue, p.springGreen, p.oniViolet, p.crystalBlue, p.carpYellow }
+    local p = require("rose-pine.palette")
+    local headings = { p.love, p.foam, p.pine, p.iris, p.gold, p.rose }
     for i, color in ipairs(headings) do
       local val = { fg = color, bold = i <= 3 }
       vim.api.nvim_set_hl(0, "RenderMarkdownH" .. i, val)
