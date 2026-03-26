@@ -22,6 +22,11 @@ return {
         TroubleNormal = { bg = "NONE" },
         TroubleNormalNC = { bg = "NONE" },
 
+        -- Split separator
+        WinSeparator = { fg = "subtle" },
+        StatusLine = { bg = "highlight_med" },
+        StatusLineNC = { fg = "subtle", bg = "highlight_med" },
+
         -- Gutter
         SignColumn = { bg = "NONE" },
         LineNr = { bg = "NONE" },

@@ -28,6 +28,9 @@ return {
       indent = {
         with_expanders = true,
       },
+      diagnostics = {
+        enabled = false,
+      },
     },
   },
 }
