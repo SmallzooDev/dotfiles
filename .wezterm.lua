@@ -18,7 +18,7 @@ config.background = {
 		vertical_align = "Middle",
 	},
 	{
-		source = { Color = "#232136" },
+		source = { Color = "#191724" },
 		width = "100%",
 		height = "100%",
 		opacity = 0.92,
