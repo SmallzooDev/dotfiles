@@ -28,11 +28,6 @@ alias cdp='cd ~/public_vault'
 alias cds='cd ~/private_vault'
 alias cdd='cd ~/dotfiles'
 
-# Safety
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
 # Editor
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 alias vi='nvim'
