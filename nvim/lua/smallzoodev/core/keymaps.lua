@@ -55,7 +55,7 @@ keymap.set("n", "gp", function()
     line = nil
   end
 
-  file = vim.fn.expand(file)
+  file = vim.fn.fnamemodify(file, ":p")
   vim.cmd("edit " .. vim.fn.fnameescape(file))
 
   if line then
