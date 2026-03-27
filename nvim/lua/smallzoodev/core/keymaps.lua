@@ -39,7 +39,7 @@ keymap.set("n", "yp", function()
 end, { desc = "Copy file path with line number" })
 
 keymap.set("n", "gp", function()
-  local clipboard = vim.fn.getreg("+")
+  local clipboard = vim.trim(vim.fn.getreg("+"))
   local input = clipboard
 
   if clipboard == "" or clipboard:match("^%s*$") then
