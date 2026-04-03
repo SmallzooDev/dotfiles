@@ -30,6 +30,7 @@ return {
             height = math.floor(vim.o.lines * 0.8),
           }
         end,
+        border = "rounded",
       },
     },
     default_component_configs = {
