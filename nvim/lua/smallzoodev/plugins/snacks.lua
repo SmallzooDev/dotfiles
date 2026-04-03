@@ -11,6 +11,7 @@ return {
           { icon = " ", key = "e", desc = "Explorer", action = ":Neotree float" },
           { icon = "󰈞 ", key = "f", desc = "Find File", action = ":lua require('fzf-lua').files()" },
           { icon = "󰮗 ", key = "g", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
+          { icon = " ", key = "d", desc = "Git Diff", action = ":lua require('fzf-lua').git_status()" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy" },
