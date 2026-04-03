@@ -3,14 +3,69 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   cmd = "FzfLua",
   keys = {
-    { "<leader>f", function() require("fzf-lua").files() end, desc = "Find files" },
-    { "<leader>F", function() require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") }) end, desc = "Find files (buffer dir)" },
-    { "<leader>b", function() require("fzf-lua").buffers() end, desc = "Find buffers" },
-    { "<leader>/", function() require("fzf-lua").live_grep() end, desc = "Live grep" },
-    { "<leader>?", function() require("fzf-lua").keymaps() end, desc = "Find keymaps" },
-    { "<leader>'", function() require("fzf-lua").resume() end, desc = "Resume last picker" },
-    { "<leader>d", function() require("fzf-lua").diagnostics_document() end, desc = "Document diagnostics" },
-    { "<leader>D", function() require("fzf-lua").diagnostics_workspace() end, desc = "Workspace diagnostics" },
+    {
+      "<leader>f",
+      function()
+        require("fzf-lua").files()
+      end,
+      desc = "Find files",
+    },
+    {
+      "<leader>F",
+      function()
+        require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
+      end,
+      desc = "Find files (buffer dir)",
+    },
+    {
+      "<leader>b",
+      function()
+        require("fzf-lua").buffers()
+      end,
+      desc = "Find buffers",
+    },
+    {
+      "<leader>/",
+      function()
+        require("fzf-lua").live_grep()
+      end,
+      desc = "Live grep",
+    },
+    {
+      "<leader>?",
+      function()
+        require("fzf-lua").keymaps()
+      end,
+      desc = "Find keymaps",
+    },
+    {
+      "<leader>'",
+      function()
+        require("fzf-lua").resume()
+      end,
+      desc = "Resume last picker",
+    },
+    {
+      "<leader>d",
+      function()
+        require("fzf-lua").git_status()
+      end,
+      desc = "Git diff",
+    },
+    {
+      "<leader>D",
+      function()
+        require("fzf-lua").diagnostics_document()
+      end,
+      desc = "Document diagnostics",
+    },
+    {
+      "<leader>W",
+      function()
+        require("fzf-lua").diagnostics_workspace()
+      end,
+      desc = "Workspace diagnostics",
+    },
   },
   config = function()
     local fzf = require("fzf-lua")
