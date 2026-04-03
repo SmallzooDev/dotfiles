@@ -4,6 +4,38 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
+    dashboard = {
+      enabled = true,
+      preset = {
+        keys = {
+          { icon = " ", key = "e", desc = "Explorer", action = ":Neotree float" },
+          { icon = "󰈞 ", key = "f", desc = "Find File", action = ":lua require('fzf-lua').files()" },
+          { icon = "󰮗 ", key = "g", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy" },
+          {
+            icon = " ",
+            key = "c",
+            desc = "Config",
+            action = ":lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })",
+          },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+        header = [[
+ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+      },
+      sections = {
+        { section = "header" },
+        { section = "keys", gap = 1, padding = 1 },
+        { section = "startup" },
+      },
+    },
     notifier = {
       enabled = true,
       timeout = 3000,
