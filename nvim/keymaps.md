@@ -68,8 +68,8 @@ Leader key: `Space`
 
 | Key | Action |
 |-----|--------|
-| `]h` | Next hunk |
-| `[h` | Previous hunk |
+| `]]` | Next hunk |
+| `[[` | Previous hunk |
 | `Space hs` | Stage hunk |
 | `Space hr` | Reset hunk |
 | `Space hS` | Stage buffer |
