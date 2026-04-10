@@ -97,7 +97,7 @@ return {
       desc = "Git Browse",
     },
     {
-      "]]",
+      "]h",
       function()
         require("snacks").words.jump(vim.v.count1)
       end,
@@ -105,7 +105,7 @@ return {
       mode = { "n", "t" },
     },
     {
-      "[[",
+      "[h",
       function()
         require("snacks").words.jump(-vim.v.count1)
       end,

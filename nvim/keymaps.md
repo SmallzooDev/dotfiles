@@ -227,8 +227,8 @@ Repeat:
 |-----|--------|
 | `Space un` | Dismiss notifications |
 | `Space uh` | Notification history |
-| `]]` | Next reference |
-| `[[` | Previous reference |
+| `]h` | Next reference |
+| `[h` | Previous reference |
 
 ## Formatting
 

@@ -21,10 +21,10 @@ window-padding-y = 10,0
 # =============================================================================
 # Background Image
 # =============================================================================
-background-image = ~/Documents/backgrounds/totoroblack.png
-background-image-opacity = 0.20
-background-image-position = center
-background-image-fit = cover
+# background-image = ~/Documents/backgrounds/totoroblack.png
+# background-image-opacity = 0.20
+# background-image-position = center
+# background-image-fit = cover
 
 # =============================================================================
 # Shell Integration
