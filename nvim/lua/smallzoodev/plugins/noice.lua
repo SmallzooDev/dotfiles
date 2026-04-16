@@ -11,7 +11,7 @@ return {
     },
     messages = {
       enabled = true,
-      view = "notify",
+      view = "mini",
     },
     popupmenu = {
       enabled = true,
