@@ -151,7 +151,6 @@ return {
             unusedparams = true,
           },
           staticcheck = true,
-          gofumpt = true,
           hints = {
             assignVariableTypes = true,
             compositeLiteralFields = true,
