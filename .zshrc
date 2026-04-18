@@ -50,6 +50,9 @@ alias cl='claude'
 alias gem='gemini'
 alias cdx='codex'
 
+# tmux: default to session 17
+alias t='tmux new-session -A -s 17'
+
 # Other aliases
 alias killp='kill -9'
 alias ll='ls -alF'
