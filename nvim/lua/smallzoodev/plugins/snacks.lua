@@ -69,7 +69,7 @@ return {
       desc = "Notification History",
     },
     {
-      "<leader>bd",
+      "<leader>B",
       function()
         require("snacks").bufdelete()
       end,
@@ -81,13 +81,6 @@ return {
         require("snacks").lazygit()
       end,
       desc = "Lazygit",
-    },
-    {
-      "<leader>gb",
-      function()
-        require("snacks").git.blame_line()
-      end,
-      desc = "Git Blame Line",
     },
     {
       "<leader>gB",
