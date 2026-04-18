@@ -45,7 +45,7 @@ alias ss='./submit.sh'
 # Racket
 alias rkt='racket -l sicp -i'
 
-# LLM Agents
+# LLM alias
 alias cl='claude'
 alias gem='gemini'
 alias cdx='codex'
