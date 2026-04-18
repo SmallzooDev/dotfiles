@@ -48,6 +48,7 @@ alias rkt='racket -l sicp -i'
 # LLM Agents
 alias cl='claude'
 alias gem='gemini'
+alias cdx='codex'
 
 # Other aliases
 alias killp='kill -9'
