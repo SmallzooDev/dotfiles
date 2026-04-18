@@ -105,18 +105,11 @@ return {
         end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
 
         keymap.set("n", "<leader>ld", function()
-          local config = vim.diagnostic.config()
-          vim.diagnostic.config({ virtual_text = not config.virtual_text and { spacing = 2 } or false })
-        end, vim.tbl_extend("force", opts, { desc = "Toggle diagnostics virtual text" }))
-
-        local group = vim.api.nvim_create_augroup("LspCursorHold_" .. ev.buf, { clear = true })
-        vim.api.nvim_create_autocmd("CursorHold", {
-          buffer = ev.buf,
-          group = group,
-          callback = function()
-            vim.diagnostic.open_float({ focusable = false, scope = "cursor" })
-          end,
-        })
+          if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) == 0 then
+            return
+          end
+          vim.diagnostic.open_float({ scope = "line" })
+        end, vim.tbl_extend("force", opts, { desc = "Show line diagnostic" }))
       end,
     })
 

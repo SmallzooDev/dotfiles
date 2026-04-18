@@ -26,18 +26,11 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
+    build = function()
+      require("nvim-treesitter").install(ensure_installed)
+    end,
     config = function()
       require("nvim-treesitter").setup()
-
-      -- Install missing parsers (replaces ensure_installed)
-      local installed = require("nvim-treesitter").get_installed()
-      local to_install = vim.tbl_filter(function(lang)
-        return not vim.list_contains(installed, lang)
-      end, ensure_installed)
-      if #to_install > 0 then
-        require("nvim-treesitter").install(to_install)
-      end
 
       -- Enable treesitter highlighting & indentation
       vim.api.nvim_create_autocmd("FileType", {
