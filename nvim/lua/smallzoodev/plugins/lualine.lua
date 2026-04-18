@@ -8,7 +8,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "rose-pine",
+        theme = "catppuccin-mocha",
       },
       sections = {
         lualine_c = {
@@ -19,7 +19,9 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#f6c177" },
+            color = function()
+              return { fg = require("catppuccin.palettes").get_palette("mocha").yellow }
+            end,
           },
           { "fileformat", symbols = { unix = "" } },
           { "filetype" },

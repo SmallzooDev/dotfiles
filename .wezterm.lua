@@ -18,7 +18,7 @@ config.background = {
 		vertical_align = "Middle",
 	},
 	{
-		source = { Color = "#191724" },
+		source = { Color = "#1e1e2e" },
 		width = "100%",
 		height = "100%",
 		opacity = 0.92,
@@ -27,11 +27,11 @@ config.background = {
 
 config.window_decorations = "RESIZE"
 
-config.color_scheme = "rose-pine-moon"
+config.color_scheme = "Catppuccin Mocha"
 config.colors = {
-	cursor_bg = "#ea9a97",
-	cursor_fg = "#232136",
-	cursor_border = "#ea9a97",
+	cursor_bg = "#94e2d5",
+	cursor_fg = "#1e1e2e",
+	cursor_border = "#94e2d5",
 }
 
 config.use_fancy_tab_bar = false
