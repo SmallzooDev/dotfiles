@@ -8,7 +8,6 @@ font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Apple SD Gothic Neo"
 font-size = 13
 theme = "Rose Pine Moon"
-background = #191724
 
 # =============================================================================
 # Window Appearance
@@ -21,7 +20,7 @@ window-padding-y = 10,0
 # =============================================================================
 # Background Image
 # =============================================================================
-background-image = ~/Documents/backgrounds/totoroblack.png
+background-image = ~/Documents/backgrounds/rose-pine-mac.jpg
 background-image-opacity = 0.20
 background-image-position = center
 background-image-fit = cover
