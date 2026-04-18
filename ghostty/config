@@ -20,8 +20,8 @@ window-padding-y = 10,0
 # =============================================================================
 # Background Image
 # =============================================================================
-background-image = ~/Documents/backgrounds/rose-pine-mac.jpg
-background-image-opacity = 0.13
+background-image = ~/Documents/backgrounds/rose-pine-mosai.png
+background-image-opacity = 0.10
 background-image-position = center
 background-image-fit = cover
 
