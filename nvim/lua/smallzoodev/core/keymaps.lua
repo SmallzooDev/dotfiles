@@ -111,6 +111,16 @@ local function reload_notify(msg, level)
   vim.notify(msg, level or vim.log.levels.INFO, { title = "Reload" })
 end
 
+local function reload_set_hl()
+  local sky = "#89dceb"
+  vim.api.nvim_set_hl(0, "ReloadFloatNormal", { bg = "NONE", fg = sky })
+  vim.api.nvim_set_hl(0, "ReloadFloatBorder", { bg = "NONE", fg = sky })
+  vim.api.nvim_set_hl(0, "ReloadFloatTitle", { bg = "NONE", fg = sky, bold = true })
+  vim.api.nvim_set_hl(0, "ReloadFloatCursorLine", { bg = sky, fg = "#1e1e2e", bold = true })
+end
+reload_set_hl()
+vim.api.nvim_create_autocmd("ColorScheme", { group = reload_aug, callback = reload_set_hl })
+
 local function pick_conflict_action(file, on_choice)
   local items = {
     { label = "Load disk  (discard local edits)", action = "load" },
@@ -139,6 +149,14 @@ local function pick_conflict_action(file, on_choice)
     style = "minimal",
   })
   vim.wo[win].cursorline = true
+  vim.wo[win].winblend = 0
+  vim.wo[win].winhl = table.concat({
+    "Normal:ReloadFloatNormal",
+    "NormalFloat:ReloadFloatNormal",
+    "FloatBorder:ReloadFloatBorder",
+    "FloatTitle:ReloadFloatTitle",
+    "CursorLine:ReloadFloatCursorLine",
+  }, ",")
 
   local function move(dir)
     local row = vim.api.nvim_win_get_cursor(win)[1]
