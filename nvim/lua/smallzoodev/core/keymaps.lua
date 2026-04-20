@@ -121,11 +121,11 @@ end
 reload_set_hl()
 vim.api.nvim_create_autocmd("ColorScheme", { group = reload_aug, callback = reload_set_hl })
 
-local function pick_conflict_action(file, on_choice)
+local function pick_conflict_action(file, idx, total, on_choice)
   local items = {
     { label = "Load disk  (discard local edits)", action = "load" },
     { label = "Keep local (ignore disk)", action = "keep" },
-    { label = "Diff       (vert split, manual)", action = "diff" },
+    { label = "Diff       (scratch split, manual)", action = "diff" },
   }
   local width = 42
   local buf = vim.api.nvim_create_buf(false, true)
@@ -137,6 +137,7 @@ local function pick_conflict_action(file, on_choice)
   vim.bo[buf].modifiable = false
   vim.bo[buf].bufhidden = "wipe"
 
+  local title = (" Conflict (%d/%d): %s "):format(idx, total, vim.fn.fnamemodify(file, ":t"))
   local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor",
     width = width,
@@ -144,7 +145,7 @@ local function pick_conflict_action(file, on_choice)
     col = math.floor((vim.o.columns - width) / 2),
     row = math.floor((vim.o.lines - #items) / 2),
     border = "rounded",
-    title = " Conflict: " .. vim.fn.fnamemodify(file, ":t") .. " ",
+    title = title,
     title_pos = "center",
     style = "minimal",
   })
@@ -184,6 +185,64 @@ local function pick_conflict_action(file, on_choice)
   vim.keymap.set("n", "<C-r>", "<nop>", kopts)
 end
 
+local conflict_queue = {}
+local conflict_active = false
+local conflict_batch_total = 0
+local conflict_batch_index = 0
+
+local function open_diff_scratch(buf, file)
+  if not vim.api.nvim_buf_is_valid(buf) then return end
+  local ok, disk_lines = pcall(vim.fn.readfile, file)
+  if not ok then
+    reload_notify("failed to read disk file: " .. file, vim.log.levels.ERROR)
+    return
+  end
+  local wins = vim.fn.win_findbuf(buf)
+  if #wins == 0 then
+    reload_notify("original buffer not visible", vim.log.levels.WARN)
+    return
+  end
+  vim.api.nvim_set_current_win(wins[1])
+  vim.cmd("diffthis")
+  vim.cmd("vnew")
+  local nbuf = vim.api.nvim_get_current_buf()
+  vim.bo[nbuf].buftype = "nofile"
+  vim.bo[nbuf].bufhidden = "wipe"
+  vim.bo[nbuf].swapfile = false
+  vim.api.nvim_buf_set_lines(nbuf, 0, -1, false, disk_lines)
+  vim.bo[nbuf].modifiable = false
+  local ft = vim.bo[buf].filetype
+  if ft and ft ~= "" then
+    vim.bo[nbuf].filetype = ft
+  end
+  pcall(vim.api.nvim_buf_set_name, nbuf, "disk://" .. vim.fn.fnamemodify(file, ":t"))
+  vim.cmd("diffthis")
+  vim.cmd("wincmd p")
+end
+
+local function process_next_conflict()
+  if #conflict_queue == 0 then
+    conflict_active = false
+    conflict_batch_total = 0
+    conflict_batch_index = 0
+    return
+  end
+  conflict_active = true
+  conflict_batch_index = conflict_batch_index + 1
+  local entry = table.remove(conflict_queue, 1)
+  pick_conflict_action(entry.file, conflict_batch_index, conflict_batch_total, function(action)
+    if action == "load" then
+      if vim.api.nvim_buf_is_valid(entry.buf) then
+        vim.api.nvim_buf_call(entry.buf, function() vim.cmd("edit!") end)
+        reload_notify(("loaded from disk: %s"):format(vim.fn.fnamemodify(entry.file, ":~:.")))
+      end
+    elseif action == "diff" then
+      open_diff_scratch(entry.buf, entry.file)
+    end
+    vim.schedule(process_next_conflict)
+  end)
+end
+
 vim.api.nvim_create_autocmd("FileChangedShell", {
   group = reload_aug,
   callback = function(args)
@@ -206,17 +265,12 @@ vim.api.nvim_create_autocmd("FileChangedShell", {
     end
 
     vim.v.fcs_choice = ""
+    table.insert(conflict_queue, { buf = buf, file = file })
+    conflict_batch_total = conflict_batch_total + 1
     vim.schedule(function()
-      pick_conflict_action(file, function(action)
-        if action == "load" then
-          vim.api.nvim_buf_call(buf, function() vim.cmd("edit!") end)
-          reload_notify(("loaded from disk: %s"):format(vim.fn.fnamemodify(file, ":~:.")))
-        elseif action == "diff" then
-          vim.api.nvim_buf_call(buf, function()
-            vim.cmd("vert diffsplit " .. vim.fn.fnameescape(file))
-          end)
-        end
-      end)
+      if not conflict_active then
+        process_next_conflict()
+      end
     end)
   end,
 })
