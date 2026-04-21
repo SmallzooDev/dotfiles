@@ -1058,7 +1058,7 @@
                 },
                 {
                     "from": { "key_code": "right_option" },
-                    "to": [{ "key_code": "f1" }]
+                    "to": [{ "key_code": "f12" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
