@@ -876,7 +876,7 @@
                         ]
                     },
                     {
-                        "description": "Double-tap shift (either) within 200ms → F1",
+                        "description": "Double-tap shift (either) within 200ms → F7",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -895,7 +895,7 @@
                                     { "key_code": "left_shift", "lazy": true }
                                 ],
                                 "to_if_alone": [
-                                    { "key_code": "f1" },
+                                    { "key_code": "f7" },
                                     {
                                         "set_variable": {
                                             "name": "shift_double_tap",
@@ -942,7 +942,7 @@
                                     { "key_code": "right_shift", "lazy": true }
                                 ],
                                 "to_if_alone": [
-                                    { "key_code": "f1" },
+                                    { "key_code": "f7" },
                                     {
                                         "set_variable": {
                                             "name": "shift_double_tap",
@@ -1232,10 +1232,6 @@
                             "modifiers": ["left_shift"]
                         }
                     ]
-                },
-                {
-                    "from": { "key_code": "right_option" },
-                    "to": [{ "key_code": "f1" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
