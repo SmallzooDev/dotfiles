@@ -862,7 +862,7 @@
                         ]
                     },
                     {
-                        "description": "Double-tap shift (either) within 200ms → F7",
+                        "description": "Double-tap shift (either) within 300ms → F7",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -908,7 +908,7 @@
                                     ]
                                 },
                                 "parameters": {
-                                    "basic.to_delayed_action_delay_milliseconds": 200
+                                    "basic.to_delayed_action_delay_milliseconds": 300
                                 }
                             },
                             {
@@ -955,7 +955,7 @@
                                     ]
                                 },
                                 "parameters": {
-                                    "basic.to_delayed_action_delay_milliseconds": 200
+                                    "basic.to_delayed_action_delay_milliseconds": 300
                                 }
                             },
                             {
@@ -994,7 +994,7 @@
                                     ]
                                 },
                                 "parameters": {
-                                    "basic.to_delayed_action_delay_milliseconds": 200
+                                    "basic.to_delayed_action_delay_milliseconds": 300
                                 }
                             },
                             {
@@ -1033,7 +1033,7 @@
                                     ]
                                 },
                                 "parameters": {
-                                    "basic.to_delayed_action_delay_milliseconds": 200
+                                    "basic.to_delayed_action_delay_milliseconds": 300
                                 }
                             }
                         ]
