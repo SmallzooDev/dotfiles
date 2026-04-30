@@ -63,15 +63,16 @@ disabled = true
 disabled = true
 
 [git_status]
-format = '[$modified$staged$stashed$conflicted$untracked]($style) '
+format = '[$conflicted$stashed$staged$modified$untracked$ahead_behind]($style) '
 style = "red"
-modified = "~"
-staged = "+"
-stashed = "\\$"
-conflicted = "!"
-ahead = "⇡"
-behind = "⇣"
-untracked = "?"
+modified = " "
+staged = " "
+stashed = " "
+conflicted = " "
+untracked = " "
+ahead = " "
+behind = " "
+diverged = " "
 ignore_submodules = true
 
 [git_branch]
