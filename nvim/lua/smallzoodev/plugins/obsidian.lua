@@ -35,7 +35,13 @@ return {
     end
 
     require("obsidian").setup({
-      ui = { enable = false },
+      ui = {
+        enable = false,
+        checkboxes = {
+          [" "] = { order = 1, char = "󰄱", hl_group = "ObsidianTodo" },
+          ["x"] = { order = 2, char = "", hl_group = "ObsidianDone" },
+        },
+      },
       mappings = {
         ["<CR>"] = {
           action = function()
@@ -80,23 +86,6 @@ return {
       end,
     })
 
-    vim.api.nvim_create_user_command("ObsidianRenameAndReload", function(opts)
-      local new_title = opts.args
-      if new_title == "" then
-        new_title = vim.fn.input("Enter new title: ")
-      end
-
-      if new_title ~= "" then
-        local new_filename = generate_note_filename(new_title)
-        vim.cmd("ObsidianRename " .. new_filename)
-
-        vim.defer_fn(function()
-          vim.cmd("checktime")
-          vim.cmd("bufdo e")
-        end, 500)
-      end
-    end, { nargs = "?" })
-
     -- Factory for creating PARA folder commands
     local function create_para_command(cmd_name, folder, template, prompt_text)
       vim.api.nvim_create_user_command(cmd_name, function(opts)
@@ -125,57 +114,14 @@ return {
     create_para_command("ObsidianNewProject", "01-Projects", "project", "Project name: ")
     create_para_command("ObsidianNewArea", "02-Areas", "area", "Area name: ")
     create_para_command("ObsidianNewResource", "03-Resources", "resource", "Resource name: ")
-
-    vim.api.nvim_create_user_command("ObsidianNewSequenced", function(opts)
-      local title = opts.args
-      if title == "" then
-        title = vim.fn.input("Note name: ")
-      end
-      if title ~= "" then
-        local current_dir
-        local current_file = vim.fn.expand("%:p")
-        if current_file ~= "" then
-          current_dir = vim.fn.fnamemodify(current_file, ":h")
-        else
-          current_dir = vim.fn.getcwd()
-        end
-
-        local files = vim.fn.glob(current_dir .. "/*", false, true)
-        local file_count = 0
-        for _, file in ipairs(files) do
-          if vim.fn.isdirectory(file) == 0 then
-            file_count = file_count + 1
-          end
-        end
-
-        local sequence = string.format("%04d", file_count)
-
-        local clean_title = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", "")
-
-        local final_name = sequence .. "-" .. clean_title .. ".md"
-        local full_path = current_dir .. "/" .. final_name
-
-        vim.cmd("edit " .. vim.fn.fnameescape(full_path))
-        vim.cmd("write")
-      end
-    end, { nargs = "?" })
   end,
   keys = {
-    { "<leader>Ob", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch", ft = "markdown" },
-    { "<leader>Os", "<cmd>ObsidianSearch<CR>", desc = "Search notes", ft = "markdown" },
-    { "<leader>On", "<cmd>ObsidianNewSequenced<CR>", desc = "New note", ft = "markdown" },
-    { "<leader>Or", "<cmd>ObsidianRenameAndReload<CR>", desc = "Rename note", ft = "markdown" },
     { "<leader>Ol", "<cmd>ObsidianLinks<CR>", desc = "List links", ft = "markdown" },
     { "<leader>Ot", "<cmd>ObsidianTags<CR>", desc = "Search tags", ft = "markdown" },
     { "<leader>Op", "<cmd>ObsidianNewProject<CR>", desc = "New project", ft = "markdown" },
     { "<leader>Oa", "<cmd>ObsidianNewArea<CR>", desc = "New area", ft = "markdown" },
     { "<leader>Oz", "<cmd>ObsidianNewResource<CR>", desc = "New resource", ft = "markdown" },
     { "<leader>td", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
-    { "<leader>ys", "<cmd>ObsidianYesterday<CR>", desc = "Yesterday's note", ft = "markdown" },
-    { "<leader>Od", "<cmd>ObsidianDailies<CR>", desc = "Browse dailies", ft = "markdown" },
-    { "<leader>Oat", "<cmd>ObsidianTemplate<CR>", desc = "Add template", ft = "markdown" },
-    { "<leader>Owc", "<cmd>ObsidianWorkspace<CR>", desc = "Change workspace", ft = "markdown" },
-    { "<leader>Oe", ":ObsidianExtractNote<CR>", desc = "Extract to new note", mode = "v", ft = "markdown" },
     { "<leader>Olx", ":ObsidianLink<CR>", desc = "Link to existing", mode = "v", ft = "markdown" },
     { "<leader>Oln", ":ObsidianLinkNew<CR>", desc = "Link to new note", mode = "v", ft = "markdown" },
   },
