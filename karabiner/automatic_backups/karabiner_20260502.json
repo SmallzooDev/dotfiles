@@ -865,10 +865,11 @@
                         "description": "Double-tap shift (either) within 300ms → F7",
                         "manipulators": [
                             {
+                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "name": "shift_double_tap",
                                         "type": "variable_if",
+                                        "name": "shift_double_tap",
                                         "value": 1
                                     }
                                 ],
@@ -876,31 +877,9 @@
                                     "key_code": "left_shift",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 300 },
                                 "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "lazy": true
-                                    }
+                                    { "key_code": "left_shift", "lazy": true }
                                 ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
                                 "to_if_alone": [
                                     { "key_code": "f7" },
                                     {
@@ -910,29 +889,8 @@
                                         }
                                     }
                                 ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "shift_double_tap",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 300 },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "lazy": true
-                                    }
-                                ],
                                 "to_delayed_action": {
-                                    "to_if_canceled": [
+                                    "to_if_invoked": [
                                         {
                                             "set_variable": {
                                                 "name": "shift_double_tap",
@@ -940,7 +898,7 @@
                                             }
                                         }
                                     ],
-                                    "to_if_invoked": [
+                                    "to_if_canceled": [
                                         {
                                             "set_variable": {
                                                 "name": "shift_double_tap",
@@ -949,6 +907,26 @@
                                         }
                                     ]
                                 },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 300
+                                }
+                            },
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "shift_double_tap",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "key_code": "right_shift", "lazy": true }
+                                ],
                                 "to_if_alone": [
                                     { "key_code": "f7" },
                                     {
@@ -958,38 +936,37 @@
                                         }
                                     }
                                 ],
-                                "type": "basic"
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 300
+                                }
                             },
                             {
+                                "type": "basic",
                                 "from": {
                                     "key_code": "left_shift",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 300 },
                                 "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "lazy": true
-                                    }
+                                    { "key_code": "left_shift", "lazy": true }
                                 ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
                                 "to_if_alone": [
                                     {
                                         "set_variable": {
@@ -998,38 +975,37 @@
                                         }
                                     }
                                 ],
-                                "type": "basic"
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 300
+                                }
                             },
                             {
+                                "type": "basic",
                                 "from": {
                                     "key_code": "right_shift",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 300 },
                                 "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "lazy": true
-                                    }
+                                    { "key_code": "right_shift", "lazy": true }
                                 ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "shift_double_tap",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
                                 "to_if_alone": [
                                     {
                                         "set_variable": {
@@ -1038,7 +1014,27 @@
                                         }
                                     }
                                 ],
-                                "type": "basic"
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "shift_double_tap",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 300
+                                }
                             }
                         ]
                     },
@@ -1177,6 +1173,10 @@
                         {
                             "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
                             "to": [{ "key_code": "f8" }]
+                        },
+                        {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "escape" }]
                         }
                     ]
                 },
@@ -1234,10 +1234,6 @@
                             "modifiers": ["left_shift"]
                         }
                     ]
-                },
-                {
-                    "from": { "key_code": "grave_accent_and_tilde" },
-                    "to": [{ "key_code": "escape" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
