@@ -297,7 +297,7 @@ keymap.set("n", "<C-r>", function()
   vim.cmd("checktime")
   local clients = vim.lsp.get_clients()
   if #clients > 0 then
-    vim.cmd("LspRestart")
+    vim.cmd("lsp restart")
   end
   reload_notify(("checked all buffers, restarted %d LSP client(s)"):format(#clients))
 end, { desc = "Reload all buffers + restart LSP" })

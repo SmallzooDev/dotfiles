@@ -96,7 +96,7 @@ return {
           vim.diagnostic.jump({ count = 1 })
         end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
 
-        keymap.set("n", "<leader>lr", ":LspRestart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
+        keymap.set("n", "<leader>lr", "<cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
         keymap.set("n", "<leader>ll", function()
           vim.cmd("edit " .. vim.lsp.get_log_path())
         end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
