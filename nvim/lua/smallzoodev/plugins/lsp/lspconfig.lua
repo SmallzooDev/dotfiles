@@ -2,6 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   lazy = false,
   dependencies = {
+    "mason-org/mason.nvim",
     "saghen/blink.cmp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
@@ -66,12 +67,7 @@ return {
           vim.tbl_extend("force", opts, { desc = "Code actions" })
         )
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-        keymap.set(
-          "n",
-          "<leader>k",
-          vim.lsp.buf.hover,
-          vim.tbl_extend("force", opts, { desc = "Hover documentation" })
-        )
+        keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         -- Helix-style Space prefix: LSP pickers
         keymap.set("n", "<leader>s", function()
@@ -101,6 +97,11 @@ return {
           vim.cmd("edit " .. vim.lsp.get_log_path())
         end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
         keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", vim.tbl_extend("force", opts, { desc = "LSP info" }))
+
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client:supports_method("textDocument/codeLens", ev.buf) then
+          vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+        end
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
         keymap.set("n", "<leader>lh", function()
@@ -143,10 +144,25 @@ return {
     vim.lsp.config("gopls", {
       settings = {
         gopls = {
-          analyses = {
-            unusedparams = true,
-          },
+          usePlaceholders = true,
           staticcheck = true,
+          semanticTokens = true,
+          directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-**/node_modules" },
+          codelenses = {
+            generate = true,
+            regenerate_cgo = true,
+            run_govulncheck = true,
+            test = true,
+            tidy = true,
+            upgrade_dependency = true,
+            vendor = true,
+          },
+          analyses = {
+            nilness = true,
+            unusedparams = true,
+            unusedwrite = true,
+            any = true,
+          },
           hints = {
             assignVariableTypes = true,
             compositeLiteralFields = true,
