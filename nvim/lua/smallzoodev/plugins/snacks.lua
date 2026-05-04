@@ -76,18 +76,11 @@ return {
       desc = "Delete Buffer",
     },
     {
-      "<leader>lg",
-      function()
-        require("snacks").lazygit()
-      end,
-      desc = "Lazygit",
-    },
-    {
-      "<leader>gB",
+      "<leader>gO",
       function()
         require("snacks").gitbrowse()
       end,
-      desc = "Git Browse",
+      desc = "Open in browser",
     },
     {
       "]h",

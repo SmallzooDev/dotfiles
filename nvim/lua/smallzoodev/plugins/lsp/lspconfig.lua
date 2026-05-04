@@ -15,10 +15,10 @@ return {
       virtual_text = false,
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = "󰬅",
-          [vim.diagnostic.severity.WARN] = "󱈸",
-          [vim.diagnostic.severity.HINT] = "󰫵",
-          [vim.diagnostic.severity.INFO] = "󰫶",
+          [vim.diagnostic.severity.ERROR] = "✗",
+          [vim.diagnostic.severity.WARN] = "➜",
+          [vim.diagnostic.severity.HINT] = "➜",
+          [vim.diagnostic.severity.INFO] = "➜",
         },
       },
       severity_sort = true,
@@ -55,10 +55,6 @@ return {
           "<cmd>FzfLua lsp_typedefs<CR>",
           vim.tbl_extend("force", opts, { desc = "Show LSP type definitions" })
         )
-        keymap.set("n", "gI", function()
-          vim.lsp.buf.typehierarchy("supertypes")
-        end, vim.tbl_extend("force", opts, { desc = "Go to super/parent type" }))
-
         -- Helix-style Space prefix: LSP actions
         keymap.set(
           { "n", "v" },
@@ -92,7 +88,7 @@ return {
           vim.diagnostic.jump({ count = 1 })
         end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
 
-        keymap.set("n", "<leader>lr", "<cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
+        keymap.set("n", "<leader>lR", "<cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
         keymap.set("n", "<leader>ll", function()
           vim.cmd("edit " .. vim.lsp.get_log_path())
         end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
@@ -101,6 +97,18 @@ return {
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client and client:supports_method("textDocument/codeLens", ev.buf) then
           vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+          keymap.set(
+            "n",
+            "<leader>lc",
+            vim.lsp.codelens.run,
+            vim.tbl_extend("force", opts, { desc = "Run codelens on current line" })
+          )
+          keymap.set(
+            "n",
+            "<leader>lC",
+            vim.lsp.codelens.refresh,
+            vim.tbl_extend("force", opts, { desc = "Refresh codelens" })
+          )
         end
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })

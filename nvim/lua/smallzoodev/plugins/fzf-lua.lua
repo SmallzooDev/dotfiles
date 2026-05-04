@@ -4,14 +4,14 @@ return {
   cmd = "FzfLua",
   keys = {
     {
-      "<leader>f",
+      "<leader>ff",
       function()
         require("fzf-lua").files()
       end,
       desc = "Find files",
     },
     {
-      "<leader>F",
+      "<leader>fF",
       function()
         require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
       end,
@@ -46,21 +46,14 @@ return {
       desc = "Resume last picker",
     },
     {
-      "<leader>d",
-      function()
-        require("fzf-lua").git_status()
-      end,
-      desc = "Git diff",
-    },
-    {
-      "<leader>D",
+      "<leader>fd",
       function()
         require("fzf-lua").diagnostics_document()
       end,
       desc = "Document diagnostics",
     },
     {
-      "<leader>W",
+      "<leader>fD",
       function()
         require("fzf-lua").diagnostics_workspace()
       end,

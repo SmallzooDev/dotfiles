@@ -10,6 +10,7 @@ return {
         yaml = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+
         go = { "gofumpt", "goimports" },
         rust = { "rustfmt" },
         c = { "clang-format" },

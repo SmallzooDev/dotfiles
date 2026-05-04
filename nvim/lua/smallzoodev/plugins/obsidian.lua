@@ -121,7 +121,7 @@ return {
     { "<leader>Op", "<cmd>ObsidianNewProject<CR>", desc = "New project", ft = "markdown" },
     { "<leader>Oa", "<cmd>ObsidianNewArea<CR>", desc = "New area", ft = "markdown" },
     { "<leader>Oz", "<cmd>ObsidianNewResource<CR>", desc = "New resource", ft = "markdown" },
-    { "<leader>td", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
+    { "<leader>OT", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
     { "<leader>Olx", ":ObsidianLink<CR>", desc = "Link to existing", mode = "v", ft = "markdown" },
     { "<leader>Oln", ":ObsidianLinkNew<CR>", desc = "Link to new note", mode = "v", ft = "markdown" },
   },
