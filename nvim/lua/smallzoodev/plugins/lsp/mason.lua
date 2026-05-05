@@ -41,6 +41,7 @@ return {
         "gofumpt",
         "goimports",
         "clang-format",
+        "delve",
       },
     })
   end,

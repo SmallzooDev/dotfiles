@@ -160,7 +160,7 @@ return {
             generate = true,
             regenerate_cgo = true,
             run_govulncheck = true,
-            test = true,
+            test = false,
             tidy = true,
             upgrade_dependency = true,
             vendor = true,

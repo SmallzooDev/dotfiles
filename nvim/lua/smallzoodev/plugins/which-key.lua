@@ -18,6 +18,7 @@ return {
       { "<leader>x", group = "Trouble", icon = "󰔫" },
       { "<leader>g", group = "Git", icon = "󰊢" },
       { "<leader>f", group = "Find", icon = "󰈞" },
+      { "<leader>d", group = "Debug", icon = "󰃤" },
       { "<leader>o", desc = "Toggle outline", icon = "󰊕" },
       { "<leader>O", group = "Obsidian", icon = "󰠗" },
       { "<leader>l", group = "LSP", icon = "󰒋" },
