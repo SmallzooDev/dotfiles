@@ -1,166 +1,456 @@
 " =============================================================================
-" BASIC SETTINGS
+" .ideavimrc — mirrors ~/.config/nvim (single source of truth)
+"
+" Convention: when a binding diverges between nvim and IdeaVim, nvim wins.
+" Pure-IDE conveniences that have no nvim counterpart live in clearly-marked
+" "IDE-only" sections so they never collide with nvim bindings.
+"
+" Matching nvim layout:
+"   nvim/lua/smallzoodev/core/options.lua       -> Section: OPTIONS
+"   nvim/lua/smallzoodev/core/keymaps.lua       -> Section: CORE KEYMAPS
+"   nvim/lua/smallzoodev/plugins/*.lua          -> Section: PLUGIN PARITY
+" =============================================================================
+
+" =============================================================================
+" OPTIONS  (mirrors nvim/core/options.lua + sane IdeaVim defaults)
 " =============================================================================
 
 set number
-set history=1000
-set hlsearch
+set relativenumber
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+
+set nowrap
 set ignorecase
-set incsearch
 set smartcase
-set matchpairs
+set hlsearch
+set incsearch
+
+set cursorline
+set scrolloff=8
+set sidescrolloff=8
+
+set clipboard+=unnamedplus
+set clipboard+=unnamed
+
+set splitright
+set splitbelow
+
+set history=1000
 set undolevels=2000
+set matchpairs
 set nrformats
 set visualbell
-set clipboard+=unnamed
+
+set timeoutlen=500
+
+" --- IdeaVim-specific
 set ideajoin
 set ideamarks
-" set trackactionids
+set ideastatusicon=gray
+set idearefactormode=keep
+" set trackactionids        " uncomment when discovering action IDs
+
+" =============================================================================
+" PLUGINS  (emulated; nvim plugin equivalents shown in comments)
+" =============================================================================
+
+" tpope/vim-surround                — replaces nvim mini.surround (sa/sd/sr aliases below)
+Plug 'tpope/vim-surround'
+set surround
+
+" tpope/vim-commentary              — replaces nvim mini.comment (gcc, gc{motion})
+Plug 'tpope/vim-commentary'
+set commentary
+
+" easymotion/vim-easymotion         — replaces nvim flash.nvim (s-prefix jumps)
+" Requires JetBrains plugins: AceJump + IdeaVim-EasyMotion
+Plug 'easymotion/vim-easymotion'
+set easymotion
+
+" machakann/vim-highlightedyank     — replaces visual feedback for yanks
+Plug 'machakann/vim-highlightedyank'
+set highlightedyank
+
+" vim-scripts/argtextobj.vim        — replaces nvim treesitter @parameter (aa/ia)
+Plug 'vim-scripts/argtextobj.vim'
+set argtextobj
+
+" kana/vim-textobj-entire           — handy for whole-buffer ops
+Plug 'kana/vim-textobj-entire'
+set textobj-entire
+
+" Function text-object              — replaces nvim treesitter @function (af/if)
+" Requires JetBrains plugin: IdeaVim FunctionTextObj
+set functiontextobj
+
+" Mini.ai                           — replaces nvim mini.ai text-objects
+set mini-ai
+
+" preservim/nerdtree                — kept for users who prefer NERDTree to ProjectView
+Plug 'preservim/nerdtree'
+set NERDTree
+
+" Which-Key                         — replaces nvim folke/which-key.nvim
+" Requires JetBrains plugin: Which-Key
+set which-key
 
 let mapleader=" "
 
 " =============================================================================
-" MANNUAL MAPPINGS
+" EASYMOTION CONFIG  (nvim flash.nvim parity for s-prefix jumps)
 " =============================================================================
 
-" Hide All Tool Windows  to Shift ESC
-
-
-" =============================================================================
-" PLUGINS
-" =============================================================================
-
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'easymotion/vim-easymotion'
-Plug 'preservim/nerdtree'
-
-" EasyMotion Configuration
 let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+
 nmap sf <Plug>(easymotion-f)
 nmap sF <Plug>(easymotion-F)
-nmap sk <Plug>(easymotion-k)
 nmap sj <Plug>(easymotion-j)
+nmap sk <Plug>(easymotion-k)
 nmap sw <Plug>(easymotion-w)
 nmap sb <Plug>(easymotion-b)
 
 " =============================================================================
-" KEY MAPPINGS - DISABLED KEYS
+" CORE KEYMAPS  (mirrors nvim/core/keymaps.lua)
 " =============================================================================
 
-nmap s <NOP>
+" Insert-mode escape
+inoremap jk <Esc>
 
-" =============================================================================
-" KEY MAPPINGS - BASIC VIM
-" =============================================================================
+" Increment / decrement number
+nnoremap <leader>+ <C-a>
+nnoremap <leader>- <C-x>
 
-" Hover documentation (synced with nvim)
-nmap K <Action>(QuickJavaDoc)
+" Window splits (matches nvim <leader>w group)
+nmap <leader>wv <Action>(SplitVertically)
+nmap <leader>ws <Action>(SplitHorizontally)
+nmap <leader>we <C-w>=
+nmap <leader>wx <Action>(Unsplit)
 
-" Command mode shortcut
-nnoremap <C-m> :
-vnoremap <C-m> :
-inoremap <C-m> <CR>
-cnoremap <C-m> <CR>
+" Buffer / tab navigation (nvim: <Tab>=bnext, <S-Tab>=bprev)
+nmap <Tab>     <Action>(NextTab)
+nmap <S-Tab>   <Action>(PreviousTab)
 
-" =============================================================================
-" KEY MAPPINGS - INSERT MODE
-" =============================================================================
+" Visual indent keeps selection
+xnoremap < <gv
+xnoremap > >gv
 
-inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>:noh<CR>a
-inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>:noh<CR>i
-inoremap <C-e> <C-o>A
-inoremap <C-s> <C-o>I
-inoremap <C-l> <C-o>A
+" Display-line j/k when no count (nvim parity)
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
-" =============================================================================
-" KEY MAPPINGS - NAVIGATION
-" =============================================================================
+" Resize splits (nvim parity)
+nnoremap <C-Up>    <Action>(StretchSplitToTop)
+nnoremap <C-Down>  <Action>(StretchSplitToBottom)
+nnoremap <C-Left>  <Action>(StretchSplitToLeft)
+nnoremap <C-Right> <Action>(StretchSplitToRight)
 
-" Tab navigation
-nmap <PageDown> <Action>(NextTab)
-nmap <PageUp> <Action>(PreviousTab)
+" Esc clears hlsearch (nvim parity)
+nnoremap <Esc> :nohlsearch<CR>
 
-" Line navigation (Helix-style)
+" Visual paste without yanking
+xnoremap p "_dP
+
+" yp / gp — copy filepath:line and go to file:line
+nmap yp <Action>(CopyPathWithLineNumber)
+nmap gp <Action>(GotoFile)
+
+" Helix-style line motions
 nnoremap gh 0
-nnoremap gs ^
 nnoremap gl $
+nnoremap gs ^
+xnoremap gh 0
+xnoremap gl $
+xnoremap gs ^
 
-" Code block navigation
-nmap [[ <Action>(MethodUp)
-nmap ]] <Action>(MethodDown)
-onoremap [[ :action MethodUp<CR>
-onoremap ]] :action MethodDown<CR>
+" U → redo  (nvim parity)
+nnoremap U <Action>(Redo)
 
-nmap ]c <Action>(VcsShowNextChangeMarker)
-nmap [c <Action>(VcsShowPrevChangeMarker)
+" <C-r> → reload from disk  (closest to nvim's checktime + LSP restart)
+nnoremap <C-r> <Action>(Synchronize)
 
-nmap ]e <Action>(GotoNextError)
-nmap [e <Action>(GotoPreviousError)
-nmap ]d <Action>(GotoNextError)
+" Toggle word-wrap
+nmap <leader>uw <Action>(EditorToggleUseSoftWraps)
+
+" Disable F1 help (nvim parity)
+nmap <F1> <Nop>
+xmap <F1> <Nop>
+inoremap <F1> !
+
+" =============================================================================
+" CMD-LINE TYPO ALIASES  (nvim parity: W, Q, Wq, Qa, ...)
+" =============================================================================
+
+command! -bang W   write<bang>
+command! -bang Q   quit<bang>
+command! -bang Wq  wq<bang>
+command! -bang WQ  wq<bang>
+command! -bang Wa  wall<bang>
+command! -bang WA  wall<bang>
+command! -bang Qa  qall<bang>
+command! -bang QA  qall<bang>
+command! -bang Wqa wqa<bang>
+command! -bang WQa wqa<bang>
+command! -bang WQA wqa<bang>
+command! -bang Xa  xall<bang>
+command! -bang XA  xall<bang>
+
+" =============================================================================
+" MINI.MOVE PARITY  (move lines/selection)
+" =============================================================================
+
+" Normal mode: move current line/element
+nmap J       <Action>(MoveStatementDown)
+nmap K       <Action>(MoveStatementUp)
+nmap <S-h>   <Action>(MoveElementLeft)
+nmap <S-l>   <Action>(MoveElementRight)
+
+" Visual mode: move selection
+xmap J       <Action>(MoveStatementDown)
+xmap K       <Action>(MoveStatementUp)
+xmap <S-h>   <Action>(MoveElementLeft)
+xmap <S-l>   <Action>(MoveElementRight)
+
+" =============================================================================
+" MINI.SURROUND ALIASES  (nvim mini.surround used sa/sd/sh/sr/sn)
+" Built on top of vim-surround. `s` is no longer NOPed — surround owns it.
+" =============================================================================
+
+nmap sa  ys
+nmap saa yss
+xmap sa  S
+nmap sd  ds
+nmap sr  cs
+
+" =============================================================================
+" TREESITTER INCREMENTAL SELECTION PARITY
+"   nvim: <CR> init / expand, <BS> shrink
+" =============================================================================
+
+nmap <CR> <Action>(EditorSelectWord)
+xmap <CR> <Action>(EditorSelectWord)
+xmap <BS> <Action>(EditorUnSelectWord)
+
+" =============================================================================
+" LSP-LIKE NAV  (mirrors nvim lspconfig keymaps)
+" =============================================================================
+
+nmap gd <Action>(GotoDeclaration)
+nmap gD <Action>(GotoTypeDeclaration)
+nmap gR <Action>(FindUsages)
+nmap gi <Action>(GotoImplementation)
+nmap gt <Action>(GotoTypeDeclaration)
+nmap gI <Action>(GotoSuperMethod)
+nmap gu <Action>(ShowUsages)
+
+" Code intelligence (single-key leader)
+nmap <leader>a <Action>(ShowIntentionActions)
+xmap <leader>a <Action>(ShowIntentionActions)
+nmap <leader>r <Action>(RenameElement)
+nmap <leader>k <Action>(QuickJavaDoc)
+
+" Diagnostics navigation (nvim: [d/]d)
 nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
 
-" Jump between changes
+" Hunk / change navigation (nvim gitsigns: [[/]])
+nmap [[ <Action>(VcsShowPrevChangeMarker)
+nmap ]] <Action>(VcsShowNextChangeMarker)
+
+" Function navigation (nvim treesitter: [m/]m)
+nmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+omap [m :action MethodUp<CR>
+omap ]m :action MethodDown<CR>
+
+" Reference navigation under caret (nvim snacks: ]h/[h)
+nmap ]h <Action>(GotoNextElementUnderCaretUsage)
+nmap [h <Action>(GotoPrevElementUnderCaretUsage)
+
+" Git change history (vim-builtin parity)
 nmap g; <Action>(JumpToLastChange)
 nmap g, <Action>(JumpToNextChange)
 
-" Code navigation (synced with nvim)
-nmap gd <Action>(GotoDeclaration)
-nmap gR <Action>(FindUsages)
-nmap gt <Action>(GotoTypeDeclaration)
-nmap gu <Action>(ShowUsages)
-nmap gi <Action>(GotoImplementation)
-nmap gI <Action>(GotoSuperMethod)
-
-" Matching brackets
-nmap mm <Action>(EditorMatchBrace)
-nmap ms <Action>(EditorCodeBlockStart)
-nmap ml <Action>(EditorCodeBlockEnd)
-
 " =============================================================================
-" KEY MAPPINGS - WINDOW/SPLIT MANAGEMENT
+" PICKERS / FZF-LUA PARITY
 " =============================================================================
 
-" Window navigation
+nmap <leader>/  <Action>(FindInPath)
+nmap <leader>?  <Action>(GotoAction)
+nmap <leader>'  <Action>(RecentFiles)
+
+" <leader>f group (Find)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fF <Action>(GotoFile)
+nmap <leader>fd <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>fD <Action>(ActivateProblemsViewToolWindow)
+
+" Buffers / structure / symbols
+nmap <leader>b  <Action>(Switcher)
+nmap <leader>B  <Action>(CloseContent)
+nmap <leader>s  <Action>(FileStructurePopup)
+nmap <leader>S  <Action>(GotoSymbol)
+
+" Project view explorer (nvim neo-tree parity)
+nmap <leader>e  <Action>(ActivateProjectToolWindow)
+nmap <leader>E  <Action>(SelectInProjectView)
+
+" =============================================================================
+" <leader>g  — GIT  (nvim gitsigns + snacks.gitbrowse)
+" =============================================================================
+
+nmap <leader>gs  <Action>(Git.Stage)
+nmap <leader>gr  <Action>(Vcs.RollbackChangedLines)
+xmap <leader>gs  <Action>(Git.Stage)
+xmap <leader>gr  <Action>(Vcs.RollbackChangedLines)
+nmap <leader>gS  <Action>(ChangesView.AddUnversioned)
+nmap <leader>gR  <Action>(ChangesView.Revert)
+nmap <leader>gu  <Action>(Vcs.RollbackChangedLines)
+nmap <leader>gp  <Action>(VcsShowCurrentChangeMarker)
+nmap <leader>gb  <Action>(Annotate)
+nmap <leader>gB  <Action>(Annotate)
+nmap <leader>gd  <Action>(Compare.SameVersion)
+nmap <leader>gD  <Action>(Vcs.ShowDiffWithLocal)
+nmap <leader>gO  <Action>(Github.Open.In.Browser.From.Editor)
+
+" Extras (no nvim equivalent — kept because they don't conflict with the group)
+nmap <leader>gv  <Action>(Git.Branches)
+nmap <leader>gh  <Action>(Vcs.ShowTabbedFileHistory)
+nmap <leader>gc  <Action>(ActivateCommitToolWindow)
+
+" =============================================================================
+" <leader>x  — TROUBLE / DIAGNOSTICS  (nvim trouble.nvim)
+" =============================================================================
+
+nmap <leader>xw <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>xd <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>xq <Action>(ActivateMessagesToolWindow)
+nmap <leader>xl <Action>(ActivateMessagesToolWindow)
+nmap <leader>xt <Action>(ActivateTODOToolWindow)
+
+" =============================================================================
+" <leader>d  — DEBUG  (nvim DAP parity)
+" =============================================================================
+
+nmap <leader>dc <Action>(Resume)
+nmap <leader>dg <Action>(RunToCursor)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dB <Action>(EditBreakpoint)
+nmap <leader>di <Action>(StepInto)
+nmap <leader>do <Action>(StepOver)
+nmap <leader>dO <Action>(StepOut)
+nmap <leader>dt <Action>(Stop)
+nmap <leader>du <Action>(ActivateDebugToolWindow)
+nmap <leader>de <Action>(QuickEvaluateExpression)
+xmap <leader>de <Action>(EvaluateExpression)
+nmap <leader>dr <Action>(JShell.Console)
+nmap <leader>dl <Action>(Debug)
+
+" =============================================================================
+" <leader>n / <leader>p  — TREESITTER SWAPS  (nvim swap.next/prev)
+" =============================================================================
+
+nmap <leader>na <Action>(MoveElementRight)
+nmap <leader>nm <Action>(MoveStatementDown)
+nmap <leader>n: <Action>(MoveElementRight)
+nmap <leader>pa <Action>(MoveElementLeft)
+nmap <leader>pm <Action>(MoveStatementUp)
+nmap <leader>p: <Action>(MoveElementLeft)
+
+" =============================================================================
+" <leader>m  — FORMAT  (nvim conform.nvim)
+" =============================================================================
+
+nmap <leader>mp <Action>(ReformatCode)
+xmap <leader>mp <Action>(ReformatCode)
+
+" =============================================================================
+" <leader>l  — LSP-LIKE  (nvim lspconfig group)
+" =============================================================================
+
+nmap <leader>ld <Action>(ShowErrorDescription)
+nmap <leader>lh <Action>(ToggleInlayHintsGloballyAction)
+nmap <leader>li <Action>(ShowSettings)
+nmap <leader>lc <Action>(RunInspection)
+nmap <leader>lC <Action>(CodeCleanup)
+nmap <leader>ll <Action>(ShowLog)
+nmap <leader>lR :source ~/.ideavimrc<CR>
+
+" =============================================================================
+" <leader>u  — UI  (nvim toggles + snacks notifications)
+" =============================================================================
+
+nmap <leader>un <Action>(ClearAllNotifications)
+nmap <leader>uh <Action>(ActivateNotificationsToolWindow)
+" <leader>uw is defined above (toggle wrap)
+
+" =============================================================================
+" <leader>o  — OUTLINE  (nvim aerial.nvim parity)
+" =============================================================================
+
+nmap <leader>o <Action>(ActivateStructureToolWindow)
+nmap ]a        <Action>(MethodDown)
+nmap [a        <Action>(MethodUp)
+
+" =============================================================================
+" <leader>O  — OBSIDIAN
+" No IDEA equivalent for obsidian.nvim; intentionally left as a free prefix.
+" =============================================================================
+
+" =============================================================================
+" OUTLINE / OUTLINE-LIKE  — outer text objects
+" Note: nvim treesitter textobjects @class/@conditional/@loop/@call have no
+" direct IdeaVim emulation. argtextobj covers @parameter; functiontextobj
+" covers @function (af/if). The remaining ones fall back to vim builtins.
+" =============================================================================
+
+" =============================================================================
+" WINDOW NAVIGATION  (nvim vim-tmux-navigator parity)
+" =============================================================================
+
 nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
-
-" Split operations (synced with nvim <leader>w prefix)
-nmap <leader>wv <Action>(SplitVertically)
-nmap <leader>ws <Action>(SplitHorizontally)
-nmap <leader>wx <Action>(Unsplit)
-
-" Move editor to split direction (requires Tab Shifter plugin)
-nmap <leader>sh <Action>(TabShiftActions.ShiftLeft)
-nmap <leader>sl <Action>(TabShiftActions.ShiftRight)
-nmap <leader>sj <Action>(TabShiftActions.ShiftDown)
-nmap <leader>sk <Action>(TabShiftActions.ShiftUp)
-
-" Resize splits (synced with nvim)
-nmap <C-Up> <Action>(TabShiftActions.StretchUp)
-nmap <C-Down> <Action>(TabShiftActions.StretchDown)
-nmap <C-Left> <Action>(TabShiftActions.StretchLeft)
-nmap <C-Right> <Action>(TabShiftActions.StretchRight)
-
-" Open in split
-nmap <C-v> <Action>(OpenInRightSplit)
-
-" Navigation history
-nmap <leader>sb <Action>(Back)
-nmap <leader>sf <Action>(Forward)
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " =============================================================================
-" KEY MAPPINGS - TAB MANAGEMENT
+" IDE-ONLY CONVENIENCES  (no nvim equivalent — kept because they don't conflict)
 " =============================================================================
 
+" Cmd-line shortcut
+nnoremap <C-m> :
+xnoremap <C-m> :
+inoremap <C-m> <CR>
+cnoremap <C-m> <CR>
+
+" Insert-mode helpers (emacs-ish line nav)
+inoremap <C-e> <C-o>A
+inoremap <C-s> <C-o>I
+inoremap <C-f> <Esc>:let @z=@/<CR>/\v[)"}>]<CR>:let @/=@z<CR>:noh<CR>a
+inoremap <C-b> <Esc>:let @z=@/<CR>?\v[("{<]<CR>:let @/=@z<CR>:noh<CR>i
+
+" Tab management (close-other / left / right)
 nmap <leader>too <Action>(CloseAllEditorsButActive)
 nmap <leader>tol <Action>(CloseAllToTheLeft)
 nmap <leader>tor <Action>(CloseAllToTheRight)
 
+" PageUp / PageDown as redundant tab nav
+nmap <PageDown> <Action>(NextTab)
+nmap <PageUp>   <Action>(PreviousTab)
+
+" Refactor / quick-fix (moved off the old <Tab>-prefix because <Tab>=NextTab now)
+nmap <leader>cr <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>cv <Action>(IntroduceVariable)
+nmap <leader>cf <Action>(QuickFixes)
+nmap <leader>cy <Action>(CopyReferencePopupGroup)
+
 " =============================================================================
-" KEY MAPPINGS - TOOL WINDOWS (F1 prefix)
+" TOOL WINDOWS  (F1 prefix — IDE-only, no nvim equivalent)
 " =============================================================================
 
 nmap <F1>s <Action>(ActivateStructureToolWindow)
@@ -173,57 +463,11 @@ nmap <F1>f <Action>(ActivateFindToolWindow)
 nmap <F1>r <Action>(ActivateRunToolWindow)
 
 " =============================================================================
-" KEY MAPPINGS - CODE ACTIONS (Tab prefix)
+" BOOKMARKS  (numbered) — IDE-only convenience
+"   goto:    `0..`9   (backtick — no conflict with marks since digits aren't mark names)
+"   toggle:  <F2>0..<F2>9   (moved off <leader>m, which is now Format)
 " =============================================================================
 
-nmap <Tab>f <Action>(QuickFixes)
-nmap <Tab>n <Action>(ShowIntentionActions)
-nmap <Tab>u <Action>(FindUsages)
-nmap <Tab>r <Action>(Refactorings.QuickListPopupAction)
-nmap <Tab>v <Action>(IntroduceVariable)
-nmap <Tab>y <Action>(CopyReferencePopupGroup)
-
-" =============================================================================
-" KEY MAPPINGS - LEADER ACTIONS
-" =============================================================================
-
-" Helix-style pickers (synced with nvim)
-nmap <leader>/ <Action>(FindInPath)
-nmap <leader>f <Action>(GotoFile)
-nmap <leader>b <Action>(Switcher)
-nmap <leader>? <Action>(GotoAction)
-nmap <leader>s <Action>(FileStructurePopup)
-nmap <leader>S <Action>(GotoSymbol)
-
-" Helix-style LSP actions (synced with nvim)
-nmap <leader>a <Action>(ShowIntentionActions)
-nmap <leader>r <Action>(RenameElement)
-nmap <leader>k <Action>(QuickJavaDoc)
-
-" Diagnostics (synced with nvim)
-nmap <leader>d <Action>(ShowErrorDescription)
-nmap <leader>D <Action>(ActivateProblemsViewToolWindow)
-nmap <leader>p <Action>(ParameterInfo)
-
-" File operations
-nmap <leader>v <Action>(CopyPaths)
-nmap <leader>e <Action>(SelectInProjectView)
-
-" Copy file path with line number / Go to file from clipboard (synced with nvim yp/gp)
-nmap yp <Action>(CopyPathWithLineNumber)
-nmap gp <Action>(GotoFile)
-
-" Git
-nmap <leader>gb <Action>(Git.Branches)
-nmap <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
-nmap <leader>gc <Action>(ActivateCommitToolWindow)
-
-
-" =============================================================================
-" KEY MAPPINGS - BOOKMARKS
-" =============================================================================
-
-" Goto bookmarks (backtick)
 nmap `0 <Action>(GotoBookmark0)
 nmap `1 <Action>(GotoBookmark1)
 nmap `2 <Action>(GotoBookmark2)
@@ -235,21 +479,19 @@ nmap `7 <Action>(GotoBookmark7)
 nmap `8 <Action>(GotoBookmark8)
 nmap `9 <Action>(GotoBookmark9)
 
-" Toggle bookmarks (leader+m)
-nmap <leader>m0 <Action>(ToggleBookmark0)
-nmap <leader>m1 <Action>(ToggleBookmark1)
-nmap <leader>m2 <Action>(ToggleBookmark2)
-nmap <leader>m3 <Action>(ToggleBookmark3)
-nmap <leader>m4 <Action>(ToggleBookmark4)
-nmap <leader>m5 <Action>(ToggleBookmark5)
-nmap <leader>m6 <Action>(ToggleBookmark6)
-nmap <leader>m7 <Action>(ToggleBookmark7)
-nmap <leader>m8 <Action>(ToggleBookmark8)
-nmap <leader>m9 <Action>(ToggleBookmark9)
+nmap <F2>0 <Action>(ToggleBookmark0)
+nmap <F2>1 <Action>(ToggleBookmark1)
+nmap <F2>2 <Action>(ToggleBookmark2)
+nmap <F2>3 <Action>(ToggleBookmark3)
+nmap <F2>4 <Action>(ToggleBookmark4)
+nmap <F2>5 <Action>(ToggleBookmark5)
+nmap <F2>6 <Action>(ToggleBookmark6)
+nmap <F2>7 <Action>(ToggleBookmark7)
+nmap <F2>8 <Action>(ToggleBookmark8)
+nmap <F2>9 <Action>(ToggleBookmark9)
 
 " =============================================================================
 " RELOAD CONFIG
 " =============================================================================
 
 nnoremap <F10><F10> :source ~/.ideavimrc<CR>
-
