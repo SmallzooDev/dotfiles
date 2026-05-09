@@ -437,12 +437,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "9",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "p" }],
                                 "type": "basic"
                             },
                             {
@@ -480,12 +475,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "8",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "keypad_asterisk" }],
                                 "type": "basic"
                             },
                             {
@@ -809,7 +799,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "r" }],
+                                "to": [
+                                    {
+                                        "key_code": "0",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -820,7 +815,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "q" }],
+                                "to": [
+                                    {
+                                        "key_code": "9",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -831,7 +831,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "w" }],
+                                "to": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -842,7 +847,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "e" }],
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
