@@ -421,12 +421,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "5",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "m" }],
                                 "type": "basic"
                             },
                             {
@@ -437,7 +432,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "p" }],
+                                "to": [
+                                    {
+                                        "key_code": "5",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
