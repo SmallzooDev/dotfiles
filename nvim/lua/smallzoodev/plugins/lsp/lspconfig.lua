@@ -3,7 +3,6 @@ return {
   lazy = false,
   dependencies = {
     "mason-org/mason.nvim",
-    "saghen/blink.cmp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
@@ -96,7 +95,6 @@ return {
 
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client and client:supports_method("textDocument/codeLens", ev.buf) then
-          vim.lsp.codelens.enable(true, { bufnr = ev.buf })
           keymap.set(
             "n",
             "<leader>lc",
@@ -109,6 +107,9 @@ return {
             vim.lsp.codelens.refresh,
             vim.tbl_extend("force", opts, { desc = "Refresh codelens" })
           )
+          keymap.set("n", "<leader>lL", function()
+            vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+          end, vim.tbl_extend("force", opts, { desc = "Toggle codelens" }))
         end
 
         vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
@@ -123,12 +124,6 @@ return {
           vim.diagnostic.open_float({ scope = "line" })
         end, vim.tbl_extend("force", opts, { desc = "Show line diagnostic" }))
       end,
-    })
-
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-    vim.lsp.config("*", {
-      capabilities = capabilities,
     })
 
     vim.lsp.config("lua_ls", {
