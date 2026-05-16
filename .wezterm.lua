@@ -1,44 +1,93 @@
+-- Initialize Configuration
 local wezterm = require("wezterm")
-
 local config = wezterm.config_builder()
+local opacity = 1
+local transparent_bg = "rgba(22, 24, 26, " .. opacity .. ")"
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+-- Font Configuration
+local emoji_font = "Apple Color Emoji"
+config.font = wezterm.font_with_fallback({
+	{
+		family = "JetBrainsMono Nerd Font",
+		weight = "Regular",
+	},
+	emoji_font,
+})
 config.font_size = 13
 
-config.background = {
-	{
-		source = { File = wezterm.home_dir .. "/Documents/backgrounds/totoroblack.png" },
-		height = "Cover",
-		repeat_x = "NoRepeat",
-		repeat_y = "NoRepeat",
-		horizontal_align = "Center",
-		vertical_align = "Middle",
-	},
-	{
-		source = { Color = "#1e1e2e" },
-		width = "100%",
-		height = "100%",
-		opacity = 0.92,
-	},
-}
-
-config.window_decorations = "RESIZE"
-
-config.color_scheme = "Catppuccin Mocha"
+-- Color Configuration (cyberdream palette inlined)
 config.colors = {
-	cursor_bg = "#94e2d5",
-	cursor_fg = "#1e1e2e",
-	cursor_border = "#94e2d5",
+	foreground = "#ffffff",
+	background = "#16181a",
+	cursor_bg = "#ffffff",
+	cursor_fg = "#16181a",
+	cursor_border = "#ffffff",
+	selection_fg = "#ffffff",
+	selection_bg = "#3c4048",
+	scrollbar_thumb = "#16181a",
+	split = "#16181a",
+	ansi = { "#16181a", "#ff6e5e", "#5eff6c", "#f1ff5e", "#5ea1ff", "#bd5eff", "#5ef1ff", "#ffffff" },
+	brights = { "#3c4048", "#ff6e5e", "#5eff6c", "#f1ff5e", "#5ea1ff", "#bd5eff", "#5ef1ff", "#ffffff" },
+	indexed = { [16] = "#ffbd5e", [17] = "#ff6e5e" },
+}
+config.force_reverse_video_cursor = true
+
+-- Window Configuration
+config.initial_rows = 45
+config.initial_cols = 180
+config.window_decorations = "RESIZE"
+config.window_background_opacity = opacity
+config.window_background_image = wezterm.home_dir .. "/Documents/backgrounds/bg-blurred.png"
+config.window_close_confirmation = "NeverPrompt"
+
+-- Performance Settings
+config.max_fps = 144
+config.animation_fps = 60
+config.cursor_blink_rate = 250
+
+-- Tab Bar Configuration
+config.enable_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = true
+config.show_tab_index_in_tab_bar = false
+config.use_fancy_tab_bar = false
+config.colors.tab_bar = {
+	background = config.window_background_image and "rgba(0, 0, 0, 0)" or transparent_bg,
+	new_tab = { fg_color = config.colors.background, bg_color = config.colors.brights[6] },
+	new_tab_hover = { fg_color = config.colors.background, bg_color = config.colors.foreground },
 }
 
-config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = false
-config.tab_max_width = 32
-config.enable_tab_bar = false
+-- Tab Formatting
+wezterm.on("format-tab-title", function(tab, _, _, _, hover)
+	local background = config.colors.brights[1]
+	local foreground = config.colors.foreground
 
+	if tab.is_active then
+		background = config.colors.brights[7]
+		foreground = config.colors.background
+	elseif hover then
+		background = config.colors.brights[8]
+		foreground = config.colors.background
+	end
+
+	local title = tostring(tab.tab_index + 1)
+	return {
+		{ Foreground = { Color = background } },
+		{ Text = "█" },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = title },
+		{ Foreground = { Color = background } },
+		{ Text = "█" },
+	}
+end)
+
+-- Default Shell (login shell so .zprofile loads brew PATH etc.)
+config.default_prog = { "zsh", "-l" }
+
+-- Keybindings (user customization preserved)
 config.keys = {
 	{ key = "s", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },

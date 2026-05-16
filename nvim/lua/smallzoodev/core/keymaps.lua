@@ -112,11 +112,10 @@ local function reload_notify(msg, level)
 end
 
 local function reload_set_hl()
-  local sky = "#89dceb"
-  vim.api.nvim_set_hl(0, "ReloadFloatNormal", { bg = "NONE", fg = sky })
-  vim.api.nvim_set_hl(0, "ReloadFloatBorder", { bg = "NONE", fg = sky })
-  vim.api.nvim_set_hl(0, "ReloadFloatTitle", { bg = "NONE", fg = sky, bold = true })
-  vim.api.nvim_set_hl(0, "ReloadFloatCursorLine", { bg = sky, fg = "#1e1e2e", bold = true })
+  vim.api.nvim_set_hl(0, "ReloadFloatNormal", { link = "Special" })
+  vim.api.nvim_set_hl(0, "ReloadFloatBorder", { link = "FloatBorder" })
+  vim.api.nvim_set_hl(0, "ReloadFloatTitle", { link = "Title" })
+  vim.api.nvim_set_hl(0, "ReloadFloatCursorLine", { link = "PmenuSel" })
 end
 reload_set_hl()
 vim.api.nvim_create_autocmd("ColorScheme", { group = reload_aug, callback = reload_set_hl })

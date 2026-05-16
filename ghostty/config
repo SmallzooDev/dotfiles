@@ -7,7 +7,7 @@
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Apple SD Gothic Neo"
 font-size = 13
-theme = "Catppuccin Mocha"
+theme = cyberdream
 
 # =============================================================================
 # Window Appearance
@@ -18,12 +18,13 @@ window-padding-x = 8
 window-padding-y = 10,0
 
 # =============================================================================
-# Background Image
+# Background Image (wezterm와 동일 — bg-blurred.png 풀커버)
 # =============================================================================
-# background-image = ~/Documents/backgrounds/totoroblack.png
-# background-image-opacity = 0.35
-# background-image-position = center
-# background-image-fit = cover
+background-opacity = 1.0
+background-image = ~/Documents/backgrounds/bg-blurred.png
+background-image-opacity = 1.0
+background-image-position = center
+background-image-fit = cover
 
 # =============================================================================
 # Shell Integration
@@ -33,7 +34,7 @@ shell-integration = zsh
 # =============================================================================
 # Behavior
 # =============================================================================
-cursor-color = #94e2d5
+cursor-color = #ffffff
 confirm-close-surface = false
 mouse-hide-while-typing = true
 copy-on-select = clipboard

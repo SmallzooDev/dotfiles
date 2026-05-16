@@ -1,7 +1,6 @@
 [plugin]
 deps = []
 
-[[flavor.deps]]
-use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "fd85060"
-hash = ""
+# Cyberdream theme is defined directly in theme.toml — no flavor needed
+[flavor]
+deps = []

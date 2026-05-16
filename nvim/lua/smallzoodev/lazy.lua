@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoodev.plugins.lsp" } }, {
   install = {
     missing = true,
-    colorscheme = { "catppuccin-mocha" },
+    colorscheme = { "cyberdream" },
   },
   checker = {
     enabled = true,

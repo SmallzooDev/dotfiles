@@ -1,0 +1,99 @@
+# Cyberdream theme for helix
+# Inspired by scottmckendry/cyberdream.nvim
+
+# Syntax highlighting
+"attribute" = "magenta"
+"keyword" = "magenta"
+"keyword.directive" = "magenta"
+"namespace" = "blue"
+"punctuation" = "gray"
+"punctuation.delimiter" = "gray"
+"operator" = "cyan"
+"special" = "magenta"
+"variable.other.member" = "blue"
+"variable" = "fg"
+"variable.builtin" = "magenta"
+"variable.parameter" = "fg"
+"type" = "yellow"
+"type.builtin" = "yellow"
+"constructor" = "yellow"
+"function" = "cyan"
+"function.macro" = "magenta"
+"function.builtin" = "cyan"
+"tag" = "magenta"
+"comment" = { fg = "gray", modifiers = ["italic"] }
+"constant" = "orange"
+"constant.builtin" = "orange"
+"string" = "green"
+"constant.numeric" = "orange"
+"constant.character.escape" = "magenta"
+"label" = "magenta"
+
+# UI
+"ui.background" = { bg = "bg" }
+"ui.background.separator" = "gray"
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.match" = { bg = "surface", modifiers = ["bold"] }
+"ui.cursor.primary" = { fg = "bg", bg = "fg" }
+"ui.cursorline.primary" = { bg = "surface" }
+"ui.cursorcolumn.primary" = { bg = "surface" }
+"ui.linenr" = "gray"
+"ui.linenr.selected" = { fg = "magenta", modifiers = ["bold"] }
+"ui.statusline" = { fg = "fg", bg = "surface" }
+"ui.statusline.inactive" = { fg = "gray", bg = "surface" }
+"ui.statusline.normal" = { fg = "bg", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "green", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg", bg = "magenta", modifiers = ["bold"] }
+"ui.bufferline" = { fg = "gray", bg = "surface" }
+"ui.bufferline.active" = { fg = "fg", bg = "bg", modifiers = ["bold"] }
+"ui.popup" = { fg = "fg", bg = "surface" }
+"ui.window" = { fg = "gray" }
+"ui.help" = { fg = "fg", bg = "surface" }
+"ui.text" = "fg"
+"ui.text.focus" = { fg = "fg", modifiers = ["bold"] }
+"ui.virtual.ruler" = { bg = "surface" }
+"ui.virtual.whitespace" = "gray"
+"ui.virtual.indent-guide" = "surface"
+"ui.virtual.inlay-hint" = { fg = "gray", modifiers = ["italic"] }
+"ui.menu" = { fg = "fg", bg = "surface" }
+"ui.menu.selected" = { fg = "bg", bg = "cyan", modifiers = ["bold"] }
+"ui.selection" = { bg = "surface" }
+"ui.selection.primary" = { bg = "surface" }
+
+# Diagnostics
+"diagnostic" = { underline = { color = "red", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.info" = { underline = { color = "cyan", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "blue", style = "curl" } }
+"error" = "red"
+"warning" = "yellow"
+"info" = "cyan"
+"hint" = "blue"
+"diff.plus" = "green"
+"diff.minus" = "red"
+"diff.delta" = "yellow"
+
+# Markup
+"markup.heading" = { fg = "magenta", modifiers = ["bold"] }
+"markup.list" = "cyan"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.link.url" = { fg = "blue", modifiers = ["underlined"] }
+"markup.link.text" = "magenta"
+"markup.quote" = "gray"
+"markup.raw" = "green"
+
+[palette]
+bg = "#16181a"
+surface = "#3c4048"
+gray = "#7b8496"
+fg = "#ffffff"
+red = "#ff6e5e"
+orange = "#ffbd5e"
+yellow = "#f1ff5e"
+green = "#5eff6c"
+cyan = "#5ef1ff"
+blue = "#5ea1ff"
+magenta = "#bd5eff"
+pink = "#ff5ea0"
