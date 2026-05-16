@@ -33,31 +33,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("VimEnter", {
-  group = general,
-  nested = true,
-  desc = "Load resession for cwd when launched with no args",
-  callback = function()
-    if vim.fn.argc(-1) ~= 0 then
-      return
-    end
-    local ok, resession = pcall(require, "resession")
-    if not ok then
-      return
-    end
-    resession.load(vim.fn.getcwd(), { silence_errors = true })
-    local bufs = vim.tbl_filter(function(buf)
-      return vim.bo[buf].buflisted
-    end, vim.api.nvim_list_bufs())
-    if #bufs == 0 or (#bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "") then
-      local snacks_ok, snacks = pcall(require, "snacks")
-      if snacks_ok then
-        snacks.dashboard()
-      end
-    end
-  end,
-})
-
 autocmd("VimLeavePre", {
   group = general,
   desc = "Save resession for cwd on exit",

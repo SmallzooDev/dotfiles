@@ -2,14 +2,6 @@ return {
   "echasnovski/mini.nvim",
   version = false,
   event = "VeryLazy",
-  init = function()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "SnacksDashboardOpened",
-      callback = function(ev)
-        vim.b[ev.buf].miniindentscope_disable = true
-      end,
-    })
-  end,
   config = function()
     require("mini.ai").setup({
       n_lines = 500,
@@ -49,14 +41,11 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {
         "Trouble",
-        "alpha",
         "copilot-chat",
-        "dashboard",
         "help",
         "lazy",
         "mason",
         "notify",
-        "snacks_dashboard",
         "snacks_terminal",
         "minifiles",
       },
