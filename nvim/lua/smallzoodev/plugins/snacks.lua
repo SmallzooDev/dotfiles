@@ -18,20 +18,20 @@ return {
       enabled = true,
       preset = {
         keys = {
-          { icon = " ", key = "e", desc = "Explorer", action = ":lua require('mini.files').open()" },
+          { icon = "󰉋 ", key = "e", desc = "Explorer", action = ":lua require('mini.files').open()" },
           { icon = "󰈞 ", key = "f", desc = "Find File", action = ":lua require('fzf-lua').files()" },
-          { icon = "󰮗 ", key = "/", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
-          { icon = " ", key = "d", desc = "Git Diff", action = ":lua require('fzf-lua').git_status()" },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
+          { icon = "󰊄 ", key = "/", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
+          { icon = "󰊢 ", key = "d", desc = "Git Diff", action = ":lua require('fzf-lua').git_status()" },
+          { icon = "󰈔 ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = "󰋚 ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy" },
           {
-            icon = " ",
+            icon = "󰒓 ",
             key = "c",
             desc = "Config",
             action = ":lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })",
           },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          { icon = "󰗼 ", key = "q", desc = "Quit", action = ":qa" },
         },
         header = [[
  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗

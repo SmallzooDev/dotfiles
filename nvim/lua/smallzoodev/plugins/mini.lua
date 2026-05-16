@@ -94,9 +94,6 @@ return {
         width_preview = 60,
         max_number = 3,
       },
-      options = {
-        use_as_default_explorer = true,
-      },
     })
 
     vim.keymap.set("n", "<leader>e", function()
