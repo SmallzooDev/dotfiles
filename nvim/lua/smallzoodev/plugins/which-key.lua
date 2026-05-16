@@ -7,6 +7,9 @@ return {
     wk.setup({
       preset = "helix",
       delay = 300,
+      icons = {
+        rules = false,
+      },
       win = {
         border = "rounded",
         height = { max = 20 },

@@ -2,26 +2,36 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  dependencies = {
+    {
+      "nvim-mini/mini.icons",
+      lazy = true,
+      config = function()
+        require("mini.icons").setup()
+        require("mini.icons").mock_nvim_web_devicons()
+      end,
+    },
+  },
   opts = {
     bigfile = { enabled = true },
     dashboard = {
       enabled = true,
       preset = {
         keys = {
-          { icon = " ", key = "e", desc = "Explorer", action = ":Neotree float" },
+          { icon = " ", key = "e", desc = "Explorer", action = ":lua require('mini.files').open()" },
           { icon = "󰈞 ", key = "f", desc = "Find File", action = ":lua require('fzf-lua').files()" },
           { icon = "󰮗 ", key = "/", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
-          { icon = " ", key = "d", desc = "Git Diff", action = ":lua require('fzf-lua').git_status()" },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
+          { icon = " ", key = "d", desc = "Git Diff", action = ":lua require('fzf-lua').git_status()" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy" },
           {
-            icon = " ",
+            icon = " ",
             key = "c",
             desc = "Config",
             action = ":lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })",
           },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
         header = [[
  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
@@ -37,6 +47,13 @@ return {
         { section = "startup" },
       },
     },
+    image = {
+      doc = {
+        enabled = true,
+        max_height = math.floor(vim.o.lines * 0.5),
+        max_width = math.floor(vim.o.columns * 0.5),
+      },
+    },
     notifier = {
       enabled = true,
       timeout = 3000,
@@ -46,6 +63,14 @@ return {
     words = { enabled = true },
     lazygit = {
       configure = false,
+      win = { position = "float", width = 0.99, height = 0.99 },
+    },
+    picker = {
+      prompt = "   ",
+      formatters = { file = { filename_first = true } },
+    },
+    terminal = {
+      win = { position = "right", width = 0.5, wo = { winbar = "" } },
     },
     styles = {
       notification = {

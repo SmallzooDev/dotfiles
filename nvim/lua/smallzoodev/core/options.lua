@@ -7,6 +7,9 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
+opt.breakindent = true
+opt.breakindentopt = "shift:2"
+opt.showbreak = "↳"
 
 opt.wrap = false
 
@@ -14,6 +17,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.cursorline = true
+opt.scrolloff = 12
 
 opt.signcolumn = "yes"
 
@@ -26,13 +30,14 @@ opt.splitbelow = true
 
 opt.swapfile = false
 
-opt.conceallevel = 0
+opt.conceallevel = 1
 
 opt.undofile = true
 
 opt.termguicolors = true
 
 opt.showmode = false
+opt.laststatus = 3
 
 opt.smoothscroll = true
 
@@ -43,4 +48,19 @@ opt.fillchars = { fold = " ", diff = "╱", eob = " " }
 opt.updatetime = 250
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10
-opt.pumheight = 15 -- Limit completion menu height (reduces redraws)
+opt.pumheight = 15
+
+opt.title = true
+opt.titlestring = string.format(
+  "%s@%s - nvim %%t",
+  os.getenv("USERNAME") or os.getenv("USER") or "nvim",
+  vim.fn.hostname()
+)
+
+opt.guicursor = {
+  "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
+}
+
+opt.statusline = require("smallzoodev.core.statusline").statusline

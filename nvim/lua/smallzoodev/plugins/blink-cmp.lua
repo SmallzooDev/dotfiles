@@ -23,10 +23,21 @@ return {
     sources = {
       default = { "lsp", "path", "snippets" },
     },
+    cmdline = { completion = { menu = { auto_show = true } } },
     completion = {
       menu = {
-        border = "rounded",
+        scrollbar = false,
         auto_show = true,
+        border = {
+          { "󱐋", "WarningMsg" },
+          "─",
+          "╮",
+          "│",
+          "╯",
+          "─",
+          "╰",
+          "│",
+        },
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
         },
@@ -38,7 +49,18 @@ return {
       },
       documentation = {
         auto_show = true,
-        window = { border = "rounded" },
+        window = {
+          border = {
+            { "╭", "DiagnosticHint" },
+            "─",
+            "╮",
+            "│",
+            "╯",
+            "─",
+            "╰",
+            "│",
+          },
+        },
       },
     },
     signature = {

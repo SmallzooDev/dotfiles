@@ -12,6 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoodev.plugins.lsp" } }, {
+  install = {
+    missing = true,
+    colorscheme = { "catppuccin-mocha" },
+  },
   checker = {
     enabled = true,
     notify = false,
@@ -22,6 +26,8 @@ require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoo
   ui = {
     backdrop = 100,
     border = "rounded",
+    title = " lazy.nvim 💤",
+    pills = false,
   },
   performance = {
     rtp = {

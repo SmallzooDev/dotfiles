@@ -103,7 +103,7 @@ return {
           local index_path = target_dir .. "/index.md"
 
           vim.fn.mkdir(target_dir, "p")
-          vim.cmd("edit " .. index_path)
+          vim.cmd("edit " .. vim.fn.fnameescape(index_path))
           vim.defer_fn(function()
             vim.cmd("ObsidianTemplate " .. template)
           end, 100)

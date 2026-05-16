@@ -89,7 +89,7 @@ return {
 
         keymap.set("n", "<leader>lR", "<cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
         keymap.set("n", "<leader>ll", function()
-          vim.cmd("edit " .. vim.lsp.get_log_path())
+          vim.cmd("edit " .. vim.fn.fnameescape(vim.lsp.get_log_path()))
         end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
         keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", vim.tbl_extend("force", opts, { desc = "LSP info" }))
 

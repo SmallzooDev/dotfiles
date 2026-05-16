@@ -13,7 +13,6 @@ return {
         mason = true,
         which_key = true,
         gitsigns = true,
-        neotree = true,
         telescope = { enabled = true },
         blink_cmp = true,
         noice = true,
