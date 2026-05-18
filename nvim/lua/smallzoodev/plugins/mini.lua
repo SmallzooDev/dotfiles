@@ -79,10 +79,22 @@ return {
     require("mini.files").setup({
       windows = {
         preview = true,
-        width_focus = 30,
-        width_preview = 60,
+        width_focus = 50,
+        width_preview = 80,
         max_number = 3,
       },
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesWindowOpen",
+      callback = function(args)
+        local win_id = args.data.win_id
+        vim.wo[win_id].wrap = true
+        vim.wo[win_id].linebreak = true
+        vim.wo[win_id].breakindent = true
+        vim.wo[win_id].showbreak = "↪ "
+        vim.wo[win_id].breakindentopt = "shift:2"
+      end,
     })
 
     vim.keymap.set("n", "<leader>e", function()
