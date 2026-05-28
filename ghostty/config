@@ -20,14 +20,14 @@ window-padding-y = 10,0
 # =============================================================================
 # Transparency
 # =============================================================================
-background-opacity = 0.75
-background-blur-radius = 22
+# background-opacity = 0.75
+# background-blur-radius = 22
 
 # Background image (bg-blurred.png) — 켜고 싶으면 아래 주석 해제
-# background-image = ~/Documents/backgrounds/bg-blurred.png
-# background-image-opacity = 1.0
-# background-image-position = center
-# background-image-fit = cover
+background-image = ~/Documents/backgrounds/bg-blurred.png
+background-image-opacity = 1.0
+background-image-position = center
+background-image-fit = cover
 
 # =============================================================================
 # Shell Integration
