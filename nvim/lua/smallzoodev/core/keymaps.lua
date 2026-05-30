@@ -15,8 +15,8 @@ keymap.set("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 
-keymap.set("v", "<", "<gv")
-keymap.set("v", ">", ">gv")
+keymap.set("x", "<", "<gv")
+keymap.set("x", ">", ">gv")
 
 keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -28,7 +28,7 @@ keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
-keymap.set("v", "p", '"_dP', { desc = "Paste without yanking" })
+keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 
 keymap.set("n", "yp", function()
   local filepath = vim.fn.expand("%:~")
