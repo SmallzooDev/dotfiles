@@ -92,7 +92,7 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export FZF_DEFAULT_OPTS="--color=bg:#16181a,bg+:#3c4048,fg:#ffffff,fg+:#ffffff --color=hl:#5ef1ff,hl+:#5ef1ff,info:#9aa3b5,prompt:#bd5eff,pointer:#5ef1ff --color=marker:#5eff6c,spinner:#5ef1ff,header:#9aa3b5,selected-bg:#3c4048,border:#9aa3b5"
 
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 
 # FZF functions
 _fzf_compgen_path() {
@@ -119,4 +119,5 @@ eval "$(starship init zsh)"
 
 # mise version manager
 eval "$(mise activate zsh)"
+export GOBIN=$GOPATH/bin
 export PATH="$HOME/.local/bin:$PATH"
