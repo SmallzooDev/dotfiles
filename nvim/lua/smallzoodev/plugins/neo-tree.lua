@@ -6,6 +6,21 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-mini/mini.icons",
+    {
+      "s1n7ax/nvim-window-picker",
+      name = "window-picker",
+      version = "2.*",
+      opts = {
+        hint = "floating-big-letter",
+        filter_rules = {
+          include_current_win = false,
+          bo = {
+            filetype = { "neo-tree", "notify" },
+            buftype = { "terminal", "quickfix" },
+          },
+        },
+      },
+    },
   },
   keys = {
     {
