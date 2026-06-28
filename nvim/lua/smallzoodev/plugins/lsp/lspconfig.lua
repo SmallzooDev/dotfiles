@@ -29,9 +29,14 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
+        for _, defkey in ipairs({ "grn", "gra", "grr", "gri", "grt", "grx" }) do
+          pcall(vim.keymap.del, "n", defkey)
+        end
+        pcall(vim.keymap.del, "x", "gra")
+
         keymap.set(
           "n",
-          "gR",
+          "gr",
           "<cmd>FzfLua lsp_references<CR>",
           vim.tbl_extend("force", opts, { desc = "Show LSP references" })
         )
@@ -48,6 +53,9 @@ return {
           "<cmd>FzfLua lsp_implementations<CR>",
           vim.tbl_extend("force", opts, { desc = "Show LSP implementations" })
         )
+        keymap.set("n", "gI", function()
+          vim.lsp.buf.typehierarchy("supertypes")
+        end, vim.tbl_extend("force", opts, { desc = "Go to interface / supertype" }))
         keymap.set(
           "n",
           "gt",

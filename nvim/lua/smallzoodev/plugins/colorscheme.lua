@@ -25,10 +25,10 @@ return {
       "BlinkCmpSignatureHelpBorder",
       "MiniClueBorder",
       "MiniCmdlinePeekBorder",
+      "MiniFilesBorder",
       "MiniInputBorder",
       "MiniNotifyBorder",
       "MiniPickBorder",
-      "NeoTreeFloatBorder",
       "DapUIFloatBorder",
       "LspInfoBorder",
     }

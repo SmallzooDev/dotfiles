@@ -19,6 +19,20 @@ return {
       desc = "Find files (buffer dir)",
     },
     {
+      "<leader>fa",
+      function()
+        require("fzf-lua").files({ file_ignore_patterns = {} })
+      end,
+      desc = "Find files (incl. generated)",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("fzf-lua").live_grep({ file_ignore_patterns = {} })
+      end,
+      desc = "Live grep (incl. generated)",
+    },
+    {
       "<leader>b",
       function()
         require("fzf-lua").buffers()
@@ -64,6 +78,16 @@ return {
   config = function()
     local fzf = require("fzf-lua")
     fzf.register_ui_select()
+
+    local noise_patterns = {
+      "mocks/",
+      "__mocks__/",
+      "_mock%.go",
+      "mock_[^/]*%.go",
+      "%.gen%.go",
+      "%.pb%.go",
+    }
+
     fzf.setup({
       "telescope",
       fzf_colors = true,
@@ -101,6 +125,7 @@ return {
           ["ctrl-q"] = "select-all+accept",
         },
       },
+      file_ignore_patterns = noise_patterns,
       files = {
         formatter = "path.filename_first",
       },
