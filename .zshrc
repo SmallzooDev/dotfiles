@@ -121,3 +121,27 @@ eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
 export GOBIN=$GOPATH/bin
 export PATH="$HOME/.local/bin:$PATH"
+
+gos() {
+	if [[ $# -ne 1 ]]; then
+		echo "usage: gos <name>[.go]" >&2
+		return 1
+	fi
+	local file="${1%.go}.go"
+	if [[ -e $file ]]; then
+		echo "gos: $file already exists" >&2
+		return 1
+	fi
+	cat > "$file" <<'EOF'
+//go:build ignore
+
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("hello")
+}
+EOF
+	"${EDITOR:-nvim}" "$file"
+}
