@@ -5,7 +5,7 @@
 # Font Configuration
 # =============================================================================
 font-family = "JetBrainsMono Nerd Font Mono"
-font-family = "Apple SD Gothic Neo"
+font-family = "Noto Sans Mono CJK KR"
 font-size = 13
 theme = cyberdream
 
