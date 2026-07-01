@@ -38,6 +38,7 @@ return {
       formatters = { file = { filename_first = true } },
       sources = {
         explorer = {
+          hidden = true,
           layout = { preset = "vertical", preview = false },
           jump = { close = true },
         },
