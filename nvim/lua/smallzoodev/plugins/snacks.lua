@@ -90,6 +90,13 @@ return {
       desc = "Open in browser",
     },
     {
+      "<leader>lg",
+      function()
+        require("snacks").lazygit()
+      end,
+      desc = "LazyGit",
+    },
+    {
       "]h",
       function()
         require("snacks").words.jump(vim.v.count1)
