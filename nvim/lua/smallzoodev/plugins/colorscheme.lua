@@ -6,7 +6,7 @@ return {
     local border_color = "#5ef1ff"
     local comment_color = "#9aa3b5"
     local line_nr_color = "#7b8496"
-    local keyword_color = "#7882ff"
+    local keyword_color = "#00ffd5"
     local border_groups = {
       "FzfLuaBorder",
       "FzfLuaPreviewBorder",

@@ -3,7 +3,7 @@
 
 # Syntax highlighting
 "attribute" = "magenta"
-"keyword" = "indigo"
+"keyword" = "teal"
 "keyword.directive" = "magenta"
 "namespace" = "blue"
 "punctuation" = "gray"
@@ -27,7 +27,7 @@
 "string" = "green"
 "constant.numeric" = "orange"
 "constant.character.escape" = "magenta"
-"label" = "indigo"
+"label" = "teal"
 
 # UI
 "ui.background" = { bg = "bg" }
@@ -97,4 +97,4 @@ cyan = "#5ef1ff"
 blue = "#5ea1ff"
 magenta = "#bd5eff"
 pink = "#ff5ea0"
-indigo = "#7882ff"
+teal = "#00ffd5"
