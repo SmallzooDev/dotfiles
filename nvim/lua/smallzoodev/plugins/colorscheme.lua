@@ -6,6 +6,7 @@ return {
     local border_color = "#5ef1ff"
     local comment_color = "#9aa3b5"
     local line_nr_color = "#7b8496"
+    local keyword_color = "#7882ff"
     local border_groups = {
       "FzfLuaBorder",
       "FzfLuaPreviewBorder",
@@ -86,6 +87,12 @@ return {
         return {
           CursorLine = { bg = c.bg },
           CursorLineNr = { fg = c.magenta },
+          Keyword = { fg = keyword_color },
+          Conditional = { fg = keyword_color },
+          Repeat = { fg = keyword_color },
+          Exception = { fg = keyword_color },
+          Label = { fg = keyword_color },
+          ["@keyword.type"] = { fg = keyword_color, italic = true },
         }
       end,
     })
