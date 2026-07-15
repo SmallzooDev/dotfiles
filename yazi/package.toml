@@ -1,6 +1,6 @@
 [plugin]
 deps = []
 
-# Cyberdream theme is defined directly in theme.toml — no flavor needed
+# Coolnight theme is defined directly in theme.toml — no flavor needed
 [flavor]
 deps = []
