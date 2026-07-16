@@ -6,7 +6,7 @@
 # =============================================================================
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Noto Sans Mono CJK KR"
-font-size = 11
+font-size = 12
 theme = coolnight
 
 # =============================================================================
@@ -20,14 +20,14 @@ window-padding-y = 10,0
 # =============================================================================
 # Transparency
 # =============================================================================
-# background-opacity = 0.75
-# background-blur-radius = 22
+background-opacity = 0.75
+background-blur-radius = 22
 
 # Background image (bg-blurred.png) — 켜고 싶으면 아래 주석 해제
-background-image = ~/Documents/backgrounds/blurred.png
-background-image-opacity = 1.0
-background-image-position = center
-background-image-fit = cover
+# background-image = ~/Documents/backgrounds/blurred.png
+# background-image-opacity = 1.0
+# background-image-position = center
+# background-image-fit = cover
 
 # =============================================================================
 # Shell Integration
@@ -37,7 +37,7 @@ shell-integration = zsh
 # =============================================================================
 # Behavior
 # =============================================================================
-cursor-color = #47FF9C
+# cursor-color follows the active theme (ghostty/themes/<name>) — not overridden here
 confirm-close-surface = false
 mouse-hide-while-typing = true
 copy-on-select = clipboard

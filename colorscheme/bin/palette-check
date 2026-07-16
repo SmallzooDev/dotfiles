@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# palette-check — flag hex colours in the hand-mapped tmux/yazi fragments that are
+# NOT defined in colorscheme/palette.toml for the active (or given) theme.
+#
+# Scope note: ghostty/wezterm hold the full ANSI-16 (incl. bright variants) and are
+# NOT checked here; palette.toml defines the semantic colours only. nvim pulls
+# extra shades from its base plugin (e.g. tokyonight's blue1/blue5/blue6) —
+# expected, documented in README.md.
+
+DOTS="$HOME/dotfiles"; CS="$DOTS/colorscheme"
+theme="${1:-$(basename "$(readlink "$CS/current" 2>/dev/null || echo coolnight)")}"
+
+pal=$(awk -v t="[$theme]" '$0==t{f=1;next} /^\[/{f=0} f' "$CS/palette.toml" \
+      | grep -oiE '#[0-9a-f]{6}' | tr 'A-F' 'a-f' | sort -u)
+[ -z "$pal" ] && { echo "no [$theme] section in palette.toml" >&2; exit 1; }
+
+echo "theme: $theme  ($(printf '%s\n' "$pal" | grep -c .) palette colours)"
+status=0
+for f in "$CS/$theme/tmux.conf" "$CS/$theme/yazi-theme.toml"; do
+  [ -f "$f" ] || continue
+  used=$(grep -oiE '#[0-9a-f]{6}' "$f" 2>/dev/null | tr 'A-F' 'a-f' | sort -u)
+  drift=$(comm -23 <(printf '%s\n' "$used") <(printf '%s\n' "$pal") | grep -v '^$')
+  if [ -n "$drift" ]; then
+    status=1
+    echo "  DRIFT  ${f#"$DOTS"/}"
+    printf '%s\n' "$drift" | sed 's/^/           /'
+  else
+    echo "  ok     ${f#"$DOTS"/}"
+  fi
+done
+exit $status

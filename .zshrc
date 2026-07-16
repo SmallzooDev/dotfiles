@@ -122,6 +122,9 @@ eval "$(mise activate zsh)"
 export GOBIN=$GOPATH/bin
 export PATH="$HOME/.local/bin:$PATH"
 
+# colorscheme theme switcher (`theme coolnight|github-dark`)
+export PATH="$HOME/dotfiles/colorscheme/bin:$PATH"
+
 gos() {
 	if [[ $# -ne 1 ]]; then
 		echo "usage: gos <name>[.go]" >&2

@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Two-theme colour switcher for these dotfiles: coolnight | github-dark.
+#
+# Only the palette is switched. Background image and transparency are left
+# untouched — theme and background are intentionally isolated (both themes assume
+# a transparent background managed in each terminal's own config).
+set -euo pipefail
+
+DOTS="$HOME/dotfiles"
+CS="$DOTS/colorscheme"
+
+current() { basename "$(readlink "$CS/current" 2>/dev/null || echo coolnight)"; }
+
+set_line() { # file  extended-regex  replacement
+  local f="$1" re="$2" rep="$3"
+  [ -f "$f" ] && sed -i '' -E "s|$re|$rep|" "$f"
+}
+
+apply() {
+  local t="$1"
+  ln -sfn "$t" "$CS/current"
+
+  # native selectors (palette only — never the background)
+  set_line "$DOTS/ghostty/config"     '^theme = .*'              "theme = $t"
+  set_line "$DOTS/starship.toml"      '^palette = .*'            "palette = \"$t\""
+  set_line "$DOTS/.wezterm.lua"       '^local active_theme = .*' "local active_theme = \"$t\""
+
+  # tmux follows colorscheme/current via source-file; reload live if a server is up
+  if command -v tmux >/dev/null 2>&1 && tmux info >/dev/null 2>&1; then
+    tmux source-file "$CS/current/tmux.conf" >/dev/null 2>&1 || true
+  fi
+}
+
+status() {
+  echo "current : $(current)"
+  echo "ghostty : $(grep -m1 '^theme = '   "$DOTS/ghostty/config"    2>/dev/null || true)"
+  echo "starship: $(grep -m1 '^palette = ' "$DOTS/starship.toml"     2>/dev/null || true)"
+  echo "wezterm : $(grep -m1 '^local active_theme = ' "$DOTS/.wezterm.lua" 2>/dev/null || true)"
+}
+
+case "${1:-status}" in
+  coolnight|github-dark)
+    apply "$1"
+    echo "→ $1"
+    echo "  tmux·starship·wezterm 즉시 반영 · nvim 창 포커스 시 자동"
+    echo "  ghostty ⌘⇧, (reload)"
+    ;;
+  status) status ;;
+  -h|--help) echo "usage: theme [coolnight|github-dark|status]"; status ;;
+  *) echo "unknown theme: $1  (coolnight|github-dark)" >&2; exit 1 ;;
+esac

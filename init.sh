@@ -44,5 +44,10 @@ create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
 create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
 create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
-create_symlink "$HOME/dotfiles/helix" ~/.config/helix
 create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
+
+[ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn coolnight "$HOME/dotfiles/colorscheme/current"
+
+# lazygit reads from the macOS app-support dir on this machine (lazygit --print-config-dir)
+mkdir -p "$HOME/Library/Application Support/lazygit"
+create_symlink "$HOME/dotfiles/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"

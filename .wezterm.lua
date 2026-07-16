@@ -18,21 +18,41 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 13
 
--- Color Configuration (coolnight palette inlined)
-config.colors = {
-	foreground = "#CBE0F0",
-	background = "#011423",
-	cursor_bg = "#47FF9C",
-	cursor_fg = "#011423",
-	cursor_border = "#47FF9C",
-	selection_fg = "#CBE0F0",
-	selection_bg = "#033259",
-	scrollbar_thumb = "#011423",
-	split = "#011423",
-	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
-	brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
-	indexed = { [16] = "#FFE073", [17] = "#E52E2E" },
+-- Color Configuration — two palettes selected by `active_theme`.
+-- Palette only; the window background image / opacity below are left alone
+-- (theme and background are intentionally isolated).
+local active_theme = "coolnight"
+local themes = {
+	coolnight = {
+		foreground = "#CBE0F0",
+		background = "#011423",
+		cursor_bg = "#47FF9C",
+		cursor_fg = "#011423",
+		cursor_border = "#47FF9C",
+		selection_fg = "#CBE0F0",
+		selection_bg = "#033259",
+		scrollbar_thumb = "#011423",
+		split = "#011423",
+		ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
+		brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#a277ff", "#a277ff", "#24EAF7", "#24EAF7" },
+		indexed = { [16] = "#FFE073", [17] = "#E52E2E" },
+	},
+	["github-dark"] = {
+		foreground = "#e6edf3",
+		background = "#0d1117",
+		cursor_bg = "#2f81f7",
+		cursor_fg = "#0d1117",
+		cursor_border = "#2f81f7",
+		selection_fg = "#e6edf3",
+		selection_bg = "#264f78",
+		scrollbar_thumb = "#0d1117",
+		split = "#30363d",
+		ansi = { "#484f58", "#ff7b72", "#3fb950", "#d29922", "#58a6ff", "#bc8cff", "#39c5cf", "#b1bac4" },
+		brights = { "#6e7681", "#ffa198", "#56d364", "#e3b341", "#79c0ff", "#d2a8ff", "#56d4dd", "#ffffff" },
+		indexed = { [16] = "#d29922", [17] = "#ff7b72" },
+	},
 }
+config.colors = themes[active_theme]
 config.force_reverse_video_cursor = true
 
 -- Window Configuration
