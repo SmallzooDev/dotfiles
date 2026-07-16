@@ -21,7 +21,12 @@ config.font_size = 13
 -- Color Configuration — two palettes selected by `active_theme`.
 -- Palette only; the window background image / opacity below are left alone
 -- (theme and background are intentionally isolated).
-local active_theme = "coolnight"
+local function resolve_theme()
+	local ok, stdout = wezterm.run_child_process({ "readlink", wezterm.home_dir .. "/dotfiles/colorscheme/current" })
+	local name = ok and stdout:gsub("%s+", "") or ""
+	return name == "github-dark" and "github-dark" or "coolnight"
+end
+local active_theme = resolve_theme()
 local themes = {
 	coolnight = {
 		foreground = "#CBE0F0",

@@ -63,10 +63,9 @@ alias ports='lsof -i -P'
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Make inline suggestions and completion metadata readable on cyberdream.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9aa3b5'
-zstyle ':completion:*' list-colors 'ma=38;2;22;24;26;48;2;94;241;255' 'di=38;2;94;161;255' 'ln=38;2;94;241;255' 'ex=38;2;94;255;108' 'fi=38;2;154;163;181'
-zstyle ':completion:*:descriptions' format '%F{#9aa3b5}%d%f'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+zstyle ':completion:*' list-colors 'ma=0;7' 'di=34' 'ln=36' 'ex=32'
+zstyle ':completion:*:descriptions' format '%F{8}%d%f'
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF
@@ -87,9 +86,6 @@ bindkey '^G' fzf-home-widget
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
-
-# Cyberdream theme for FZF
-export FZF_DEFAULT_OPTS="--color=bg:#16181a,bg+:#3c4048,fg:#ffffff,fg+:#ffffff --color=hl:#5ef1ff,hl+:#5ef1ff,info:#9aa3b5,prompt:#bd5eff,pointer:#5ef1ff --color=marker:#5eff6c,spinner:#5ef1ff,header:#9aa3b5,selected-bg:#3c4048,border:#9aa3b5"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin

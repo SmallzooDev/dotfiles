@@ -54,6 +54,9 @@ node_modules/
 tmp/
 temp/
 
+# colorscheme active-theme state (untracked; lazy-created by init.sh / theme)
+colorscheme/current
+
 # Claude
 CLAUDE.md
 .claude/
