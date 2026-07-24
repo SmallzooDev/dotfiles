@@ -105,6 +105,10 @@ keymap.set({ "n", "v" }, "gs", "^", { desc = "Go to first non-blank character" }
 
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
+keymap.set("n", "zf", "zc", { desc = "Fold block" })
+keymap.set("n", "zu", "zo", { desc = "Unfold block" })
+keymap.set("n", "zU", "zR", { desc = "Unfold all in buffer" })
+
 local reload_aug = vim.api.nvim_create_augroup("Reload", { clear = true })
 
 local function reload_notify(msg, level)

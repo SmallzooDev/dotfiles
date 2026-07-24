@@ -45,6 +45,12 @@ opt.shortmess:append("sI")
 
 opt.fillchars = { fold = " ", diff = "╱", eob = " " }
 
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = ""
+
 opt.updatetime = 250
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10
