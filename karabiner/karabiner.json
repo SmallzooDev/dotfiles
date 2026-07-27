@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hyper Key: F8 → ⌃⇧⌥⌘",
+                        "description": "Hyper Key: F9 → ⌃⇧⌥⌘",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f8",
+                                    "key_code": "f9",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -1251,7 +1251,7 @@
                     "simple_modifications": [
                         {
                             "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                            "to": [{ "key_code": "f8" }]
+                            "to": [{ "key_code": "f9" }]
                         }
                     ]
                 },
@@ -1295,7 +1295,7 @@
             "simple_modifications": [
                 {
                     "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                    "to": [{ "key_code": "f8" }]
+                    "to": [{ "key_code": "f9" }]
                 },
                 {
                     "from": { "key_code": "caps_lock" },
