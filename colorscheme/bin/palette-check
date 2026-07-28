@@ -16,7 +16,7 @@ pal=$(awk -v t="[$theme]" '$0==t{f=1;next} /^\[/{f=0} f' "$CS/palette.toml" \
 
 echo "theme: $theme  ($(printf '%s\n' "$pal" | grep -c .) palette colours)"
 status=0
-for f in "$CS/$theme/tmux.conf" "$CS/$theme/yazi-theme.toml"; do
+for f in "$CS/$theme/tmux.conf" "$CS/$theme/yazi-theme.toml" "$CS/$theme/pspg-theme"; do
   [ -f "$f" ] || continue
   used=$(grep -oiE '#[0-9a-f]{6}' "$f" 2>/dev/null | tr 'A-F' 'a-f' | sort -u)
   drift=$(comm -23 <(printf '%s\n' "$used") <(printf '%s\n' "$pal") | grep -v '^$')

@@ -1,0 +1,13 @@
+\set QUIET 1
+\setenv PSQL_PAGER 'pspg -X --no-commandbar --custom-style=current'
+\timing
+\pset null '(null)'
+\pset linestyle unicode
+\pset border 2
+\pset pager always
+\set COMP_KEYWORD_CASE preserve-lower
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 10000
+\set json '\\g (tuples_only=on format=unaligned) | jq .'
+\set PROMPT1 '%[%033[1;34m%]%n@%/%R%x%[%033[0m%]%# '
+\unset QUIET

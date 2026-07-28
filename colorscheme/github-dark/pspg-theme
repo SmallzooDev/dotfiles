@@ -1,0 +1,27 @@
+template = 24
+
+background = Default, Default
+data = #e6edf3, Default
+border = #30363d, Default
+label = #58a6ff, Default, bold
+footer = #8b949e, Default
+row_number = #6e7681, Default
+record_number = #6e7681, Default
+title = #6e7681, Default
+status_bar = #6e7681, Default
+prompt_bar = #6e7681, Default
+input_bar = #e6edf3, Default
+info_bar = #39c5cf, Default
+error_bar = #ff7b72, Default, bold
+cursor_data = #e6edf3, #182f50, bold
+cursor_border = #30363d, #182f50
+cursor_label = #58a6ff, #182f50, bold
+cursor_row_number = #e6edf3, #182f50
+cursor_footer = #e6edf3, #182f50
+matched_pattern = #d29922, Default, bold
+matched_line = Default, Default
+matched_pattern_cursor = #d29922, #182f50, bold
+bookmark = #d29922, #21262d, bold
+scrollbar_background = Default, Default
+scrollbar_slider = #30363d, #30363d
+scrollbar_arrows = #6e7681, Default

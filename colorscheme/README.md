@@ -31,6 +31,7 @@ ghostty·wezterm은 완전한 ANSI-16(bright 포함)을 담으므로 palette-che
 
 - tmux — `.tmux.conf`가 `colorscheme/current/tmux.conf`를 source
 - yazi — `yazi/theme.toml`이 `colorscheme/current/yazi-theme.toml` 심링크
+- pspg — `~/.pspg_theme_current`가 `colorscheme/current/pspg-theme` 심링크 (`PSQL_PAGER`의 `--custom-style=current`)
 - nvim — `current`를 읽어 tokyonight(coolnight) / github_dark_default 적용, 창 포커스 시 자동 추종
 
 셀렉터 라인을 스크립트가 재작성하는 도구
@@ -65,6 +66,6 @@ tmux·starship·wezterm 즉시 반영, nvim 창 포커스 시. ghostty `⌘⇧,`
 ## 팔레트 추가
 
 1. `palette.toml`에 `[<name>]` 섹션 추가.
-2. `colorscheme/<name>/`에 `tmux.conf`·`yazi-theme.toml` 프래그먼트 생성 — 기존 것 복사 후 hex만 sed 치환(glyph 보존).
+2. `colorscheme/<name>/`에 `tmux.conf`·`yazi-theme.toml`·`pspg-theme` 프래그먼트 생성 — 기존 것 복사 후 hex만 sed 치환(glyph 보존).
 3. ghostty(`themes/<name>`)·starship(`[palettes.<name>]`)·wezterm(`themes`)·nvim(분기)에 등록.
 4. `bin/theme` case 문에 이름 추가. `bin/palette-check <name>`로 점검.

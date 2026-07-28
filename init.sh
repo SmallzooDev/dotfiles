@@ -37,6 +37,8 @@ create_symlink "$HOME/dotfiles/.zprofile" ~/.zprofile
 create_symlink "$HOME/dotfiles/.ideavimrc" ~/.ideavimrc
 create_symlink "$HOME/dotfiles/.tmux.conf" ~/.tmux.conf
 create_symlink "$HOME/dotfiles/.wezterm.lua" ~/.wezterm.lua
+create_symlink "$HOME/dotfiles/.psqlrc" ~/.psqlrc
+create_symlink "$HOME/dotfiles/.inputrc" ~/.inputrc
 
 mkdir -p ~/.config
 create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
@@ -47,6 +49,8 @@ create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
 
 [ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn coolnight "$HOME/dotfiles/colorscheme/current"
 "$HOME/dotfiles/colorscheme/bin/theme" "$(basename "$(readlink "$HOME/dotfiles/colorscheme/current")")" >/dev/null 2>&1 || true
+
+create_symlink "$HOME/dotfiles/colorscheme/current/pspg-theme" ~/.pspg_theme_current
 
 # lazygit reads from the macOS app-support dir on this machine (lazygit --print-config-dir)
 mkdir -p "$HOME/Library/Application Support/lazygit"
