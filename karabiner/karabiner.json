@@ -1113,6 +1113,7 @@
                         "manipulators": [
                             {
                                 "from": { "key_code": "escape" },
+                                "to": [{ "key_code": "escape" }],
                                 "to_after_key_up": [
                                     {
                                         "select_input_source": {
@@ -1121,7 +1122,6 @@
                                         }
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             },
                             {
