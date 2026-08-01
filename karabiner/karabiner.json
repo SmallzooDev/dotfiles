@@ -22,11 +22,24 @@
                         ]
                     },
                     {
-                        "description": "Map left_command + tab to cmd + f9",
+                        "description": "Map left_command + tab/escape to cmd + f9",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "tab",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f9",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "escape",
                                     "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": [
