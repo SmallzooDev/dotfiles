@@ -6,11 +6,31 @@ return {
     vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
     vim.g.slime_dont_ask_default = 1
 
+    local function pane_tty(target)
+      local tty = vim.fn.system({ "tmux", "display", "-p", "-t", target, "#{pane_tty}" })
+      return (tty:gsub("%s", ""):gsub("^/dev/", ""))
+    end
+
+    local function pspg_open(tty)
+      if tty == "" then
+        return false
+      end
+      return vim.fn.system({ "ps", "-t", tty, "-o", "comm=" }):match("pspg") ~= nil
+    end
+
     local function send_and_focus(plug)
       return function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(plug, true, false, true), "x", false)
         local cfg = vim.b.slime_config or vim.g.slime_default_config
-        vim.system({ "tmux", "select-pane", "-t", cfg.target_pane })
+        local target = cfg.target_pane
+        local tty = pane_tty(target)
+        if pspg_open(tty) then
+          vim.fn.system({ "tmux", "send-keys", "-t", target, "q" })
+          vim.wait(500, function()
+            return not pspg_open(tty)
+          end, 50)
+        end
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(plug, true, false, true), "x", false)
+        vim.system({ "tmux", "select-pane", "-t", target })
       end
     end
 

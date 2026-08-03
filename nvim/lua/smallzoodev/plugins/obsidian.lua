@@ -74,6 +74,11 @@ return {
       templates = {
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
+        substitutions = {
+          mission_type = function()
+            return vim.g.obsidian_mission_type or "sql"
+          end,
+        },
       },
       daily_notes = {
         folder = "daily",
@@ -114,6 +119,30 @@ return {
     create_para_command("ObsidianNewProject", "01-Projects", "project", "Project name: ")
     create_para_command("ObsidianNewArea", "02-Areas", "area", "Area name: ")
     create_para_command("ObsidianNewResource", "03-Resources", "resource", "Resource name: ")
+
+    vim.api.nvim_create_user_command("ObsidianDailyMission", function(opts)
+      local mission_type = opts.args ~= "" and opts.args or "sql"
+      vim.g.obsidian_mission_type = mission_type
+
+      local client = require("obsidian").get_client()
+      local vault_path = client.dir.filename
+      local missions_dir = vault_path .. "/02-Areas/20260802-DailyMissions"
+      local file_path = string.format("%s/%s_%s.md", missions_dir, os.date("%Y-%m-%d"), mission_type)
+
+      vim.fn.mkdir(missions_dir, "p")
+      local is_new = vim.fn.filereadable(file_path) == 0
+      vim.cmd("edit " .. vim.fn.fnameescape(file_path))
+      if is_new then
+        vim.defer_fn(function()
+          vim.cmd("ObsidianTemplate daily-mission")
+        end, 100)
+      end
+    end, {
+      nargs = "?",
+      complete = function()
+        return { "sql", "algorithm", "shell" }
+      end,
+    })
   end,
   keys = {
     { "<leader>Ol", "<cmd>ObsidianLinks<CR>", desc = "List links", ft = "markdown" },
@@ -122,6 +151,7 @@ return {
     { "<leader>Oa", "<cmd>ObsidianNewArea<CR>", desc = "New area", ft = "markdown" },
     { "<leader>Oz", "<cmd>ObsidianNewResource<CR>", desc = "New resource", ft = "markdown" },
     { "<leader>OT", "<cmd>ObsidianToday<CR>", desc = "Today's note", ft = "markdown" },
+    { "<leader>Om", "<cmd>ObsidianDailyMission<CR>", desc = "Daily mission", ft = "markdown" },
     { "<leader>Olx", ":ObsidianLink<CR>", desc = "Link to existing", mode = "v", ft = "markdown" },
     { "<leader>Oln", ":ObsidianLinkNew<CR>", desc = "Link to new note", mode = "v", ft = "markdown" },
   },

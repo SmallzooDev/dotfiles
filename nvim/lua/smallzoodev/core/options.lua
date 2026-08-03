@@ -70,3 +70,5 @@ opt.guicursor = {
 }
 
 opt.statusline = require("smallzoodev.core.statusline").statusline
+
+vim.g.omni_sql_no_default_maps = 1
