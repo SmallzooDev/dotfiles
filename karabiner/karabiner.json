@@ -22,19 +22,32 @@
                         ]
                     },
                     {
-                        "description": "Map left_command + tab to cmd + f9",
+                        "description": "Map ⌘tab→F2, ⌘space→F10, ⌃⌘space→F4",
                         "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": ["left_control", "left_command"]
+                                    }
+                                },
+                                "to": [{ "key_code": "f4" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "key_code": "f10" }],
+                                "type": "basic"
+                            },
                             {
                                 "from": {
                                     "key_code": "tab",
                                     "modifiers": { "mandatory": ["left_command"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "f9",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "f2" }],
                                 "type": "basic"
                             }
                         ]
