@@ -46,10 +46,6 @@ local function component(val, hl)
   return "%{%v:lua._statusline_component('" .. val .. "', '" .. hl .. "')%}"
 end
 
-local function get_diagnostic_count(severity)
-  return #vim.diagnostic.get(0, { severity = vim.diagnostic.severity[severity] })
-end
-
 local function get_mode_info()
   local mode = vim.api.nvim_get_mode().mode
   local val = mode_map[mode]
@@ -84,10 +80,15 @@ M.git_diff = function(hl)
 end
 
 M.diagnostics = function()
-  local errors = get_diagnostic_count("ERROR")
-  local warnings = get_diagnostic_count("WARN")
-  local hints = get_diagnostic_count("HINT")
-  local info = get_diagnostic_count("INFO")
+  local counts = {}
+  for _, diagnostic in ipairs(vim.diagnostic.get(0)) do
+    counts[diagnostic.severity] = (counts[diagnostic.severity] or 0) + 1
+  end
+
+  local errors = counts[vim.diagnostic.severity.ERROR] or 0
+  local warnings = counts[vim.diagnostic.severity.WARN] or 0
+  local hints = counts[vim.diagnostic.severity.HINT] or 0
+  local info = counts[vim.diagnostic.severity.INFO] or 0
 
   if errors + warnings + hints + info == 0 then
     return ""
@@ -134,7 +135,7 @@ M.search_count = function(hl)
   if vim.v.hlsearch == 0 then
     return ""
   end
-  local ok, s_count = pcall(vim.fn.searchcount, { recompute = true })
+  local ok, s_count = pcall(vim.fn.searchcount, { recompute = false })
   if not ok or s_count.current == nil or s_count.total == 0 then
     return ""
   end

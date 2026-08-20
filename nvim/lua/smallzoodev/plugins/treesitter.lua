@@ -25,7 +25,7 @@ local ensure_installed = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
     build = function()
       local ts = require("nvim-treesitter")
       ts.update()

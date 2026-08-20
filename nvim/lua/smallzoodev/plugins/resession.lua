@@ -1,6 +1,6 @@
 return {
   "stevearc/resession.nvim",
-  lazy = false,
+  event = "VeryLazy",
   dependencies = {
     "scottmckendry/pick-resession.nvim",
   },

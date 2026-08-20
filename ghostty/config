@@ -15,8 +15,8 @@ config-file = ?~/dotfiles/colorscheme/current/ghostty.conf
 # =============================================================================
 macos-option-as-alt = true
 macos-titlebar-style = hidden
-window-padding-x = 8
-window-padding-y = 10,0
+window-padding-x = 10
+window-padding-y = 6,10
 
 # =============================================================================
 # Transparency

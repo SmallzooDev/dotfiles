@@ -2,6 +2,9 @@ return {
   "mason-org/mason.nvim",
   event = "VeryLazy",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+  init = function()
+    vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
+  end,
   dependencies = {
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -12,6 +15,7 @@ return {
     local mason_tool_installer = require("mason-tool-installer")
 
     mason.setup({
+      PATH = "skip",
       ui = {
         icons = {
           package_installed = "✓",

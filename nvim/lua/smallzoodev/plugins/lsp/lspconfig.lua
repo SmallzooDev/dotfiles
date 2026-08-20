@@ -1,8 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
-  lazy = false,
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "mason-org/mason.nvim",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
