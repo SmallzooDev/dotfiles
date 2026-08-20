@@ -1,5 +1,5 @@
 \set QUIET 1
-\setenv PSQL_PAGER 'pspg -X --no-commandbar --custom-style=current'
+\setenv PSQL_PAGER 'pspg -X --no-commandbar'
 \timing
 \pset null '(null)'
 \pset linestyle unicode

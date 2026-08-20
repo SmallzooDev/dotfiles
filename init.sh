@@ -52,9 +52,3 @@ create_symlink "$HOME/dotfiles/herdr/config.toml" ~/.config/herdr/config.toml
 
 [ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn rose-pine "$HOME/dotfiles/colorscheme/current"
 "$HOME/dotfiles/colorscheme/bin/theme" "$(basename "$(readlink "$HOME/dotfiles/colorscheme/current")")" >/dev/null 2>&1 || true
-
-create_symlink "$HOME/dotfiles/colorscheme/pspg-theme" ~/.pspg_theme_current
-
-# lazygit reads from the macOS app-support dir on this machine (lazygit --print-config-dir)
-mkdir -p "$HOME/Library/Application Support/lazygit"
-create_symlink "$HOME/dotfiles/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"

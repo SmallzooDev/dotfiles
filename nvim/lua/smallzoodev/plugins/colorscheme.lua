@@ -173,52 +173,9 @@ return {
           hl.LspInlayHint = { fg = colors.fg_gutter, italic = true }
           hl.DiagnosticHint = { fg = colors.border }
           hl.DiagnosticVirtualTextHint = { fg = colors.border }
-        end,
-      })
-
-      local function style_github()
-        local blue_github = "#58a6ff"
-
-        vim.api.nvim_set_hl(0, "FloatBorder", { fg = blue_github })
-        vim.api.nvim_set_hl(0, "FloatTitle", { fg = blue_github, bold = true })
-
-        for _, group in ipairs({ "Pmenu", "PmenuSbar" }) do
-          local highlight = vim.api.nvim_get_hl(0, { name = group, link = false })
-          highlight.bg = nil
-          vim.api.nvim_set_hl(0, group, highlight)
-        end
-
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = "#182f50" })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = blue_github, bold = true })
-        for _, group in ipairs({ "LspReferenceText", "LspReferenceRead", "LspReferenceWrite" }) do
-          vim.api.nvim_set_hl(0, group, { underline = true, sp = blue_github })
-        end
-
-        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-        vim.api.nvim_set_hl(0, "StatusLine", { fg = normal.fg, bg = normal.bg })
-        vim.api.nvim_set_hl(0, "StatusLineNC", { fg = normal.fg, bg = normal.bg })
-        for _, group in ipairs({ "Added", "Changed", "Removed" }) do
-          local highlight = vim.api.nvim_get_hl(0, { name = group })
-          highlight.bg = nil
-          vim.api.nvim_set_hl(0, group, highlight)
-        end
-
-        for _, group in ipairs({ "TabLine", "TabLineFill", "BufferLineFill" }) do
-          local highlight = vim.api.nvim_get_hl(0, { name = group, link = false })
-          highlight.bg = nil
-          vim.api.nvim_set_hl(0, group, highlight)
-        end
-      end
-
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("SmallzoodevThemeStyle", { clear = true }),
-        callback = function(event)
           link_chrome(function(group, value)
-            vim.api.nvim_set_hl(0, group, value)
+            hl[group] = value
           end)
-          if event.match == "github_dark_default" then
-            style_github()
-          end
         end,
       })
 
@@ -237,16 +194,6 @@ return {
       vim.api.nvim_create_autocmd("FocusGained", {
         group = vim.api.nvim_create_augroup("SmallzoodevThemeFollow", { clear = true }),
         callback = apply,
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("SmallzoodevHighlights", { clear = true }),
-        pattern = { "snacks_picker_list", "snacks_picker_input", "snacks_picker_preview" },
-        callback = function()
-          for _, group in ipairs(snacks_bg_groups) do
-            vim.api.nvim_set_hl(0, group, { link = "Normal" })
-          end
-        end,
       })
     end,
   },

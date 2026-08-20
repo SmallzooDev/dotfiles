@@ -56,7 +56,6 @@ temp/
 
 # colorscheme active-theme state (untracked; lazy-created by init.sh / theme)
 colorscheme/current
-yazi/flavors/
 
 # Claude
 CLAUDE.md

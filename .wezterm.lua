@@ -31,9 +31,6 @@ if theme.colors then
 end
 config.color_scheme = theme.wezterm
 
-local scheme = theme.colors or wezterm.color.get_builtin_schemes()[theme.wezterm]
-config.force_reverse_video_cursor = true
-
 config.initial_rows = 45
 config.initial_cols = 180
 config.window_decorations = "RESIZE"
@@ -45,41 +42,7 @@ config.max_fps = 144
 config.animation_fps = 60
 config.cursor_blink_rate = 250
 
-config.enable_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = true
-config.show_tab_index_in_tab_bar = false
-config.use_fancy_tab_bar = false
-config.colors = {
-	tab_bar = {
-		background = scheme.background,
-		new_tab = { fg_color = scheme.background, bg_color = scheme.brights[6] },
-		new_tab_hover = { fg_color = scheme.background, bg_color = scheme.foreground },
-	},
-}
-
-wezterm.on("format-tab-title", function(tab, _, _, _, hover)
-	local background = scheme.brights[1]
-	local foreground = scheme.foreground
-
-	if tab.is_active then
-		background = scheme.brights[7]
-		foreground = scheme.background
-	elseif hover then
-		background = scheme.brights[8]
-		foreground = scheme.background
-	end
-
-	local title = tostring(tab.tab_index + 1)
-	return {
-		{ Foreground = { Color = background } },
-		{ Text = "█" },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
-		{ Text = title },
-		{ Foreground = { Color = background } },
-		{ Text = "█" },
-	}
-end)
+config.enable_tab_bar = false
 
 config.default_prog = { wezterm.home_dir .. "/.local/bin/herdr" }
 

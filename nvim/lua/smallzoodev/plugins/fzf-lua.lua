@@ -91,7 +91,6 @@ return {
     fzf.setup({
       "telescope",
       fzf_colors = true,
-      fzf_opts = { ["--color"] = "bg:-1,gutter:-1,border:14" },
       hls = {
         normal = "Normal",
         border = "FloatBorder",
