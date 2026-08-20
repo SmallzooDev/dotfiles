@@ -11,6 +11,7 @@ source ~/dev-utils/shell/devenv.zsh
 
 # Git aliases (replacing oh-my-zsh git plugin)
 alias lg='lazygit'
+alias lm='lumen diff --wrap'
 
 # custom aliases
 alias gtwk='cd ~/wiki/SmallzooDevWiki/content/_wiki'

@@ -1,0 +1,19 @@
+customCommands:
+  - key: X
+    description: Review with Lumen
+    commandMenu:
+      - key: c
+        context: commits, subCommits
+        description: Review selected commit
+        command: 'lumen diff {{.SelectedCommit.Hash | quote}} --wrap'
+        output: terminal
+      - key: b
+        context: localBranches
+        description: Review current branch from selected base
+        command: 'lumen diff {{.SelectedLocalBranch.Name | quote}}...{{.CheckedOutBranch.Name | quote}} --wrap'
+        output: terminal
+      - key: s
+        context: localBranches
+        description: Review current branch commit by commit
+        command: 'lumen diff {{.SelectedLocalBranch.Name | quote}}..{{.CheckedOutBranch.Name | quote}} --stacked --wrap'
+        output: terminal

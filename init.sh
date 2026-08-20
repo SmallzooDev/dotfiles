@@ -52,6 +52,8 @@ create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
 create_symlink "$HOME/dotfiles/starship.toml" ~/.config/starship.toml
 mkdir -p ~/.config/herdr
 create_symlink "$HOME/dotfiles/herdr/config.toml" ~/.config/herdr/config.toml
+mkdir -p "$HOME/Library/Application Support/lazygit"
+create_symlink "$HOME/dotfiles/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
 [ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn rose-pine "$HOME/dotfiles/colorscheme/current"
 "$HOME/dotfiles/colorscheme/bin/theme" "$(basename "$(readlink "$HOME/dotfiles/colorscheme/current")")" >/dev/null 2>&1 || true
