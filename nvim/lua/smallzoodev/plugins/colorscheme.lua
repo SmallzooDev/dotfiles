@@ -6,62 +6,6 @@ local function active_theme()
   return name, themes[name] or themes["rose-pine"]
 end
 
-local border_groups = {
-  "FzfLuaBorder",
-  "FzfLuaPreviewBorder",
-  "FzfLuaHelpBorder",
-  "FzfLuaScrollBorderEmpty",
-  "FzfLuaScrollBorderFull",
-  "FzfLuaFzfBorder",
-  "TelescopeBorder",
-  "WhichKeyBorder",
-  "NoiceCmdlinePopupBorder",
-  "NoicePopupBorder",
-  "NoicePopupmenuBorder",
-  "NoiceConfirmBorder",
-  "NoiceSplitBorder",
-  "BlinkCmpMenuBorder",
-  "BlinkCmpDocBorder",
-  "BlinkCmpSignatureHelpBorder",
-  "MiniClueBorder",
-  "MiniCmdlinePeekBorder",
-  "MiniFilesBorder",
-  "MiniInputBorder",
-  "MiniNotifyBorder",
-  "MiniPickBorder",
-  "DapUIFloatBorder",
-  "LspInfoBorder",
-}
-
-local title_groups = {
-  "FzfLuaTitle",
-  "FzfLuaPreviewTitle",
-  "TelescopeTitle",
-}
-
-local snacks_bg_groups = {
-  "SnacksPicker",
-  "SnacksPickerNormal",
-  "SnacksPickerList",
-  "SnacksPickerInput",
-  "SnacksPickerPreview",
-  "SnacksPickerBox",
-}
-
-local function link_chrome(set)
-  for _, group in ipairs(border_groups) do
-    set(group, { link = "FloatBorder" })
-  end
-  for _, group in ipairs(title_groups) do
-    set(group, { link = "FloatTitle" })
-  end
-  for _, group in ipairs(snacks_bg_groups) do
-    set(group, { link = "Normal" })
-  end
-  set("SnacksPickerBorder", { link = "FloatBorder" })
-  set("SnacksPickerTitle", { link = "FloatTitle" })
-end
-
 return {
   {
     "folke/tokyonight.nvim",
@@ -73,7 +17,6 @@ return {
         config = function()
           require("github-theme").setup({
             options = {
-              transparent = true,
               styles = { comments = "italic" },
             },
           })
@@ -84,7 +27,6 @@ return {
         name = "catppuccin",
         opts = {
           flavour = "mocha",
-          transparent_background = true,
         },
       },
       {
@@ -92,9 +34,9 @@ return {
         name = "rose-pine",
         opts = {
           variant = "main",
-          styles = { transparency = true },
         },
       },
+      "rebelot/kanagawa.nvim",
     },
     config = function()
       local bg = "#011628"
@@ -117,21 +59,18 @@ return {
 
       require("tokyonight").setup({
         style = "night",
-        transparent = true,
         styles = {
           comments = { italic = true },
-          sidebars = "transparent",
-          floats = "transparent",
         },
         on_colors = function(colors)
           colors.bg = bg
-          colors.bg_dark = colors.none
-          colors.bg_float = colors.none
+          colors.bg_dark = bg_dark
+          colors.bg_float = bg_dark
           colors.bg_highlight = bg_highlight
           colors.bg_popup = bg_dark
           colors.bg_search = bg_search
-          colors.bg_sidebar = colors.none
-          colors.bg_statusline = colors.none
+          colors.bg_sidebar = bg_dark
+          colors.bg_statusline = bg_dark
           colors.bg_visual = bg_visual
           colors.border = border
           colors.fg = fg
@@ -173,9 +112,6 @@ return {
           hl.LspInlayHint = { fg = colors.fg_gutter, italic = true }
           hl.DiagnosticHint = { fg = colors.border }
           hl.DiagnosticVirtualTextHint = { fg = colors.border }
-          link_chrome(function(group, value)
-            hl[group] = value
-          end)
         end,
       })
 

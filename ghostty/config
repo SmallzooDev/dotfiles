@@ -8,8 +8,8 @@ macos-titlebar-style = hidden
 window-padding-x = 10
 window-padding-y = 6,10
 
-background-opacity = 0.75
-background-blur-radius = 22
+# background-opacity = 0.75
+# background-blur-radius = 22
 
 shell-integration = zsh
 confirm-close-surface = false

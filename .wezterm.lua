@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local opacity = 0.80
+-- local opacity = 0.80
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
@@ -34,8 +34,8 @@ config.color_scheme = theme.wezterm
 config.initial_rows = 45
 config.initial_cols = 180
 config.window_decorations = "RESIZE"
-config.window_background_opacity = opacity
-config.macos_window_background_blur = 10
+-- config.window_background_opacity = opacity
+-- config.macos_window_background_blur = 10
 config.window_close_confirmation = "NeverPrompt"
 
 config.max_fps = 144

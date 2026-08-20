@@ -25,6 +25,10 @@ return {
     nvim = "github_dark_default",
     wezterm = "GitHub Dark",
   },
+  kanagawa = {
+    nvim = "kanagawa-wave",
+    wezterm = "Kanagawa (Gogh)",
+  },
   ["rose-pine"] = {
     nvim = "rose-pine",
     wezterm = "rose-pine",

@@ -92,12 +92,8 @@ return {
       "telescope",
       fzf_colors = true,
       hls = {
-        normal = "Normal",
-        border = "FloatBorder",
-        preview_normal = "Normal",
-        preview_border = "FloatBorder",
-        title = "FloatTitle",
-        preview_title = "FloatTitle",
+        normal = "NormalFloat",
+        preview_normal = "NormalFloat",
       },
       winopts = {
         height = 0.85,

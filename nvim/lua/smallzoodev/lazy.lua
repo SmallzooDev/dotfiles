@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoodev.plugins.lsp" } }, {
   install = {
     missing = true,
-    colorscheme = { "rose-pine", "catppuccin-mocha", "tokyonight", "github_dark_default" },
+    colorscheme = { "rose-pine", "catppuccin-mocha", "kanagawa-wave", "tokyonight", "github_dark_default" },
   },
   checker = {
     enabled = true,
