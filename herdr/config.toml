@@ -43,3 +43,9 @@ key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "agent", "state_text"],
+  ["workspace", "tab"],
+]
