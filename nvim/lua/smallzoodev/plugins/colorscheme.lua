@@ -6,6 +6,15 @@ local function active_theme()
   return name, themes[name] or themes["rose-pine"]
 end
 
+local function disable_italics()
+  for name, highlight in pairs(vim.api.nvim_get_hl(0, {})) do
+    if highlight.italic then
+      highlight.italic = false
+      vim.api.nvim_set_hl(0, name, highlight)
+    end
+  end
+end
+
 return {
   {
     "folke/tokyonight.nvim",
@@ -13,20 +22,11 @@ return {
     priority = 1000,
     dependencies = {
       {
-        "projekt0n/github-nvim-theme",
-        config = function()
-          require("github-theme").setup({
-            options = {
-              styles = { comments = "italic" },
-            },
-          })
-        end,
-      },
-      {
         "catppuccin/nvim",
         name = "catppuccin",
         opts = {
           flavour = "mocha",
+          no_italic = true,
         },
       },
       {
@@ -34,9 +34,9 @@ return {
         name = "rose-pine",
         opts = {
           variant = "main",
+          styles = { italic = false },
         },
       },
-      "rebelot/kanagawa.nvim",
     },
     config = function()
       local bg = "#011628"
@@ -60,7 +60,8 @@ return {
       require("tokyonight").setup({
         style = "night",
         styles = {
-          comments = { italic = true },
+          comments = { italic = false },
+          keywords = { italic = false },
         },
         on_colors = function(colors)
           colors.bg = bg
@@ -108,11 +109,16 @@ return {
           hl.GitSignsChangedelete = { fg = colors.yellow }
           hl.GitSignsTopdelete = { fg = colors.red }
           hl.GitSignsUntracked = { fg = colors.blue }
-          hl.GitSignsCurrentLineBlame = { fg = colors.comment, italic = true }
-          hl.LspInlayHint = { fg = colors.fg_gutter, italic = true }
+          hl.GitSignsCurrentLineBlame = { fg = colors.comment }
+          hl.LspInlayHint = { fg = colors.fg_gutter }
           hl.DiagnosticHint = { fg = colors.border }
           hl.DiagnosticVirtualTextHint = { fg = colors.border }
         end,
+      })
+
+      vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
+        group = vim.api.nvim_create_augroup("SmallzoodevNoItalics", { clear = true }),
+        callback = disable_italics,
       })
 
       local applied
