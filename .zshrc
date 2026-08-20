@@ -52,6 +52,7 @@ alias cdx='codex'
 
 # tmux: default to session 17
 alias t='tmux new-session -A -s 17'
+alias h='herdr'
 
 # Other aliases
 alias killp='kill -9'

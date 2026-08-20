@@ -1,7 +1,7 @@
 -- Initialize Configuration
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local opacity = 1
+local opacity = 0.80
 local transparent_bg = "rgba(22, 24, 26, " .. opacity .. ")"
 
 config.front_end = "WebGpu"
@@ -9,14 +9,16 @@ config.webgpu_power_preference = "HighPerformance"
 
 -- Font Configuration
 local emoji_font = "Apple Color Emoji"
+config.font_dirs = { wezterm.home_dir .. "/Library/Fonts" }
 config.font = wezterm.font_with_fallback({
 	{
-		family = "JetBrainsMono Nerd Font",
+		family = "JetBrainsMono Nerd Font Mono",
 		weight = "Regular",
 	},
+	"Noto Sans Mono CJK KR",
 	emoji_font,
 })
-config.font_size = 13
+config.font_size = 12
 
 -- Color Configuration — two palettes selected by `active_theme`.
 -- Palette only; the window background image / opacity below are left alone
@@ -65,7 +67,7 @@ config.initial_rows = 45
 config.initial_cols = 180
 config.window_decorations = "RESIZE"
 config.window_background_opacity = opacity
-config.window_background_image = wezterm.home_dir .. "/Documents/backgrounds/bg-blurred.png"
+config.macos_window_background_blur = 10
 config.window_close_confirmation = "NeverPrompt"
 
 -- Performance Settings
@@ -79,7 +81,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_tab_index_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.colors.tab_bar = {
-	background = config.window_background_image and "rgba(0, 0, 0, 0)" or transparent_bg,
+	background = transparent_bg,
 	new_tab = { fg_color = config.colors.background, bg_color = config.colors.brights[6] },
 	new_tab_hover = { fg_color = config.colors.background, bg_color = config.colors.foreground },
 }
@@ -109,8 +111,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover)
 	}
 end)
 
--- Default Shell (login shell so .zprofile loads brew PATH etc.)
-config.default_prog = { "zsh", "-l" }
+config.default_prog = { wezterm.home_dir .. "/.local/bin/herdr" }
 
 -- Keybindings (user customization preserved)
 config.keys = {

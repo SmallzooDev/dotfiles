@@ -1,0 +1,45 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+f"
+settings = "prefix+shift+s"
+reload_config = "prefix+r"
+previous_tab = ["prefix+p", "alt+h"]
+next_tab = ["prefix+n", "alt+l"]
+copy_mode = ["prefix+enter", "alt+v"]
+focus_pane_left = ""
+focus_pane_down = ""
+focus_pane_up = ""
+focus_pane_right = ""
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+zoom = "prefix+m"
+resize_mode = "prefix+shift+r"
+resize_pane_left = "prefix+h"
+resize_pane_down = "prefix+j"
+resize_pane_up = "prefix+k"
+resize_pane_right = "prefix+l"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"

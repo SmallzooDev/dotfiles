@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hyper Key: F9 → ⌃⇧⌥⌘",
+                        "description": "Hyper Key: F10 → ⌃⇧⌥⌘",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f9",
+                                    "key_code": "f10",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
