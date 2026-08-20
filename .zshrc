@@ -144,6 +144,3 @@ func main() {
 EOF
 	"${EDITOR:-nvim}" "$file"
 }
-
-# db study (postgres client)
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

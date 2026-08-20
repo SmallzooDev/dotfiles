@@ -5,7 +5,7 @@
 INDENT='.   '
 INDENT2="$INDENT$INDENT"
 INDENT3="$INDENT2$INDENT"
-BACKUP_DIR="~/.backup-dotfiles"
+BACKUP_DIR="$HOME/.backup-dotfiles"
 
 mkdir -p "$BACKUP_DIR"
 
@@ -15,7 +15,12 @@ create_symlink() {
     src=$1
     dest=$2
 
-    if [ ! -e "$dest" ]; then
+    if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+        echo -e "\n$INDENT $dest 는 이미 연결되어 있습니다."
+        return 0
+    fi
+
+    if [ ! -e "$dest" ] && [ ! -L "$dest" ]; then
         ln -s "$src" "$dest"
         echo -e "\n$INDENT $dest 연결 완료."
         return 0
@@ -37,8 +42,6 @@ create_symlink "$HOME/dotfiles/.zprofile" ~/.zprofile
 create_symlink "$HOME/dotfiles/.ideavimrc" ~/.ideavimrc
 create_symlink "$HOME/dotfiles/.tmux.conf" ~/.tmux.conf
 create_symlink "$HOME/dotfiles/.wezterm.lua" ~/.wezterm.lua
-create_symlink "$HOME/dotfiles/.psqlrc" ~/.psqlrc
-create_symlink "$HOME/dotfiles/.inputrc" ~/.inputrc
 
 mkdir -p ~/.config
 create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
