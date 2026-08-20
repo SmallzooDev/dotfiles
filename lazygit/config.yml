@@ -1,14 +1,10 @@
-# lazygit theme.
-# Active / search borders use ANSI colour NAMES so they follow the active terminal
-# palette (coolnight / github-dark) automatically. The inactive border is a fixed
-# muted grey so it stays visible in both themes (ANSI `black` was too dark).
 gui:
   theme:
     activeBorderColor:
       - blue
       - bold
     inactiveBorderColor:
-      - "#6e7681"
+      - default
     searchingActiveBorderColor:
       - cyan
       - bold

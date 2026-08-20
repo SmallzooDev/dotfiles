@@ -1,46 +1,54 @@
 #!/usr/bin/env bash
-# Two-theme colour switcher for these dotfiles: coolnight | github-dark.
-#
-# Only the palette is switched. Background image and transparency are left
-# untouched — theme and background are intentionally isolated (both themes assume
-# a transparent background managed in each terminal's own config).
 set -euo pipefail
 
 DOTS="$HOME/dotfiles"
 CS="$DOTS/colorscheme"
 
-current() { basename "$(readlink "$CS/current" 2>/dev/null || echo coolnight)"; }
+themes() {
+  for file in "$CS"/*/ghostty.conf; do
+    local name
+    name="$(basename "$(dirname "$file")")"
+    [ "$name" = current ] || echo "$name"
+  done
+}
 
-apply() {
-  local t="$1"
-  ln -sfn "$t" "$CS/current"
-
-  mkdir -p "$HOME/.config"
-  rm -f "$HOME/.config/starship.toml"
-  sed -E "s|^palette = .*|palette = \"$t\"|" "$DOTS/starship.toml" > "$HOME/.config/starship.toml"
-
-  touch "$HOME/.wezterm.lua" 2>/dev/null || true
-
-  # tmux follows colorscheme/current via source-file; reload live if a server is up
-  if command -v tmux >/dev/null 2>&1 && tmux info >/dev/null 2>&1; then
-    tmux source-file "$CS/current/tmux.conf" >/dev/null 2>&1 || true
-  fi
+current() {
+  basename "$(readlink "$CS/current" 2>/dev/null || echo rose-pine)"
 }
 
 status() {
-  echo "current : $(current)"
-  echo "starship: $(grep -m1 '^palette = ' "$HOME/.config/starship.toml" 2>/dev/null || true)"
-  echo "others  : ghostty·wezterm·tmux·yazi·nvim → current"
+  echo "current: $(current)"
+  echo "themes : $(themes | paste -sd ' ' -)"
+}
+
+apply() {
+  local name="$1"
+  if [ ! -f "$CS/$name/ghostty.conf" ]; then
+    echo "unknown theme: $name" >&2
+    status >&2
+    exit 1
+  fi
+
+  ln -sfn "$name" "$CS/current"
+  touch "$DOTS/.wezterm.lua"
+
+  if command -v tmux >/dev/null 2>&1 && tmux info >/dev/null 2>&1; then
+    tmux source-file "$CS/tmux.conf" >/dev/null 2>&1 || true
+  fi
+
+  echo "→ $name"
+  echo "  wezterm·tmux 즉시 반영 · nvim 창 포커스 시 반영 · ghostty ⌘⇧,"
 }
 
 case "${1:-status}" in
-  coolnight|github-dark)
-    apply "$1"
-    echo "→ $1"
-    echo "  tmux·starship·wezterm 즉시 반영 · nvim 창 포커스 시 자동"
-    echo "  ghostty ⌘⇧, (reload)"
+  status)
+    status
     ;;
-  status) status ;;
-  -h|--help) echo "usage: theme [coolnight|github-dark|status]"; status ;;
-  *) echo "unknown theme: $1  (coolnight|github-dark)" >&2; exit 1 ;;
+  -h|--help)
+    echo "usage: theme [name|status]"
+    status
+    ;;
+  *)
+    apply "$1"
+    ;;
 esac

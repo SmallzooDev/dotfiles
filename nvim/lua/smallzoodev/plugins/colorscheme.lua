@@ -1,10 +1,11 @@
--- Active theme is chosen by the `theme` shell script via colorscheme/current.
+local themes = dofile(vim.fn.expand("~/dotfiles/colorscheme/themes.lua"))
+
 local function active_theme()
   local link = vim.fn.resolve(vim.fn.expand("~/dotfiles/colorscheme/current"))
-  return vim.fn.fnamemodify(link, ":t") == "github-dark" and "github-dark" or "coolnight"
+  local name = vim.fn.fnamemodify(link, ":t")
+  return name, themes[name] or themes["rose-pine"]
 end
 
--- Highlight-group families shared by both themes.
 local border_groups = {
   "FzfLuaBorder",
   "FzfLuaPreviewBorder",
@@ -31,11 +32,13 @@ local border_groups = {
   "DapUIFloatBorder",
   "LspInfoBorder",
 }
+
 local title_groups = {
   "FzfLuaTitle",
   "FzfLuaPreviewTitle",
   "TelescopeTitle",
 }
+
 local snacks_bg_groups = {
   "SnacksPicker",
   "SnacksPickerNormal",
@@ -61,26 +64,39 @@ end
 
 return {
   {
-    "projekt0n/github-nvim-theme",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("github-theme").setup({
-        options = {
-          transparent = true,
-          styles = { comments = "italic" },
-        },
-      })
-    end,
-  },
-  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    dependencies = { "projekt0n/github-nvim-theme" },
+    dependencies = {
+      {
+        "projekt0n/github-nvim-theme",
+        config = function()
+          require("github-theme").setup({
+            options = {
+              transparent = true,
+              styles = { comments = "italic" },
+            },
+          })
+        end,
+      },
+      {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        opts = {
+          flavour = "mocha",
+          transparent_background = true,
+        },
+      },
+      {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        opts = {
+          variant = "main",
+          styles = { transparency = true },
+        },
+      },
+    },
     config = function()
-      local transparent = true
-
       local bg = "#011628"
       local bg_dark = "#011423"
       local bg_highlight = "#143652"
@@ -90,7 +106,6 @@ return {
       local fg_dark = "#B4D0E9"
       local fg_gutter = "#627E97"
       local border = "#547998"
-
       local red = "#E52E2E"
       local green = "#44FFB1"
       local green_bright = "#47FF9C"
@@ -102,21 +117,21 @@ return {
 
       require("tokyonight").setup({
         style = "night",
-        transparent = transparent,
+        transparent = true,
         styles = {
           comments = { italic = true },
-          sidebars = transparent and "transparent" or "dark",
-          floats = transparent and "transparent" or "dark",
+          sidebars = "transparent",
+          floats = "transparent",
         },
         on_colors = function(colors)
           colors.bg = bg
-          colors.bg_dark = transparent and colors.none or bg_dark
-          colors.bg_float = transparent and colors.none or bg_dark
+          colors.bg_dark = colors.none
+          colors.bg_float = colors.none
           colors.bg_highlight = bg_highlight
           colors.bg_popup = bg_dark
           colors.bg_search = bg_search
-          colors.bg_sidebar = transparent and colors.none or bg_dark
-          colors.bg_statusline = transparent and colors.none or bg_dark
+          colors.bg_sidebar = colors.none
+          colors.bg_statusline = colors.none
           colors.bg_visual = bg_visual
           colors.border = border
           colors.fg = fg
@@ -124,7 +139,6 @@ return {
           colors.fg_float = fg
           colors.fg_gutter = fg_gutter
           colors.fg_sidebar = fg_dark
-
           colors.blue = blue
           colors.cyan = cyan
           colors.teal = cyan
@@ -138,95 +152,86 @@ return {
           colors.yellow = yellow
           colors.comment = comment
         end,
-        on_highlights = function(hl, c)
-          hl.FloatBorder = { fg = c.cyan }
-          hl.FloatTitle = { fg = c.cyan }
-          link_chrome(function(group, value)
-            hl[group] = value
-          end)
-
-          hl.CursorLine = { bg = c.bg_highlight }
-          hl.CursorLineNr = { fg = c.cyan, bold = true }
-          hl.LspReferenceText = { underline = true, sp = c.cyan }
-          hl.LspReferenceRead = { underline = true, sp = c.cyan }
-          hl.LspReferenceWrite = { underline = true, sp = c.cyan }
-          hl.Search = { bg = c.bg_search, fg = c.fg }
-          hl.CurSearch = { bg = c.cyan, fg = c.bg_dark, bold = true }
-          hl.IncSearch = { bg = c.cyan, fg = c.bg_dark, bold = true }
-          hl.GitSignsAdd = { fg = c.green }
-          hl.GitSignsChange = { fg = c.yellow }
-          hl.GitSignsDelete = { fg = c.red }
-          hl.GitSignsChangedelete = { fg = c.yellow }
-          hl.GitSignsTopdelete = { fg = c.red }
-          hl.GitSignsUntracked = { fg = c.blue }
-          hl.GitSignsCurrentLineBlame = { fg = c.comment, italic = true }
-          hl.LspInlayHint = { fg = c.fg_gutter, italic = true }
-          hl.DiagnosticHint = { fg = c.border }
-          hl.DiagnosticVirtualTextHint = { fg = c.border }
+        on_highlights = function(hl, colors)
+          hl.FloatBorder = { fg = colors.cyan }
+          hl.FloatTitle = { fg = colors.cyan }
+          hl.CursorLine = { bg = colors.bg_highlight }
+          hl.CursorLineNr = { fg = colors.cyan, bold = true }
+          hl.LspReferenceText = { underline = true, sp = colors.cyan }
+          hl.LspReferenceRead = { underline = true, sp = colors.cyan }
+          hl.LspReferenceWrite = { underline = true, sp = colors.cyan }
+          hl.Search = { bg = colors.bg_search, fg = colors.fg }
+          hl.CurSearch = { bg = colors.cyan, fg = colors.bg_dark, bold = true }
+          hl.IncSearch = { bg = colors.cyan, fg = colors.bg_dark, bold = true }
+          hl.GitSignsAdd = { fg = colors.green }
+          hl.GitSignsChange = { fg = colors.yellow }
+          hl.GitSignsDelete = { fg = colors.red }
+          hl.GitSignsChangedelete = { fg = colors.yellow }
+          hl.GitSignsTopdelete = { fg = colors.red }
+          hl.GitSignsUntracked = { fg = colors.blue }
+          hl.GitSignsCurrentLineBlame = { fg = colors.comment, italic = true }
+          hl.LspInlayHint = { fg = colors.fg_gutter, italic = true }
+          hl.DiagnosticHint = { fg = colors.border }
+          hl.DiagnosticVirtualTextHint = { fg = colors.border }
         end,
       })
 
-      -- github-dark: this config's UI expects float borders/titles and a clean
-      -- fg-only statusline; github-theme ships coloured bars, so neutralise them.
-      local gh_blue = "#58a6ff"
-      local gh_cursorline = "#182f50"
-
       local function style_github()
-        link_chrome(function(group, value)
-          vim.api.nvim_set_hl(0, group, value)
-        end)
+        local blue_github = "#58a6ff"
 
-        -- Bright, visible float borders + transparent popup backgrounds
-        -- (github's FloatBorder is near-invisible #161b22 and Pmenu is solid near-black).
-        vim.api.nvim_set_hl(0, "FloatBorder", { fg = gh_blue })
-        vim.api.nvim_set_hl(0, "FloatTitle", { fg = gh_blue, bold = true })
+        vim.api.nvim_set_hl(0, "FloatBorder", { fg = blue_github })
+        vim.api.nvim_set_hl(0, "FloatTitle", { fg = blue_github, bold = true })
+
         for _, group in ipairs({ "Pmenu", "PmenuSbar" }) do
-          local h = vim.api.nvim_get_hl(0, { name = group, link = false })
-          h.bg = nil
-          vim.api.nvim_set_hl(0, group, h)
+          local highlight = vim.api.nvim_get_hl(0, { name = group, link = false })
+          highlight.bg = nil
+          vim.api.nvim_set_hl(0, group, highlight)
         end
 
-        -- CursorLine: calm blue instead of github's bright gray (#484f58); a touch brighter than base navy.
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = gh_cursorline })
-        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = gh_blue, bold = true })
-        -- LSP document highlights: underline like coolnight, not a solid blue block.
+        vim.api.nvim_set_hl(0, "CursorLine", { bg = "#182f50" })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = blue_github, bold = true })
         for _, group in ipairs({ "LspReferenceText", "LspReferenceRead", "LspReferenceWrite" }) do
-          vim.api.nvim_set_hl(0, group, { underline = true, sp = gh_blue })
+          vim.api.nvim_set_hl(0, group, { underline = true, sp = blue_github })
         end
 
         local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
         vim.api.nvim_set_hl(0, "StatusLine", { fg = normal.fg, bg = normal.bg })
         vim.api.nvim_set_hl(0, "StatusLineNC", { fg = normal.fg, bg = normal.bg })
         for _, group in ipairs({ "Added", "Changed", "Removed" }) do
-          local h = vim.api.nvim_get_hl(0, { name = group })
-          h.bg = nil
-          vim.api.nvim_set_hl(0, group, h)
+          local highlight = vim.api.nvim_get_hl(0, { name = group })
+          highlight.bg = nil
+          vim.api.nvim_set_hl(0, group, highlight)
         end
 
-        -- Keep the bufferline/tabline bar transparent like coolnight; github paints it solid.
         for _, group in ipairs({ "TabLine", "TabLineFill", "BufferLineFill" }) do
-          local h = vim.api.nvim_get_hl(0, { name = group, link = false })
-          h.bg = nil
-          vim.api.nvim_set_hl(0, group, h)
+          local highlight = vim.api.nvim_get_hl(0, { name = group, link = false })
+          highlight.bg = nil
+          vim.api.nvim_set_hl(0, group, highlight)
         end
       end
 
       vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("SmallzoodevGithubFix", { clear = true }),
-        pattern = "github_dark_default",
-        callback = style_github,
+        group = vim.api.nvim_create_augroup("SmallzoodevThemeStyle", { clear = true }),
+        callback = function(event)
+          link_chrome(function(group, value)
+            vim.api.nvim_set_hl(0, group, value)
+          end)
+          if event.match == "github_dark_default" then
+            style_github()
+          end
+        end,
       })
 
-      -- Apply the active theme; follow the shell switcher when the window regains focus.
       local applied
       local function apply()
-        local t = active_theme()
-        if t == applied then
+        local name, theme = active_theme()
+        if name == applied then
           return
         end
-        applied = t
-        vim.cmd.colorscheme(t == "github-dark" and "github_dark_default" or "tokyonight")
+        applied = name
+        vim.cmd.colorscheme(theme.nvim)
       end
+
       apply()
 
       vim.api.nvim_create_autocmd("FocusGained", {
@@ -234,13 +239,12 @@ return {
         callback = apply,
       })
 
-      local group = vim.api.nvim_create_augroup("SmallzoodevHighlights", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
-        group = group,
+        group = vim.api.nvim_create_augroup("SmallzoodevHighlights", { clear = true }),
         pattern = { "snacks_picker_list", "snacks_picker_input", "snacks_picker_preview" },
         callback = function()
-          for _, snacks_group in ipairs(snacks_bg_groups) do
-            vim.api.nvim_set_hl(0, snacks_group, { link = "Normal" })
+          for _, group in ipairs(snacks_bg_groups) do
+            vim.api.nvim_set_hl(0, group, { link = "Normal" })
           end
         end,
       })

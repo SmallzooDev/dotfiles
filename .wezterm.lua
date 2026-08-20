@@ -1,13 +1,10 @@
--- Initialize Configuration
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local opacity = 0.80
-local transparent_bg = "rgba(22, 24, 26, " .. opacity .. ")"
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 
--- Font Configuration
 local emoji_font = "Apple Color Emoji"
 config.font_dirs = { wezterm.home_dir .. "/Library/Fonts" }
 config.font = wezterm.font_with_fallback({
@@ -20,49 +17,23 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 12
 
--- Color Configuration — two palettes selected by `active_theme`.
--- Palette only; the window background image / opacity below are left alone
--- (theme and background are intentionally isolated).
+local themes = dofile(wezterm.home_dir .. "/dotfiles/colorscheme/themes.lua")
+
 local function resolve_theme()
 	local ok, stdout = wezterm.run_child_process({ "readlink", wezterm.home_dir .. "/dotfiles/colorscheme/current" })
 	local name = ok and stdout:gsub("%s+", "") or ""
-	return name == "github-dark" and "github-dark" or "coolnight"
+	return themes[name] or themes["rose-pine"]
 end
-local active_theme = resolve_theme()
-local themes = {
-	coolnight = {
-		foreground = "#CBE0F0",
-		background = "#011423",
-		cursor_bg = "#47FF9C",
-		cursor_fg = "#011423",
-		cursor_border = "#47FF9C",
-		selection_fg = "#CBE0F0",
-		selection_bg = "#033259",
-		scrollbar_thumb = "#011423",
-		split = "#011423",
-		ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
-		brights = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#a277ff", "#a277ff", "#24EAF7", "#24EAF7" },
-		indexed = { [16] = "#FFE073", [17] = "#E52E2E" },
-	},
-	["github-dark"] = {
-		foreground = "#e6edf3",
-		background = "#0d1117",
-		cursor_bg = "#2f81f7",
-		cursor_fg = "#0d1117",
-		cursor_border = "#2f81f7",
-		selection_fg = "#e6edf3",
-		selection_bg = "#264f78",
-		scrollbar_thumb = "#0d1117",
-		split = "#30363d",
-		ansi = { "#484f58", "#ff7b72", "#3fb950", "#d29922", "#58a6ff", "#bc8cff", "#39c5cf", "#b1bac4" },
-		brights = { "#6e7681", "#ffa198", "#56d364", "#e3b341", "#79c0ff", "#d2a8ff", "#56d4dd", "#ffffff" },
-		indexed = { [16] = "#d29922", [17] = "#ff7b72" },
-	},
-}
-config.colors = themes[active_theme]
+
+local theme = resolve_theme()
+if theme.colors then
+	config.color_schemes = { [theme.wezterm] = theme.colors }
+end
+config.color_scheme = theme.wezterm
+
+local scheme = theme.colors or wezterm.color.get_builtin_schemes()[theme.wezterm]
 config.force_reverse_video_cursor = true
 
--- Window Configuration
 config.initial_rows = 45
 config.initial_cols = 180
 config.window_decorations = "RESIZE"
@@ -70,33 +41,32 @@ config.window_background_opacity = opacity
 config.macos_window_background_blur = 10
 config.window_close_confirmation = "NeverPrompt"
 
--- Performance Settings
 config.max_fps = 144
 config.animation_fps = 60
 config.cursor_blink_rate = 250
 
--- Tab Bar Configuration
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_tab_index_in_tab_bar = false
 config.use_fancy_tab_bar = false
-config.colors.tab_bar = {
-	background = transparent_bg,
-	new_tab = { fg_color = config.colors.background, bg_color = config.colors.brights[6] },
-	new_tab_hover = { fg_color = config.colors.background, bg_color = config.colors.foreground },
+config.colors = {
+	tab_bar = {
+		background = scheme.background,
+		new_tab = { fg_color = scheme.background, bg_color = scheme.brights[6] },
+		new_tab_hover = { fg_color = scheme.background, bg_color = scheme.foreground },
+	},
 }
 
--- Tab Formatting
 wezterm.on("format-tab-title", function(tab, _, _, _, hover)
-	local background = config.colors.brights[1]
-	local foreground = config.colors.foreground
+	local background = scheme.brights[1]
+	local foreground = scheme.foreground
 
 	if tab.is_active then
-		background = config.colors.brights[7]
-		foreground = config.colors.background
+		background = scheme.brights[7]
+		foreground = scheme.background
 	elseif hover then
-		background = config.colors.brights[8]
-		foreground = config.colors.background
+		background = scheme.brights[8]
+		foreground = scheme.background
 	end
 
 	local title = tostring(tab.tab_index + 1)
@@ -113,7 +83,6 @@ end)
 
 config.default_prog = { wezterm.home_dir .. "/.local/bin/herdr" }
 
--- Keybindings (user customization preserved)
 config.keys = {
 	{ key = "s", mods = "CMD|CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "CMD|CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },

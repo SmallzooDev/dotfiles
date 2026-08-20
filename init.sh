@@ -46,13 +46,14 @@ create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
 create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
 create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
+create_symlink "$HOME/dotfiles/starship.toml" ~/.config/starship.toml
 mkdir -p ~/.config/herdr
 create_symlink "$HOME/dotfiles/herdr/config.toml" ~/.config/herdr/config.toml
 
-[ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn coolnight "$HOME/dotfiles/colorscheme/current"
+[ -e "$HOME/dotfiles/colorscheme/current" ] || ln -sfn rose-pine "$HOME/dotfiles/colorscheme/current"
 "$HOME/dotfiles/colorscheme/bin/theme" "$(basename "$(readlink "$HOME/dotfiles/colorscheme/current")")" >/dev/null 2>&1 || true
 
-create_symlink "$HOME/dotfiles/colorscheme/current/pspg-theme" ~/.pspg_theme_current
+create_symlink "$HOME/dotfiles/colorscheme/pspg-theme" ~/.pspg_theme_current
 
 # lazygit reads from the macOS app-support dir on this machine (lazygit --print-config-dir)
 mkdir -p "$HOME/Library/Application Support/lazygit"

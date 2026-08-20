@@ -1,0 +1,45 @@
+return {
+  ["catppuccin-mocha"] = {
+    nvim = "catppuccin-mocha",
+    wezterm = "Catppuccin Mocha",
+  },
+  coolnight = {
+    nvim = "tokyonight",
+    wezterm = "Coolnight",
+    colors = {
+      foreground = "#CBE0F0",
+      background = "#011423",
+      cursor_bg = "#47FF9C",
+      cursor_fg = "#011423",
+      cursor_border = "#47FF9C",
+      selection_fg = "#CBE0F0",
+      selection_bg = "#033259",
+      scrollbar_thumb = "#011423",
+      split = "#011423",
+      ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#CBE0F0" },
+      brights = { "#547998", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#CBE0F0" },
+      indexed = { [16] = "#FFE073", [17] = "#E52E2E" },
+    },
+  },
+  ["github-dark"] = {
+    nvim = "github_dark_default",
+    wezterm = "GitHub Dark Default",
+    colors = {
+      foreground = "#e6edf3",
+      background = "#0d1117",
+      cursor_bg = "#2f81f7",
+      cursor_fg = "#6fc1ff",
+      cursor_border = "#2f81f7",
+      selection_fg = "#0d1117",
+      selection_bg = "#e6edf3",
+      scrollbar_thumb = "#0d1117",
+      split = "#30363d",
+      ansi = { "#484f58", "#ff7b72", "#3fb950", "#d29922", "#58a6ff", "#bc8cff", "#39c5cf", "#b1bac4" },
+      brights = { "#6e7681", "#ffa198", "#56d364", "#e3b341", "#79c0ff", "#d2a8ff", "#56d4dd", "#ffffff" },
+    },
+  },
+  ["rose-pine"] = {
+    nvim = "rose-pine",
+    wezterm = "rose-pine",
+  },
+}

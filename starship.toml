@@ -1,74 +1,7 @@
-# Fast starship config - optimized for tmux
-# Reduces prompt delay by disabling slow modules
-
 format = """$directory$git_branch$git_status$cmd_duration$status
 $character"""
 
 command_timeout = 100
-palette = "coolnight"
-
-[palettes.coolnight]
-# coolnight palette (josean-dev)
-bg = "#011423"
-surface = "#214969"
-gray = "#627E97"
-text = "#CBE0F0"
-red = "#E52E2E"
-orange = "#FFE073"
-yellow = "#FFE073"
-green = "#44FFB1"
-cyan = "#24EAF7"
-blue = "#0FC5ED"
-magenta = "#a277ff"
-pink = "#a277ff"
-# semantic aliases (so existing module styles keep working)
-sapphire = "#0FC5ED"
-mauve = "#a277ff"
-teal = "#24EAF7"
-sky = "#24EAF7"
-peach = "#FFE073"
-subtext1 = "#CBE0F0"
-subtext0 = "#627E97"
-overlay2 = "#627E97"
-overlay1 = "#627E97"
-overlay0 = "#627E97"
-surface2 = "#214969"
-surface1 = "#214969"
-surface0 = "#214969"
-base = "#011423"
-mantle = "#011423"
-crust = "#011423"
-
-[palettes.github-dark]
-# GitHub Dark Default — same semantic keys as coolnight, GitHub hexes
-bg = "#0d1117"
-surface = "#21262d"
-gray = "#6e7681"
-text = "#e6edf3"
-red = "#ff7b72"
-orange = "#f0883e"
-yellow = "#d29922"
-green = "#3fb950"
-cyan = "#39c5cf"
-blue = "#58a6ff"
-magenta = "#bc8cff"
-pink = "#bc8cff"
-sapphire = "#58a6ff"
-mauve = "#bc8cff"
-teal = "#39c5cf"
-sky = "#39c5cf"
-peach = "#f0883e"
-subtext1 = "#e6edf3"
-subtext0 = "#6e7681"
-overlay2 = "#6e7681"
-overlay1 = "#6e7681"
-overlay0 = "#6e7681"
-surface2 = "#21262d"
-surface1 = "#21262d"
-surface0 = "#21262d"
-base = "#0d1117"
-mantle = "#0d1117"
-crust = "#0d1117"
 
 [nodejs]
 disabled = true
@@ -112,7 +45,7 @@ ignore_submodules = true
 
 [git_branch]
 format = "[ $branch]($style) "
-style = "sapphire"
+style = "blue"
 
 [git_commit]
 disabled = true
@@ -126,12 +59,12 @@ disabled = true
 [directory]
 format = "[ $path]($style) "
 truncation_length = 3
-style = "pink"
+style = "magenta"
 truncate_to_repo = true
 
 [cmd_duration]
 format = "[took $duration]($style) "
-style = "overlay2"
+style = "bright-black"
 
 [status]
 disabled = false
@@ -139,5 +72,5 @@ format = "[exit $status]($style) "
 style = "red"
 
 [character]
-success_symbol = "[❯](pink)"
+success_symbol = "[❯](magenta)"
 error_symbol = "[❯](red)"
