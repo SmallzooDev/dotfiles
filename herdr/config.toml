@@ -49,3 +49,7 @@ rows = [
   ["state_icon", "agent", "state_text"],
   ["workspace", "tab"],
 ]
+
+[theme]
+name = "terminal"
+auto_switch = false
