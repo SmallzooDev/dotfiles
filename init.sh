@@ -48,6 +48,7 @@ create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
 create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
 create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
+create_symlink "$HOME/dotfiles/helix" ~/.config/helix
 create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
 create_symlink "$HOME/dotfiles/starship.toml" ~/.config/starship.toml
 mkdir -p ~/.config/herdr

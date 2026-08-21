@@ -1,0 +1,86 @@
+theme = "rose_pine"
+
+[editor]
+line-number = "relative"
+mouse = false
+middle-click-paste = false
+scroll-lines = 3
+shell = ["sh", "-c"]
+cursorline = false
+cursorcolumn = false
+bufferline = "multiple"
+idle-timeout = 0
+completion-trigger-len = 1
+auto-completion = true
+auto-format = true
+auto-save = false
+text-width = 80
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["file-encoding", "file-line-ending", "file-type"]
+right = ["diagnostics", "selections", "position", "position-percentage"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+"G" = "goto_file_end"
+"}" = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
+"C-r" = ":reload-all"
+S-tab = [":bp"]
+tab = [":bn"]
+"C-g" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+C-y = [
+  ':sh rm -f /tmp/unique-ca1ea106',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-ca1ea106',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-ca1ea106}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+
+[keys.normal.y]
+y = "yank"
+p = [
+  ':sh printf %%s "%{buffer_name}:%{cursor_line}" | pbcopy',
+  ':echo %sh{printf "Copied: %%s:%%s" "%{buffer_name}" "%{cursor_line}"}',
+]
+
+[keys.normal.g]
+p = ':open %sh{value=$(pbpaste | sed -e "s/^[[:space:]]*//" -e "s/[[:space:]]*$//"); if [ -n "$value" ]; then printf %%s "$value"; else printf .; fi}'
+
+[keys.normal.space]
+e = [
+  ':sh rm -f /tmp/unique-ca1ea106',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-ca1ea106',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-ca1ea106}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+l = ":toggle lsp.display-inlay-hints"
+
+[keys.select]
+"}" = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
