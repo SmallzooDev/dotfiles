@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hyper Key: F10 → ⌃⇧⌥⌘",
+                        "description": "Hyper Key: F8 → ⌃⇧⌥⌘",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f10",
+                                    "key_code": "f8",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -1082,10 +1082,6 @@
                         },
                         {
                             "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "tab" }]
-                        },
-                        {
-                            "from": { "key_code": "tab" },
                             "to": [{ "key_code": "escape" }]
                         }
                     ]
@@ -1107,10 +1103,6 @@
                         },
                         {
                             "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "tab" }]
-                        },
-                        {
-                            "from": { "key_code": "tab" },
                             "to": [{ "key_code": "escape" }]
                         }
                     ]
