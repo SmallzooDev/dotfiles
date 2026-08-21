@@ -3,6 +3,7 @@ theme = "rose_pine"
 [editor]
 line-number = "relative"
 mouse = false
+default-yank-register = "+"
 middle-click-paste = false
 scroll-lines = 3
 shell = ["sh", "-c"]
