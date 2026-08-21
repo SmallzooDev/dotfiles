@@ -16,6 +16,15 @@ current() {
   basename "$(readlink "$CS/current" 2>/dev/null || echo rose-pine)"
 }
 
+helix_theme() {
+  case "$1" in
+    catppuccin-mocha) echo catppuccin_mocha ;;
+    coolnight) echo tokyonight ;;
+    rose-pine) echo rose_pine ;;
+    *) echo "no Helix built-in theme mapping: $1" >&2; return 1 ;;
+  esac
+}
+
 status() {
   echo "current: $(current)"
   echo "themes : $(themes | paste -sd ' ' -)"
@@ -23,21 +32,28 @@ status() {
 
 apply() {
   local name="$1"
+  local helix
   if [ ! -f "$CS/$name/ghostty.conf" ]; then
     echo "unknown theme: $name" >&2
     status >&2
     exit 1
   fi
 
+  helix="$(helix_theme "$name")"
   ln -sfn "$name" "$CS/current"
+  sed -i '' "1s/^theme = .*/theme = \"$helix\"/" "$DOTS/helix/config.toml"
   touch "$DOTS/.wezterm.lua"
+
+  if command -v pkill >/dev/null 2>&1; then
+    pkill -USR1 hx >/dev/null 2>&1 || true
+  fi
 
   if command -v tmux >/dev/null 2>&1 && tmux info >/dev/null 2>&1; then
     tmux source-file "$CS/tmux.conf" >/dev/null 2>&1 || true
   fi
 
   echo "→ $name"
-  echo "  wezterm·tmux 즉시 반영 · nvim 창 포커스 시 반영 · ghostty ⌘⇧,"
+  echo "  wezterm·tmux·helix 즉시 반영 · nvim 창 포커스 시 반영 · ghostty ⌘⇧,"
 }
 
 case "${1:-status}" in

@@ -45,6 +45,7 @@ enable = true
 "G" = "goto_file_end"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"A-:" = "command_mode"
 "C-r" = ":reload-all"
 S-tab = [":bp"]
 tab = [":bn"]
@@ -84,3 +85,7 @@ l = ":toggle lsp.display-inlay-hints"
 [keys.select]
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"A-:" = ["normal_mode", "command_mode"]
+
+[keys.insert]
+"A-:" = ["normal_mode", "command_mode"]

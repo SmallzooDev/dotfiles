@@ -2,7 +2,8 @@
 # This is a faster alternative configuration
 
 # Basic environment
-export EDITOR=nvim
+export EDITOR=hx
+export VISUAL=$EDITOR
 
 setopt SHARE_HISTORY
 
@@ -36,6 +37,9 @@ alias n='nvim .'
 alias vip='cd ~/public_vault && nvim home.md'
 alias vis='cd ~/private_vault && nvim home.md'
 alias vid='cd ~/dotfiles && nvim .'
+alias hxp='cd ~/public_vault && hx home.md'
+alias hxs='cd ~/private_vault && hx home.md'
+alias hxd='cd ~/dotfiles && hx .'
 alias ch='vi ~/public_vault/cheatsheet.md'
 
 # Scripts
