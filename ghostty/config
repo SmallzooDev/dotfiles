@@ -1,6 +1,6 @@
 font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Noto Sans Mono CJK KR"
-font-size = 12
+font-size = 13
 config-file = ?~/dotfiles/colorscheme/current/ghostty.conf
 
 macos-option-as-alt = true
