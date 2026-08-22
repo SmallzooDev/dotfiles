@@ -2,7 +2,7 @@
 # This is a faster alternative configuration
 
 # Basic environment
-export EDITOR=hx
+export EDITOR=nvim
 export VISUAL=$EDITOR
 
 setopt SHARE_HISTORY
