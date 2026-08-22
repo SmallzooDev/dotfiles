@@ -1,218 +1,119 @@
 local M = {}
 
-local mode_map = {
-  ["n"] = "NORMAL",
-  ["no"] = "NORMAL",
-  ["v"] = "VISUAL",
-  ["V"] = "V-LINE",
+local modes = {
+  n = "NORMAL",
+  no = "NORMAL",
+  v = "VISUAL",
+  V = "V-LINE",
   ["\22"] = "V-BLOCK",
-  ["i"] = "INSERT",
-  ["c"] = "COMMAND",
-  ["r"] = "REPLACE",
+  i = "INSERT",
+  c = "COMMAND",
+  r = "REPLACE",
   ["r?"] = "CONFIRM",
   ["!"] = "SHELL",
-  ["t"] = "TERMINAL",
-  ["nt"] = "TERMINAL",
+  t = "TERMINAL",
+  nt = "TERMINAL",
 }
 
-local mode_hl_map = {
-  ["NORMAL"] = "Directory",
-  ["VISUAL"] = "Number",
-  ["V-LINE"] = "Number",
-  ["V-BLOCK"] = "Number",
-  ["INSERT"] = "String",
-  ["COMMAND"] = "Keyword",
-  ["TERMINAL"] = "Keyword",
-}
+local diagnostic_counts = {}
+local group = vim.api.nvim_create_augroup("SmallzoodevStatusline", { clear = true })
 
-function _G._statusline_component(name, hl)
-  return M[name](hl)
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  group = group,
+  callback = function(args)
+    local counts = {}
+    local items = args.data and args.data.diagnostics or vim.diagnostic.get(args.buf)
+    for _, diagnostic in ipairs(items) do
+      counts[diagnostic.severity] = (counts[diagnostic.severity] or 0) + 1
+    end
+    diagnostic_counts[args.buf] = counts
+    vim.cmd.redrawstatus()
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWipeout", {
+  group = group,
+  callback = function(args)
+    diagnostic_counts[args.buf] = nil
+  end,
+})
+
+local function mode()
+  local value = vim.api.nvim_get_mode().mode
+  return modes[value] or value:upper()
 end
 
-local function format_component(val, hl, l_sep, r_sep)
-  l_sep = l_sep or " "
-  r_sep = r_sep or " "
-  hl = hl or "Comment"
-  return l_sep .. "%#" .. hl .. "#" .. val .. "%*" .. r_sep
-end
-
-local function component(val, hl)
-  if val == nil or val == "" then
-    return ""
+local function filename()
+  local value = vim.fn.expand("%:t")
+  if value == "" then
+    value = "[No Name]"
   end
-  if hl == nil then
-    return "%{%v:lua._statusline_component('" .. val .. "')%}"
+  if vim.bo.modified then
+    value = value .. " [+]"
   end
-  return "%{%v:lua._statusline_component('" .. val .. "', '" .. hl .. "')%}"
+  if vim.bo.readonly then
+    value = value .. " [RO]"
+  end
+  return value:gsub("%%", "%%%%")
 end
 
-local function get_mode_info()
-  local mode = vim.api.nvim_get_mode().mode
-  local val = mode_map[mode]
-  return val, mode_hl_map[val]
+local function file_info()
+  local encoding = vim.bo.fileencoding ~= "" and vim.bo.fileencoding or vim.o.encoding
+  local filetype = vim.bo.filetype ~= "" and vim.bo.filetype or "text"
+  return table.concat({ encoding, vim.bo.fileformat, filetype }, " ")
 end
 
-M.mode = function()
-  local val, hl = get_mode_info()
-  if not val then
-    return ""
-  end
-  return format_component(" " .. string.lower(val), hl)
-end
-
-M.git_branch = function(hl)
-  local branch = vim.g.gitsigns_head
-  if not branch then
-    return ""
-  end
-  return format_component(" " .. branch, hl)
-end
-
-M.git_diff = function(hl)
-  local summary = vim.b.gitsigns_status
-  if not summary or summary == "" then
-    return ""
-  end
-  summary = summary:gsub("+", " ")
-  summary = summary:gsub("-", " ")
-  summary = summary:gsub("~", " ")
-  return format_component(summary, hl)
-end
-
-M.diagnostics = function()
-  local counts = {}
-  for _, diagnostic in ipairs(vim.diagnostic.get(0)) do
-    counts[diagnostic.severity] = (counts[diagnostic.severity] or 0) + 1
-  end
-
+local function diagnostics()
+  local counts = diagnostic_counts[vim.api.nvim_get_current_buf()] or {}
+  local parts = {}
   local errors = counts[vim.diagnostic.severity.ERROR] or 0
   local warnings = counts[vim.diagnostic.severity.WARN] or 0
   local hints = counts[vim.diagnostic.severity.HINT] or 0
   local info = counts[vim.diagnostic.severity.INFO] or 0
 
-  if errors + warnings + hints + info == 0 then
+  if errors > 0 then
+    parts[#parts + 1] = "%#DiagnosticError#E:" .. errors .. "%*"
+  end
+  if warnings > 0 then
+    parts[#parts + 1] = "%#DiagnosticWarn#W:" .. warnings .. "%*"
+  end
+  if hints > 0 then
+    parts[#parts + 1] = "%#DiagnosticHint#H:" .. hints .. "%*"
+  end
+  if info > 0 then
+    parts[#parts + 1] = "%#DiagnosticInfo#I:" .. info .. "%*"
+  end
+
+  return table.concat(parts, " ")
+end
+
+local function recording()
+  local register = vim.fn.reg_recording()
+  if register == "" then
     return ""
   end
-
-  local parts = {
-    errors > 0 and format_component(" " .. errors, "DiagnosticError", "") or "",
-    warnings > 0 and format_component(" " .. warnings, "DiagnosticWarn", "") or "",
-    hints > 0 and format_component(" " .. hints, "DiagnosticHint", "") or "",
-    info > 0 and format_component("󰝶 " .. info, "DiagnosticInfo", "") or "",
-  }
-
-  return " " .. table.concat(parts, "") .. " "
+  return "recording @" .. register
 end
 
-M.navic = function(hl)
-  if package.loaded["nvim-navic"] and require("nvim-navic").is_available() then
-    return format_component(require("nvim-navic").get_location(), hl)
+function M.render()
+  local right = {}
+  local recording_status = recording()
+  local diagnostic_status = diagnostics()
+
+  if recording_status ~= "" then
+    right[#right + 1] = recording_status
   end
-  return ""
+  if diagnostic_status ~= "" then
+    right[#right + 1] = diagnostic_status
+  end
+
+  right[#right + 1] = "%l:%c"
+  right[#right + 1] = "%p%%"
+
+  return " " .. mode() .. "  " .. filename() .. " %=" .. file_info() .. "%= " .. table.concat(right, "  ") .. " "
 end
 
-M.status_messages = function(hl)
-  local reg = vim.fn.reg_recording()
-  if reg ~= "" then
-    return format_component("recording @" .. reg, hl)
-  end
-  return ""
-end
-
-M.lazy_updates = function(hl)
-  local ok, lazy_status = pcall(require, "lazy.status")
-  if not ok then
-    return ""
-  end
-  local updates = lazy_status.updates()
-  if type(updates) == "string" then
-    return format_component(updates, hl)
-  end
-  return ""
-end
-
-M.search_count = function(hl)
-  if vim.v.hlsearch == 0 then
-    return ""
-  end
-  local ok, s_count = pcall(vim.fn.searchcount, { recompute = false })
-  if not ok or s_count.current == nil or s_count.total == 0 then
-    return ""
-  end
-  if s_count.incomplete == 1 then
-    return format_component("?/?", hl)
-  end
-  return format_component(s_count.current .. "/" .. s_count.total, hl)
-end
-
-M.file_name = function(hl)
-  local ft_overrides = {
-    ["grug-far"] = { name = "grug-far", icon = "", icon_hl = "DiagnosticWarn" },
-    ["lazy"] = { name = "lazy.nvim", icon = "󰒲", icon_hl = "Directory" },
-    ["mason"] = { name = "mason", icon = "󱌣", icon_hl = "MiniIconsAzure" },
-    ["minifiles"] = { name = "files", icon = "󰝰", icon_hl = "Directory" },
-    ["snacks_picker_input"] = { name = "picker", icon = "󰦨", icon_hl = "Changed" },
-  }
-
-  local fn_overrides = {
-    ["lazygit"] = { icon = "", icon_hl = "Changed" },
-    ["zsh"] = { icon = "", icon_hl = "Keyword" },
-  }
-
-  local ft = vim.bo.filetype
-  if ft_overrides[ft] then
-    return format_component(ft_overrides[ft].icon, ft_overrides[ft].icon_hl, " ", "")
-      .. format_component(ft_overrides[ft].name, hl)
-  end
-
-  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
-  if filename == "" then
-    return ""
-  end
-
-  local icon, icon_hl = "", "Comment"
-  local ok, mini_icons = pcall(require, "mini.icons")
-  if ok then
-    icon, icon_hl = mini_icons.get("file", filename)
-  end
-
-  if fn_overrides[filename] then
-    icon = fn_overrides[filename].icon
-    icon_hl = fn_overrides[filename].icon_hl
-  end
-
-  return format_component(icon, icon_hl, " ", "") .. format_component(filename, hl)
-end
-
-M.progress = function(hl)
-  return format_component("%2p%%", hl)
-end
-
-M.location = function(hl)
-  return format_component("%l:%c", hl)
-end
-
-M.clock = function(hl)
-  return format_component(os.date("%I:%M %p"):gsub("^0", ""), hl)
-end
-
-local components = {
-  component("mode"),
-  component("git_branch", "Changed"),
-  component("git_diff", "Type"),
-  component("diagnostics"),
-  "%<",
-  component("navic", "Comment"),
-  "%=",
-  component("status_messages"),
-  component("lazy_updates", "String"),
-  component("search_count", "Directory"),
-  component("file_name", "Normal"),
-  component("progress", "Special"),
-  component("location", "Changed"),
-  component("clock", "Conceal"),
-}
-
-M.statusline = table.concat(components, "")
+_G._smallzoodev_statusline = M.render
+M.statusline = "%!v:lua._smallzoodev_statusline()"
 
 return M

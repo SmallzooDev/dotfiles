@@ -1,7 +1,5 @@
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  event = "VeryLazy",
   cmd = "FzfLua",
   keys = {
     {
@@ -89,18 +87,15 @@ return {
     }
 
     fzf.setup({
-      "telescope",
-      fzf_colors = true,
-      hls = {
-        normal = "NormalFloat",
-        preview_normal = "NormalFloat",
-      },
+      file_icons = false,
+      color_icons = false,
       winopts = {
         height = 0.85,
         width = 0.80,
-        border = "rounded",
+        backdrop = 100,
+        border = "single",
         preview = {
-          border = "border",
+          border = "single",
           layout = "flex",
           flip_columns = 120,
           winopts = { number = false },

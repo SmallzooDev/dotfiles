@@ -20,7 +20,7 @@ return {
         },
       },
       severity_sort = true,
-      float = { border = "rounded", source = true },
+      float = { border = "single", source = true },
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -61,7 +61,6 @@ return {
           "<cmd>FzfLua lsp_typedefs<CR>",
           vim.tbl_extend("force", opts, { desc = "Show LSP type definitions" })
         )
-        -- Helix-style Space prefix: LSP actions
         keymap.set(
           { "n", "v" },
           "<leader>a",
@@ -71,7 +70,6 @@ return {
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
         keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
-        -- Helix-style Space prefix: LSP pickers
         keymap.set("n", "<leader>s", function()
           local ok, aerial = pcall(require, "aerial")
           if ok then

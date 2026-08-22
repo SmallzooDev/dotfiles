@@ -37,11 +37,11 @@ return {
     post_jump_cmd = "normal! zz",
     lazy_load = true,
     float = {
-      border = "rounded",
+      border = "single",
       relative = "cursor",
     },
     nav = {
-      border = "rounded",
+      border = "single",
       preview = true,
     },
   },

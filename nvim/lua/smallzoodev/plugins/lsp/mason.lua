@@ -1,6 +1,5 @@
 return {
   "mason-org/mason.nvim",
-  event = "VeryLazy",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
   init = function()
     vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH

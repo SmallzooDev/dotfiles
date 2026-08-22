@@ -28,18 +28,9 @@ return {
       menu = {
         scrollbar = false,
         auto_show = true,
-        border = {
-          { "󱐋", "WarningMsg" },
-          "─",
-          "╮",
-          "│",
-          "╯",
-          "─",
-          "╰",
-          "│",
-        },
+        border = "single",
         draw = {
-          columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          columns = { { "label", "label_description", gap = 1 }, { "kind" } },
         },
       },
       list = {
@@ -50,22 +41,13 @@ return {
       documentation = {
         auto_show = true,
         window = {
-          border = {
-            { "╭", "DiagnosticHint" },
-            "─",
-            "╮",
-            "│",
-            "╯",
-            "─",
-            "╰",
-            "│",
-          },
+          border = "single",
         },
       },
     },
     signature = {
       enabled = true,
-      window = { border = "rounded" },
+      window = { border = "single" },
     },
   },
 }

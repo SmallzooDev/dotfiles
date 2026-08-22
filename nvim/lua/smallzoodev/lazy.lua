@@ -16,17 +16,13 @@ require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoo
     missing = true,
     colorscheme = { "rose-pine", "catppuccin-mocha", "tokyonight" },
   },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
   change_detection = {
     notify = false,
   },
   ui = {
     backdrop = 100,
-    border = "rounded",
-    title = " lazy.nvim 💤",
+    border = "single",
+    title = " lazy.nvim ",
     pills = false,
   },
   performance = {

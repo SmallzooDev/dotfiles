@@ -16,7 +16,7 @@ opt.wrap = false
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.cursorline = true
+opt.cursorline = false
 opt.scrolloff = 12
 
 opt.signcolumn = "yes"
@@ -35,6 +35,7 @@ opt.conceallevel = 1
 opt.undofile = true
 
 opt.termguicolors = true
+opt.winborder = "single"
 
 opt.showmode = false
 opt.laststatus = 3
@@ -45,11 +46,7 @@ opt.shortmess:append("sI")
 
 opt.fillchars = { fold = " ", diff = "╱", eob = " " }
 
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldtext = ""
+opt.foldmethod = "manual"
 
 opt.updatetime = 250
 opt.timeoutlen = 300
@@ -64,7 +61,7 @@ opt.titlestring = string.format(
 )
 
 opt.guicursor = {
-  "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50",
+  "n-c:block,i-ci:ver25,v-ve:hor20,r-cr:hor20,o:hor50",
   "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }

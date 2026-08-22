@@ -2,16 +2,6 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  dependencies = {
-    {
-      "nvim-mini/mini.icons",
-      lazy = true,
-      config = function()
-        require("mini.icons").setup()
-        require("mini.icons").mock_nvim_web_devicons()
-      end,
-    },
-  },
   opts = {
     bigfile = { enabled = true },
     image = {
@@ -21,12 +11,9 @@ return {
         max_width = math.floor(vim.o.columns * 0.5),
       },
     },
-    notifier = {
-      enabled = true,
-      timeout = 3000,
-    },
+    notifier = { enabled = false },
     quickfile = { enabled = true },
-    statuscolumn = { enabled = true, folds = { open = true, git_hl = true } },
+    statuscolumn = { enabled = false },
     words = { enabled = true },
     lazygit = {
       configure = false,
@@ -39,18 +26,26 @@ return {
       sources = {
         explorer = {
           hidden = true,
-          layout = { preset = "vertical", preview = false },
+          layout = {
+            preview = false,
+            layout = {
+              backdrop = false,
+              width = 0.5,
+              min_width = 80,
+              height = 0.8,
+              min_height = 30,
+              box = "vertical",
+              border = "single",
+              { win = "input", height = 1, border = "none" },
+              { win = "list", border = "none" },
+            },
+          },
           jump = { close = true },
         },
       },
     },
     terminal = {
       win = { position = "right", width = 0.5, wo = { winbar = "" } },
-    },
-    styles = {
-      notification = {
-        wo = { wrap = true },
-      },
     },
   },
   keys = {
@@ -60,20 +55,6 @@ return {
         require("snacks").explorer()
       end,
       desc = "Explorer",
-    },
-    {
-      "<leader>un",
-      function()
-        require("snacks").notifier.hide()
-      end,
-      desc = "Dismiss All Notifications",
-    },
-    {
-      "<leader>uh",
-      function()
-        require("snacks").notifier.show_history()
-      end,
-      desc = "Notification History",
     },
     {
       "<leader>B",
@@ -113,18 +94,4 @@ return {
       mode = { "n", "t" },
     },
   },
-  init = function()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "VeryLazy",
-      callback = function()
-        _G.dd = function(...)
-          require("snacks").debug.inspect(...)
-        end
-        _G.bt = function()
-          require("snacks").debug.backtrace()
-        end
-        vim.print = _G.dd
-      end,
-    })
-  end,
 }

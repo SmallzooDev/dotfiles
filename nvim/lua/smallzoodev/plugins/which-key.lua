@@ -6,32 +6,32 @@ return {
 
     wk.setup({
       preset = "helix",
-      delay = 300,
+      delay = 100,
       icons = {
         rules = false,
       },
       win = {
-        border = "rounded",
+        border = "single",
         height = { max = 20 },
       },
     })
 
     wk.add({
-      { "<leader>w", group = "Window", icon = "󰖮" },
-      { "<leader>x", group = "Trouble", icon = "󰔫" },
-      { "<leader>g", group = "Git", icon = "󰊢" },
-      { "<leader>f", group = "Find", icon = "󰈞" },
-      { "<leader>d", group = "Debug", icon = "󰃤" },
-      { "<leader>o", desc = "Toggle outline", icon = "󰊕" },
-      { "<leader>O", group = "Obsidian", icon = "󰠗" },
-      { "<leader>l", group = "LSP", icon = "󰒋" },
-      { "<leader>u", group = "UI", icon = "󰙵" },
-      { "<leader>n", group = "Next swap", icon = "󰒭" },
-      { "<leader>p", group = "Prev swap", icon = "󰒮" },
-      { "<leader>m", group = "Format", icon = "󰉼" },
-      { "g", group = "Goto", icon = "󰁔" },
-      { "[", group = "Previous", icon = "󰒫" },
-      { "]", group = "Next", icon = "󰒬" },
+      { "<leader>w", group = "Window" },
+      { "<leader>x", group = "Trouble" },
+      { "<leader>g", group = "Git" },
+      { "<leader>f", group = "Find" },
+      { "<leader>d", group = "Debug" },
+      { "<leader>o", desc = "Toggle outline" },
+      { "<leader>O", group = "Obsidian" },
+      { "<leader>l", group = "LSP" },
+      { "<leader>u", group = "UI" },
+      { "<leader>n", group = "Next swap" },
+      { "<leader>p", group = "Prev swap" },
+      { "<leader>m", group = "Format" },
+      { "g", group = "Goto" },
+      { "[", group = "Previous" },
+      { "]", group = "Next" },
     })
   end,
 }
