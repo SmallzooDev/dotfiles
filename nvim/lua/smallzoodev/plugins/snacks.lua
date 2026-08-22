@@ -27,6 +27,7 @@ return {
         explorer = {
           hidden = true,
           layout = {
+            preset = "default",
             preview = false,
             layout = {
               backdrop = false,
@@ -34,10 +35,6 @@ return {
               min_width = 80,
               height = 0.8,
               min_height = 30,
-              box = "vertical",
-              border = "single",
-              { win = "input", height = 1, border = "none" },
-              { win = "list", border = "none" },
             },
           },
           jump = { close = true },

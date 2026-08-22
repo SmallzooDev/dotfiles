@@ -50,4 +50,32 @@ return {
       window = { border = "single" },
     },
   },
+  config = function(_, opts)
+    require("blink.cmp").setup(opts)
+
+    local function place_top_right(window)
+      if not window:is_open() then
+        return
+      end
+
+      window:update_size()
+      local source_win = vim.api.nvim_get_current_win()
+      local position = vim.api.nvim_win_get_position(source_win)
+      vim.api.nvim_win_set_config(window:get_win(), {
+        relative = "editor",
+        anchor = "NE",
+        row = position[1],
+        col = position[2] + vim.api.nvim_win_get_width(source_win) - 1,
+      })
+    end
+
+    local documentation = require("blink.cmp.completion.windows.documentation")
+    documentation.update_position = function()
+      place_top_right(documentation.win)
+    end
+    local signature = require("blink.cmp.signature.window")
+    signature.update_position = function()
+      place_top_right(signature.win)
+    end
+  end,
 }

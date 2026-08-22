@@ -8,6 +8,36 @@ return {
   config = function()
     local keymap = vim.keymap
 
+    -- Set this to false to restore Neovim's cursor-relative LSP floats.
+    local top_right_lsp_floats = true
+
+    local function place_float_top_right(float_win, source_win)
+      if
+        not top_right_lsp_floats
+        or not float_win
+        or not source_win
+        or not vim.api.nvim_win_is_valid(float_win)
+        or not vim.api.nvim_win_is_valid(source_win)
+      then
+        return
+      end
+
+      local position = vim.api.nvim_win_get_position(source_win)
+      vim.api.nvim_win_set_config(float_win, {
+        relative = "editor",
+        anchor = "NE",
+        row = position[1],
+        col = position[2] + vim.api.nvim_win_get_width(source_win) - 1,
+      })
+    end
+
+    local open_floating_preview = vim.lsp.util.open_floating_preview
+    vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+      local float_buf, float_win = open_floating_preview(contents, syntax, opts)
+      place_float_top_right(float_win, (opts and opts._top_right_win) or vim.api.nvim_get_current_win())
+      return float_buf, float_win
+    end
+
     vim.diagnostic.config({
       underline = false,
       virtual_text = false,
@@ -68,7 +98,9 @@ return {
           vim.tbl_extend("force", opts, { desc = "Code actions" })
         )
         keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-        keymap.set("n", "<leader>k", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+        keymap.set("n", "<leader>k", function()
+          vim.lsp.buf.hover(top_right_lsp_floats and { _top_right_win = vim.api.nvim_get_current_win() } or nil)
+        end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
 
         keymap.set("n", "<leader>s", function()
           local ok, aerial = pcall(require, "aerial")
@@ -99,6 +131,9 @@ return {
         keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", vim.tbl_extend("force", opts, { desc = "LSP info" }))
 
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client.name == "gopls" then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
         if client and client:supports_method("textDocument/codeLens", ev.buf) then
           keymap.set(
             "n",
@@ -126,7 +161,9 @@ return {
           if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) == 0 then
             return
           end
-          vim.diagnostic.open_float({ scope = "line" })
+          local source_win = vim.api.nvim_get_current_win()
+          local _, float_win = vim.diagnostic.open_float({ scope = "line" })
+          place_float_top_right(float_win, source_win)
         end, vim.tbl_extend("force", opts, { desc = "Show line diagnostic" }))
       end,
     })
@@ -154,7 +191,7 @@ return {
         gopls = {
           usePlaceholders = true,
           staticcheck = true,
-          semanticTokens = true,
+          semanticTokens = false,
           directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-**/node_modules" },
           codelenses = {
             generate = true,
