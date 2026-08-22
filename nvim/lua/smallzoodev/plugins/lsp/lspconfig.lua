@@ -34,6 +34,8 @@ return {
     local open_floating_preview = vim.lsp.util.open_floating_preview
     vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
       local float_buf, float_win = open_floating_preview(contents, syntax, opts)
+      vim.api.nvim_set_option_value("conceallevel", 2, { win = float_win })
+      vim.api.nvim_set_option_value("concealcursor", "", { win = float_win })
       place_float_top_right(float_win, (opts and opts._top_right_win) or vim.api.nvim_get_current_win())
       return float_buf, float_win
     end

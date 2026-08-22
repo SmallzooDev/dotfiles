@@ -59,6 +59,8 @@ return {
       end
 
       window:update_size()
+      vim.api.nvim_set_option_value("conceallevel", 2, { win = window:get_win() })
+      vim.api.nvim_set_option_value("concealcursor", "", { win = window:get_win() })
       local source_win = vim.api.nvim_get_current_win()
       local position = vim.api.nvim_win_get_position(source_win)
       vim.api.nvim_win_set_config(window:get_win(), {
