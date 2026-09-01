@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hyper Key: F8 → ⌃⇧⌥⌘",
+                        "description": "Hyper Key: F2 → ⌃⇧⌥⌘",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f8",
+                                    "key_code": "f2",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -995,7 +995,7 @@
                         ]
                     },
                     {
-                        "description": "Double-tap shift (either) within 300ms → F2",
+                        "description": "Double-tap shift (either) within 300ms → F8",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1035,7 +1035,7 @@
                                     ]
                                 },
                                 "to_if_alone": [
-                                    { "key_code": "f2" },
+                                    { "key_code": "f8" },
                                     {
                                         "set_variable": {
                                             "name": "shift_double_tap",
@@ -1083,7 +1083,7 @@
                                     ]
                                 },
                                 "to_if_alone": [
-                                    { "key_code": "f2" },
+                                    { "key_code": "f8" },
                                     {
                                         "set_variable": {
                                             "name": "shift_double_tap",
