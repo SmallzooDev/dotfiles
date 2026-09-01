@@ -27,7 +27,9 @@
                             {
                                 "from": {
                                     "key_code": "spacebar",
-                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                    "modifiers": {
+                                        "mandatory": ["left_control", "left_command"]
+                                    }
                                 },
                                 "to": [{ "key_code": "f4" }],
                                 "type": "basic"
