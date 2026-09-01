@@ -22,7 +22,7 @@
                         ]
                     },
                     {
-                        "description": "Map ⌘tab→F9, ⌘space→F10, ⌃⌘space→F4",
+                        "description": "Map ⌘esc→F9, ⌘tab→F7, ⌘space→F10, ⌃⌘space→F4",
                         "manipulators": [
                             {
                                 "from": {
@@ -42,10 +42,18 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "tab",
+                                    "key_code": "escape",
                                     "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": [{ "key_code": "f9" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "key_code": "f7" }],
                                 "type": "basic"
                             }
                         ]
