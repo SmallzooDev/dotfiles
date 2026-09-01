@@ -9,10 +9,10 @@ next_tab = "prefix+n"
 copy_mode = ["prefix+enter", "alt+v"]
 navigate_workspace_up = "k"
 navigate_workspace_down = "j"
-navigate_pane_left = ""
-navigate_pane_down = ""
-navigate_pane_up = ""
-navigate_pane_right = ""
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
 focus_pane_left = ""
 focus_pane_down = ""
 focus_pane_up = ""
@@ -27,25 +27,25 @@ resize_pane_up = "prefix+k"
 resize_pane_right = "prefix+l"
 
 [[keys.command]]
-key = "alt+h"
+key = "ctrl+h"
 type = "plugin_action"
 command = "vim-herdr-navigation.left"
 description = "navigate left (vim/herdr)"
 
 [[keys.command]]
-key = "alt+j"
+key = "ctrl+j"
 type = "plugin_action"
 command = "vim-herdr-navigation.down"
 description = "navigate down (vim/herdr)"
 
 [[keys.command]]
-key = "alt+k"
+key = "ctrl+k"
 type = "plugin_action"
 command = "vim-herdr-navigation.up"
 description = "navigate up (vim/herdr)"
 
 [[keys.command]]
-key = "alt+l"
+key = "ctrl+l"
 type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
