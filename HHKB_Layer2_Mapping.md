@@ -1,6 +1,6 @@
 # HHKB Layer 2
 
-Layer 1은 변경하지 않는다.
+Layer 1은 `' → F3`만 변경하고 나머지는 유지한다.
 
 ```text
 Esc → Esc

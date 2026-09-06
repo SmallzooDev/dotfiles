@@ -440,7 +440,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "open_bracket" }],
+                                "to": [{ "key_code": "quote" }],
                                 "type": "basic"
                             },
                             {
@@ -603,17 +603,6 @@
                                         "modifiers": ["left_shift"]
                                     }
                                 ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "mandatory": ["right_command"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "quote" }],
                                 "type": "basic"
                             },
                             {
@@ -866,7 +855,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "w" }],
+                                "to": [{ "key_code": "open_bracket" }],
                                 "type": "basic"
                             },
                             {
@@ -877,7 +866,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "e" }],
+                                "to": [{ "key_code": "close_bracket" }],
                                 "type": "basic"
                             },
                             {
@@ -937,6 +926,35 @@
                                         "modifiers": ["left_shift"]
                                     }
                                 ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Use F3 as backspace and shift-F3 as option-backspace",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f3",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f3",
+                                    "modifiers": { "optional": ["caps_lock"] }
+                                },
+                                "to": [{ "key_code": "delete_or_backspace" }],
                                 "type": "basic"
                             }
                         ]
@@ -1307,6 +1325,10 @@
                         {
                             "from": { "key_code": "grave_accent_and_tilde" },
                             "to": [{ "key_code": "tab" }]
+                        },
+                        {
+                            "from": { "key_code": "quote" },
+                            "to": [{ "key_code": "f3" }]
                         }
                     ]
                 },
