@@ -48,6 +48,14 @@ return {
         vim.cmd.colorscheme(theme.nvim)
       end
 
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("SmallzoodevCursorColor", { clear = true }),
+        callback = function()
+          vim.api.nvim_set_hl(0, "Cursor", { fg = "#000000", bg = "#ffffff" })
+          vim.api.nvim_set_hl(0, "lCursor", { link = "Cursor" })
+        end,
+      })
+
       apply()
 
       vim.api.nvim_create_autocmd("FocusGained", {

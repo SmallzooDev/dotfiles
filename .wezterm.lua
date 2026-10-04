@@ -15,7 +15,7 @@ config.font = wezterm.font_with_fallback({
 	"Noto Sans Mono CJK KR",
 	emoji_font,
 })
-config.font_size = 12
+config.font_size = 13
 
 local themes = dofile(wezterm.home_dir .. "/dotfiles/colorscheme/themes.lua")
 
