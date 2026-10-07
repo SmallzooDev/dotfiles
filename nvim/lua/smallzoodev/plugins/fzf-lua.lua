@@ -119,6 +119,9 @@ return {
       files = {
         formatter = "path.filename_first",
       },
+      grep = {
+        hls = { search = false },
+      },
       buffers = {
         actions = {
           ["ctrl-d"] = false,
