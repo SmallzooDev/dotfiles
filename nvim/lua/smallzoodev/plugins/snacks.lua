@@ -26,6 +26,7 @@ return {
       sources = {
         explorer = {
           hidden = true,
+          ignored = true,
           layout = {
             preset = "default",
             preview = false,

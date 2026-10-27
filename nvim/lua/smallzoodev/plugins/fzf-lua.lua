@@ -19,16 +19,16 @@ return {
     {
       "<leader>fa",
       function()
-        require("fzf-lua").files({ file_ignore_patterns = {} })
+        require("fzf-lua").files({ file_ignore_patterns = {}, no_ignore = true })
       end,
-      desc = "Find files (incl. generated)",
+      desc = "Find files (incl. generated, gitignored)",
     },
     {
       "<leader>fg",
       function()
-        require("fzf-lua").live_grep({ file_ignore_patterns = {} })
+        require("fzf-lua").live_grep({ file_ignore_patterns = {}, no_ignore = true })
       end,
-      desc = "Live grep (incl. generated)",
+      desc = "Live grep (incl. generated, gitignored)",
     },
     {
       "<leader>b",
