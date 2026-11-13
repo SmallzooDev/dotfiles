@@ -57,7 +57,6 @@ function M.open_help(buf)
     col = vim.o.columns - 80,
     width = 80,
     height = vim.o.lines - 3,
-    border = "single",
   })
   vim.api.nvim_win_close(help_win, true)
 end

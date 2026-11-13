@@ -133,7 +133,6 @@ local function pick_conflict_action(file, idx, total, on_choice)
     height = #items,
     col = math.floor((vim.o.columns - width) / 2),
     row = math.floor((vim.o.lines - #items) / 2),
-    border = "single",
     title = title,
     title_pos = "center",
     style = "minimal",

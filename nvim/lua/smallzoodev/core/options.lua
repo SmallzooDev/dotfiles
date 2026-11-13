@@ -6,7 +6,6 @@ opt.number = true
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
-opt.autoindent = true
 opt.breakindent = true
 opt.breakindentopt = "shift:2"
 opt.showbreak = "↪ "
@@ -16,12 +15,9 @@ opt.wrap = false
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.cursorline = false
 opt.scrolloff = 12
 
 opt.signcolumn = "yes"
-
-opt.backspace = "indent,eol,start"
 
 opt.clipboard:append("unnamedplus")
 
@@ -45,8 +41,6 @@ opt.smoothscroll = true
 opt.shortmess:append("sI")
 
 opt.fillchars = { fold = " ", diff = "╱", eob = " " }
-
-opt.foldmethod = "manual"
 
 opt.updatetime = 250
 opt.timeoutlen = 300

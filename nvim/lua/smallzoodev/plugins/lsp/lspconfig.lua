@@ -48,7 +48,7 @@ return {
         },
       },
       severity_sort = true,
-      float = { border = "single", source = true },
+      float = { source = true },
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -191,21 +191,6 @@ return {
           staticcheck = true,
           semanticTokens = false,
           directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-**/node_modules" },
-          codelenses = {
-            generate = true,
-            regenerate_cgo = true,
-            run_govulncheck = true,
-            test = false,
-            tidy = true,
-            upgrade_dependency = true,
-            vendor = true,
-          },
-          analyses = {
-            nilness = true,
-            unusedparams = true,
-            unusedwrite = true,
-            any = true,
-          },
           hints = {
             assignVariableTypes = true,
             compositeLiteralFields = true,
@@ -223,24 +208,13 @@ return {
       settings = {
         ["rust-analyzer"] = {
           cargo = {
-            allFeatures = true,
-            loadOutDirsFromCheck = true,
-            buildScripts = {
-              enable = true,
-            },
+            features = "all",
           },
-          checkOnSave = true,
           check = {
             command = "clippy",
           },
-          procMacro = {
-            enable = true,
-          },
           inlayHints = {
-            chainingHints = { enable = true },
-            closingBraceHints = { enable = true, minLines = 10 },
-            parameterHints = { enable = true },
-            typeHints = { enable = true },
+            closingBraceHints = { minLines = 10 },
           },
         },
       },

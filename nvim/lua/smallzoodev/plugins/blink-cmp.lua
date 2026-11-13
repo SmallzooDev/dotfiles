@@ -17,7 +17,6 @@ return {
       ["<CR>"] = { "accept", "fallback" },
     },
     appearance = {
-      use_nvim_cmp_as_default = true,
       nerd_font_variant = "mono",
     },
     sources = {
@@ -27,8 +26,6 @@ return {
     completion = {
       menu = {
         scrollbar = false,
-        auto_show = true,
-        border = "single",
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind" } },
         },
@@ -40,14 +37,10 @@ return {
       },
       documentation = {
         auto_show = true,
-        window = {
-          border = "single",
-        },
       },
     },
     signature = {
       enabled = true,
-      window = { border = "single" },
     },
   },
   config = function(_, opts)

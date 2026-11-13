@@ -54,24 +54,15 @@ return {
         {
           name = "public",
           path = "~/public_vault",
-          overrides = {
-            templates = {
-              folder = "templates",
-            },
-          },
         },
         {
           name = "private",
           path = "~/private_vault",
-          overrides = {
-            templates = {
-              folder = "templates",
-            },
-          },
         },
       },
       note_id_func = generate_note_filename,
       templates = {
+        folder = "templates",
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
         substitutions = {
