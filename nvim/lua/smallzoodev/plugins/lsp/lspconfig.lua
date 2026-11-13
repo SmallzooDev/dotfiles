@@ -2,8 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local keymap = vim.keymap
-
     -- Set this to false to restore Neovim's cursor-relative LSP floats.
     local top_right_lsp_floats = true
 
@@ -51,118 +49,67 @@ return {
       float = { source = true },
     })
 
+    for _, defkey in ipairs({ "grn", "gra", "grr", "gri", "grt", "grx" }) do
+      pcall(vim.keymap.del, "n", defkey)
+    end
+    pcall(vim.keymap.del, "x", "gra")
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        local opts = { buffer = ev.buf, silent = true }
-
-        for _, defkey in ipairs({ "grn", "gra", "grr", "gri", "grt", "grx" }) do
-          pcall(vim.keymap.del, "n", defkey)
+        local function map(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
         end
-        pcall(vim.keymap.del, "x", "gra")
+        local function toggle(feature)
+          return function() feature.enable(not feature.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf }) end
+        end
 
-        keymap.set(
-          "n",
-          "gr",
-          "<cmd>FzfLua lsp_references<CR>",
-          vim.tbl_extend("force", opts, { desc = "Show LSP references" })
-        )
-        keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
-        keymap.set(
-          "n",
-          "gd",
-          "<cmd>FzfLua lsp_definitions<CR>",
-          vim.tbl_extend("force", opts, { desc = "Show LSP definitions" })
-        )
-        keymap.set(
-          "n",
-          "gi",
-          "<cmd>FzfLua lsp_implementations<CR>",
-          vim.tbl_extend("force", opts, { desc = "Show LSP implementations" })
-        )
-        keymap.set("n", "gI", function()
-          vim.lsp.buf.typehierarchy("supertypes")
-        end, vim.tbl_extend("force", opts, { desc = "Go to interface / supertype" }))
-        keymap.set(
-          "n",
-          "gt",
-          "<cmd>FzfLua lsp_typedefs<CR>",
-          vim.tbl_extend("force", opts, { desc = "Show LSP type definitions" })
-        )
-        keymap.set(
-          { "n", "v" },
-          "<leader>a",
-          "<cmd>FzfLua lsp_code_actions<CR>",
-          vim.tbl_extend("force", opts, { desc = "Code actions" })
-        )
-        keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-        keymap.set("n", "<leader>k", function()
-          vim.lsp.buf.hover(top_right_lsp_floats and { _top_right_win = vim.api.nvim_get_current_win() } or nil)
-        end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+        map("n", "gr", "<cmd>FzfLua lsp_references<CR>", "Show LSP references")
+        map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+        map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", "Show LSP definitions")
+        map("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", "Show LSP implementations")
+        map("n", "gI", function() vim.lsp.buf.typehierarchy("supertypes") end, "Go to interface / supertype")
+        map("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", "Show LSP type definitions")
+        map({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", "Code actions")
+        map("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
+        map("n", "<leader>k", function()
+          local source_win = vim.api.nvim_get_current_win()
+          vim.lsp.buf.hover(top_right_lsp_floats and { _top_right_win = source_win } or nil)
+        end, "Hover documentation")
 
-        keymap.set("n", "<leader>s", function()
+        map("n", "<leader>s", function()
           local ok, aerial = pcall(require, "aerial")
           if ok then
             aerial.fzf_lua_picker()
           else
             vim.cmd("FzfLua lsp_document_symbols")
           end
-        end, vim.tbl_extend("force", opts, { desc = "Document symbols (aerial)" }))
-        keymap.set(
-          "n",
-          "<leader>S",
-          "<cmd>FzfLua lsp_workspace_symbols<CR>",
-          vim.tbl_extend("force", opts, { desc = "Workspace symbols" })
-        )
+        end, "Document symbols (aerial)")
+        map("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", "Workspace symbols")
 
-        keymap.set("n", "[d", function()
-          vim.diagnostic.jump({ count = -1 })
-        end, vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-        keymap.set("n", "]d", function()
-          vim.diagnostic.jump({ count = 1 })
-        end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
-
-        keymap.set("n", "<leader>lR", "<cmd>lsp restart<CR>", vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
-        keymap.set("n", "<leader>ll", function()
-          vim.cmd("edit " .. vim.fn.fnameescape(vim.lsp.get_log_path()))
-        end, vim.tbl_extend("force", opts, { desc = "Open LSP log" }))
-        keymap.set("n", "<leader>li", "<cmd>checkhealth lsp<CR>", vim.tbl_extend("force", opts, { desc = "LSP info" }))
+        map("n", "<leader>lR", "<cmd>lsp restart<CR>", "Restart LSP")
+        map("n", "<leader>ll", function() vim.cmd.edit(vim.fn.fnameescape(vim.lsp.get_log_path())) end, "Open LSP log")
+        map("n", "<leader>li", "<cmd>checkhealth lsp<CR>", "LSP info")
 
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client and client.name == "gopls" then
           client.server_capabilities.semanticTokensProvider = nil
         end
         if client and client:supports_method("textDocument/codeLens", ev.buf) then
-          keymap.set(
-            "n",
-            "<leader>lc",
-            vim.lsp.codelens.run,
-            vim.tbl_extend("force", opts, { desc = "Run codelens on current line" })
-          )
-          keymap.set(
-            "n",
-            "<leader>lC",
-            vim.lsp.codelens.refresh,
-            vim.tbl_extend("force", opts, { desc = "Refresh codelens" })
-          )
-          keymap.set("n", "<leader>lL", function()
-            vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
-          end, vim.tbl_extend("force", opts, { desc = "Toggle codelens" }))
+          map("n", "<leader>lc", vim.lsp.codelens.run, "Run codelens on current line")
+          map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh codelens")
+          map("n", "<leader>lL", toggle(vim.lsp.codelens), "Toggle codelens")
         end
 
-        vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
-        keymap.set("n", "<leader>lh", function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
-        end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
-
-        keymap.set("n", "<leader>ld", function()
+        map("n", "<leader>lh", toggle(vim.lsp.inlay_hint), "Toggle inlay hints")
+        map("n", "<leader>ld", function()
           if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) == 0 then
             return
           end
           local source_win = vim.api.nvim_get_current_win()
           local _, float_win = vim.diagnostic.open_float({ scope = "line" })
           place_float_top_right(float_win, source_win)
-        end, vim.tbl_extend("force", opts, { desc = "Show line diagnostic" }))
+        end, "Show line diagnostic")
       end,
     })
 
