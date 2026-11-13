@@ -59,7 +59,6 @@ function M.open_help(buf)
     height = vim.o.lines - 3,
     border = "single",
   })
-  vim.wo[help_win].scroll = vim.wo[new_win].scroll
   vim.api.nvim_win_close(help_win, true)
 end
 

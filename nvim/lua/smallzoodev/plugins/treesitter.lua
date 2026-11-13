@@ -68,10 +68,6 @@ return {
         ["i="] = "@assignment.inner",
         ["l="] = "@assignment.lhs",
         ["r="] = "@assignment.rhs",
-        ["a:"] = "@property.outer",
-        ["i:"] = "@property.inner",
-        ["l:"] = "@property.lhs",
-        ["r:"] = "@property.rhs",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
         ["ai"] = "@conditional.outer",
@@ -103,12 +99,10 @@ return {
       -- Swap
       local swap_next = {
         ["<leader>na"] = "@parameter.inner",
-        ["<leader>n:"] = "@property.outer",
         ["<leader>nm"] = "@function.outer",
       }
       local swap_prev = {
         ["<leader>pa"] = "@parameter.inner",
-        ["<leader>p:"] = "@property.outer",
         ["<leader>pm"] = "@function.outer",
       }
       for key, query in pairs(swap_next) do

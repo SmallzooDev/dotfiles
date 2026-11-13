@@ -47,7 +47,6 @@ autocmd("VimLeavePre", {
 
 autocmd("BufEnter", {
   group = general,
-  nested = true,
   desc = "Auto chdir to project root (.git)",
   callback = vim.schedule_wrap(function(data)
     if data.buf ~= vim.api.nvim_get_current_buf() then

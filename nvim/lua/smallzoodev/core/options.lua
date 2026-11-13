@@ -9,7 +9,7 @@ opt.expandtab = true
 opt.autoindent = true
 opt.breakindent = true
 opt.breakindentopt = "shift:2"
-opt.showbreak = "↳"
+opt.showbreak = "↪ "
 
 opt.wrap = false
 

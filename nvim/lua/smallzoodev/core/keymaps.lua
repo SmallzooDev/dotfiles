@@ -91,9 +91,6 @@ keymap.set("i", "<F1>", "!")
 keymap.set("n", "<leader>uw", function()
   vim.wo.wrap = not vim.wo.wrap
   vim.wo.linebreak = vim.wo.wrap
-  vim.wo.breakindent = vim.wo.wrap
-  vim.wo.showbreak = vim.wo.wrap and "↪ " or ""
-  vim.wo.breakindentopt = vim.wo.wrap and "shift:2" or ""
 end, { desc = "Toggle word wrap" })
 
 -- Helix-like g mappings
