@@ -9,13 +9,7 @@ return {
     "leoluz/nvim-dap-go",
   },
   keys = {
-    {
-      "<leader>dc",
-      function()
-        require("dap").continue()
-      end,
-      desc = "Continue",
-    },
+    { "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue" },
     {
       "<leader>dg",
       function()
@@ -23,13 +17,7 @@ return {
       end,
       desc = "Run to cursor",
     },
-    {
-      "<leader>db",
-      function()
-        require("dap").toggle_breakpoint()
-      end,
-      desc = "Toggle breakpoint",
-    },
+    { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
     {
       "<leader>dB",
       function()
@@ -37,34 +25,10 @@ return {
       end,
       desc = "Conditional breakpoint",
     },
-    {
-      "<leader>di",
-      function()
-        require("dap").step_into()
-      end,
-      desc = "Step into",
-    },
-    {
-      "<leader>do",
-      function()
-        require("dap").step_over()
-      end,
-      desc = "Step over",
-    },
-    {
-      "<leader>dO",
-      function()
-        require("dap").step_out()
-      end,
-      desc = "Step out",
-    },
-    {
-      "<leader>dt",
-      function()
-        require("dap").terminate()
-      end,
-      desc = "Terminate",
-    },
+    { "<leader>di", "<cmd>DapStepInto<cr>", desc = "Step into" },
+    { "<leader>do", "<cmd>DapStepOver<cr>", desc = "Step over" },
+    { "<leader>dO", "<cmd>DapStepOut<cr>", desc = "Step out" },
+    { "<leader>dt", "<cmd>DapTerminate<cr>", desc = "Terminate" },
     {
       "<leader>du",
       function()
@@ -80,13 +44,7 @@ return {
       desc = "Evaluate",
       mode = { "n", "v" },
     },
-    {
-      "<leader>dr",
-      function()
-        require("dap").repl.toggle()
-      end,
-      desc = "Toggle REPL",
-    },
+    { "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Toggle REPL" },
     {
       "<leader>dl",
       function()
@@ -106,18 +64,14 @@ return {
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open({})
     end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
+    local function close()
       dapui.close({})
       pcall(function()
         require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
       end)
     end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close({})
-      pcall(function()
-        require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
-      end)
-    end
+    dap.listeners.before.event_terminated["dapui_config"] = close
+    dap.listeners.before.event_exited["dapui_config"] = close
 
     vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticError", numhl = "" })
     vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "DiagnosticWarn", numhl = "" })

@@ -2,13 +2,7 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   keys = {
-    {
-      "<leader>ff",
-      function()
-        require("fzf-lua").files()
-      end,
-      desc = "Find files",
-    },
+    { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
     {
       "<leader>fF",
       function()
@@ -30,48 +24,12 @@ return {
       end,
       desc = "Live grep (incl. generated, gitignored)",
     },
-    {
-      "<leader>b",
-      function()
-        require("fzf-lua").buffers()
-      end,
-      desc = "Find buffers",
-    },
-    {
-      "<leader>/",
-      function()
-        require("fzf-lua").live_grep()
-      end,
-      desc = "Live grep",
-    },
-    {
-      "<leader>?",
-      function()
-        require("fzf-lua").keymaps()
-      end,
-      desc = "Find keymaps",
-    },
-    {
-      "<leader>'",
-      function()
-        require("fzf-lua").resume()
-      end,
-      desc = "Resume last picker",
-    },
-    {
-      "<leader>fd",
-      function()
-        require("fzf-lua").diagnostics_document()
-      end,
-      desc = "Document diagnostics",
-    },
-    {
-      "<leader>fD",
-      function()
-        require("fzf-lua").diagnostics_workspace()
-      end,
-      desc = "Workspace diagnostics",
-    },
+    { "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Find buffers" },
+    { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "Live grep" },
+    { "<leader>?", "<cmd>FzfLua keymaps<cr>", desc = "Find keymaps" },
+    { "<leader>'", "<cmd>FzfLua resume<cr>", desc = "Resume last picker" },
+    { "<leader>fd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document diagnostics" },
+    { "<leader>fD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace diagnostics" },
   },
   config = function()
     local fzf = require("fzf-lua")

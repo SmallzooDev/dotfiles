@@ -97,73 +97,35 @@ return {
       vim.keymap.set("x", "<BS>", "<Esc>", { desc = "Shrink treesitter selection" })
 
       -- Swap
-      local swap_next = {
-        ["<leader>na"] = "@parameter.inner",
-        ["<leader>nm"] = "@function.outer",
-      }
-      local swap_prev = {
-        ["<leader>pa"] = "@parameter.inner",
-        ["<leader>pm"] = "@function.outer",
-      }
-      for key, query in pairs(swap_next) do
-        vim.keymap.set("n", key, function()
-          swap.swap_textobject(query)
+      for key, query in pairs({ a = "@parameter.inner", m = "@function.outer" }) do
+        vim.keymap.set("n", "<leader>n" .. key, function()
+          swap.swap_next(query)
         end)
-      end
-      for key, query in pairs(swap_prev) do
-        vim.keymap.set("n", key, function()
-          swap.swap_textobject(query, "previous")
+        vim.keymap.set("n", "<leader>p" .. key, function()
+          swap.swap_previous(query)
         end)
       end
 
       -- Move
-      local goto_next_start = {
-        ["]f"] = "@call.outer",
-        ["]m"] = "@function.outer",
-        ["]c"] = "@class.outer",
-        ["]i"] = "@conditional.outer",
-        ["]l"] = "@loop.outer",
+      local targets = {
+        f = "@call.outer",
+        m = "@function.outer",
+        c = "@class.outer",
+        i = "@conditional.outer",
+        l = "@loop.outer",
       }
-      local goto_next_end = {
-        ["]F"] = "@call.outer",
-        ["]M"] = "@function.outer",
-        ["]C"] = "@class.outer",
-        ["]I"] = "@conditional.outer",
-        ["]L"] = "@loop.outer",
-      }
-      local goto_prev_start = {
-        ["[f"] = "@call.outer",
-        ["[m"] = "@function.outer",
-        ["[c"] = "@class.outer",
-        ["[i"] = "@conditional.outer",
-        ["[l"] = "@loop.outer",
-      }
-      local goto_prev_end = {
-        ["[F"] = "@call.outer",
-        ["[M"] = "@function.outer",
-        ["[C"] = "@class.outer",
-        ["[I"] = "@conditional.outer",
-        ["[L"] = "@loop.outer",
-      }
-      for key, query in pairs(goto_next_start) do
-        vim.keymap.set({ "n", "x", "o" }, key, function()
-          move.goto_next_start(query)
-        end)
-      end
-      for key, query in pairs(goto_next_end) do
-        vim.keymap.set({ "n", "x", "o" }, key, function()
-          move.goto_next_end(query)
-        end)
-      end
-      for key, query in pairs(goto_prev_start) do
-        vim.keymap.set({ "n", "x", "o" }, key, function()
-          move.goto_previous_start(query)
-        end)
-      end
-      for key, query in pairs(goto_prev_end) do
-        vim.keymap.set({ "n", "x", "o" }, key, function()
-          move.goto_previous_end(query)
-        end)
+      for key, query in pairs(targets) do
+        local maps = {
+          ["]" .. key] = "goto_next_start",
+          ["]" .. key:upper()] = "goto_next_end",
+          ["[" .. key] = "goto_previous_start",
+          ["[" .. key:upper()] = "goto_previous_end",
+        }
+        for lhs, method in pairs(maps) do
+          vim.keymap.set({ "n", "x", "o" }, lhs, function()
+            move[method](query)
+          end)
+        end
       end
       -- Scope/fold (with query_group)
       vim.keymap.set({ "n", "x", "o" }, "]s", function()

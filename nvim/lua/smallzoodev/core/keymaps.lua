@@ -65,24 +65,8 @@ keymap.set("n", "gp", function()
   end
 end, { desc = "Go to file:line from clipboard or input" })
 
-local cmd_aliases = {
-  { "W", "w" },
-  { "Q", "q" },
-  { "Wq", "wq" },
-  { "WQ", "wq" },
-  { "Wa", "wa" },
-  { "WA", "wa" },
-  { "Qa", "qa" },
-  { "QA", "qa" },
-  { "Wqa", "wqa" },
-  { "WQa", "wqa" },
-  { "WQA", "wqa" },
-  { "Xa", "xa" },
-  { "XA", "xa" },
-}
-
-for _, alias in ipairs(cmd_aliases) do
-  vim.api.nvim_create_user_command(alias[1], alias[2], { bang = true })
+for _, name in ipairs({ "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQa", "WQA", "Xa", "XA" }) do
+  vim.api.nvim_create_user_command(name, name:lower(), { bang = true })
 end
 
 keymap.set({ "n", "v" }, "<F1>", "<Nop>")
