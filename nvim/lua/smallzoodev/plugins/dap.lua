@@ -10,48 +10,26 @@ return {
   },
   keys = {
     { "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue" },
-    {
-      "<leader>dg",
-      function()
-        require("dap").run_to_cursor()
-      end,
-      desc = "Run to cursor",
-    },
+    { "<leader>dg", function() require("dap").run_to_cursor() end, desc = "Run to cursor" },
     { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint" },
     {
       "<leader>dB",
-      function()
-        require("dap").set_breakpoint(vim.fn.input("Condition: "))
-      end,
+      function() require("dap").set_breakpoint(vim.fn.input("Condition: ")) end,
       desc = "Conditional breakpoint",
     },
     { "<leader>di", "<cmd>DapStepInto<cr>", desc = "Step into" },
     { "<leader>do", "<cmd>DapStepOver<cr>", desc = "Step over" },
     { "<leader>dO", "<cmd>DapStepOut<cr>", desc = "Step out" },
     { "<leader>dt", "<cmd>DapTerminate<cr>", desc = "Terminate" },
-    {
-      "<leader>du",
-      function()
-        require("dapui").toggle()
-      end,
-      desc = "Toggle UI",
-    },
+    { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle UI" },
     {
       "<leader>de",
-      function()
-        require("dapui").eval(nil, { enter = true })
-      end,
+      function() require("dapui").eval(nil, { enter = true }) end,
       desc = "Evaluate",
       mode = { "n", "v" },
     },
     { "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Toggle REPL" },
-    {
-      "<leader>dl",
-      function()
-        require("dap").run_last()
-      end,
-      desc = "Run last",
-    },
+    { "<leader>dl", function() require("dap").run_last() end, desc = "Run last" },
   },
   config = function()
     local dap = require("dap")

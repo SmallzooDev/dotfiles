@@ -5,23 +5,17 @@ return {
     { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
     {
       "<leader>fF",
-      function()
-        require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
-      end,
+      function() require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") }) end,
       desc = "Find files (buffer dir)",
     },
     {
       "<leader>fa",
-      function()
-        require("fzf-lua").files({ file_ignore_patterns = {}, no_ignore = true })
-      end,
+      function() require("fzf-lua").files({ file_ignore_patterns = {}, no_ignore = true }) end,
       desc = "Find files (incl. generated, gitignored)",
     },
     {
       "<leader>fg",
-      function()
-        require("fzf-lua").live_grep({ file_ignore_patterns = {}, no_ignore = true })
-      end,
+      function() require("fzf-lua").live_grep({ file_ignore_patterns = {}, no_ignore = true }) end,
       desc = "Live grep (incl. generated, gitignored)",
     },
     { "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "Find buffers" },

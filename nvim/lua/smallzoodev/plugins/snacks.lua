@@ -44,49 +44,11 @@ return {
     },
   },
   keys = {
-    {
-      "<leader>e",
-      function()
-        require("snacks").explorer()
-      end,
-      desc = "Explorer",
-    },
-    {
-      "<leader>B",
-      function()
-        require("snacks").bufdelete()
-      end,
-      desc = "Delete Buffer",
-    },
-    {
-      "<leader>gO",
-      function()
-        require("snacks").gitbrowse()
-      end,
-      desc = "Open in browser",
-    },
-    {
-      "<leader>lg",
-      function()
-        require("snacks").lazygit()
-      end,
-      desc = "LazyGit",
-    },
-    {
-      "]h",
-      function()
-        require("snacks").words.jump(vim.v.count1)
-      end,
-      desc = "Next Reference",
-      mode = { "n", "t" },
-    },
-    {
-      "[h",
-      function()
-        require("snacks").words.jump(-vim.v.count1)
-      end,
-      desc = "Prev Reference",
-      mode = { "n", "t" },
-    },
+    { "<leader>e", function() require("snacks").explorer() end, desc = "Explorer" },
+    { "<leader>B", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
+    { "<leader>gO", function() require("snacks").gitbrowse() end, desc = "Open in browser" },
+    { "<leader>lg", function() require("snacks").lazygit() end, desc = "LazyGit" },
+    { "]h", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+    { "[h", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
   },
 }
