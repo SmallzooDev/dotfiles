@@ -87,15 +87,6 @@ return {
         end)
       end
 
-      -- Incremental selection
-      vim.keymap.set("n", "<CR>", function()
-        select_mod.select_textobject("@function.inner")
-      end, { desc = "Init treesitter selection" })
-      vim.keymap.set("x", "<CR>", function()
-        select_mod.select_textobject("@function.outer")
-      end, { desc = "Expand treesitter selection" })
-      vim.keymap.set("x", "<BS>", "<Esc>", { desc = "Shrink treesitter selection" })
-
       -- Swap
       for key, query in pairs({ a = "@parameter.inner", m = "@function.outer" }) do
         vim.keymap.set("n", "<leader>n" .. key, function()

@@ -5,6 +5,12 @@ return {
   config = function()
     require("mini.ai").setup({
       n_lines = 500,
+      mappings = {
+        around_next = "",
+        inside_next = "",
+        around_last = "",
+        inside_last = "",
+      },
     })
 
     require("mini.surround").setup({
@@ -23,6 +29,12 @@ return {
     require("mini.indentscope").setup({
       symbol = "│",
       options = { try_as_border = true },
+      mappings = {
+        object_scope = "",
+        object_scope_with_border = "",
+        goto_top = "",
+        goto_bottom = "",
+      },
       draw = {
         delay = 0,
         animation = require("mini.indentscope").gen_animation.none(),
