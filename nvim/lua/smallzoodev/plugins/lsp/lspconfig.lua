@@ -1,7 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  config = function()
+  opts = { servers = {} },
+  config = function(_, opts)
     local float = require("smallzoodev.core.float")
     local open_floating_preview = vim.lsp.util.open_floating_preview
     vim.lsp.util.open_floating_preview = function(...)
@@ -81,70 +82,9 @@ return {
       end,
     })
 
-    vim.lsp.config("lua_ls", {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-          completion = {
-            callSnippet = "Replace",
-          },
-          hint = {
-            enable = true,
-            arrayIndex = "Disable",
-            setType = true,
-          },
-        },
-      },
-    })
-
-    vim.lsp.config("gopls", {
-      settings = {
-        gopls = {
-          usePlaceholders = true,
-          staticcheck = true,
-          semanticTokens = false,
-          directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-**/node_modules" },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-        },
-      },
-    })
-
-    vim.lsp.config("rust_analyzer", {
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            features = "all",
-          },
-          check = {
-            command = "clippy",
-          },
-          inlayHints = {
-            closingBraceHints = { minLines = 10 },
-          },
-        },
-      },
-    })
-
-    vim.lsp.config("clangd", {
-      cmd = {
-        "clangd",
-        "--background-index",
-        "--clang-tidy",
-        "--header-insertion=iwyu",
-        "--completion-style=detailed",
-      },
-    })
-
-    vim.lsp.enable({ "lua_ls", "gopls", "pyright", "rust_analyzer", "clangd" })
+    for name, server in pairs(opts.servers) do
+      vim.lsp.config(name, server)
+    end
+    vim.lsp.enable(vim.tbl_keys(opts.servers))
   end,
 }

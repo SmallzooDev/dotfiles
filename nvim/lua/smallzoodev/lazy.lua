@@ -11,7 +11,12 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "smallzoodev.plugins" }, { import = "smallzoodev.plugins.lsp" } }, {
+require("lazy").setup({
+  spec = {
+    { import = "smallzoodev.plugins" },
+    { import = "smallzoodev.plugins.lsp" },
+    { import = "smallzoodev.plugins.lang" },
+  },
   install = {
     colorscheme = { "rose-pine", "catppuccin-mocha", "tokyonight" },
   },

@@ -1,38 +1,33 @@
-local ensure_installed = {
-  "json",
-  "yaml",
-  "markdown",
-  "markdown_inline",
-  "bash",
-  "lua",
-  "vim",
-  "dockerfile",
-  "gitignore",
-  "query",
-  "vimdoc",
-  "c",
-  "cpp",
-  "cmake",
-  "python",
-  "go",
-  "gomod",
-  "gowork",
-  "gosum",
-  "rust",
-  "toml",
-}
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
-    build = function()
-      local ts = require("nvim-treesitter")
-      ts.update()
-      ts.install(ensure_installed)
-    end,
-    config = function()
-      require("nvim-treesitter").setup()
+    build = ":TSUpdate",
+    opts_extend = { "ensure_installed" },
+    opts = {
+      ensure_installed = {
+        "json",
+        "yaml",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "vim",
+        "dockerfile",
+        "gitignore",
+        "query",
+        "vimdoc",
+        "toml",
+      },
+    },
+    config = function(_, opts)
+      local treesitter = require("nvim-treesitter")
+      treesitter.setup()
+      local installed = treesitter.get_installed()
+      local function is_missing(lang) return not vim.list_contains(installed, lang) end
+      local missing = vim.tbl_filter(is_missing, opts.ensure_installed)
+      if #missing > 0 then
+        treesitter.install(missing)
+      end
 
       -- Enable treesitter highlighting & indentation
       vim.api.nvim_create_autocmd("FileType", {

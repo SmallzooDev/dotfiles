@@ -1,19 +1,12 @@
 return {
-  "mason-org/mason.nvim",
-  cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-  init = function()
-    vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
-  end,
-  dependencies = {
-    "mason-org/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-  },
-  config = function()
-    local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
-    local mason_tool_installer = require("mason-tool-installer")
-
-    mason.setup({
+  {
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    init = function()
+      vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
+    end,
+    dependencies = { "mason-org/mason-lspconfig.nvim" },
+    opts = {
       PATH = "skip",
       ui = {
         icons = {
@@ -22,30 +15,17 @@ return {
           package_uninstalled = "✗",
         },
       },
-    })
-
-    mason_lspconfig.setup({
-      ensure_installed = {
-        "lua_ls",
-        "pyright",
-        "gopls",
-        "rust_analyzer",
-        "clangd",
-      },
-      automatic_enable = false,
-    })
-
-    mason_tool_installer.setup({
-      ensure_installed = {
-        "prettier",
-        "stylua",
-        "isort",
-        "black",
-        "gofumpt",
-        "goimports",
-        "clang-format",
-        "delve",
-      },
-    })
-  end,
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+      require("mason-lspconfig").setup({ automatic_enable = false })
+      require("lazy").load({ plugins = { "mason-tool-installer.nvim" } })
+    end,
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = true,
+    opts_extend = { "ensure_installed" },
+    opts = { ensure_installed = { "prettier" } },
+  },
 }
