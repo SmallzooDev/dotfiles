@@ -46,31 +46,15 @@ return {
   config = function(_, opts)
     require("blink.cmp").setup(opts)
 
-    local function place_top_right(window)
-      if not window:is_open() then
-        return
+    local float = require("smallzoodev.core.float")
+    for _, name in ipairs({ "blink.cmp.completion.windows.documentation", "blink.cmp.signature.window" }) do
+      local module = require(name)
+      module.update_position = function()
+        if module.win:is_open() then
+          module.win:update_size()
+          float.top_right(module.win:get_win())
+        end
       end
-
-      window:update_size()
-      vim.api.nvim_set_option_value("conceallevel", 2, { win = window:get_win() })
-      vim.api.nvim_set_option_value("concealcursor", "", { win = window:get_win() })
-      local source_win = vim.api.nvim_get_current_win()
-      local position = vim.api.nvim_win_get_position(source_win)
-      vim.api.nvim_win_set_config(window:get_win(), {
-        relative = "editor",
-        anchor = "NE",
-        row = position[1],
-        col = position[2] + vim.api.nvim_win_get_width(source_win) - 1,
-      })
-    end
-
-    local documentation = require("blink.cmp.completion.windows.documentation")
-    documentation.update_position = function()
-      place_top_right(documentation.win)
-    end
-    local signature = require("blink.cmp.signature.window")
-    signature.update_position = function()
-      place_top_right(signature.win)
     end
   end,
 }

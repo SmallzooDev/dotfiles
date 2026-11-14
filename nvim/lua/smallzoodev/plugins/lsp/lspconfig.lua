@@ -2,35 +2,13 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    -- Set this to false to restore Neovim's cursor-relative LSP floats.
-    local top_right_lsp_floats = true
-
-    local function place_float_top_right(float_win, source_win)
-      if
-        not top_right_lsp_floats
-        or not float_win
-        or not source_win
-        or not vim.api.nvim_win_is_valid(float_win)
-        or not vim.api.nvim_win_is_valid(source_win)
-      then
-        return
-      end
-
-      local position = vim.api.nvim_win_get_position(source_win)
-      vim.api.nvim_win_set_config(float_win, {
-        relative = "editor",
-        anchor = "NE",
-        row = position[1],
-        col = position[2] + vim.api.nvim_win_get_width(source_win) - 1,
-      })
-    end
-
+    local float = require("smallzoodev.core.float")
     local open_floating_preview = vim.lsp.util.open_floating_preview
-    vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
-      local float_buf, float_win = open_floating_preview(contents, syntax, opts)
-      vim.api.nvim_set_option_value("conceallevel", 2, { win = float_win })
-      vim.api.nvim_set_option_value("concealcursor", "", { win = float_win })
-      place_float_top_right(float_win, (opts and opts._top_right_win) or vim.api.nvim_get_current_win())
+    vim.lsp.util.open_floating_preview = function(...)
+      local float_buf, float_win = open_floating_preview(...)
+      if float_win ~= vim.api.nvim_get_current_win() then
+        float.top_right(float_win)
+      end
       return float_buf, float_win
     end
 
@@ -72,10 +50,7 @@ return {
         map("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", "Show LSP type definitions")
         map({ "n", "v" }, "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", "Code actions")
         map("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
-        map("n", "<leader>k", function()
-          local source_win = vim.api.nvim_get_current_win()
-          vim.lsp.buf.hover(top_right_lsp_floats and { _top_right_win = source_win } or nil)
-        end, "Hover documentation")
+        map("n", "<leader>k", vim.lsp.buf.hover, "Hover documentation")
 
         map("n", "<leader>s", function()
           local ok, aerial = pcall(require, "aerial")
@@ -102,14 +77,7 @@ return {
         end
 
         map("n", "<leader>lh", toggle(vim.lsp.inlay_hint), "Toggle inlay hints")
-        map("n", "<leader>ld", function()
-          if #vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 }) == 0 then
-            return
-          end
-          local source_win = vim.api.nvim_get_current_win()
-          local _, float_win = vim.diagnostic.open_float({ scope = "line" })
-          place_float_top_right(float_win, source_win)
-        end, "Show line diagnostic")
+        map("n", "<leader>ld", vim.diagnostic.open_float, "Show line diagnostic")
       end,
     })
 
