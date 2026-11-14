@@ -113,10 +113,7 @@ return {
           end)
         end
       end
-      -- Scope/fold (with query_group)
-      vim.keymap.set({ "n", "x", "o" }, "]s", function()
-        move.goto_next_start("@scope", "locals")
-      end)
+      -- Fold (with query_group)
       vim.keymap.set({ "n", "x", "o" }, "]z", function()
         move.goto_next_start("@fold", "folds")
       end)

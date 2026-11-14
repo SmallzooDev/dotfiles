@@ -66,7 +66,7 @@ keymap.set("n", "gp", function()
 end, { desc = "Go to file:line from clipboard or input" })
 
 for _, name in ipairs({ "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQa", "WQA", "Xa", "XA" }) do
-  vim.api.nvim_create_user_command(name, name:lower(), { bang = true })
+  vim.api.nvim_create_user_command(name, name:lower() .. "<bang>", { bang = true })
 end
 
 keymap.set({ "n", "v" }, "<F1>", "<Nop>")

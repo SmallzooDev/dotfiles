@@ -19,7 +19,7 @@ return {
     config = function(_, opts)
       require("mason").setup(opts)
       require("mason-lspconfig").setup({ automatic_enable = false })
-      require("lazy").load({ plugins = { "mason-tool-installer.nvim" } })
+      require("mason-tool-installer").run_on_start()
     end,
   },
   {

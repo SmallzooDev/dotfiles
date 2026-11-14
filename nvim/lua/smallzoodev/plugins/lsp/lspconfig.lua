@@ -64,7 +64,10 @@ return {
         map("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", "Workspace symbols")
 
         map("n", "<leader>lR", "<cmd>lsp restart<CR>", "Restart LSP")
-        map("n", "<leader>ll", function() vim.cmd.edit(vim.fn.fnameescape(vim.lsp.get_log_path())) end, "Open LSP log")
+        map("n", "<leader>ll", function()
+          local path = vim.lsp.log.get_filename()
+          vim.cmd.edit(vim.fn.fnameescape(path))
+        end, "Open LSP log")
         map("n", "<leader>li", "<cmd>checkhealth lsp<CR>", "LSP info")
 
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -73,7 +76,6 @@ return {
         end
         if client and client:supports_method("textDocument/codeLens", ev.buf) then
           map("n", "<leader>lc", vim.lsp.codelens.run, "Run codelens on current line")
-          map("n", "<leader>lC", vim.lsp.codelens.refresh, "Refresh codelens")
           map("n", "<leader>lL", toggle(vim.lsp.codelens), "Toggle codelens")
         end
 
