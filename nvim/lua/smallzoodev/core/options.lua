@@ -26,8 +26,6 @@ opt.splitbelow = true
 
 opt.swapfile = false
 
-opt.conceallevel = 1
-
 opt.undofile = true
 
 opt.termguicolors = true
