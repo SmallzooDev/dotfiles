@@ -15,8 +15,20 @@ return {
 
     require("mini.surround").setup({
       mappings = {
+        add = "ms",
+        delete = "md",
+        replace = "mr",
         find = "",
         find_left = "",
+        highlight = "",
+        suffix_last = "",
+        suffix_next = "",
+      },
+      custom_surroundings = {
+        ["("] = { output = { left = "(", right = ")" } },
+        ["["] = { output = { left = "[", right = "]" } },
+        ["{"] = { output = { left = "{", right = "}" } },
+        ["<"] = { output = { left = "<", right = ">" } },
       },
     })
 

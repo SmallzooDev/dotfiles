@@ -4,6 +4,7 @@
 # Basic environment
 export EDITOR=nvim
 export VISUAL=$EDITOR
+export ZK_NOTEBOOK_DIR="$HOME/public_vault"
 
 setopt SHARE_HISTORY
 

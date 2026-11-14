@@ -70,6 +70,7 @@ for _, name in ipairs({ "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQ
 end
 
 keymap.set({ "n", "v" }, "<F1>", "<Nop>")
+keymap.set({ "n", "x" }, "s", "<Nop>")
 keymap.set("i", "<F1>", "!")
 
 keymap.set("n", "<leader>uw", function()
@@ -87,3 +88,5 @@ keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 keymap.set("n", "zf", "zc", { desc = "Fold block" })
 keymap.set("n", "zu", "zo", { desc = "Unfold block" })
 keymap.set("n", "zU", "zR", { desc = "Unfold all in buffer" })
+keymap.set("n", "<leader>z", "za", { desc = "Toggle fold" })
+keymap.set("n", "<leader>Z", "&foldlevel > 0 ? 'zM' : 'zR'", { expr = true, desc = "Toggle all folds" })
