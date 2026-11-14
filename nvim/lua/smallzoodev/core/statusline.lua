@@ -15,29 +15,6 @@ local modes = {
   nt = "TERMINAL",
 }
 
-local diagnostic_counts = {}
-local group = vim.api.nvim_create_augroup("SmallzoodevStatusline", { clear = true })
-
-vim.api.nvim_create_autocmd("DiagnosticChanged", {
-  group = group,
-  callback = function(args)
-    local counts = {}
-    local items = args.data and args.data.diagnostics or vim.diagnostic.get(args.buf)
-    for _, diagnostic in ipairs(items) do
-      counts[diagnostic.severity] = (counts[diagnostic.severity] or 0) + 1
-    end
-    diagnostic_counts[args.buf] = counts
-    vim.cmd.redrawstatus()
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufWipeout", {
-  group = group,
-  callback = function(args)
-    diagnostic_counts[args.buf] = nil
-  end,
-})
-
 local function mode()
   local value = vim.api.nvim_get_mode().mode
   return modes[value] or value:upper()
@@ -63,30 +40,6 @@ local function file_info()
   return table.concat({ encoding, vim.bo.fileformat, filetype }, " ")
 end
 
-local function diagnostics()
-  local counts = diagnostic_counts[vim.api.nvim_get_current_buf()] or {}
-  local parts = {}
-  local errors = counts[vim.diagnostic.severity.ERROR] or 0
-  local warnings = counts[vim.diagnostic.severity.WARN] or 0
-  local hints = counts[vim.diagnostic.severity.HINT] or 0
-  local info = counts[vim.diagnostic.severity.INFO] or 0
-
-  if errors > 0 then
-    parts[#parts + 1] = "%#DiagnosticError#E:" .. errors .. "%*"
-  end
-  if warnings > 0 then
-    parts[#parts + 1] = "%#DiagnosticWarn#W:" .. warnings .. "%*"
-  end
-  if hints > 0 then
-    parts[#parts + 1] = "%#DiagnosticHint#H:" .. hints .. "%*"
-  end
-  if info > 0 then
-    parts[#parts + 1] = "%#DiagnosticInfo#I:" .. info .. "%*"
-  end
-
-  return table.concat(parts, " ")
-end
-
 local function recording()
   local register = vim.fn.reg_recording()
   if register == "" then
@@ -98,7 +51,7 @@ end
 function M.render()
   local right = {}
   local recording_status = recording()
-  local diagnostic_status = diagnostics()
+  local diagnostic_status = package.loaded["vim.diagnostic"] and vim.diagnostic.status() or ""
 
   if recording_status ~= "" then
     right[#right + 1] = recording_status
@@ -112,8 +65,5 @@ function M.render()
 
   return " " .. mode() .. "  " .. filename() .. " %=" .. file_info() .. "%= " .. table.concat(right, "  ") .. " "
 end
-
-_G._smallzoodev_statusline = M.render
-M.statusline = "%!v:lua._smallzoodev_statusline()"
 
 return M

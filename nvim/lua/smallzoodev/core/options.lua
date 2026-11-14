@@ -60,6 +60,6 @@ opt.guicursor = {
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
-opt.statusline = require("smallzoodev.core.statusline").statusline
+opt.statusline = "%!v:lua.require'smallzoodev.core.statusline'.render()"
 
 vim.g.omni_sql_no_default_maps = 1
