@@ -23,7 +23,6 @@ return {
       { "<leader>f", group = "Find" },
       { "<leader>d", group = "Debug" },
       { "<leader>o", desc = "Toggle outline" },
-      { "<leader>O", group = "Obsidian" },
       { "<leader>l", group = "LSP" },
       { "<leader>u", group = "UI" },
       { "<leader>n", group = "Next swap" },

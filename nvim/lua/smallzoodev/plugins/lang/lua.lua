@@ -1,6 +1,6 @@
 return {
   { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "lua" } } },
-  { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = { "lua_ls", "stylua" } } },
+  { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = { ensure_installed = { "lua-language-server", "stylua" } } },
   { "stevearc/conform.nvim", opts = { formatters_by_ft = { lua = { "stylua" } } } },
   {
     "neovim/nvim-lspconfig",

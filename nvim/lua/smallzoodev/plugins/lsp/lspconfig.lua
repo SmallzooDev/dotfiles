@@ -53,14 +53,7 @@ return {
         map("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
         map("n", "<leader>k", vim.lsp.buf.hover, "Hover documentation")
 
-        map("n", "<leader>s", function()
-          local ok, aerial = pcall(require, "aerial")
-          if ok then
-            aerial.fzf_lua_picker()
-          else
-            vim.cmd("FzfLua lsp_document_symbols")
-          end
-        end, "Document symbols (aerial)")
+        map("n", "<leader>s", function() require("aerial").fzf_lua_picker() end, "Document symbols (aerial)")
         map("n", "<leader>S", "<cmd>FzfLua lsp_workspace_symbols<CR>", "Workspace symbols")
 
         map("n", "<leader>lR", "<cmd>lsp restart<CR>", "Restart LSP")

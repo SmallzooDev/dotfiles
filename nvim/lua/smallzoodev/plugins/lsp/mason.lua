@@ -5,7 +5,6 @@ return {
     init = function()
       vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
     end,
-    dependencies = { "mason-org/mason-lspconfig.nvim" },
     opts = {
       PATH = "skip",
       ui = {
@@ -18,7 +17,6 @@ return {
     },
     config = function(_, opts)
       require("mason").setup(opts)
-      require("mason-lspconfig").setup({ automatic_enable = false })
       require("mason-tool-installer").run_on_start()
     end,
   },
