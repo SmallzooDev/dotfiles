@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local utils = require("smallzoodev.core.utils")
 
 local general = augroup("SmallzooGeneral", { clear = true })
 
@@ -16,13 +15,24 @@ autocmd("BufWinEnter", {
   group = general,
   desc = "Redirect help to floating window",
   callback = function(data)
-    utils.open_help(data.buf)
+    if vim.bo[data.buf].filetype ~= "help" or vim.bo[data.buf].modifiable then
+      return
+    end
+    local help_win = vim.api.nvim_get_current_win()
+    vim.api.nvim_open_win(data.buf, true, {
+      relative = "editor",
+      row = 0,
+      col = vim.o.columns - 80,
+      width = 80,
+      height = vim.o.lines - 3,
+    })
+    vim.api.nvim_win_close(help_win, true)
   end,
 })
 
 autocmd("FileType", {
   group = general,
-  pattern = { "help", "checkhealth", "grug-far" },
+  pattern = { "help", "checkhealth" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", {
@@ -33,18 +43,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("VimLeavePre", {
-  group = general,
-  desc = "Save resession for cwd on exit",
-  callback = function()
-    local ok, resession = pcall(require, "resession")
-    if not ok then
-      return
-    end
-    pcall(resession.save, vim.fn.getcwd(), { notify = false })
-  end,
-})
-
 autocmd("BufEnter", {
   group = general,
   desc = "Auto chdir to project root (.git)",
@@ -52,7 +50,7 @@ autocmd("BufEnter", {
     if data.buf ~= vim.api.nvim_get_current_buf() then
       return
     end
-    local root = utils.find_root(data.buf, { ".git" })
+    local root = vim.fs.root(data.buf, ".git")
     if root == nil then
       return
     end

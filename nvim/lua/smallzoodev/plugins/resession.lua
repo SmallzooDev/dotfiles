@@ -20,4 +20,12 @@ return {
       desc = "Find Session",
     },
   },
+  config = function(_, opts)
+    local resession = require("resession")
+    resession.setup(opts)
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      desc = "Save resession for cwd on exit",
+      callback = function() pcall(resession.save, vim.fn.getcwd(), { notify = false }) end,
+    })
+  end,
 }
