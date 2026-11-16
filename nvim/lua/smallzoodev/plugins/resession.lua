@@ -25,7 +25,11 @@ return {
     resession.setup(opts)
     vim.api.nvim_create_autocmd("VimLeavePre", {
       desc = "Save resession for cwd on exit",
-      callback = function() pcall(resession.save, vim.fn.getcwd(), { notify = false }) end,
+      callback = function()
+        local cwd, arg = vim.fn.getcwd(), vim.fn.argv(0)
+        if arg ~= "" and not vim.fs.relpath(cwd, arg) then return end
+        pcall(resession.save, cwd, { notify = false })
+      end,
     })
   end,
 }

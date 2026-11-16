@@ -18,6 +18,16 @@ return {
     },
     sources = {
       default = { "lsp", "path", "snippets" },
+      providers = {
+        path = {
+          opts = {
+            get_cwd = function(ctx)
+              local dir = vim.fn.expand(("#%d:p:h"):format(ctx.bufnr))
+              return vim.fn.resolve(dir) == vim.fn.resolve("/tmp") and vim.fn.getcwd() or dir
+            end,
+          },
+        },
+      },
     },
     cmdline = { completion = { menu = { auto_show = true } } },
     completion = {

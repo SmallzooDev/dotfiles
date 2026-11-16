@@ -75,20 +75,15 @@ zstyle ':completion:*' list-colors 'ma=0;7' 'di=34' 'ln=36' 'ex=32'
 zstyle ':completion:*:descriptions' format '%F{8}%d%f'
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^G' edit-command-line
+
 # FZF
 eval "$(fzf --zsh)"
 
 # Change ALT+C to CTRL+F for directory navigation
 bindkey '^F' fzf-cd-widget
-
-# CTRL+H: fzf directory navigation starting from home
-fzf-home-widget() {
-  local dir
-  dir=$(fd --type=d --hidden --exclude .git --exclude .obsidian --exclude .idea . ~ | fzf +m) && cd "$dir"
-  zle reset-prompt
-}
-zle -N fzf-home-widget
-bindkey '^G' fzf-home-widget
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .obsidian --exclude .idea"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
