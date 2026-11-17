@@ -208,7 +208,7 @@ end
 
 for name in
   (
-    "sin cos cot csc ln log exp perp arcsin arccos arctan pi zeta int "
+    "sin cos tan cot sec csc ln log exp perp arcsin arccos arctan pi zeta int "
     .. "alpha beta gamma delta epsilon theta lambda mu sigma phi omega Delta Sigma Omega"
   ):gmatch("%S+")
 do
