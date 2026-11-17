@@ -16,6 +16,7 @@ return {
     appearance = {
       nerd_font_variant = "mono",
     },
+    snippets = { preset = "luasnip" },
     sources = {
       default = { "lsp", "path", "snippets" },
       providers = {
