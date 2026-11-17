@@ -18,6 +18,7 @@ alias lm='lumen diff --wrap'
 # custom aliases
 alias gtwk='cd ~/wiki/SmallzooDevWiki/content/_wiki'
 alias gtdf='cd ~/dotfiles'
+alias gtmt='cd ~/private_vault/02-Areas/math2years/'
 alias gtnv='cd ~/.config/nvim'
 alias gtrs='cd ~/dev/coding_interview_rust'
 alias gtkt='cd ~/dev/CodingInterviewKotlin'
@@ -42,6 +43,7 @@ alias hxp='cd ~/public_vault && hx home.md'
 alias hxs='cd ~/private_vault && hx home.md'
 alias hxd='cd ~/dotfiles && hx .'
 alias ch='vi ~/public_vault/cheatsheet.md'
+alias vimt='vi ~/private_vault/02-Areas/math2years/'
 
 # Scripts
 alias ii='./init.sh'
