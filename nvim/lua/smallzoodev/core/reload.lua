@@ -80,6 +80,14 @@ vim.api.nvim_create_autocmd("FileChangedShell", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufReadPre", {
+  group = reload_aug,
+  callback = function(args)
+    local ls = package.loaded["luasnip"]
+    if ls and ls.session and ls.session.current_nodes then ls.session.current_nodes[args.buf] = nil end
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileChangedShellPost", {
   group = reload_aug,
   callback = function(args)
