@@ -1,8 +1,6 @@
 format = """$directory$git_branch$git_status$cmd_duration$status
 $character"""
 
-command_timeout = 100
-
 [nodejs]
 disabled = true
 
