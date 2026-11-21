@@ -51,18 +51,4 @@ return {
       enabled = true,
     },
   },
-  config = function(_, opts)
-    require("blink.cmp").setup(opts)
-
-    local float = require("smallzoodev.core.float")
-    for _, name in ipairs({ "blink.cmp.completion.windows.documentation", "blink.cmp.signature.window" }) do
-      local module = require(name)
-      module.update_position = function()
-        if module.win:is_open() then
-          module.win:update_size()
-          float.top_right(module.win:get_win())
-        end
-      end
-    end
-  end,
 }

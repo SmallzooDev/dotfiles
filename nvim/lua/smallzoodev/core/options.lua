@@ -29,7 +29,7 @@ opt.swapfile = false
 opt.undofile = true
 
 opt.termguicolors = true
-opt.winborder = "single"
+opt.winborder = "rounded"
 
 opt.showmode = false
 opt.laststatus = 3

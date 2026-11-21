@@ -3,16 +3,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = { servers = {} },
   config = function(_, opts)
-    local float = require("smallzoodev.core.float")
-    local open_floating_preview = vim.lsp.util.open_floating_preview
-    vim.lsp.util.open_floating_preview = function(...)
-      local float_buf, float_win = open_floating_preview(...)
-      if float_win ~= vim.api.nvim_get_current_win() then
-        float.top_right(float_win)
-      end
-      return float_buf, float_win
-    end
-
     vim.diagnostic.config({
       underline = false,
       virtual_text = false,
