@@ -47,7 +47,10 @@ mkdir -p ~/.config
 create_symlink "$HOME/dotfiles/nvim" ~/.config/nvim
 create_symlink "$HOME/dotfiles/karabiner" ~/.config/karabiner
 # create_symlink "$HOME/dotfiles/aerospace" ~/.config/aerospace
-create_symlink "$HOME/dotfiles/yazi" ~/.config/yazi
+[ -L ~/.config/yazi ] && rm ~/.config/yazi
+mkdir -p ~/.config/yazi
+create_symlink "$HOME/dotfiles/yazi/yazi.toml" ~/.config/yazi/yazi.toml
+create_symlink "$HOME/dotfiles/yazi/keymap.toml" ~/.config/yazi/keymap.toml
 create_symlink "$HOME/dotfiles/helix" ~/.config/helix
 create_symlink "$HOME/dotfiles/ghostty" ~/.config/ghostty
 create_symlink "$HOME/dotfiles/starship.toml" ~/.config/starship.toml
